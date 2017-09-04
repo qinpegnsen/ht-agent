@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {isNull} from "util";
 import {Page} from "../../../core/page/page";
-import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
 import {AjaxService} from '../../../core/services/ajax.service';
+import {PageEvent} from "angular2-datatable";
 @Component({
   selector: 'app-ng2-datatable',
   templateUrl: './ng2-datatable.component.html',
