@@ -1,17 +1,17 @@
 import { LayoutComponent } from '../layout/layout.component';
-
 export const routes = [
 
     {
-        path: '',
+        path: 'main',
         component: LayoutComponent,
         children: [
             { path: '', redirectTo: 'home', pathMatch: 'full' },
-            { path: 'home', loadChildren: './home/home.module#HomeModule' }
+            { path: 'home', loadChildren: './home/home.module#HomeModule' },
+            { path: 'stockMan', loadChildren: './stock-man/stock-man.module#StockManModule' }
         ]
     },
 
     // Not found
-    { path: '**', redirectTo: 'home' }
+    { path: '**', redirectTo: '/main' }
 
 ];
