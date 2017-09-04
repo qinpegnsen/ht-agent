@@ -16,12 +16,12 @@ const stockMan = {
     {
       text: '我要进货',
       icon: 'fa fa-area-chart',
-      link: '/main/website/agentord'
+      link: '/main/stockMan/agentord'
     },
     {
       text: '进货记录',
       icon: 'fa fa-book',
-      link: '/main/website/ordRecord'
+      link: '/main/stockMan/ordRecord'
     }
   ]
 };
