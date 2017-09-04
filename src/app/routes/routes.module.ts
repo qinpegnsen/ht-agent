@@ -6,20 +6,24 @@ import { SharedModule } from '../shared/shared.module';
 
 import { menu } from './menu';
 import { routes } from './routes';
+import {PagesModule} from "./pages/pages.module";
+// import {CanLoadStockMan, Permissions} from "./stock-man/can-load-stock-man";
 
 @NgModule({
     imports: [
         SharedModule,
-        RouterModule.forRoot(routes)
+        RouterModule.forRoot(routes),
+        PagesModule
     ],
     declarations: [],
+    // providers: [CanLoadStockMan, Permissions],
     exports: [
         RouterModule
     ]
 })
 
 export class RoutesModule {
-    constructor(public menuService: MenuService, tr: TranslatorService) {
-        menuService.addMenu(menu);
-    }
+    // constructor(public menuService: MenuService, tr: TranslatorService) {
+    //     menuService.addMenu(menu);
+    // }
 }

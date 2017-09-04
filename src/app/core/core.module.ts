@@ -6,6 +6,9 @@ import { TranslatorService } from './translator/translator.service';
 import { MenuService } from './menu/menu.service';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
+import {AjaxService} from "./services/ajax.service";
+import {MaskService} from "./services/mask.service";
+import {SubmitService} from "./forms/submit.service";
 
 @NgModule({
     imports: [
@@ -14,7 +17,10 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
         SettingsService,
         ThemesService,
         TranslatorService,
-        MenuService
+        MenuService,
+         AjaxService,
+         MaskService,
+      SubmitService
     ],
     declarations: [
     ],

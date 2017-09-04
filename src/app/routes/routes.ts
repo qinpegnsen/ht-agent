@@ -1,4 +1,7 @@
 import { LayoutComponent } from '../layout/layout.component';
+import { CanLoadStockMan } from './stock-man/can-load-stock-man';
+import {PagesComponent} from "./pages/pages/pages.component";
+import {LoginComponent} from "./pages/login/login.component";
 export const routes = [
 
     {
@@ -7,10 +10,18 @@ export const routes = [
         children: [
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', loadChildren: './home/home.module#HomeModule' },
-            { path: 'stockMan', loadChildren: './stock-man/stock-man.module#StockManModule' }
+            { path: 'stockMan', loadChildren: './stock-man/stock-man.module#StockManModule'},
+            {path: 'edit-pw', loadChildren: './edit-pw/edit-pw.module#EditPwModule'},
         ]
     },
-
+    {
+      path: 'pages',
+      component: PagesComponent,
+      children: [
+        {path: '', redirectTo: '/main/home', pathMatch: 'full'},
+        {path: 'login', component: LoginComponent}
+      ]
+    },
     // Not found
     { path: '**', redirectTo: '/main' }
 

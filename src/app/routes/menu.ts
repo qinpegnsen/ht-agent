@@ -1,7 +1,7 @@
 
 const Home = {
     text: '主页',
-    link: '/home',
+    link: '/main/home',
     icon: 'icon-home'
 };
 const headingMain = {
