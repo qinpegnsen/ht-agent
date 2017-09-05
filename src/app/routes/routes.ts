@@ -8,7 +8,7 @@ export const routes = [
         path: 'main',
         component: LayoutComponent,
         children: [
-            { path: '', redirectTo: 'home', pathMatch: 'full' },
+            { path: '', redirectTo: '/main/home', pathMatch: 'full' },
             { path: 'home', loadChildren: './home/home.module#HomeModule' },
             { path: 'stockMan', loadChildren: './stock-man/stock-man.module#StockManModule'},
             {path: 'edit-pw', loadChildren: './edit-pw/edit-pw.module#EditPwModule'},
