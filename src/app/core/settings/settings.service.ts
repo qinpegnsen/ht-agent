@@ -22,7 +22,7 @@ export class SettingsService {
     this.user = {
       name: name,
       job: job,
-      picture: 'assets/img/user/user.png'
+      picture: 'assets/img/user/01.jpg'
     };
 
     // App Settings
