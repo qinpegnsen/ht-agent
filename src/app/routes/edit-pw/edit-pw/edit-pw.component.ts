@@ -13,22 +13,7 @@ export class EditPwComponent implements OnInit {
 
   ngOnInit() {
   }
-  //密码判断
-  // validate() {
-  //   var pwd = $("#pwd").val();
-  //   var comfirmPwd = $("#comfirmPwd").val();
-  //   //判断两次密码输入是否一致
-  //   if(pwd == comfirmPwd)
-  //   {
-  //     $("#tishi").html("两次密码相同");
-  //     $("#tishi").css("color","green");
-  //   }
-  //   else {
-  //     $("#tishi").html("两次密码不相同");
-  //     $("#tishi").css("color","red")
-  //
-  //   }
-  // }
+
   //取消
   cancel() {
     this.settings.closeRightPageAndRouteBack(); //关闭右侧滑动页面
