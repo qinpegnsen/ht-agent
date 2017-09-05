@@ -1,6 +1,6 @@
 import { Ng2anglePage } from './app.po';
 
-describe('ng2angle App', function() {
+describe('agent App', function() {
   let page: Ng2anglePage;
 
   beforeEach(() => {
