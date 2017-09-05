@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {StockManService} from "./stock-man.service";
 import {Page} from "../../core/page/page";
-import {PageEvent} from "../../shared/directives/ng2-datatable/DataTable";
+import {PageEvent} from "angular2-datatable";
 
 @Component({
   selector: 'app-stock-man',
