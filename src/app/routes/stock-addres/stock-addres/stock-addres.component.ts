@@ -12,6 +12,7 @@ import {AjaxService} from "../../../core/services/ajax.service";
   providers:[StockAddresService]
 })
 export class StockAddresComponent implements OnInit {
+  private queryId:number;//获取添加，修改的ID
   private addButton;//新增代理商收货地址按钮配置
   private updatebutton;//修改代理商收货地址按钮配置
   private deletebutton;//删除代理商收货地址按钮配置
@@ -33,6 +34,7 @@ export class StockAddresComponent implements OnInit {
   constructor(private ajax:AjaxService,private routeInfo:ActivatedRoute,private StockAddresService:StockAddresService) { }
 
   ngOnInit() {
+    this.queryId = this.routeInfo.snapshot.queryParams['id'];
     //按钮配置
     this.addButton = {
       type:"add",

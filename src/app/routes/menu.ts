@@ -11,7 +11,7 @@ const headingMain = {
 const stockMan = {
   text: '进货管理',
   link: '/main/stockMan',
-  icon: 'fa fa-users',
+  icon: 'fa fa-cubes',
   submenu: [
     {
       text: '我要进货',
@@ -26,22 +26,22 @@ const stockMan = {
 const shopOrder = {
   text: '购物工单',
   link: '/main/shopOrder',
-  icon: 'fa fa-users'
+  icon: 'fa fa-file-text'
 };
 const afterSale = {
   text: '售后工单',
   link: '/main/afterSale',
-  icon: 'fa fa-users'
+  icon: 'icon-book-open'
 };
 const statistics = {
   text: '统计',
   link: '/main/statistics',
-  icon: 'fa fa-users'
+  icon: 'fa fa-line-chart'
 };
 const stockAddres = {
   text: '收货地址',
   link: '/main/stockAddres',
-  icon: 'fa fa-users'
+  icon: 'icon-location-pin'
 };
 export const menu = [
     headingMain,
