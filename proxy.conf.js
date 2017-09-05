@@ -4,12 +4,10 @@
 const PROXY_CONFIG = [
   {
     context: [
-
+      "/goodsQuery"
     ],
-    target: "",   //拦截 context配置路径，经过此地址
+    target: "http://192.168.10.167:8901",   //拦截 context配置路径，经过此地址
     secure: false
   }
-
 ];
-
 module.exports = PROXY_CONFIG;

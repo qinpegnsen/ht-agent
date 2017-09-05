@@ -1,3 +1,85 @@
-<p>
-  stock-man works!
-</p>
+<div class="content-heading mb-lg">
+  商品列表
+</div>
+<!--<div class="panel mb">-->
+  <!--<div class="panel-body p ng-scope" ng-if="search">-->
+    <!--<div class="form-group mb0">-->
+      <!--<div class="col-xs-5">-->
+        <!--<input type="text" [(ngModel)]="searchKey" class="form-control border-b-grey ng-pristine ng-valid ng-touched"-->
+               <!--(change)="queryshopList()" placeholder="请输入要查询的快递公司名称或者公司编号">-->
+      <!--</div>-->
+      <!--<div class="col-sm-1 pull-left text-center">-->
+        <!--<span class="ng-scope">-->
+           <!--<button type="button" title="搜索" id="toSearch" (click)="queryshopList()"-->
+                   <!--class="btn btn-primary bar-h3-btn mr ng-scope">-->
+             <!--<em class="icon-magnifier fa-fw"></em>搜索-->
+           <!--</button>-->
+          <!--</span>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--<app-buttons class="pull-right" [config]="expressAddbutton" routerLink="rightPage"  [queryParams]="{type:'add'}"></app-buttons>-->
+  <!--</div>-->
+<!--</div>-->
+<div class="panel-body">
+  <table class="table table-striped" #shopList="rzhDataTable" [rzhData]="shopListdata"
+         (pageChange)="queryshopList($event)">
+    <thead>
+    <tr>
+      <th style="width: 5%">
+        序号
+      </th>
+      <th style="width: 20%">
+        <rzhDefaultSorter by="name">公司名称</rzhDefaultSorter>
+      </th>
+      <th style="width: 25%">
+        <rzhDefaultSorter by="email">公司编号</rzhDefaultSorter>
+      </th>
+      <th style="width: 20%">
+        <rzhDefaultSorter>公司网址</rzhDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <rzhDefaultSorter>状态</rzhDefaultSorter>
+      </th>
+      <th style="width: 20%">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let shop of shopList.data;let i = index">
+      <td>{{i+1}}</td>
+      <td>{{shop.brandName}}</td>
+      <!--<td>{{express.expressCode}}</td>-->
+      <!--<td>{{express.expressUrl}}</td>-->
+      <!--<td>-->
+        <!--<label class="switch">-->
+          <!--<input type="checkbox" [checked]="express.isUse=='Y'" (change)="isUse(express)"/>-->
+          <!--<span></span>-->
+        <!--</label>-->
+      <!--</td>-->
+      <!--<td>-->
+        <!--<app-buttons [config]="updatebutton" routerLink="rightPage" [queryParams]="{type:'edit',id:express.id}"></app-buttons>-->
+        <!--<app-buttons [config]="deletebutton" (click)="deleteSort(express.id)"></app-buttons>-->
+
+      <!--</td>-->
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr class="text-center">
+      <td colspan="12">
+        <div class="col-md-5">
+          <div class="text-muted pull-left"><strong>第 {{shopListdata.genStartRow()}} 至
+            {{shopListdata.genEndRow()}} 条，共 {{shopListdata.totalRow}}
+            条</strong></div>
+        </div>
+        <div class="col-md-7">
+          <div class="pull-right">
+            <rzhBootstrapPaginator></rzhBootstrapPaginator>
+          </div>
+        </div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+<!--路由嵌套 begin-->
+<router-outlet></router-outlet>
+<!--路由嵌套 end-->

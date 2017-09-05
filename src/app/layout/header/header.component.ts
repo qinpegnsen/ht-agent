@@ -1,83 +1,147 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from "@angular/core";
+import {UserblockService} from "../sidebar/userblock/userblock.service";
+import {SettingsService} from "../../core/settings/settings.service";
+import {MenuService} from "../../core/menu/menu.service";
+import {Router} from "@angular/router";
+import {AjaxService} from "../../core/services/ajax.service";
+import {CookieService} from "angular2-cookie/core";
+import {LayoutComponent} from "../layout.component";
+import {isNullOrUndefined} from "util";
 const screenfull = require('screenfull');
 const browser = require('jquery.browser');
 declare var $: any;
 
-import { UserblockService } from '../sidebar/userblock/userblock.service';
-import { SettingsService } from '../../core/settings/settings.service';
-import { MenuService } from '../../core/menu/menu.service';
-
 @Component({
-    selector: 'app-header',
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnChanges {
 
-    navCollapsed = true; // for horizontal layout
-    menuItems = []; // for horizontal layout
+  @Input() private curPath;
+  ngOnChanges(changes: SimpleChanges): void {
+    let me = this;
+    if(changes['curPath'] && !isNullOrUndefined(me.curPath)){
+      // 每次路由变化时检测其与一级导航路由是否匹配，匹配则为一级导航添加激活状态
+      me.onRouterChange(me.curPath);
+    }
+  }
 
-    isNavSearchVisible: boolean;
-    @ViewChild('fsbutton') fsbutton;  // the fullscreen button
+  navCollapsed = true;
+  menuItems = [];
 
-    constructor(public menu: MenuService, public userblockService: UserblockService, public settings: SettingsService) {
+  isNavSearchVisible: boolean;
+  @ViewChild('fsbutton') fsbutton;
 
-        // show only a few items on demo
-        this.menuItems = menu.getMenu().slice(0,4); // for horizontal layout
+  constructor(public menu: MenuService, public userblockService: UserblockService, public settings: SettingsService,
+              private ajax: AjaxService, private router: Router,private cookieService:CookieService,private layout:LayoutComponent) {
+    // 只显示指定的
+    if(typeof menu.getMenu() !== 'undefined') this.menuItems = menu.getMenu();
+  }
 
+  ngOnInit() {
+    this.isNavSearchVisible = false;
+    if (browser.msie) { // 不支持ie
+      this.fsbutton.nativeElement.style.display = 'none';
     }
 
-    ngOnInit() {
-        this.isNavSearchVisible = false;
-        if (browser.msie) { // Not supported under IE
-            this.fsbutton.nativeElement.style.display = 'none';
+
+    let me = this;
+    // 初始化时检测当前路由与一级导航路由是否匹配，匹配则为一级导航添加激活状态
+    $(function(){
+      let rulHref = window.location.href, host = window.location.host;
+      let path = rulHref.substring(rulHref.indexOf(host)).substring(host.length);
+      me.onRouterChange(path);
+      console.log(path)
+      me.getSubmenus(path);
+    })
+  }
+
+  /**
+   * 检测当前路由与一级导航路由是否匹配，匹配则为一级导航添加激活状态
+   * @param path
+   */
+  private onRouterChange(path){
+    let firstNavs = $('.my-nav');
+    for(let i = 0; i < firstNavs.length; i++){
+      let firstNav = firstNavs.eq(i).attr('route');
+      if(path.indexOf(firstNav) === 0){
+        firstNavs.eq(i).addClass('current').parent().siblings().children('.my-nav').removeClass('current');
+        return;
+      }
+    };
+  }
+
+  //显示、隐藏当前登录的用户信息
+  toggleUserBlock(event) {
+    event.preventDefault();
+    this.userblockService.toggleVisibility();
+  }
+
+  //开启全局搜索
+  openNavSearch(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    this.setNavSearchVisible(true);
+  }
+
+  setNavSearchVisible(stat: boolean) {
+    // console.log(stat);
+    this.isNavSearchVisible = stat;
+  }
+
+  getNavSearchVisible() {
+    return this.isNavSearchVisible;
+  }
+
+  toggleOffsidebar() {
+    this.settings.layout.offsidebarOpen = !this.settings.layout.offsidebarOpen;
+  }
+
+  //显示隐藏侧边栏
+  toggleCollapsedSideabar() {
+    this.settings.layout.isCollapsed = !this.settings.layout.isCollapsed;
+  }
+
+  isCollapsedText() {
+    return this.settings.layout.isCollapsedText;
+  }
+
+  //全屏
+  toggleFullScreen(event) {
+    if (screenfull.enabled) screenfull.toggle();
+    let el = $(this.fsbutton.nativeElement);
+    if (screenfull.isFullscreen) {
+      el.children('em').removeClass('fa-expand').addClass('fa-compress');
+    }
+    else {
+      el.children('em').removeClass('fa-compress').addClass('fa-expand');
+    }
+  }
+
+  /**
+   * 退出登录
+   */
+  logout() {
+    this.cookieService.removeAll(); //清空所有cookie
+    this.ajax.get({
+      url: "/login/logout",
+      success: (result) => {
+        if (result.success) {
+          this.router.navigate(['/pages/login'], {replaceUrl: true});
         }
-    }
+      }
+    });
+  }
 
-    toggleUserBlock(event) {
-        event.preventDefault();
-        this.userblockService.toggleVisibility();
-    }
+  /**
+   * 为子菜单赋值，通过父组件（layout）的方法来给同级的组件（sidebar）传值，所以这里把子菜单传给了父组件（layout）的方法
+   *
+   * @param text
+   */
+  getSubmenus(link){
+    // let menus = this.menu.getSubMenu(link);
+    // this.layout.submenus(menus)
+  }
 
-    openNavSearch(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        this.setNavSearchVisible(true);
-    }
-
-    setNavSearchVisible(stat: boolean) {
-        // console.log(stat);
-        this.isNavSearchVisible = stat;
-    }
-
-    getNavSearchVisible() {
-        return this.isNavSearchVisible;
-    }
-
-    toggleOffsidebar() {
-        this.settings.layout.offsidebarOpen = !this.settings.layout.offsidebarOpen;
-    }
-
-    toggleCollapsedSideabar() {
-        this.settings.layout.isCollapsed = !this.settings.layout.isCollapsed;
-    }
-
-    isCollapsedText() {
-        return this.settings.layout.isCollapsedText;
-    }
-
-    toggleFullScreen(event) {
-
-        if (screenfull.enabled) {
-            screenfull.toggle();
-        }
-        // Switch icon indicator
-        let el = $(this.fsbutton.nativeElement);
-        if (screenfull.isFullscreen) {
-            el.children('em').removeClass('fa-expand').addClass('fa-compress');
-        }
-        else {
-            el.children('em').removeClass('fa-compress').addClass('fa-expand');
-        }
-    }
 }
