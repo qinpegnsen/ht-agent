@@ -1,5 +1,4 @@
 import { LayoutComponent } from '../layout/layout.component';
-import { CanLoadStockMan } from './stock-man/can-load-stock-man';
 import {PagesComponent} from "./pages/pages/pages.component";
 import {LoginComponent} from "./pages/login/login.component";
 export const routes = [
