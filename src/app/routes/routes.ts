@@ -7,7 +7,8 @@ export const routes = [
         children: [
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', loadChildren: './home/home.module#HomeModule' },
-            { path: 'stockMan', loadChildren: './stock-man/stock-man.module#StockManModule' }
+            { path: 'stockMan', loadChildren: './stock-man/stock-man.module#StockManModule' },
+            { path: 'stockAddres', loadChildren: './stock-addres/stock-addres.module#StockAddresModule' }
         ]
     },
 
