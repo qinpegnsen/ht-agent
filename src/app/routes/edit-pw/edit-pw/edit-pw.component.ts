@@ -24,8 +24,7 @@ export class EditPwComponent implements OnInit {
       let url = '/admin/updatePwd';
       let data = {
         pwd:res.form.value.pwd,
-        // comfirmPwd:res.form._value.comfirmPwd,
-        oldpwd:res.form.value.oldpwd,
+        oldPwd:res.form.value.oldPwd,
       }
       this.submitt.postRequest(url, data);
 }
