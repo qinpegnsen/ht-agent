@@ -16,6 +16,7 @@ export class StockManComponent implements OnInit {
 
   /**
    * 1. 初始化的时候获取商品列表的数据
+   * 2.初始化按钮信息
    */
   ngOnInit() {
     this.queryshopList()

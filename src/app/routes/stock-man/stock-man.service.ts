@@ -23,9 +23,11 @@ export class StockManService {
         let info=data.info;
         if(data.success){
           result=data.data;
-          // AppComponent.rzhAlt("success",info);
+          console.log('111')
+          AppComponent.rzhAlt("success",info);
+          console.log('22')
         }else{
-          // AppComponent.rzhAlt("error",info);
+          AppComponent.rzhAlt("error",info);
         }
       },
       error: (data) => {
