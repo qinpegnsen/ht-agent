@@ -29,7 +29,7 @@ export class StockManComponent implements OnInit {
       type: "details"
     };
     this.updatebutton={
-      title:"编辑",
+      title:"添加到购物车",
       type: "update"
     };
   }
@@ -51,6 +51,13 @@ export class StockManComponent implements OnInit {
     }
     this.shopListdata=new Page(this.stockManService.getShopList(url,data))
     console.log(this.shopListdata)
+  }
+
+  /**
+   * 当点击tr的时候，让隐藏的tr出来
+   */
+  showDetail(data:any){
+    data.isShow = !data.isShow;
   }
 
 }

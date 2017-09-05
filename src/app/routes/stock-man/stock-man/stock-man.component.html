@@ -3,67 +3,86 @@
 </div>
 <div class="panel panel-default">
   <div class="panel-body">
-  <table class="table table-striped" #shopList="rzhDataTable" [rzhData]="shopListdata"
-         (pageChange)="queryshopList($event)">
-    <thead>
-    <tr>
-      <th class="w5">
-        序号
-      </th>
-      <th class="w20">
-        <rzhDefaultSorter by="name">商品图片</rzhDefaultSorter>
-      </th>
-      <th class="w10">
-        <rzhDefaultSorter by="email">商品名称</rzhDefaultSorter>
-      </th>
-      <th class="w10">
-        <rzhDefaultSorter>分类名称</rzhDefaultSorter>
-      </th>
-      <th class="w15">
-        <rzhDefaultSorter>品牌</rzhDefaultSorter>
-      </th>
-      <th class="w10">
-        <rzhDefaultSorter>单位</rzhDefaultSorter>
-      </th>
-      <th class="w15">
-        <rzhDefaultSorter>价格</rzhDefaultSorter>
-      </th>
-      <th class="w15">操作</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let shop of shopList.data;let i = index">
-      <td>{{i+1}}</td>
-      <td>{{shop.goodsImage}}</td>
-      <td>{{shop.goodsName}}</td>
-      <td>{{shop.kindName}}</td>
-      <td>{{shop.brandName}}</td>
-      <td>{{shop.unit}}</td>
-      <td>{{shop.goodsPrice.batchPrice}}</td>
-      <td>
-        <app-buttons [config]="detailsbutton" (click)="showDetail(member)"></app-buttons>
-        <app-buttons [config]="updatebutton" ></app-buttons>
-      </td>
-    </tr>
-    </tbody>
-    <tfoot>
-    <tr class="text-center">
-      <td colspan="12">
-        <div class="col-md-5">
-          <div class="text-muted pull-left"><strong>第 {{shopListdata.genStartRow()}} 至
-            {{shopListdata.genEndRow()}} 条，共 {{shopListdata.totalRow}}
-            条</strong></div>
-        </div>
-        <div class="col-md-7">
-          <div class="pull-right">
-            <rzhBootstrapPaginator></rzhBootstrapPaginator>
+    <table class="table table-striped" #shopList="rzhDataTable" [rzhData]="shopListdata"
+           (pageChange)="queryshopList($event)">
+      <thead>
+      <tr>
+        <th class="w5">
+          序号
+        </th>
+        <th class="w15">
+          <rzhDefaultSorter by="name">商品名称</rzhDefaultSorter>
+        </th>
+        <!--<th class="w10">-->
+        <!--<rzhDefaultSorter by="email">商品名称</rzhDefaultSorter>-->
+        <!--</th>-->
+        <th class="w15">
+          <rzhDefaultSorter>分类名称</rzhDefaultSorter>
+        </th>
+        <th class="w10">
+          <rzhDefaultSorter>品牌</rzhDefaultSorter>
+        </th>
+        <th class="w10">
+          <rzhDefaultSorter>单位</rzhDefaultSorter>
+        </th>
+        <th class="w10">
+          <rzhDefaultSorter>价格</rzhDefaultSorter>
+        </th>
+        <th class="w15">
+          <rzhDefaultSorter>规格</rzhDefaultSorter>
+        </th>
+        <th class="w20">操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let shop of shopList.data;let i = index">
+        <tr>
+          <td>{{i+1}}</td>
+          <td>
+            <div class="col-xs-3">
+              <img src="{{shop.goodsImage}}" alt="" onerror="javascript:this.src='../../../assets/img/dummy.png';">
+            </div>
+            <dl class="col-xs-9">
+              <dt class="m15">{{shop.goodsName}}</dt>
+              <dd class="m15"><span>商品编码:{{shop.goodsCode}}</span></dd>
+            </dl>
+          </td>
+          <td>{{shop.kindName}}</td>
+          <td>{{shop.brandName}}</td>
+          <td>{{shop.unit}}</td>
+          <td>{{shop.goodsPrice.batchPrice}}</td>
+          <!--<td>{{shop.goodsSavSetList[0].attrName}}{{shop.goodsSavSetList[0].value}}</td>-->
+          <td *ngFor="let standard of shop.goodsSavSetList">
+            {{standard.attrName}}：{{standard.value}}
+          </td>
+          <td>
+            <app-buttons [config]="detailsbutton" (click)="showDetail(shop)"></app-buttons>
+            <app-buttons [config]="updatebutton"></app-buttons>
+          </td>
+        </tr>
+        <tr *ngIf="shop.isShow">
+         ss
+        </tr>
+      </ng-container>
+      </tbody>
+      <tfoot>
+      <tr class="text-center">
+        <td colspan="12">
+          <div class="col-md-5">
+            <div class="text-muted pull-left"><strong>第 {{shopListdata.genStartRow()}} 至
+              {{shopListdata.genEndRow()}} 条，共 {{shopListdata.totalRow}}
+              条</strong></div>
           </div>
-        </div>
-      </td>
-    </tr>
-    </tfoot>
-  </table>
-</div>
+          <div class="col-md-7">
+            <div class="pull-right">
+              <rzhBootstrapPaginator></rzhBootstrapPaginator>
+            </div>
+          </div>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
 </div>
 
 <!--路由嵌套 begin-->
