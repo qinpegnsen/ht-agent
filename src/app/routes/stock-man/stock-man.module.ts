@@ -11,7 +11,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SharedModule,
+    SharedModule.forRoot() // 公用模块
   ],
   declarations: [StockManComponent],
   providers: [StockManService]

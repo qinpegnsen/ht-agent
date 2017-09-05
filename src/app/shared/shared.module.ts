@@ -32,7 +32,7 @@ import { NowDirective } from './directives/now/now.directive';
 import { ScrollableDirective } from './directives/scrollable/scrollable.directive';
 import { JqcloudDirective } from './directives/jqcloud/jqcloud.directive';
 import {RzhButtonsModule} from "../routes/buttons/rzh-buttons.module";
-import {DataTableModule} from "angular2-datatable";
+import {DataTableModule} from "./directives/ng2-datatable/DataTableModule";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
