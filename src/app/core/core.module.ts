@@ -1,3 +1,6 @@
+/**
+ * Created by qinpengsen on 2017/9/5.
+ */
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 
 import { SettingsService } from './settings/settings.service';
@@ -11,24 +14,24 @@ import {MaskService} from "./services/mask.service";
 import {SubmitService} from "./forms/submit.service";
 
 @NgModule({
-    imports: [
-    ],
-    providers: [
-        SettingsService,
-        ThemesService,
-        TranslatorService,
-        MenuService,
-         AjaxService,
-         MaskService,
-      SubmitService
-    ],
-    declarations: [
-    ],
-    exports: [
-    ]
+  imports: [
+  ],
+  providers: [
+    SettingsService,
+    ThemesService,
+    TranslatorService,
+    MenuService,
+    AjaxService,
+    MaskService,
+    SubmitService
+  ],
+  declarations: [
+  ],
+  exports: [
+  ]
 })
 export class CoreModule {
-    constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
-        throwIfAlreadyLoaded(parentModule, 'CoreModule');
-    }
+  constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
+    throwIfAlreadyLoaded(parentModule, 'CoreModule');
+  }
 }
