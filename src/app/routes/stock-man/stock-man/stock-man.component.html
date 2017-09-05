@@ -13,9 +13,6 @@
         <th class="w15">
           <rzhDefaultSorter by="name">商品名称</rzhDefaultSorter>
         </th>
-        <!--<th class="w10">-->
-        <!--<rzhDefaultSorter by="email">商品名称</rzhDefaultSorter>-->
-        <!--</th>-->
         <th class="w15">
           <rzhDefaultSorter>分类名称</rzhDefaultSorter>
         </th>
@@ -51,7 +48,6 @@
           <td>{{shop.brandName}}</td>
           <td>{{shop.unit}}</td>
           <td>{{shop.goodsPrice.batchPrice}}</td>
-          <!--<td>{{shop.goodsSavSetList[0].attrName}}{{shop.goodsSavSetList[0].value}}</td>-->
           <td *ngFor="let standard of shop.goodsSavSetList">
             {{standard.attrName}}：{{standard.value}}
           </td>
@@ -61,7 +57,23 @@
           </td>
         </tr>
         <tr *ngIf="shop.isShow">
-         ss
+          <td class="pl0" colspan="11">
+            <div class="bg-table special text-left">
+              <span class="m10">种类名称:</span> <span>{{shop.kindName}}</span>
+            </div>
+            <div class="bg-table special text-left">
+              <span class="m10">邮箱:</span> <span>{{shop.isBatch}}</span>
+            </div>
+            <div class="bg-table special text-left">
+              <span class="m10">最后登陆时间:</span> <span>{{shop.haveGift}}</span>
+            </div>
+            <div class="bg-table special text-left">
+              <span class="m10">状态:</span> <span> {{shop.state}}</span>
+            </div>
+            <div class="bg-table special text-left">
+              <span class="m10">qq:</span> <span>{{shop.goodsAudit}}</span>
+            </div>
+          </td>
         </tr>
       </ng-container>
       </tbody>
