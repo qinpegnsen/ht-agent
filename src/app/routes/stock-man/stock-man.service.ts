@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AjaxService} from "../../core/services/ajax.service";
 import {AppComponent} from "../../app.component";
-
+const swal = require('sweetalert');
 
 @Injectable()
 export class StockManService {
@@ -23,15 +23,12 @@ export class StockManService {
         let info=data.info;
         if(data.success){
           result=data.data;
-          console.log('111')
-          AppComponent.rzhAlt("success",info);
-          console.log('22')
         }else{
           AppComponent.rzhAlt("error",info);
         }
       },
-      error: (data) => {
-        console.log(data)
+      error: () => {
+        AppComponent.rzhAlt("error",'连接数据库失败');
       }
     });
     return result;

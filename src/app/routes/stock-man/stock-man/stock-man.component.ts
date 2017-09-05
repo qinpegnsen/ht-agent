@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {StockManService} from "./stock-man.service";
-import {Page} from "../../core/page/page";
+import {StockManService} from "../stock-man.service";
+import {Page} from "../../../core/page/page";
 import {PageEvent} from "angular2-datatable";
 
 @Component({
@@ -12,6 +12,10 @@ export class StockManComponent implements OnInit {
 
   public shopListdata;//存储文章列表的数据
 
+  private detailsbutton:Object;//查看详情按钮
+
+  private updatebutton:Object;//修改按钮
+
   constructor(public stockManService:StockManService) { }
 
   /**
@@ -20,6 +24,14 @@ export class StockManComponent implements OnInit {
    */
   ngOnInit() {
     this.queryshopList()
+    this.detailsbutton={
+      title:"详情",
+      type: "details"
+    };
+    this.updatebutton={
+      title:"编辑",
+      type: "update"
+    };
   }
 
   /**
@@ -35,7 +47,7 @@ export class StockManComponent implements OnInit {
       pageSize:5,
       kindId:'',
       goodsName:'',
-      sortColumns:''
+      sortColumn:''
     }
     this.shopListdata=new Page(this.stockManService.getShopList(url,data))
     console.log(this.shopListdata)

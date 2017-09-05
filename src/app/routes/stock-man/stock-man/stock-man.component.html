@@ -1,0 +1,71 @@
+<div class="content-heading mb-lg">
+  商品列表
+</div>
+<div class="panel panel-default">
+  <div class="panel-body">
+  <table class="table table-striped" #shopList="rzhDataTable" [rzhData]="shopListdata"
+         (pageChange)="queryshopList($event)">
+    <thead>
+    <tr>
+      <th style="width: 5%">
+        序号
+      </th>
+      <th style="width: 20%">
+        <rzhDefaultSorter by="name">商品图片</rzhDefaultSorter>
+      </th>
+      <th style="width: 15%">
+        <rzhDefaultSorter by="email">商品名称</rzhDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <rzhDefaultSorter>分类名称</rzhDefaultSorter>
+      </th>
+      <th style="width: 15%">
+        <rzhDefaultSorter>品牌</rzhDefaultSorter>
+      </th>
+      <th style="width: 10%">
+        <rzhDefaultSorter>单位</rzhDefaultSorter>
+      </th>
+      <th style="width: 15%">
+        <rzhDefaultSorter>价格</rzhDefaultSorter>
+      </th>
+      <th style="width: 10%">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let shop of shopList.data;let i = index">
+      <td>{{i+1}}</td>
+      <td>{{shop.goodsImage}}</td>
+      <td>{{shop.goodsName}}</td>
+      <td>{{shop.kindName}}</td>
+      <td>{{shop.brandName}}</td>
+      <td>{{shop.unit}}</td>
+      <td>{{shop.goodsPrice.batchPrice}}</td>
+      <td>
+        <app-buttons [config]="detailsbutton" (click)="showDetail(member)"></app-buttons>
+        <app-buttons [config]="updatebutton" ></app-buttons>
+      </td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr class="text-center">
+      <td colspan="12">
+        <div class="col-md-5">
+          <div class="text-muted pull-left"><strong>第 {{shopListdata.genStartRow()}} 至
+            {{shopListdata.genEndRow()}} 条，共 {{shopListdata.totalRow}}
+            条</strong></div>
+        </div>
+        <div class="col-md-7">
+          <div class="pull-right">
+            <rzhBootstrapPaginator></rzhBootstrapPaginator>
+          </div>
+        </div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+</div>
+
+<!--路由嵌套 begin-->
+<router-outlet></router-outlet>
+<!--路由嵌套 end-->

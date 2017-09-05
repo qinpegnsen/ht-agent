@@ -15,12 +15,10 @@ const stockMan = {
   submenu: [
     {
       text: '我要进货',
-      icon: 'fa fa-area-chart',
       link: '/main/stockMan/agentord'
     },
     {
       text: '进货记录',
-      icon: 'fa fa-book',
       link: '/main/stockMan/ordRecord'
     }
   ]
