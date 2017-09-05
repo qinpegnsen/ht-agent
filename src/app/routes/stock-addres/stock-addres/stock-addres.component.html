@@ -1,5 +1,67 @@
 <div class="content-heading mb-lg">
   代理商收货地址
   <!--添加代理商收货地址按钮配置-->
-  <app-buttons class="pull-right" [config]="addButton"></app-buttons>
+  <app-buttons class="pull-right pr" [config]="addButton" routerLink="rightpage"></app-buttons>
 </div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="addres">
+      <thead>
+      <tr>
+        <th class="unselectable text-center w5">
+          序号
+        </th>
+        <th class="col-md-1 unselectable text-center">
+          <rzhDefaultSorter by="receiverName">收货人名称</rzhDefaultSorter>
+        </th>
+        <th class="col-md-2 unselectable text-center">
+          <rzhDefaultSorter by="areaFullName">区域全称</rzhDefaultSorter>
+        </th>
+        <th class="col-md-2 unselectable text-center">
+          <rzhDefaultSorter by="mobPhone">手机号</rzhDefaultSorter>
+        </th>
+        <th class="col-md-1 unselectable text-center">
+          <rzhDefaultSorter by="telPhone">座机</rzhDefaultSorter>
+        </th>
+        <th class="col-md-2 unselectable text-center">
+          <rzhDefaultSorter by="address">详细地址</rzhDefaultSorter>
+        </th>
+        <th class="col-md-1 unselectable text-center">
+          <rzhDefaultSorter by="createTime">创建时间</rzhDefaultSorter>
+        </th>
+        <th class="col-md-1 unselectable text-center">
+          <rzhDefaultSorter by="id">设为默认地址</rzhDefaultSorter>
+        </th>
+        <th class="col-md-1 unselectable text-center">操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let organ of dataTable.data;let i = index" class="text-center">
+        <td>{{i+1}}</td>
+        <td>{{organ.receiverName}}</td>
+        <td>{{organ.areaFullName}}</td>
+        <td>{{organ.mobPhone}}</td>
+        <td>{{organ.telPhone}}</td>
+        <td>{{organ.address}}</td>
+        <td>{{organ.createTime}}</td>
+        <td>
+          <label class="switch">
+            <input type="checkbox" title="设为默认地址"/>
+            <span></span>
+          </label>
+        </td>
+        <td>
+          <!--修改代理商收货地址信息按钮-->
+          <app-buttons [config]="updatebutton"></app-buttons>
+          <!--删除代理商收货地址信息按钮-->
+          <app-buttons [config]="deletebutton"></app-buttons>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!--路由嵌套 begin-->
+<router-outlet></router-outlet>
+<!--路由嵌套 end-->
+
