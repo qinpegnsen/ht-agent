@@ -15,28 +15,18 @@ export class AgentOrdComponent implements OnInit {
 
   public shopListdata;//存储文章列表的数据
 
-  private detailsbutton:Object;//查看详情按钮
-
-  private updatebutton:Object;//修改按钮
-
   private num:number=1;//购物车商品的数量,默认是1
+
+  private flag:boolean=false;//购物车商品的数量,默认是1
 
   constructor(public stockManService:StockManService) { }
 
   /**
-   * 1. 初始化的时候获取商品列表的数据
+   * 1.初始化的时候获取商品列表的数据
    * 2.初始化按钮信息
    */
   ngOnInit() {
     this.queryshopList()
-    this.detailsbutton={
-      title:"详情",
-      type: "details"
-    };
-    this.updatebutton={
-      title:"添加到购物车",
-      type: "add"
-    };
   }
 
   /**
@@ -55,6 +45,13 @@ export class AgentOrdComponent implements OnInit {
       sortColumn:''
     }
     this.shopListdata=new Page(this.stockManService.getShopList(url,data))
+  }
+
+  /**
+   * 点击全选的时候，全选的购物车出现
+   */
+  showTotalCar(){
+    this.flag=!this.flag;
   }
 
   /**

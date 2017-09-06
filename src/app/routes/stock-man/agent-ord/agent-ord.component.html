@@ -32,13 +32,18 @@
         <th class="w10 text-center">操作</th>
       </tr>
       <tr>
-        <th checkAll colspan="8" class="text-left">
+        <th checkAll colspan="2" class="text-left">
           <div class="checkbox c-checkbox">
             <label>
-              <input type="checkbox" />
+              <input type="checkbox" (click)="showTotalCar()"/>
               <span class="fa fa-check"></span>全选
             </label>
           </div>
+        </th>
+        <th checkAll colspan="2" class="text-left" *ngIf="flag">
+          <a (click)="addCart(a)" title="加入购物车" class="addCar">
+            <em class="fa fa-shopping-cart"></em>
+          </a>
         </th>
       </tr>
       </thead>
@@ -74,16 +79,17 @@
           <td class="text-center">{{shop.goodsPrice.batchPrice}}</td>
           <td class="text-center">
             <div class="input-group">
-              <span class="input-group-addon" (click)="minusNum()">-</span>
+              <span class="input-group-addon" (click)="minusNum()"><i class="fa fa-minus"></i></span>
               <input class="form-control" type="text"  placeholder="Username" [(ngModel)]="num"/>
-              <span class="input-group-addon" (click)="addNum()">+</span>
+              <span class="input-group-addon" (click)="addNum()"><i class="fa fa-plus"></i></span>
             </div>
           </td>
           <td class="text-center">
-            <app-buttons [config]="detailsbutton" (click)="showDetail(shop)"></app-buttons>
-            <a (click)="addCart(shop.goodsCode)" title="加入购物车">
+            <a (click)="showDetail(shop)" title="查看详情" class="addCar">
+              <em class="fa fa-search-plus"></em>
+            </a>
+            <a (click)="addCart(shop.goodsCode)" title="加入购物车" class="addCar">
               <em class="fa fa-shopping-cart"></em>
-              <div class="label label-danger">{{carNum}}</div>
             </a>
           </td>
         </tr>
