@@ -34,6 +34,7 @@ import { JqcloudDirective } from './directives/jqcloud/jqcloud.directive';
 import {RzhButtonsModule} from "../routes/buttons/rzh-buttons.module";
 import {DataTableModule} from "./directives/ng2-datatable/DataTableModule";
 import {StockManService} from "../routes/stock-man/stock-man.service";
+import {SelectAreaModule} from "./directives/select-area/select-area.module";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -59,7 +60,8 @@ import {StockManService} from "../routes/stock-man/stock-man.service";
     TypeaheadModule.forRoot(),
     ToasterModule,
     DataTableModule,
-    RzhButtonsModule
+    RzhButtonsModule,
+    SelectAreaModule
   ],
   providers: [
     ColorsService,StockManService
@@ -105,7 +107,8 @@ import {StockManService} from "../routes/stock-man/stock-man.service";
     VectormapDirective,
     NowDirective,
     ScrollableDirective,
-    JqcloudDirective
+    JqcloudDirective,
+    SelectAreaModule
   ]
 })
 

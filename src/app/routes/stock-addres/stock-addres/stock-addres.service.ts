@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Page} from "../../../core/page/page";
 import {AjaxService} from "../../../core/services/ajax.service";
+import {AppComponent} from "../../../app.component";
 
 @Injectable()
 export class StockAddresService {
@@ -42,6 +43,31 @@ export class StockAddresService {
       }
     });
     return result;
+  }
+
+
+  /**
+   * 删除代理商信息
+   * @param url
+   * @param data
+   */
+  delCode(url,data) {
+    this.ajax.del({
+      url:url,
+      data: data,
+      async:false,
+      success: (data) => {
+        let info=data.info;
+        if(data.success){
+          AppComponent.rzhAlt("success",info);
+        }else{
+          AppComponent.rzhAlt("error",info);
+        }
+      },
+      error: () => {
+        console.log('连接数据库失败');
+      }
+    });
   }
 
 }

@@ -4,6 +4,7 @@ import {isNullOrUndefined} from "util";
 import {StockAddresService} from "./stock-addres.service";
 import {ActivatedRoute} from "@angular/router";
 import {AjaxService} from "../../../core/services/ajax.service";
+const swal = require('sweetalert');
 
 @Component({
   selector: 'app-stock-addres',
@@ -17,6 +18,7 @@ export class StockAddresComponent implements OnInit {
   private updatebutton;//修改代理商收货地址按钮配置
   private deletebutton;//删除代理商收货地址按钮配置
   private addres:Page= new Page();
+  private id;//获取删除时需要的id
   private table = {
     curPage:1,
     lastPage:true,
@@ -34,7 +36,7 @@ export class StockAddresComponent implements OnInit {
   constructor(private ajax:AjaxService,private routeInfo:ActivatedRoute,private StockAddresService:StockAddresService) { }
 
   ngOnInit() {
-    this.queryId = this.routeInfo.snapshot.queryParams['id'];
+    this.queryId = this.routeInfo.snapshot.queryParams['ids'];
     //按钮配置
     this.addButton = {
       type:"add",
@@ -68,5 +70,62 @@ export class StockAddresComponent implements OnInit {
       this.table.voList = result.data;
     }
     this.addres = new Page(this.table);
+  }
+
+
+  /**
+   * 删除代理商信息
+   * @param event
+   */
+  delete(id) {
+    let _this = this, url: string = "/agent/agentAddr/deleteAgentAddrById", data: any;
+    swal({
+        title: '确认删除此信息？',
+        type: 'info',
+        confirmButtonText: '确认', //‘确认’按钮命名
+        showCancelButton: true, //显示‘取消’按钮
+        cancelButtonText: '取消', //‘取消’按钮命名
+        closeOnConfirm: false  //点击‘确认’后，执行另外一个提示框
+      },
+      function () {  //点击‘确认’时执行
+        swal.close(); //关闭弹框
+        data = {
+          id:id
+        }
+        console.log(data)
+        _this.StockAddresService.delCode(url, data); //删除数据
+        let datas={id:id}
+        let urls= "/agent/pageQuery";
+        _this.StockAddresService.controlDatas(urls,datas);//实现局部刷新
+      }
+    );
+  }
+
+  /**
+   * 设为默认地址
+   */
+  upFiledateState(data) {
+    if (data.isDefault == "Y") {
+      data.isDefault = "N"
+    } else if (data.isDefault == "N") {
+      data.isDefault = "Y"
+    }
+    this.ajax.put({
+      url: '/agent/agentAddr/updateIsDefaultById',
+      data: {
+        'id': data.id
+      },
+      success: () => {
+        if (data.isDefault == "Y") {
+          swal('成功设为默认地址', '', 'success');
+        } else if (data.isDefault == "N") {
+          swal('已将默认地址取消', '', 'success');
+        }
+        this.queryList()
+      },
+      error: (data) => {
+        swal('设置默认地址失败', 'error');
+      }
+    });
   }
 }

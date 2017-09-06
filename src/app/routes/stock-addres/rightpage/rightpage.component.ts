@@ -11,10 +11,16 @@ const swal = require('sweetalert');
 })
 export class RightpageComponent implements OnInit {
   private queryId:number;//获取添加，修改的ID
+  private  staff= {}
+  private organ={}
+  private id;//获取代理商的id
   private limitForm = {
     receiverName:'',
     areaCode: '',
-    mobPhone: ''
+    mobPhone: '',
+    telPhone:'',
+    address:'',
+    id:''
   }
 
 
@@ -24,7 +30,26 @@ export class RightpageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.queryId = this.routeInfo.snapshot.queryParams['id'];
+    this.queryId = this.routeInfo.snapshot.queryParams['number'];
+    this.id = this.routeInfo.snapshot.queryParams['id'];
+
+    /**
+     * 请求详细数据，并显示()
+     */
+    if(typeof(this.id)) {
+      this.ajax.get({
+        url: '/agent/agentAddr/loadAgentAddrById',
+        async: false, //同步请求
+        data: {id: this.id},
+        success: (res) => {
+          console.log(res)
+          this.staff = res.data;
+        },
+        error: (res) => {
+          console.log("post limit error");
+        }
+      });
+    }
   }
 
   /**
@@ -33,6 +58,14 @@ export class RightpageComponent implements OnInit {
   cancel(){
     this.settings.closeRightPageAndRouteBack(); //关闭右侧滑动页面
   }
+
+  //获取区域数据
+  private getAreaData(area){
+    //console.log("█ area ►►►",  area);
+    let me = this;
+    me.organ['areaCode'] = area.areaCode;
+  }
+
 
   /**
    * 添加/修改
@@ -48,19 +81,47 @@ export class RightpageComponent implements OnInit {
         data: {
           'receiverName': _this.limitForm.receiverName,
           'areaCode':_this.limitForm.areaCode,
-          'mobPhone': value.mobPhone
+          'mobPhone': value.mobPhone,
+          'telPhone':_this.limitForm.telPhone,
+          'address':_this.limitForm.address
         },
         success: (res) => {
           if (res.success) {
             _this.router.navigate(['/main/limit'], {replaceUrl: true}); //路由跳转
-            swal('添加页面元素提交成功！', '','success');
+            swal('新增代理商收货地址提交成功！', '','success');
           } else {
             let errorMsg = res.data.substring(res.data.indexOf('$$') + 2, res.data.indexOf('@@'))
             swal(res.info, errorMsg, 'error');
           }
         },
         error: (data) => {
-          swal('添加页面元素提交失败！', '','error');
+          swal('新增代理商收货地址提交失败！', '','error');
+        }
+      })
+    }
+      else{
+      _this.ajax.put({
+        url: '/agent/agentAddr/updateAgentAddr',
+        async: false,
+        data: {
+          'id':_this.limitForm.id,
+          'receiverName': _this.limitForm.receiverName,
+          'areaCode':_this.limitForm.areaCode,
+          'mobPhone': value.mobPhone,
+          'telPhone':_this.limitForm.telPhone,
+          'address':_this.limitForm.address
+        },
+        success: (res) => {
+          if (res.success) {
+            _this.router.navigate(['/main/limit'], {replaceUrl: true}); //路由跳转
+            swal('修改代理商收货地址提交成功！', '','success');
+          } else {
+            let errorMsg = res.data.substring(res.data.indexOf('$$') + 2, res.data.indexOf('@@'))
+            swal(res.info, errorMsg, 'error');
+          }
+        },
+        error: (data) => {
+          swal('修改代理商收货地址提交失败！', '','error');
         }
       })
     }
