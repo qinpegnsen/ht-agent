@@ -33,6 +33,7 @@ import { ScrollableDirective } from './directives/scrollable/scrollable.directiv
 import { JqcloudDirective } from './directives/jqcloud/jqcloud.directive';
 import {RzhButtonsModule} from "../routes/buttons/rzh-buttons.module";
 import {DataTableModule} from "./directives/ng2-datatable/DataTableModule";
+import {StockManService} from "../routes/stock-man/stock-man.service";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -61,7 +62,7 @@ import {DataTableModule} from "./directives/ng2-datatable/DataTableModule";
     RzhButtonsModule
   ],
   providers: [
-    ColorsService
+    ColorsService,StockManService
   ],
   declarations: [
     FlotDirective,

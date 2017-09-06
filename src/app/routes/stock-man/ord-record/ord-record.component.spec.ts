@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StockManComponent } from './stock-man.component';
+import { OrdRecordComponent } from './ord-record.component';
 
-describe('StockManComponent', () => {
-  let component: StockManComponent;
-  let fixture: ComponentFixture<StockManComponent>;
+describe('OrdRecordComponent', () => {
+  let component: OrdRecordComponent;
+  let fixture: ComponentFixture<OrdRecordComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StockManComponent ]
+      declarations: [ OrdRecordComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StockManComponent);
+    fixture = TestBed.createComponent(OrdRecordComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

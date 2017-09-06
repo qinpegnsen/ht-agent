@@ -1,20 +1,25 @@
+
 import { Component, OnInit } from '@angular/core';
 import {StockManService} from "../stock-man.service";
 import {Page} from "../../../core/page/page";
 import {PageEvent} from "angular2-datatable";
 
+declare var $: any;
+
 @Component({
-  selector: 'app-stock-man',
-  templateUrl: './stock-man.component.html',
-  styleUrls: ['./stock-man.component.scss']
+  selector: 'app-agent-ord',
+  templateUrl: './agent-ord.component.html',
+  styleUrls: ['./agent-ord.component.scss']
 })
-export class StockManComponent implements OnInit {
+export class AgentOrdComponent implements OnInit {
 
   public shopListdata;//存储文章列表的数据
 
   private detailsbutton:Object;//查看详情按钮
 
   private updatebutton:Object;//修改按钮
+
+  private num:number=1;//购物车商品的数量,默认是1
 
   constructor(public stockManService:StockManService) { }
 
@@ -30,7 +35,7 @@ export class StockManComponent implements OnInit {
     };
     this.updatebutton={
       title:"添加到购物车",
-      type: "update"
+      type: "add"
     };
   }
 
@@ -44,13 +49,12 @@ export class StockManComponent implements OnInit {
     let url='/goodsQuery/query';
     let data={
       curPage:activePage,
-      pageSize:5,
+      pageSize:3,
       kindId:'',
       goodsName:'',
       sortColumn:''
     }
     this.shopListdata=new Page(this.stockManService.getShopList(url,data))
-    console.log(this.shopListdata)
   }
 
   /**
@@ -59,5 +63,36 @@ export class StockManComponent implements OnInit {
   showDetail(data:any){
     data.isShow = !data.isShow;
   }
+
+  /**
+   * 减购物车的数量
+   */
+  minusNum(){
+    this.num=this.num-1;
+    if(this.num<1){
+      this.num=1;
+    }
+  }
+  /**
+   * 增加购物车的数量
+   */
+  addNum(){
+    this.num=this.num+1;
+  }
+
+
+  /**
+   * 点击加入到购物车,同时把商品的数量存储到sessionSstorage
+   * @param goodsCode
+   */
+  addCart(goodsCode){
+    let url='/agent/agentCart/addCustCart';
+    let data={
+      goodsCode:goodsCode,
+      num:this.num
+    }
+    this.stockManService.sendCar(url,data)
+  }
+
 
 }

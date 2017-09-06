@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NavigationStart, Router} from "@angular/router";
 
 @Component({
-    selector: 'app-layout',
-    templateUrl: './layout.component.html',
-    styleUrls: ['./layout.component.scss']
+  selector: 'app-layout',
+  templateUrl: './layout.component.html',
+  styleUrls: ['./layout.component.scss']
 })
-export class LayoutComponent implements OnInit {
-  private menuItems:any;
+export class LayoutComponent implements OnInit{
+  private menuItems: any;
   private path;
+  public carNum: number;
 
   constructor(private router: Router) {
     this.router.events
@@ -19,9 +20,7 @@ export class LayoutComponent implements OnInit {
 
   }
 
-    ngOnInit() {
-    }
-  submenus(menus){
-    this.menuItems = menus;
+  ngOnInit() {
+
   }
 }

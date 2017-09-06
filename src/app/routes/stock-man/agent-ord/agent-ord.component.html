@@ -1,0 +1,133 @@
+<div class="content-heading mb-lg">
+  商品列表
+</div>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table class="table table-striped" #shopList="rzhDataTable" [rzhData]="shopListdata"
+           (pageChange)="queryshopList($event)">
+      <thead>
+      <tr>
+        <th class="w5 text-left"></th>
+        <th class="w40 text-left">
+          <rzhDefaultSorter by="name">商品名称</rzhDefaultSorter>
+        </th>
+        <th class="w15">
+          <rzhDefaultSorter>规格</rzhDefaultSorter>
+        </th>
+        <th class="w5 text-center">
+          <rzhDefaultSorter>分类名称</rzhDefaultSorter>
+        </th>
+        <th class="w5 text-center">
+          <rzhDefaultSorter>品牌</rzhDefaultSorter>
+        </th>
+        <th class="w5 text-center">
+          <rzhDefaultSorter>单位</rzhDefaultSorter>
+        </th>
+        <th class="w5 text-center">
+          <rzhDefaultSorter>价格</rzhDefaultSorter>
+        </th>
+        <th class="w10 text-center">
+          <rzhDefaultSorter>数量</rzhDefaultSorter>
+        </th>
+        <th class="w10 text-center">操作</th>
+      </tr>
+      <tr>
+        <th checkAll colspan="8" class="text-left">
+          <div class="checkbox c-checkbox">
+            <label>
+              <input type="checkbox" />
+              <span class="fa fa-check"></span>全选
+            </label>
+          </div>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let shop of shopList.data;let i = index">
+        <tr>
+          <td>
+            <div class="checkbox c-checkbox">
+              <label>
+                <input type="checkbox" />
+                <span class="fa fa-check"></span>推荐
+              </label>
+            </div>
+          </td>
+          <td class="text-left">
+            <div class="col-xs-1 p0">
+              <img src="{{shop.goodsImage}}" alt="" class='special'
+                   onerror="javascript:this.src='../../../assets/img/dummy.png';">
+            </div>
+            <div class="col-xs-11">
+              <div (click)="showDetail(shop)">{{shop.goodsName}}</div>
+              <div class="extra"><span>商品编码:{{shop.goodsCode}}</span></div>
+            </div>
+          </td>
+          <td>
+            <div  *ngFor="let standard of shop.goodsSavSetList">
+              {{standard.attrName}}：{{standard.value}}
+            </div>
+          </td>
+          <td class="text-center">{{shop.kindName}}</td>
+          <td class="text-center">{{shop.brandName}}</td>
+          <td class="text-center">{{shop.unit}}</td>
+          <td class="text-center">{{shop.goodsPrice.batchPrice}}</td>
+          <td class="text-center">
+            <div class="input-group">
+              <span class="input-group-addon" (click)="minusNum()">-</span>
+              <input class="form-control" type="text"  placeholder="Username" [(ngModel)]="num"/>
+              <span class="input-group-addon" (click)="addNum()">+</span>
+            </div>
+          </td>
+          <td class="text-center">
+            <app-buttons [config]="detailsbutton" (click)="showDetail(shop)"></app-buttons>
+            <a (click)="addCart(shop.goodsCode)" title="加入购物车">
+              <em class="fa fa-shopping-cart"></em>
+              <div class="label label-danger">{{carNum}}</div>
+            </a>
+          </td>
+        </tr>
+        <tr *ngIf="shop.isShow">
+          <td class="detail" colspan="8">
+            <div class="bg-table change text-left">
+              <span class="m10">种类名称:</span> <span>{{shop.kindName}}</span>
+            </div>
+            <div class="bg-table change text-left">
+              <span class="m10">邮箱:</span> <span>{{shop.isBatch}}</span>
+            </div>
+            <div class="bg-table change text-left">
+              <span class="m10">最后登陆时间:</span> <span>{{shop.haveGift}}</span>
+            </div>
+            <div class="bg-table change text-left">
+              <span class="m10">状态:</span> <span> {{shop.state}}</span>
+            </div>
+            <div class="bg-table change text-left">
+              <span class="m10">qq:</span> <span>{{shop.goodsAudit}}</span>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+      </tbody>
+      <tfoot>
+      <tr class="text-center">
+        <td colspan="12">
+          <div class="col-md-5">
+            <div class="text-muted pull-left"><strong>第 {{shopListdata.genStartRow()}} 至
+              {{shopListdata.genEndRow()}} 条，共 {{shopListdata.totalRow}}
+              条</strong></div>
+          </div>
+          <div class="col-md-7">
+            <div class="pull-right">
+              <rzhBootstrapPaginator></rzhBootstrapPaginator>
+            </div>
+          </div>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+<!--路由嵌套 begin-->
+<router-outlet></router-outlet>
+<!--路由嵌套 end-->

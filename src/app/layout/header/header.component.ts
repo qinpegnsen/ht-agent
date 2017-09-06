@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from "@angular/core";
+import {Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from "@angular/core";
 import {UserblockService} from "../sidebar/userblock/userblock.service";
 import {SettingsService} from "../../core/settings/settings.service";
 import {MenuService} from "../../core/menu/menu.service";
@@ -16,27 +16,37 @@ declare var $: any;
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnChanges {
+export class HeaderComponent implements OnInit, OnChanges,DoCheck{
 
   @Input() private curPath;
+  @ViewChild('fsbutton') fsbutton;
+  navCollapsed = true;
+  menuItems = [];
+  isNavSearchVisible: boolean;
+
+  public num: number;//用来保存商品的数量
+
+  constructor(public menu: MenuService, public userblockService: UserblockService, public settings: SettingsService,
+              private ajax: AjaxService, private router: Router, private cookieService: CookieService, private layout: LayoutComponent) {
+    // 只显示指定的
+    if (typeof menu.getMenu() !== 'undefined') this.menuItems = menu.getMenu();
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     let me = this;
-    if(changes['curPath'] && !isNullOrUndefined(me.curPath)){
+    if (changes['curPath'] && !isNullOrUndefined(me.curPath)) {
       // 每次路由变化时检测其与一级导航路由是否匹配，匹配则为一级导航添加激活状态
       me.onRouterChange(me.curPath);
     }
   }
 
-  navCollapsed = true;
-  menuItems = [];
-
-  isNavSearchVisible: boolean;
-  @ViewChild('fsbutton') fsbutton;
-
-  constructor(public menu: MenuService, public userblockService: UserblockService, public settings: SettingsService,
-              private ajax: AjaxService, private router: Router,private cookieService:CookieService,private layout:LayoutComponent) {
-    // 只显示指定的
-    if(typeof menu.getMenu() !== 'undefined') this.menuItems = menu.getMenu();
+  /**
+   * 从内存里面获取商品的数量
+   */
+  ngDoCheck(){
+    if(JSON.parse(sessionStorage.getItem('carNum'))){
+      this.num = JSON.parse(sessionStorage.getItem('carNum'));
+    }
   }
 
   ngOnInit() {
@@ -48,11 +58,10 @@ export class HeaderComponent implements OnInit, OnChanges {
 
     let me = this;
     // 初始化时检测当前路由与一级导航路由是否匹配，匹配则为一级导航添加激活状态
-    $(function(){
+    $(function () {
       let rulHref = window.location.href, host = window.location.host;
       let path = rulHref.substring(rulHref.indexOf(host)).substring(host.length);
       me.onRouterChange(path);
-      console.log(path)
       me.getSubmenus(path);
     })
   }
@@ -61,15 +70,16 @@ export class HeaderComponent implements OnInit, OnChanges {
    * 检测当前路由与一级导航路由是否匹配，匹配则为一级导航添加激活状态
    * @param path
    */
-  private onRouterChange(path){
+  private onRouterChange(path) {
     let firstNavs = $('.my-nav');
-    for(let i = 0; i < firstNavs.length; i++){
+    for (let i = 0; i < firstNavs.length; i++) {
       let firstNav = firstNavs.eq(i).attr('route');
-      if(path.indexOf(firstNav) === 0){
+      if (path.indexOf(firstNav) === 0) {
         firstNavs.eq(i).addClass('current').parent().siblings().children('.my-nav').removeClass('current');
         return;
       }
-    };
+    }
+    ;
   }
 
   //显示、隐藏当前登录的用户信息
@@ -139,7 +149,7 @@ export class HeaderComponent implements OnInit, OnChanges {
    *
    * @param text
    */
-  getSubmenus(link){
+  getSubmenus(link) {
     // let menus = this.menu.getSubMenu(link);
     // this.layout.submenus(menus)
   }
