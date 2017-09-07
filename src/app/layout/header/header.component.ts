@@ -5,8 +5,8 @@ import {MenuService} from "../../core/menu/menu.service";
 import {Router} from "@angular/router";
 import {AjaxService} from "../../core/services/ajax.service";
 import {CookieService} from "angular2-cookie/core";
-import {LayoutComponent} from "../layout.component";
 import {isNullOrUndefined} from "util";
+import {AppComponent} from "../../app.component";
 const screenfull = require('screenfull');
 const browser = require('jquery.browser');
 declare var $: any;
@@ -16,7 +16,7 @@ declare var $: any;
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnChanges,DoCheck{
+export class HeaderComponent implements OnInit, OnChanges{
 
   @Input() private curPath;
   @ViewChild('fsbutton') fsbutton;
@@ -24,10 +24,10 @@ export class HeaderComponent implements OnInit, OnChanges,DoCheck{
   menuItems = [];
   isNavSearchVisible: boolean;
 
-  public num: number;//用来保存商品的数量
+  public num: number=1;//用来保存商品类型的数量
 
   constructor(public menu: MenuService, public userblockService: UserblockService, public settings: SettingsService,
-              private ajax: AjaxService, private router: Router, private cookieService: CookieService, private layout: LayoutComponent) {
+              private ajax: AjaxService, private router: Router, private cookieService: CookieService) {
     // 只显示指定的
     if (typeof menu.getMenu() !== 'undefined') this.menuItems = menu.getMenu();
   }
@@ -40,16 +40,12 @@ export class HeaderComponent implements OnInit, OnChanges,DoCheck{
     }
   }
 
-  /**
-   * 从内存里面获取商品的数量
-   */
-  ngDoCheck(){
-    if(JSON.parse(sessionStorage.getItem('carNum'))){
-      this.num = JSON.parse(sessionStorage.getItem('carNum'));
-    }
-  }
 
+  /**
+   * 初始化的时候获取购物车商品类型的总数
+   */
   ngOnInit() {
+    this.getShopTotal()
     this.isNavSearchVisible = false;
     if (browser.msie) { // 不支持ie
       this.fsbutton.nativeElement.style.display = 'none';
@@ -64,6 +60,35 @@ export class HeaderComponent implements OnInit, OnChanges,DoCheck{
       me.onRouterChange(path);
       me.getSubmenus(path);
     })
+  }
+
+  /**
+   * 获取商品类型的总数
+   */
+  getShopTotal(){
+    console.log(1)
+    this.ajax.get({
+      url: "/agent/agentCart/countAgentCart",
+      success: (result) => {
+        let info=result.info;
+        if (result.success) {
+          this.num=result.data;
+        }else{
+          AppComponent.rzhAlt("error",info)
+        }
+      },
+      error: () => {
+        AppComponent.rzhAlt("error",'连接数据库失败');
+      }
+    });
+  }
+
+
+  /**
+   * 点击的时候展现购物车页面
+   */
+  showCarPage(){
+    this.router.navigate(['/main/stockMan/car'], {replaceUrl: true});
   }
 
   /**

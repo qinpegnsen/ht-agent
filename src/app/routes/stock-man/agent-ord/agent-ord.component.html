@@ -3,7 +3,7 @@
 </div>
 <div class="panel panel-default">
   <div class="panel-body">
-    <table class="table table-striped" #shopList="rzhDataTable" [rzhData]="shopListdata"
+    <table class="table-striped table" #shopList="rzhDataTable" [rzhData]="shopListdata"
            (pageChange)="queryshopList($event)">
       <thead>
       <tr>
@@ -32,7 +32,7 @@
         <th class="w10 text-center">操作</th>
       </tr>
       <tr>
-        <th checkAll colspan="2" class="text-left">
+        <th checkAll class="text-left">
           <div class="checkbox c-checkbox">
             <label>
               <input type="checkbox" (click)="showTotalCar()"/>
@@ -40,10 +40,11 @@
             </label>
           </div>
         </th>
-        <th checkAll colspan="2" class="text-left" *ngIf="flag">
-          <a (click)="addCart(a)" title="加入购物车" class="addCar">
+        <th checkAll class="shopCar" *ngIf="showCar">
+          <a (click)="addAllCart(a)" title="加入购物车" class="addCar">
             <em class="fa fa-shopping-cart"></em>
           </a>
+          加入购物车
         </th>
       </tr>
       </thead>
@@ -53,7 +54,7 @@
           <td>
             <div class="checkbox c-checkbox">
               <label>
-                <input type="checkbox" />
+                <input type="checkbox" (change)="getData($event.target)"/>
                 <span class="fa fa-check"></span>推荐
               </label>
             </div>
@@ -79,22 +80,23 @@
           <td class="text-center">{{shop.goodsPrice.batchPrice}}</td>
           <td class="text-center">
             <div class="input-group">
-              <span class="input-group-addon" (click)="minusNum()"><i class="fa fa-minus"></i></span>
-              <input class="form-control" type="text"  placeholder="Username" [(ngModel)]="num"/>
-              <span class="input-group-addon" (click)="addNum()"><i class="fa fa-plus"></i></span>
+              <span class="input-group-addon" (click)="minusNum($event.target)"><i class="fa fa-minus"></i></span>
+              <input class="form-control _num" type="text" placeholder="Username" value="1"/>
+              <input type="hidden" value="{{shop.goodsCode}}">
+              <span class="input-group-addon" (click)="addNum(i,$event.target)"><i class="fa fa-plus"></i></span>
             </div>
           </td>
           <td class="text-center">
             <a (click)="showDetail(shop)" title="查看详情" class="addCar">
               <em class="fa fa-search-plus"></em>
             </a>
-            <a (click)="addCart(shop.goodsCode)" title="加入购物车" class="addCar">
+            <a (click)="addCart(shop.goodsCode,$event.target)" title="加入购物车" class="addCar">
               <em class="fa fa-shopping-cart"></em>
             </a>
           </td>
         </tr>
-        <tr *ngIf="shop.isShow">
-          <td class="detail" colspan="8">
+        <tr *ngIf="shop.isShow" class="trBg">
+          <td class="detail" colspan="9">
             <div class="bg-table change text-left">
               <span class="m10">种类名称:</span> <span>{{shop.kindName}}</span>
             </div>

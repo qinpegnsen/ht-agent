@@ -1,8 +1,10 @@
-
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StockManService} from "../stock-man.service";
 import {Page} from "../../../core/page/page";
 import {PageEvent} from "angular2-datatable";
+import {AppComponent} from "../../../app.component";
+import {HeaderComponent} from "../../../layout/header/header.component";
+const swal = require('sweetalert');
 
 declare var $: any;
 
@@ -13,13 +15,15 @@ declare var $: any;
 })
 export class AgentOrdComponent implements OnInit {
 
-  public shopListdata;//存储文章列表的数据
+  public shopListdata;//存储商品列表的数据
 
-  private num:number=1;//购物车商品的数量,默认是1
+  public carNum:number=1;//存储商品的数量
 
-  private flag:boolean=false;//购物车商品的数量,默认是1
+  private flag: boolean = false;//用来判断在加入购物车之前是否选择了商品
 
-  constructor(public stockManService:StockManService) { }
+  private showCar: boolean = false;//当全选被选中的时候出现全部加入购物车的按钮
+
+  constructor(public stockManService: StockManService,public headerComponent: HeaderComponent) {}
 
   /**
    * 1.初始化的时候获取商品列表的数据
@@ -33,63 +37,102 @@ export class AgentOrdComponent implements OnInit {
    * 查询商品列表的数据
    * @param event
    */
-  queryshopList(event?:PageEvent){
+  queryshopList(event?: PageEvent) {
     let activePage = 1;
-    if(typeof event !== "undefined") {activePage =event.activePage};
-    let url='/goodsQuery/query';
-    let data={
-      curPage:activePage,
-      pageSize:3,
-      kindId:'',
-      goodsName:'',
-      sortColumn:''
+    if (typeof event !== "undefined") {
+      activePage = event.activePage
     }
-    this.shopListdata=new Page(this.stockManService.getShopList(url,data))
+    ;
+    let url = '/goodsQuery/query';
+    let data = {
+      curPage: activePage,
+      pageSize: 3,
+      kindId: '',
+      goodsName: '',
+      sortColumn: ''
+    }
+    this.shopListdata = new Page(this.stockManService.getShopList(url, data))
+    console.log(this.shopListdata.voList)
   }
 
   /**
    * 点击全选的时候，全选的购物车出现
    */
-  showTotalCar(){
-    this.flag=!this.flag;
+  showTotalCar() {
+    this.showCar = !this.showCar;
   }
 
   /**
    * 当点击tr的时候，让隐藏的tr出来
    */
-  showDetail(data:any){
-    data.isShow = !data.isShow;
+  showDetail(shop: any) {
+    shop.isShow = !shop.isShow;
   }
 
   /**
    * 减购物车的数量
    */
-  minusNum(){
-    this.num=this.num-1;
-    if(this.num<1){
-      this.num=1;
-    }
+  minusNum(target) {
+    let n = $(target).parents('.input-group').find('input').val();//因为有可能点击到span或者是i所以找父级
+    n--;
+    if (n < 2) n = 1;
+    this.carNum=n
+    $(target).parents('.input-group').find('input:first').val(n)
   }
+
   /**
-   * 增加购物车的数量
+   *增加购物车的数量
+   * @param i 通过i来获取库存的数量
+   * @param target
    */
-  addNum(){
-    this.num=this.num+1;
+  addNum(i,target) {
+    let n = $(target).parents('.input-group').find('input').val();//因为有可能点击到span或者是i所以找父级
+    n++;
+    if (n > this.shopListdata.voList[i].storageNum) n = this.shopListdata.voList[i].storageNum;
+    this.carNum=n;
+    $(target).parents('.input-group').find('input:first').val(n)
   }
 
-
   /**
-   * 点击加入到购物车,同时把商品的数量存储到sessionSstorage
+   * 点击加入到购物车
    * @param goodsCode
    */
-  addCart(goodsCode){
-    let url='/agent/agentCart/addCustCart';
-    let data={
-      goodsCode:goodsCode,
-      num:this.num
+  addCart(goodsCode,ele) {
+    if($(ele).parents("tr").attr('data')){
+      let url = '/agent/agentCart/addCustCart';
+      let data = {
+        strData:`${goodsCode},${this.carNum};`
+      }
+      this.stockManService.sendCar(url, data);
+      this.headerComponent.getShopTotal()
+    }else{
+      AppComponent.rzhAlt("info",'请先选择商品');
     }
-    this.stockManService.sendCar(url,data)
   }
 
+  /**
+   * 点击全选后，将本页面商品全部添加到购物车
+   */
+  addAllCart(){
+    let num = $("._num"),str='';
+    for(var i=0;i<num.length;i++){
+      let item = num.eq(i).next('input').val() + ',' + num.eq(i).val() + ';';
+      str += item;
+      console.log(str)
+    }
+    let url = '/agent/agentCart/addCustCart';
+    let data = {
+      strData:str
+    }
+    this.stockManService.sendCar(url, data)
+    this.headerComponent.getShopTotal()
+  }
+  /**
+   * 点击前面的勾选按钮，然后才加入到购物车
+   * @param goodsCode
+   */
+  getData(ele) {
+    $(ele).parents("tr").attr('data','flag')
+  }
 
 }

@@ -35,6 +35,7 @@ import {RzhButtonsModule} from "../routes/buttons/rzh-buttons.module";
 import {DataTableModule} from "./directives/ng2-datatable/DataTableModule";
 import {StockManService} from "../routes/stock-man/stock-man.service";
 import {SelectAreaModule} from "./directives/select-area/select-area.module";
+import {HeaderComponent} from "../layout/header/header.component";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -64,7 +65,7 @@ import {SelectAreaModule} from "./directives/select-area/select-area.module";
     SelectAreaModule
   ],
   providers: [
-    ColorsService,StockManService
+    ColorsService,StockManService,HeaderComponent
   ],
   declarations: [
     FlotDirective,

@@ -9,7 +9,7 @@ export class StockManService {
   constructor(private ajax: AjaxService) { }
 
   /**
-   * 获取商品列表的数据
+   * 获取商品列表的数据get
    * @param url
    * @param data
    */
@@ -35,7 +35,7 @@ export class StockManService {
   }
 
   /**
-   *
+   *添加到购物车数据post
    * @param url
    * @param data
    */
@@ -47,7 +47,54 @@ export class StockManService {
       success: (res) => {
         let info=res.info;
         if(res.success){
-          sessionStorage.setItem('carNum', JSON.stringify(data.num)); //把商品的总数存储起来，在头部拿出
+          AppComponent.rzhAlt("success",info);
+        }else{
+          AppComponent.rzhAlt("error",info);
+        }
+      },
+      error: () => {
+        AppComponent.rzhAlt("error",'连接数据库失败');
+      }
+    });
+  }
+
+  /**
+   * 删除del
+   * @param url
+   * @param data
+   */
+  deleteData(url,data){
+    this.ajax.del({
+      url: url,
+      data: data,
+      async:false,
+      success: (res) => {
+        let info=res.info;
+        if(res.success){
+          AppComponent.rzhAlt("success",info);
+        }else{
+          AppComponent.rzhAlt("error",info);
+        }
+      },
+      error: () => {
+        AppComponent.rzhAlt("error",'连接数据库失败');
+      }
+    });
+  }
+
+  /**
+   * 修改put
+   * @param url
+   * @param data
+   */
+  putData(url,data){
+    this.ajax.put({
+      url: url,
+      data: data,
+      async:false,
+      success: (res) => {
+        let info=res.info;
+        if(res.success){
           AppComponent.rzhAlt("success",info);
         }else{
           AppComponent.rzhAlt("error",info);
