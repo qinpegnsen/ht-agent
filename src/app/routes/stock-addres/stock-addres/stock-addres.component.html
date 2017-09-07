@@ -43,7 +43,7 @@
         <td>{{organ.mobPhone}}</td>
         <td>{{organ.telPhone}}</td>
         <td>{{organ.address}}</td>
-        <td>{{organ.createTime}}</td>
+        <td>{{organ.createTime | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
         <td>
           <label class="switch">
             <input type="checkbox" [checked]="organ.isDefault=='Y'" (change)="upFiledateState(organ)" title="设为默认地址"/>
