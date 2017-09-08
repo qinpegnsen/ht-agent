@@ -10,6 +10,10 @@ export class SettingsService {
   public user: any;
   public app: any;
   public layout: any;
+  static enum:any = {
+    sexState:1001,
+    orderState:1001
+  }
 
   constructor(private _cookieService: CookieService, private location: Location) {
 

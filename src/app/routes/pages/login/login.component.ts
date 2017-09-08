@@ -1,13 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import '../../../../assets/login/js/supersized.3.2.7.min.js'
-import {Location} from '@angular/common';
-import {Router} from '@angular/router';
-import {SettingsService} from '../../../core/settings/settings.service';
-import {AjaxService} from '../../../core/services/ajax.service';
+import {Component, OnInit} from "@angular/core";
+import "../../../../assets/login/js/supersized.3.2.7.min.js";
+import {Router} from "@angular/router";
+import {SettingsService} from "../../../core/settings/settings.service";
+import {AjaxService} from "../../../core/services/ajax.service";
 import {MaskService} from "app/core/services/mask.service";
-import {menu} from "../../menu";
-import {MenuService} from "../../../core/menu/menu.service";
-import {CookieService} from "angular2-cookie/core";
 import {AppComponent} from "../../../app.component";
 
 declare var $: any;
@@ -21,10 +17,7 @@ export class LoginComponent implements OnInit {
   public password: string;
   public authMsg: string;
 
-  constructor(private ajax: AjaxService, private maskservice: MaskService,
-              private localtion: Location, private router: Router, private _cookieService: CookieService,
-              private setting:SettingsService,private myMenu:MenuService) {
-
+  constructor(private ajax: AjaxService, private router: Router, private setting: SettingsService) {
   }
 
   ngOnInit() {
@@ -67,7 +60,7 @@ export class LoginComponent implements OnInit {
   public login() {
     let start = new Date().getTime(), end;
     let me = this;
-    this.maskservice.showMask();
+    MaskService.showMask();
     me.ajax.post({
       url: '/login/login',
       data: {
@@ -76,24 +69,24 @@ export class LoginComponent implements OnInit {
       },
       success: (result) => {
         console.log(result);
-        this.maskservice.hideMask();
+        MaskService.hideMask();
         end = new Date().getTime();
         let info = result.data;
         if (result.success) {
-          let user =  result.data;
-          console.log("█ result ►►►",  user);
+          let user = result.data;
+          console.log("█ result ►►►", user);
           // me.myMenu.addMenu(result.data.menuVOList);
           sessionStorage.setItem('loginInfo', JSON.stringify(user)); //用户信息存入session
           me.setting.user.name = user.agentName; //修改user变量
           me.router.navigate(['/main/home'], {replaceUrl: true}); //路由跳转
         }
         else {
-          console.log("█ result ►►►",  JSON.stringify(result));
-          AppComponent.rzhAlt("error",info);
+          console.log("█ result ►►►", JSON.stringify(result));
+          AppComponent.rzhAlt("error", info);
         }
       },
       error: (result) => {
-        this.maskservice.hideMask();
+        MaskService.hideMask();
       }
     });
   }

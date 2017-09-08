@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {StockManService} from "../stock-man.service";
 import {Page} from "../../../core/page/page";
+import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
 declare var $: any;
 @Component({
   selector: 'app-car-page',
@@ -21,7 +22,7 @@ export class CarPageComponent implements OnInit {
   ngOnInit() {
     this.getCarList()
     this.deletebutton={
-      title:"详情",
+      title:"删除",
       type: "delete"
     };
   }
@@ -29,10 +30,19 @@ export class CarPageComponent implements OnInit {
   /**
    * 获取购物车的商品列表
    */
-  getCarList(){
+  getCarList(event?: PageEvent){
+    let activePage = 1;
+    if (typeof event !== "undefined") {
+      activePage = event.activePage
+    };
     let url = '/agent/agentCart/queryAll';
-    let data = {}
+    let data = {
+      curPage:activePage,
+      pageSize:2,
+      sortColumns:'',
+    }
     this.carListData=new Page(this.stockManService.getShopList(url, data))
+    console.log('1')
   }
 
   /**

@@ -4,6 +4,7 @@ import {Page} from "../../../core/page/page";
 import {PageEvent} from "angular2-datatable";
 import {AppComponent} from "../../../app.component";
 import {HeaderComponent} from "../../../layout/header/header.component";
+import {MaskService} from "../../../core/services/mask.service";
 const swal = require('sweetalert');
 
 declare var $: any;
@@ -30,7 +31,7 @@ export class AgentOrdComponent implements OnInit {
    * 2.初始化按钮信息
    */
   ngOnInit() {
-    this.queryshopList()
+    this.queryshopList();
   }
 
   /**
@@ -41,18 +42,16 @@ export class AgentOrdComponent implements OnInit {
     let activePage = 1;
     if (typeof event !== "undefined") {
       activePage = event.activePage
-    }
-    ;
+    };
     let url = '/goodsQuery/query';
     let data = {
       curPage: activePage,
-      pageSize: 3,
+      pageSize: 2,
       kindId: '',
       goodsName: '',
       sortColumn: ''
     }
     this.shopListdata = new Page(this.stockManService.getShopList(url, data))
-    console.log(this.shopListdata.voList)
   }
 
   /**
@@ -106,7 +105,7 @@ export class AgentOrdComponent implements OnInit {
       this.stockManService.sendCar(url, data);
       this.headerComponent.getShopTotal()
     }else{
-      AppComponent.rzhAlt("error",'请先选择商品');
+      AppComponent.rzhAlt("info",'请先选择商品');
     }
   }
 
