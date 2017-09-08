@@ -10,6 +10,7 @@ export class SettingsService {
   public user: any;
   public app: any;
   public layout: any;
+  public carNumber : number = 0;  // 存储购物车数量
   static enum:any = {
     sexState:1001,
     orderState:1001

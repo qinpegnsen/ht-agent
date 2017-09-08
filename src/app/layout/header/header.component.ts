@@ -24,8 +24,6 @@ export class HeaderComponent implements OnInit, OnChanges{
   menuItems = [];
   isNavSearchVisible: boolean;
 
-  public num: number=1;//用来保存商品类型的数量
-
   constructor(public menu: MenuService, public userblockService: UserblockService, public settings: SettingsService,
               private ajax: AjaxService, private router: Router, private cookieService: CookieService) {
     // 只显示指定的
@@ -45,7 +43,7 @@ export class HeaderComponent implements OnInit, OnChanges{
    * 初始化的时候获取购物车商品类型的总数
    */
   ngOnInit() {
-    this.getShopTotal()
+    this.getShopTotal();
     this.isNavSearchVisible = false;
     if (browser.msie) { // 不支持ie
       this.fsbutton.nativeElement.style.display = 'none';
@@ -64,15 +62,17 @@ export class HeaderComponent implements OnInit, OnChanges{
 
   /**
    * 获取商品类型的总数
+   * 1.这里值改变了，但是页面没有刷新，可以把值保存到服务上，在绑定服务来解决
    */
   getShopTotal(){
-    console.log(1)
+    let me = this;
     this.ajax.get({
       url: "/agent/agentCart/countAgentCart",
+      async:false,
       success: (result) => {
         let info=result.info;
         if (result.success) {
-          this.num=result.data;
+          me.settings.carNumber=result.data;
         }else{
           AppComponent.rzhAlt("error",info)
         }

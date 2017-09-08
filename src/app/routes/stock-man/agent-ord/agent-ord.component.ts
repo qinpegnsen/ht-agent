@@ -4,7 +4,6 @@ import {Page} from "../../../core/page/page";
 import {PageEvent} from "angular2-datatable";
 import {AppComponent} from "../../../app.component";
 import {HeaderComponent} from "../../../layout/header/header.component";
-import {MaskService} from "../../../core/services/mask.service";
 const swal = require('sweetalert');
 
 declare var $: any;
@@ -117,7 +116,6 @@ export class AgentOrdComponent implements OnInit {
     for(var i=0;i<num.length;i++){
       let item = num.eq(i).next('input').val() + ',' + num.eq(i).val() + ';';
       str += item;
-      console.log(str)
     }
     let url = '/agent/agentCart/addCustCart';
     let data = {

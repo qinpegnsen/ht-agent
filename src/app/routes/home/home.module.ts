@@ -12,7 +12,7 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         SharedModule
     ],
-    declarations: [HomeComponent],
+    declarations: [],
     exports: [
         RouterModule
     ]

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {StockManService} from "../stock-man.service";
 import {Page} from "../../../core/page/page";
 import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
+import {HeaderComponent} from "../../../layout/header/header.component";
 declare var $: any;
 @Component({
   selector: 'app-car-page',
@@ -13,7 +14,7 @@ export class CarPageComponent implements OnInit {
   private carListData:any;//储存购物车商品列表数据
   private deletebutton;//删除按钮
   public carNum;//购物车商品的数量
-  constructor(public stockManService: StockManService) { }
+  constructor(public stockManService: StockManService,public headerComponent: HeaderComponent) { }
 
   /**
    * 1.初始化的时候查询列表
@@ -42,11 +43,10 @@ export class CarPageComponent implements OnInit {
       sortColumns:'',
     }
     this.carListData=new Page(this.stockManService.getShopList(url, data))
-    console.log('1')
   }
 
   /**
-   * 点击删除的时候执行,然后刷新页面
+   * 点击删除的时候执行,然后刷新页面,刷新购物车的总数
    * @param id
    */
   doDelete(id){
@@ -56,6 +56,7 @@ export class CarPageComponent implements OnInit {
     }
     this.stockManService.deleteData(url,data)
     this.getCarList()
+    this.headerComponent.getShopTotal()
   }
 
 

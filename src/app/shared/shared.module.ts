@@ -36,6 +36,7 @@ import {DataTableModule} from "./directives/ng2-datatable/DataTableModule";
 import {StockManService} from "../routes/stock-man/stock-man.service";
 import {SelectAreaModule} from "./directives/select-area/select-area.module";
 import {HeaderComponent} from "../layout/header/header.component";
+import {HomeComponent} from "../routes/home/home/home.component";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -75,7 +76,8 @@ import {HeaderComponent} from "../layout/header/header.component";
     VectormapDirective,
     NowDirective,
     ScrollableDirective,
-    JqcloudDirective
+    JqcloudDirective,
+    HomeComponent
   ],
   exports: [
     DataTableModule,
