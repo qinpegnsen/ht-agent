@@ -6,8 +6,15 @@
     <table class="table-striped table" #carlist="rzhDataTable" [rzhData]="carListData"
            (pageChange)="getCarList($event)">
       <thead>
-      <tr>
-        <th class="w5 text-left"></th>
+      <tr class="carJD">
+        <th  checkAll class="w5 text-left">
+          <div class="checkbox c-checkbox m0">
+            <label>
+              <input type="checkbox"/>
+              <span class="fa fa-check"></span>全选
+            </label>
+          </div>
+        </th>
         <th class="w55 text-left">
           <rzhDefaultSorter by="name">商品</rzhDefaultSorter>
         </th>
@@ -22,30 +29,24 @@
         </th>
         <th class="w20 text-center">操作</th>
       </tr>
-      <tr>
-        <th checkAll class="text-left">
-          <div class="checkbox c-checkbox">
-            <label>
-              <input type="checkbox" (click)="showTotalCar()"/>
-              <span class="fa fa-check"></span>全选
-            </label>
-          </div>
-        </th>
-        <th checkAll class="shopCar" *ngIf="showCar">
-          <a (click)="addAllCart(a)" title="加入购物车" class="addCar">
-            <em class="fa fa-shopping-cart"></em>
-          </a>
-          加入购物车
-        </th>
-      </tr>
       </thead>
       <tbody>
       <ng-container *ngFor="let shop of carlist.data;let i = index">
         <tr>
-          <td>
-            <div class="checkbox c-checkbox">
+          <td colspan="6">
+            <div class="checkbox c-checkbox w20">
               <label>
-                <input type="checkbox" (change)="getData($event.target)"/>
+                <input type="checkbox" (change)="getPrice(shop.goodsCode,shop.num,$event)"/>
+                <span class="fa fa-check"></span>{{shop.storeName}}
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="checkbox c-checkbox ">
+              <label>
+                <input type="checkbox" class="changeSeltect"  value="{{shop.goodsCode}}" (change)="getPrice(shop.goodsCode,shop.num,$event)"/>
                 <span class="fa fa-check"></span>
               </label>
             </div>
@@ -56,21 +57,20 @@
                    onerror="javascript:this.src='../../../assets/img/dummy.png';">
             </div>
             <div class="col-xs-11">
-              <div (click)="showDetail(shop)">{{shop.goodsName}}</div>
+              <div (click)="showDetail(shop)">{{shop.storeCode}}</div>
               <div class="extra"><span>商品编码:{{shop.goodsCode}}</span></div>
             </div>
           </td>
           <td class="text-center">{{shop.joinPrice}}</td>
           <td class="text-center">
             <div class="input-group">
-              <span class="input-group-addon" (click)="minusNum($event.target)"><i class="fa fa-minus"></i></span>
-              <input class="form-control _num" type="text" (keyup)="updataNum(id,$event.target)" placeholder="Username" value="{{shop.num}}"/>
+              <span class="input-group-addon" (click)="minusNum($event.target,shop.goodsCode)"><i class="fa fa-minus"></i></span>
+              <input class="form-control _num" type="text" (keyup)="updataNum(shop.id,$event.target,shop.goodsCode)"  value="{{shop.num}}"/>
               <input type="hidden" value="{{shop.goodsCode}}">
-              <span class="input-group-addon" (click)="addNum(i,$event.target)"><i class="fa fa-plus"></i></span>
+              <span class="input-group-addon" (click)="addNum(i,$event.target,shop.goodsCode)"><i class="fa fa-plus"></i></span>
             </div>
           </td>
-          <td class="text-center">{{shop.joinPrice*shop.num}}</td>
-
+          <td class="text-center">{{priceList.total}}</td>
           <td class="text-center">
             <app-buttons [config]="deletebutton" (click)="doDelete(shop.id)"></app-buttons>
           </td>
@@ -82,10 +82,10 @@
         <td colspan="12">
           <button class="btn btn-danger pull-right">去结算</button>
           <div class="pull-right col-xs-2">
-            <span class="select">已选择2件商品</span>
-            <span class="">总价:123</span>
+            <span class="select">已选择 <b class="myPrice" > {{carNum}}</b>件商品</span>
+            <span>总价:<b  class="myPrice">&yen;{{priceList.payment}}</b></span>
             <br>
-            <span class="">您已节省0</span>
+            <span class="">您已节省&yen;0</span>
           </div>
         </td>
       </tr>

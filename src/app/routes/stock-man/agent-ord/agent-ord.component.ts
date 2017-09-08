@@ -4,6 +4,7 @@ import {Page} from "../../../core/page/page";
 import {PageEvent} from "angular2-datatable";
 import {AppComponent} from "../../../app.component";
 import {HeaderComponent} from "../../../layout/header/header.component";
+import {MaskService} from "../../../core/services/mask.service";
 const swal = require('sweetalert');
 
 declare var $: any;
@@ -71,11 +72,11 @@ export class AgentOrdComponent implements OnInit {
    * 减购物车的数量
    */
   minusNum(target) {
-    let n = $(target).parents('.input-group').find('input').val();//因为有可能点击到span或者是i所以找父级
-    n--;
-    if (n < 2) n = 1;
-    this.carNum=n
-    $(target).parents('.input-group').find('input:first').val(n)
+    let num = $(target).parents('.input-group').find('input').val();//因为有可能点击到span或者是i所以找父级
+    num--;
+    if (num < 2) num = 1;
+    this.carNum=num
+    $(target).parents('.input-group').find('input:first').val(num)
   }
 
   /**
@@ -84,11 +85,27 @@ export class AgentOrdComponent implements OnInit {
    * @param target
    */
   addNum(i,target) {
-    let n = $(target).parents('.input-group').find('input').val();//因为有可能点击到span或者是i所以找父级
-    n++;
-    if (n > this.shopListdata.voList[i].storageNum) n = this.shopListdata.voList[i].storageNum;
-    this.carNum=n;
-    $(target).parents('.input-group').find('input:first').val(n)
+    let num = $(target).parents('.input-group').find('input').val();//因为有可能点击到span或者是i所以找父级
+    num++;
+    if (num > this.shopListdata.voList[i].storageNum) num = this.shopListdata.voList[i].storageNum;
+    this.carNum=num;
+    $(target).parents('.input-group').find('input:first').val(num)
+  }
+
+
+  /**
+   * input 输入框修改的时候把值保存下来
+   * @param obj
+   */
+  changeNum(obj){
+    this.carNum=obj.value
+  }
+  /**
+   * 点击前面的勾选按钮，然后才加入到购物车
+   * @param goodsCode
+   */
+  getData(ele) {
+    $(ele).parents("tr").attr('data','flag')
   }
 
   /**
@@ -116,6 +133,7 @@ export class AgentOrdComponent implements OnInit {
     for(var i=0;i<num.length;i++){
       let item = num.eq(i).next('input').val() + ',' + num.eq(i).val() + ';';
       str += item;
+      console.log(str)
     }
     let url = '/agent/agentCart/addCustCart';
     let data = {
@@ -124,12 +142,6 @@ export class AgentOrdComponent implements OnInit {
     this.stockManService.sendCar(url, data)
     this.headerComponent.getShopTotal()
   }
-  /**
-   * 点击前面的勾选按钮，然后才加入到购物车
-   * @param goodsCode
-   */
-  getData(ele) {
-    $(ele).parents("tr").attr('data','flag')
-  }
+
 
 }

@@ -88,6 +88,7 @@ export class StockManService {
    * @param data
    */
   putData(url,data){
+    let result;
     this.ajax.put({
       url: url,
       data: data,
@@ -95,6 +96,7 @@ export class StockManService {
       success: (res) => {
         let info=res.info;
         if(res.success){
+          result=res.data;
           AppComponent.rzhAlt("success",info);
         }else{
           AppComponent.rzhAlt("error",info);
@@ -104,5 +106,6 @@ export class StockManService {
         AppComponent.rzhAlt("error",'连接数据库失败');
       }
     });
+    return result;
   }
 }

@@ -13,7 +13,12 @@ export class CarPageComponent implements OnInit {
 
   private carListData:any;//储存购物车商品列表数据
   private deletebutton;//删除按钮
-  public carNum;//购物车商品的数量
+  private flag:boolean=true;//开关按钮，用来判断选择还是取消
+  public carNum:number=0;//购物车商品的数量
+  public priceList={
+    total:0,
+    payment:0,
+  };//价格列表，默认是0
   constructor(public stockManService: StockManService,public headerComponent: HeaderComponent) { }
 
   /**
@@ -62,41 +67,103 @@ export class CarPageComponent implements OnInit {
 
   /**
    * 减购物车的数量
+   * 1.把值渲染到input框里面
+   * 2.让左边的自动被选择
+   * 3.调取价格方法，刷新页面数据
+   * @param target 当前点击的对象
    */
-  minusNum(target) {
-    let n = $(target).parents('.input-group').find('input').val();//因为有可能点击到span或者是i所以找父级
-    n--;
-    if (n < 2) n = 1;
-    this.carNum=n
-    $(target).parents('.input-group').find('input:first').val(n)
+  minusNum(obj,goodsCode) {
+    $(obj).parents("tr").css('background','#FFF4E8')   //点击的时候样式的变化
+    let num = $(obj).parents('.input-group').find('input').val();//因为有可能点击到span或者是i所以找父级
+    num--;
+    if (num < 2) num = 1;
+    this.carNum=num
+    $(obj).parents('.input-group').find('input:first').val(num)
+    $(obj).parents('tr').find("input:first").attr("checked","checked")
+    this.getPrice(goodsCode)
   }
 
   /**
    *增加购物车的数量
+   * 1.把值渲染到input框里面
+   * 2.让左边的自动被选择
+   * 3.调取价格方法，刷新页面数据
    * @param i 通过i来获取库存的数量
    * @param target
    */
-  addNum(i,target) {
-    let n = $(target).parents('.input-group').find('input').val();//因为有可能点击到span或者是i所以找父级
-    n++;
-    if (n > this.carListData.voList[i].storageNum) n = this.carListData.voList[i].storageNum;
-    this.carNum=n;
-    $(target).parents('.input-group').find('input:first').val(n)
+  addNum(i,obj,goodsCode) {
+    $(obj).parents("tr").css('background','#FFF4E8')   //点击的时候样式的变化
+    let num = $(obj).parents('.input-group').find('input').val();//因为有可能点击到span或者是i所以找父级
+    num++;
+    if (num > this.carListData.voList[i].storageNum) num = this.carListData.voList[i].storageNum;
+    this.carNum=num;
+    $(obj).parents('.input-group').find('input:first').val(num)
+    $(obj).parents('tr').find("input:first").attr("checked","checked")
+    this.getPrice(goodsCode)
   }
   /**
-   * 点击进行修改器爱
+   * 点击进行修改，并重新计价
    * @param id
    * @param obj 获取当前修改过后的值
+   * @param goodsCode 商品编码
    */
-  updataNum(id,obj){
+  updataNum(id,obj,goodsCode){
+    $(obj).parents("tr").css('background','#FFF4E8')   //点击的时候样式的变化
     let num=$(obj).val()
+    if(num==''){//这里必须得进行判断，否则num为空，在获取商品总数的时候会报错
+      num=1;
+    }
     this.carNum=num;
-    let url = '/agent/agentCart/updateAgentCart';
+    this.getPrice(goodsCode)
+    let url = '/agent/agentCart/updateAgentCart'; //修改数据
     let data = {
       id:id,
       num:num
     }
     this.stockManService.putData(url,data)
-    this.getCarList()
+  }
+
+  /**
+   * 获取商品的价格
+   * @param goodsCode 商品的编码
+   * @param num 商品的数量
+   */
+  getPrice(goodsCode,num?,obj?){
+    $(obj).parents("tr").css('background','#FFF4E8')   //点击的时候样式的变化
+    let inputArr=$(".changeSeltect");
+    if(this.flag){ //第一次点击的效果
+      this.flag=!this.flag;
+      if(num){  //解决商品总数的bug
+        this.carNum=num;
+      }
+      for(let i=0;i<inputArr.length;i++){
+        if(goodsCode==$(inputArr[i]).val()){
+          if(!$(inputArr[i]).attr('checked')){
+            $(inputArr[i]).attr('checked','checked')
+          }
+        }
+      }
+      let shopNum=num?num:this.carNum;
+      let url = '/agent/agentCart/valuationAgentCart';
+      let data = {
+        strData:`${goodsCode},${shopNum};`
+      }
+      this.priceList=this.stockManService.putData(url,data)
+    }else{//第二次点击的效果
+      this.flag=!this.flag;
+      this.carNum=0;
+      for(let i=0;i<inputArr.length;i++){
+        if(goodsCode==$(inputArr[i]).val()){
+          if($(inputArr[i]).attr('checked')){
+            $(inputArr[i]).removeAttr('checked') //取消的时候用
+          }
+        }
+      }
+      this.priceList={
+        total:0,
+        payment:0,
+      }
+    }
+
   }
 }
