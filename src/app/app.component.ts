@@ -17,11 +17,10 @@ export class AppComponent implements OnInit {
   public toaster: ToasterConfig = new ToasterConfig({
     showCloseButton: true,
     tapToDismiss: false,
-    timeout: {'success': 3000, 'error': 0},
+    timeout: {'success': 3000,'info': 3000, 'error': 0},
     positionClass: 'toast-top-center',
     animationClass: 'slide-from-top'
   });
-  static toasterConfig:ToasterConfig; //消息提示配置
   static toasterService:ToasterService; //消息提示服务
   //动态样式
   @HostBinding('class.layout-fixed') get isFixed() {

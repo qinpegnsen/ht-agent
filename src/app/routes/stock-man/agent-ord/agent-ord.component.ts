@@ -106,7 +106,7 @@ export class AgentOrdComponent implements OnInit {
       this.stockManService.sendCar(url, data);
       this.headerComponent.getShopTotal()
     }else{
-      AppComponent.rzhAlt("info",'请先选择商品');
+      AppComponent.rzhAlt("error",'请先选择商品');
     }
   }
 
