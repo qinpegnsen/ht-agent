@@ -80,7 +80,7 @@ export class CarPageComponent implements OnInit {
     this.carNum=num
     $(obj).parents('.input-group').find('input:first').val(num)
     $(obj).parents('tr').find("input:first").attr("checked","checked")
-    this.getPrice(goodsCode)
+    this.getPrice(goodsCode,'','',true)
   }
 
   /**
@@ -99,7 +99,7 @@ export class CarPageComponent implements OnInit {
     this.carNum=num;
     $(obj).parents('.input-group').find('input:first').val(num)
     $(obj).parents('tr').find("input:first").attr("checked","checked")
-    this.getPrice(goodsCode)
+    this.getPrice(goodsCode,'','',true)
   }
   /**
    * 点击进行修改，并重新计价
@@ -114,7 +114,7 @@ export class CarPageComponent implements OnInit {
       num=1;
     }
     this.carNum=num;
-    this.getPrice(goodsCode)
+    this.getPrice(goodsCode,'','',true)
     let url = '/agent/agentCart/updateAgentCart'; //修改数据
     let data = {
       id:id,
@@ -124,19 +124,25 @@ export class CarPageComponent implements OnInit {
   }
 
   /**
-   * 获取商品的价格
+   * 1.获取商品的价格
+   * 2.让前面的按钮被选中
    * @param goodsCode 商品的编码
    * @param num 商品的数量
+   * @param obj 当前点击的对象
+   * @param bool 用来判断是谁调用的这个方法
    */
-  getPrice(goodsCode,num?,obj?){
+  getPrice(goodsCode,num?,obj?,bool?){
     $(obj).parents("tr").css('background','#FFF4E8')   //点击的时候样式的变化
     let inputArr=$(".changeSeltect");
-    if(this.flag){ //第一次点击的效果
+    console.log(this.flag)
+    console.log(bool)
+    if(this.flag||bool){ //第一次点击的效果
+      console.log(1)
       this.flag=!this.flag;
-      if(num){  //解决商品总数的bug
+      if(num){  //解决商品总数在直接点击选中按钮时候的总数
         this.carNum=num;
       }
-      for(let i=0;i<inputArr.length;i++){
+      for(let i=0;i<inputArr.length;i++){//获取到所有的input，让编码相同的被选中
         if(goodsCode==$(inputArr[i]).val()){
           if(!$(inputArr[i]).attr('checked')){
             $(inputArr[i]).attr('checked','checked')
@@ -150,11 +156,13 @@ export class CarPageComponent implements OnInit {
       }
       this.priceList=this.stockManService.putData(url,data)
     }else{//第二次点击的效果
+      console.log(2)
       this.flag=!this.flag;
       this.carNum=0;
       for(let i=0;i<inputArr.length;i++){
         if(goodsCode==$(inputArr[i]).val()){
           if($(inputArr[i]).attr('checked')){
+            console.log(3)
             $(inputArr[i]).removeAttr('checked') //取消的时候用
           }
         }

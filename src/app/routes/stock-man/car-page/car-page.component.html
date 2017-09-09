@@ -36,7 +36,7 @@
           <td colspan="6">
             <div class="checkbox c-checkbox w20">
               <label>
-                <input type="checkbox" (change)="getPrice(shop.goodsCode,shop.num,$event)"/>
+                <input type="checkbox" class="_shop" (change)="getPrice(shop.goodsCode,shop.num,$event.target)"/>
                 <span class="fa fa-check"></span>{{shop.storeName}}
               </label>
             </div>
@@ -46,7 +46,7 @@
           <td>
             <div class="checkbox c-checkbox ">
               <label>
-                <input type="checkbox" class="changeSeltect"  value="{{shop.goodsCode}}" (change)="getPrice(shop.goodsCode,shop.num,$event)"/>
+                <input type="checkbox" class="changeSeltect _good"  value="{{shop.goodsCode}}" (change)="getPrice(shop.goodsCode,shop.num,$event.target)"/>
                 <span class="fa fa-check"></span>
               </label>
             </div>
