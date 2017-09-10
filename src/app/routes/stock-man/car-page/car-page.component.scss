@@ -1,39 +1,37 @@
-.special{
-  width:60px;height:60px;
+ul,li{
+  list-style: none;margin:0;padding: 0;
 }
-.extra{
-  margin-top:12px;
+._headBg{
+  background: #F3F3F3;margin-bottom: 20px;
 }
-.change:hover{
-  background: #DCF8FF;
+.marLeft{
+  margin-left: 15px;
 }
-.detail{
-  padding: 10px;
+._storeBt{
+  margin-bottom: 20px;
+  //border-top: 3px solid #AAAAAA;
 }
-.checkbox{
-  width:60px;
-  margin:10px;
+._myPaddingBody{
+  padding: 15px;
 }
-.detail:hover{
-  background: #F2F2F2;
+._special{
+  margin-top:0px !important;
 }
-.addCar{
-  font-size:30px;
+._pay{
+  border:1px solid #F0F0F0;
 }
-.shopCar{
-  padding-left: 16px;
+._extra{
+  border-top:1px solid #CFDBE2;
+  border-left:0px !important;
+  border-right:0px !important;
 }
-.trBg{
-  background: #E0F5FA;
+._padingBtm{
+  padding-bottom: 20px;
 }
-.select{
-  margin-right:5px;
-}
-.carJD{
-  background:#F3F3F3 ;
-}
-.myPrice{
+._myPrice{
   color:#E64346;
   font-size: 25px;
 }
-
+._select{
+  margin-right:20px;
+}

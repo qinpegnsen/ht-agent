@@ -1,109 +1,244 @@
 <div class="content-heading mb-lg">
   购物车列表
 </div>
-<div class="panel panel-default">
-  <div class="panel-body">
-    <table class="table-striped table" #carlist="rzhDataTable" [rzhData]="carListData"
-           (pageChange)="getCarList($event)">
-      <thead>
-      <tr class="carJD">
-        <th  checkAll class="w5 text-left">
-          <div class="checkbox c-checkbox m0">
+<div class="panel panel-default _padingBtm">
+  <!--头部-->
+  <div class="panel-body _headBg">
+    <ul class=" clearfix">
+      <li class="w7 pull-left text-left">
+        <div class="checkbox c-checkbox m0">
+          <label>
+            <input type="checkbox" class="_all" (change)="allEle($event.target)"/>
+            <span class="fa fa-check"></span>全选
+          </label>
+        </div>
+      </li>
+      <li class="w55 pull-left text-left">
+        <div>商品</div>
+      </li>
+      <li class="w5 pull-left text-center">
+        <div>单价</div>
+      </li>
+      <li class="w8 pull-left text-center">
+        <div>数量</div>
+      </li>
+      <li class="w5 pull-left text-center">
+        <div>小计</div>
+      </li>
+      <li class="w20 pull-left text-center">
+        <div>操作</div>
+      </li>
+    </ul>
+  </div>
+  <!--主体-->
+  <div>
+    <ul class="clearfix  _storeBt">
+      <!--店铺列表-->
+      <li class="w100 pull-left text-center _storeBt">
+        <div class="w5 text-left marLeft">
+          <div class="checkbox c-checkbox">
             <label>
-              <input type="checkbox"/>
-              <span class="fa fa-check"></span>全选
+              <input type="checkbox" class="_store" (change)="storeEle($event.target)"/>
+              <span class="fa fa-check"></span>ssss
             </label>
           </div>
-        </th>
-        <th class="w55 text-left">
-          <rzhDefaultSorter by="name">商品</rzhDefaultSorter>
-        </th>
-        <th class="w5 text-center">
-          <rzhDefaultSorter>单价</rzhDefaultSorter>
-        </th>
-        <th class="w10 text-center">
-          <rzhDefaultSorter>数量</rzhDefaultSorter>
-        </th>
-        <th class="w5 text-center">
-          <rzhDefaultSorter>小计</rzhDefaultSorter>
-        </th>
-        <th class="w20 text-center">操作</th>
-      </tr>
-      </thead>
-      <tbody>
-      <ng-container *ngFor="let shop of carlist.data;let i = index">
-        <tr>
-          <td colspan="6">
-            <div class="checkbox c-checkbox w20">
-              <label>
-                <input type="checkbox" class="_shop" (change)="getPrice(shop.goodsCode,shop.num,$event.target)"/>
-                <span class="fa fa-check"></span>{{shop.storeName}}
-              </label>
+        </div>
+        <ul class="clearfix panel panel-default _extra">
+          <!--商品列表-->
+          <li class="_myPaddingBody clearfix">
+            <div class="w5 pull-left text-left">
+              <div class="checkbox c-checkbox _special">
+                <label>
+                  <input type="checkbox" class="_good" (change)="goodEle($event.target)"/>
+                  <span class="fa fa-check"></span>456
+                </label>
+              </div>
             </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class="checkbox c-checkbox ">
-              <label>
-                <input type="checkbox" class="changeSeltect _good"  value="{{shop.goodsCode}}" (change)="getPrice(shop.goodsCode,shop.num,$event.target)"/>
-                <span class="fa fa-check"></span>
-              </label>
+            <div class="w57 pull-left text-left">
+              <div class="col-xs-1">
+                <img src="../../../assets/img/dummy.png" alt="" class=''
+                     onerror="javascript:this.src='../../../assets/img/dummy.png';">
+              </div>
+              <div class="col-xs-11">
+                <div (click)="showDetail(shop)">规格</div>
+                <div class="extra"><span>商品编码</span></div>
+              </div>
             </div>
-          </td>
-          <td class="text-left">
-            <div class="col-xs-1 p0">
-              <img src="{{shop.goodsImage}}" alt="" class='special'
-                   onerror="javascript:this.src='../../../assets/img/dummy.png';">
+            <div class="w5 pull-left text-center">
+              价格
             </div>
-            <div class="col-xs-11">
-              <div (click)="showDetail(shop)">{{shop.storeCode}}</div>
-              <div class="extra"><span>商品编码:{{shop.goodsCode}}</span></div>
+            <div class="w8 pull-left text-center">
+              <div class="input-group">
+                <span class="input-group-addon" (click)="minusNum($event.target)"><i
+                  class="fa fa-minus"></i></span>
+                <input class="form-control _num" type="text" (change)="updataNum($event.target)"
+                       value="1"/>
+                <input type="hidden" value="2">
+                <span class="input-group-addon" (click)="addNum($event.target)"><i
+                  class="fa fa-plus"></i></span>
+              </div>
             </div>
-          </td>
-          <td class="text-center">{{shop.joinPrice}}</td>
-          <td class="text-center">
-            <div class="input-group">
-              <span class="input-group-addon" (click)="minusNum($event.target,shop.goodsCode)"><i class="fa fa-minus"></i></span>
-              <input class="form-control _num" type="text" (keyup)="updataNum(shop.id,$event.target,shop.goodsCode)"  value="{{shop.num}}"/>
-              <input type="hidden" value="{{shop.goodsCode}}">
-              <span class="input-group-addon" (click)="addNum(i,$event.target,shop.goodsCode)"><i class="fa fa-plus"></i></span>
+            <div class="w5 pull-left text-center">
+              小计
             </div>
-          </td>
-          <td class="text-center">{{priceList.total}}</td>
-          <td class="text-center">
-            <app-buttons [config]="deletebutton" (click)="doDelete(shop.id)"></app-buttons>
-          </td>
-        </tr>
-      </ng-container>
-      </tbody>
-      <tfoot>
-      <tr>
-        <td colspan="12">
-          <button class="btn btn-danger pull-right">去结算</button>
-          <div class="pull-right col-xs-2">
-            <span class="select">已选择 <b class="myPrice" > {{carNum}}</b>件商品</span>
-            <span>总价:<b  class="myPrice">&yen;{{priceList.payment}}</b></span>
-            <br>
-            <span class="">您已节省&yen;0</span>
-          </div>
-        </td>
-      </tr>
-      <tr class="text-center">
-        <td colspan="12">
-          <div class="col-md-5">
-            <div class="text-muted pull-left"><strong>第 {{carListData.genStartRow()}} 至
-              {{carListData.genEndRow()}} 条，共 {{carListData.totalRow}}
-              条</strong></div>
-          </div>
-          <div class="col-md-7">
-            <div class="pull-right">
-              <rzhBootstrapPaginator></rzhBootstrapPaginator>
+            <div class="w20 pull-left text-center">
+              <app-buttons [config]="deletebutton" (click)="doDelete(shop.id)"></app-buttons>
             </div>
-          </div>
-        </td>
-      </tr>
-      </tfoot>
-    </table>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <!--结算-->
+    <div class="clearfix w100 panel-body _pay">
+      <button class="btn btn-danger pull-right">去结算</button>
+      <div class="pull-right col-xs-2">
+        <span class="_select">已选择 <b class="_myPrice">1213</b>件商品</span>
+        <span>总价:<b class="_myPrice">&yen;16561</b></span>
+      </div>
+    </div>
   </div>
+  <!--<table class="table-striped table" #carlist="rzhDataTable" [rzhData]="carListData"-->
+  <!--(pageChange)="getCarList($event)">-->
+  <!--<thead>-->
+  <!--<tr class="carJD">-->
+  <!--<th class="w5 text-left">-->
+  <!--<div class="checkbox c-checkbox m0">-->
+  <!--<label>-->
+  <!--<input type="checkbox" class="_all" (change)="selectEle($event.target)"/>-->
+  <!--<span class="fa fa-check"></span>全选-->
+  <!--</label>-->
+  <!--</div>-->
+  <!--</th>-->
+  <!--<th class="w57 text-left">-->
+  <!--<rzhDefaultSorter by="name">商品</rzhDefaultSorter>-->
+  <!--</th>-->
+  <!--<th class="w5 text-center">-->
+  <!--<rzhDefaultSorter>单价</rzhDefaultSorter>-->
+  <!--</th>-->
+  <!--<th class="w8 text-center">-->
+  <!--<rzhDefaultSorter>数量</rzhDefaultSorter>-->
+  <!--</th>-->
+  <!--<th class="w5 text-center">-->
+  <!--<rzhDefaultSorter>小计</rzhDefaultSorter>-->
+  <!--</th>-->
+  <!--<th class="w20 text-center">操作</th>-->
+  <!--</tr>-->
+  <!--</thead>-->
+  <!--<tbody>-->
+  <!--<ng-container *ngFor="let shop of carlist.data;let i = index">-->
+  <!--<tr>-->
+  <!--<td colspan="6">-->
+
+  <!--<div class="checkbox c-checkbox _storeSelect">-->
+  <!--<label>-->
+  <!--<input type="checkbox" class="_store" value="{{shop.storeCode}}"  (change)="selectEle($event.target)"/>-->
+  <!--<span class="fa fa-check"></span>{{shop.storeName}}-->
+  <!--</label>-->
+  <!--</div>-->
+
+  <!--<div class="clearfix _myBtm">-->
+  <!--<div class="checkbox c-checkbox _gooodSelect pull-left">-->
+  <!--<label>-->
+  <!--<input type="checkbox" class="_good"  value="{{shop.storeCode}}" (change)="selectEle($event.target,shop.goodsCode,shop.num)"/>-->
+  <!--<span class="fa fa-check"></span>-->
+  <!--</label>-->
+  <!--</div>-->
+
+
+  <!--<div class="w57 pull-left">-->
+  <!--<div class="col-xs-1 p0">-->
+  <!--<img src="{{shop.goodsImage}}" alt="" class='special'-->
+  <!--onerror="javascript:this.src='../../../assets/img/dummy.png';">-->
+  <!--</div>-->
+  <!--<div class="col-xs-11">-->
+  <!--<div (click)="showDetail(shop)">{{shop.storeCode}}</div>-->
+  <!--<div class="extra"><span>商品编码:{{shop.goodsCode}}</span></div>-->
+  <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="w5 pull-left text-center">-->
+  <!--{{shop.joinPrice}}-->
+  <!--</div>-->
+
+
+  <!--<div class="w8 pull-left text-center">-->
+  <!--<div class="input-group">-->
+  <!--<span class="input-group-addon" (click)="minusNum($event.target,shop.goodsCode)"><i class="fa fa-minus"></i></span>-->
+  <!--<input class="form-control _num" type="text" (keyup)="updataNum(shop.id,$event.target,shop.goodsCode)"  value="{{shop.num}}"/>-->
+  <!--<input type="hidden" value="{{shop.goodsCode}}">-->
+  <!--<span class="input-group-addon" (click)="addNum(i,$event.target,shop.goodsCode)"><i class="fa fa-plus"></i></span>-->
+  <!--</div>-->
+  <!--</div>-->
+
+
+  <!--<div class="w5 pull-left text-center">-->
+  <!--{{priceList.total}}-->
+  <!--</div>-->
+  <!--<div class="w20 pull-left text-center">-->
+  <!--<app-buttons [config]="deletebutton" (click)="doDelete(shop.id)"></app-buttons>-->
+  <!--</div>-->
+
+  <!--</div>-->
+
+
+  <!--</td>-->
+  <!--</tr>-->
+  <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+  <!--&lt;!&ndash;<td>&ndash;&gt;-->
+  <!--&lt;!&ndash;<div class="checkbox c-checkbox ">&ndash;&gt;-->
+  <!--&lt;!&ndash;<label>&ndash;&gt;-->
+  <!--&lt;!&ndash;<input type="checkbox" class="_good"  value="{{shop.storeCode}}" (change)="selectEle($event.target,shop.goodsCode,shop.num)"/>&ndash;&gt;-->
+  <!--&lt;!&ndash;<span class="fa fa-check"></span>&ndash;&gt;-->
+  <!--&lt;!&ndash;</label>&ndash;&gt;-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--&lt;!&ndash;</td>&ndash;&gt;-->
+  <!--&lt;!&ndash;<td class="text-left">&ndash;&gt;-->
+  <!--&lt;!&ndash;<div class="col-xs-1 p0">&ndash;&gt;-->
+  <!--&lt;!&ndash;<img src="{{shop.goodsImage}}" alt="" class='special'&ndash;&gt;-->
+  <!--&lt;!&ndash;onerror="javascript:this.src='../../../assets/img/dummy.png';">&ndash;&gt;-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--&lt;!&ndash;<div class="col-xs-11">&ndash;&gt;-->
+  <!--&lt;!&ndash;<div (click)="showDetail(shop)">{{shop.storeCode}}</div>&ndash;&gt;-->
+  <!--&lt;!&ndash;<div class="extra"><span>商品编码:{{shop.goodsCode}}</span></div>&ndash;&gt;-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--&lt;!&ndash;</td>&ndash;&gt;-->
+  <!--&lt;!&ndash;<td class="text-center">{{shop.joinPrice}}</td>&ndash;&gt;-->
+  <!--&lt;!&ndash;<td class="text-center">&ndash;&gt;-->
+  <!--&lt;!&ndash;<div class="input-group">&ndash;&gt;-->
+  <!--&lt;!&ndash;<span class="input-group-addon" (click)="minusNum($event.target,shop.goodsCode)"><i class="fa fa-minus"></i></span>&ndash;&gt;-->
+  <!--&lt;!&ndash;<input class="form-control _num" type="text" (keyup)="updataNum(shop.id,$event.target,shop.goodsCode)"  value="{{shop.num}}"/>&ndash;&gt;-->
+  <!--&lt;!&ndash;<input type="hidden" value="{{shop.goodsCode}}">&ndash;&gt;-->
+  <!--&lt;!&ndash;<span class="input-group-addon" (click)="addNum(i,$event.target,shop.goodsCode)"><i class="fa fa-plus"></i></span>&ndash;&gt;-->
+  <!--&lt;!&ndash;</div>&ndash;&gt;-->
+  <!--&lt;!&ndash;</td>&ndash;&gt;-->
+  <!--&lt;!&ndash;<td class="text-center">{{priceList.total}}</td>&ndash;&gt;-->
+  <!--&lt;!&ndash;<td class="text-center">&ndash;&gt;-->
+  <!--&lt;!&ndash;<app-buttons [config]="deletebutton" (click)="doDelete(shop.id)"></app-buttons>&ndash;&gt;-->
+  <!--&lt;!&ndash;</td>&ndash;&gt;-->
+  <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+  <!--</ng-container>-->
+  <!--</tbody>-->
+  <!--<tfoot>-->
+  <!--<tr>-->
+  <!--<td colspan="12">-->
+
+  <!--</td>-->
+  <!--</tr>-->
+  <!--<tr class="text-center">-->
+  <!--<td colspan="12">-->
+  <!--<div class="col-md-5">-->
+  <!--<div class="text-muted pull-left"><strong>第 {{carListData.genStartRow()}} 至-->
+  <!--{{carListData.genEndRow()}} 条，共 {{carListData.totalRow}}-->
+  <!--条</strong></div>-->
+  <!--</div>-->
+  <!--<div class="col-md-7">-->
+  <!--<div class="pull-right">-->
+  <!--<rzhBootstrapPaginator></rzhBootstrapPaginator>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</td>-->
+  <!--</tr>-->
+  <!--</tfoot>-->
+  <!--</table>-->
+
 </div>

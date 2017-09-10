@@ -13,7 +13,6 @@ export class CarPageComponent implements OnInit {
 
   private carListData:any;//储存购物车商品列表数据
   private deletebutton;//删除按钮
-  private flag:boolean=true;//开关按钮，用来判断选择还是取消
   public carNum:number=0;//购物车商品的数量
   public priceList={
     total:0,
@@ -72,15 +71,13 @@ export class CarPageComponent implements OnInit {
    * 3.调取价格方法，刷新页面数据
    * @param target 当前点击的对象
    */
-  minusNum(obj,goodsCode) {
-    $(obj).parents("tr").css('background','#FFF4E8')   //点击的时候样式的变化
+  minusNum(obj) {
+    $(obj).parents("._myPaddingBody").css('background','#FFF4E8')   //点击的时候样式的变化
+    $(obj).parents('._myPaddingBody').find("._good").prop("checked",true)
     let num = $(obj).parents('.input-group').find('input').val();//因为有可能点击到span或者是i所以找父级
     num--;
     if (num < 2) num = 1;
-    this.carNum=num
     $(obj).parents('.input-group').find('input:first').val(num)
-    $(obj).parents('tr').find("input:first").attr("checked","checked")
-    this.getPrice(goodsCode,'','',true)
   }
 
   /**
@@ -88,40 +85,100 @@ export class CarPageComponent implements OnInit {
    * 1.把值渲染到input框里面
    * 2.让左边的自动被选择
    * 3.调取价格方法，刷新页面数据
-   * @param i 通过i来获取库存的数量
+   *
    * @param target
    */
-  addNum(i,obj,goodsCode) {
-    $(obj).parents("tr").css('background','#FFF4E8')   //点击的时候样式的变化
+  addNum(obj) {
+    $(obj).parents("._myPaddingBody").css('background','#FFF4E8')   //点击的时候样式的变化
+    $(obj).parents('._myPaddingBody').find("._good").prop("checked",true)
+
     let num = $(obj).parents('.input-group').find('input').val();//因为有可能点击到span或者是i所以找父级
     num++;
-    if (num > this.carListData.voList[i].storageNum) num = this.carListData.voList[i].storageNum;
-    this.carNum=num;
+    if (num > 5) num = 5;
     $(obj).parents('.input-group').find('input:first').val(num)
-    $(obj).parents('tr').find("input:first").attr("checked","checked")
-    this.getPrice(goodsCode,'','',true)
   }
   /**
    * 点击进行修改，并重新计价
-   * @param id
+   *
    * @param obj 获取当前修改过后的值
-   * @param goodsCode 商品编码
+   *
    */
-  updataNum(id,obj,goodsCode){
-    $(obj).parents("tr").css('background','#FFF4E8')   //点击的时候样式的变化
-    let num=$(obj).val()
-    if(num==''){//这里必须得进行判断，否则num为空，在获取商品总数的时候会报错
-      num=1;
-    }
-    this.carNum=num;
-    this.getPrice(goodsCode,'','',true)
-    let url = '/agent/agentCart/updateAgentCart'; //修改数据
-    let data = {
-      id:id,
-      num:num
-    }
-    this.stockManService.putData(url,data)
+  updataNum(obj){
+    $(obj).parents("._myPaddingBody").css('background','#FFF4E8')   //点击的时候样式的变化
+    $(obj).parents('._myPaddingBody').find("._good").prop("checked",true)
+    // let num=$(obj).val()
+    // if(num==''){//这里必须得进行判断，否则num为空，在获取商品总数的时候会报错
+    //   num=1;
+    // }
+    // this.carNum=num;
+    // this.getPrice(goodsCode,'','',true)
+    // let url = '/agent/agentCart/updateAgentCart'; //修改数据
+    // let data = {
+    //   id:id,
+    //   num:num
+    // }
+    // this.stockManService.putData(url,data)
   }
+
+  /**
+   * 商品的单选按钮
+   * @param obj  当前选择的元素，有商品的，店铺的，全部的，必选的
+   * @param goodsCode  商品编码，可传对象，在店铺和全选不用传
+   * @param shopNum 商品数量，可传对象，在店铺和全选不用传
+   */
+  goodEle(obj){
+    $(obj).parents("._myPaddingBody").css('background','#fff')   //点击的时候样式的变化
+    $(obj).parents('._myPaddingBody').find("._good").prop("checked",false)
+  }
+
+  /**
+   * 店铺的单选按钮
+   * @param obj
+   */
+  storeEle(obj){
+    if($(obj).prop('checked')){
+      $(obj).parents("._storeBt").find("._myPaddingBody").css('background','#FFF4E8')   //点击的时候样式的变化
+      $(obj).parents('._storeBt').find("._good").prop("checked",true);
+    }else{
+      $(obj).parents("._storeBt").find("._myPaddingBody").css('background','#fff')   //点击的时候样式的变化
+      $(obj).parents('._storeBt').find("._good").prop("checked",false)
+    }
+
+  }
+
+  /**
+   * 购物车总的单选按钮
+   * changes 事件一定是鼠标和键盘触发的，页面input的选中不是change事件
+   * @param obj
+   */
+  allEle(obj){
+    if($(obj).prop('checked')){
+      $(obj).parents("._padingBtm").find("._myPaddingBody").css('background','#FFF4E8')   //点击的时候样式的变化
+      $(obj).parents('._padingBtm').find("._store").prop("checked",true);
+    }else{
+      $(obj).parents("._padingBtm").find("._myPaddingBody").css('background','#fff')   //点击的时候样式的变化
+      $(obj).parents('._padingBtm').find("._store").prop("checked",false)
+    }
+    let target = $(obj).parents('._padingBtm').find("._store");
+    this.storeEle(target);
+  }
+
+  /**
+   * 获取价格的列表
+   * 1.小计
+   * 2.运费
+   * 3.总价
+   * @param goodsCode
+   * @param shopNum
+   */
+  getPriceList(goodsCode,shopNum){
+    let url = '/agent/agentCart/valuationAgentCart';
+    let data = {
+      strData:`${goodsCode},${shopNum};`
+    }
+    this.priceList=this.stockManService.putData(url,data)
+  }
+
 
   /**
    * 1.获取商品的价格
@@ -131,47 +188,48 @@ export class CarPageComponent implements OnInit {
    * @param obj 当前点击的对象
    * @param bool 用来判断是谁调用的这个方法
    */
-  getPrice(goodsCode,num?,obj?,bool?){
-    $(obj).parents("tr").css('background','#FFF4E8')   //点击的时候样式的变化
-    let inputArr=$(".changeSeltect");
-    console.log(this.flag)
-    console.log(bool)
-    if(this.flag||bool){ //第一次点击的效果
-      console.log(1)
-      this.flag=!this.flag;
-      if(num){  //解决商品总数在直接点击选中按钮时候的总数
-        this.carNum=num;
-      }
-      for(let i=0;i<inputArr.length;i++){//获取到所有的input，让编码相同的被选中
-        if(goodsCode==$(inputArr[i]).val()){
-          if(!$(inputArr[i]).attr('checked')){
-            $(inputArr[i]).attr('checked','checked')
-          }
-        }
-      }
-      let shopNum=num?num:this.carNum;
-      let url = '/agent/agentCart/valuationAgentCart';
-      let data = {
-        strData:`${goodsCode},${shopNum};`
-      }
-      this.priceList=this.stockManService.putData(url,data)
-    }else{//第二次点击的效果
-      console.log(2)
-      this.flag=!this.flag;
-      this.carNum=0;
-      for(let i=0;i<inputArr.length;i++){
-        if(goodsCode==$(inputArr[i]).val()){
-          if($(inputArr[i]).attr('checked')){
-            console.log(3)
-            $(inputArr[i]).removeAttr('checked') //取消的时候用
-          }
-        }
-      }
-      this.priceList={
-        total:0,
-        payment:0,
-      }
-    }
+  // getPrice(goodsCode,num?,obj?,bool?){
+  //   $(obj).parents("tr").css('background','#FFF4E8')   //点击的时候样式的变化
+  //   let inputArr=$("._good");
+  //   console.log(this.flag)
+  //   console.log(bool)
+  //   if(this.flag||bool){ //第一次点击的效果
+  //     console.log(1)
+  //     this.flag=!this.flag;
+  //     if(num){  //解决商品总数在直接点击选中按钮时候的总数
+  //       this.carNum=num;
+  //     }
+  //     for(let i=0;i<inputArr.length;i++){//获取到所有的input，让编码相同的被选中
+  //       if(goodsCode==$(inputArr[i]).val()){
+  //         if(!$(inputArr[i]).attr('checked')){
+  //           $(inputArr[i]).attr('checked','checked')
+  //         }
+  //       }
+  //     }
+  //     let shopNum=num?num:this.carNum;
+  //     let url = '/agent/agentCart/valuationAgentCart';
+  //     let data = {
+  //       strData:`${goodsCode},${shopNum};`
+  //     }
+  //     this.priceList=this.stockManService.putData(url,data)
+  //   }else{//第二次点击的效果
+  //     console.log(2)
+  //     this.flag=!this.flag;
+  //     this.carNum=0;
+  //     for(let i=0;i<inputArr.length;i++){
+  //       if(goodsCode==$(inputArr[i]).val()){
+  //         if($(inputArr[i]).attr('checked')){
+  //           console.log(3)
+  //           $(inputArr[i]).removeAttr('checked') //取消的时候用
+  //         }
+  //       }
+  //     }
+  //     this.priceList={
+  //       total:0,
+  //       payment:0,
+  //     }
+  //   }
+  //
+  // }
 
-  }
 }
