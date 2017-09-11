@@ -1,0 +1,44 @@
+<div class="content-heading mb-lg">
+  订单页面
+</div>
+<div class="panel h80 prompting">
+  <span> 温馨提示：</span><span>请确认相关商品信息后提交订单。</span>
+</div>
+<div class="w100 clearfix">
+  <div class="_title">
+    <h4>填写并核对订单信息</h4>
+  </div>
+  <div class="_content">
+    <div class="_acceptPeople">
+      <div class="_title clearfix">
+        <b class="col-l-5 pull-left">收货人信息</b>
+      </div>
+      <div>
+        <div class="w100 clearfix">
+          <div class="text-center col-lg-1 line _border">{{defaultAddress.receiverName}}</div>
+          <div class="col-lg-10 line">{{defaultAddress.address}}</div>
+        </div>
+        <div class="clearfix">
+          <!--<div class="text-center col-lg-1 line">更多地址</div>-->
+          <accordion-group #stepgroup1 [isOpen]="step1" panelClass="b mt-sm">
+            <div accordion-heading>更多地址</div>
+
+          </accordion-group>
+        </div>
+
+
+      </div>
+    </div>
+
+    <div class="_acceptPeople">
+      <div class="_title clearfix">
+        <b class="col-l-5 pull-left">订单信息</b>
+      </div>
+      <div>
+
+
+      </div>
+    </div>
+
+  </div>
+</div>

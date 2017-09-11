@@ -1,6 +1,9 @@
 <div class="content-heading mb-lg">
   购物车列表
 </div>
+<div class="panel h80 prompting">
+  <span> 温馨提示：</span><span>总价格大于2000免运费哦</span>
+</div>
 <div class="panel panel-default _padingBtm">
   <!--头部-->
   <div class="panel-body _headBg">
@@ -44,11 +47,6 @@
               </label>
             </div>
           </div>
-          <div class="pull-right _myExpress">
-            <div *ngIf="priceList.expressPrice" class="pull-right">
-              运费：&yen;{{priceList.expressPrice}}
-            </div>
-          </div>
         </div>
 
         <ul class="clearfix panel panel-default _extra">
@@ -57,7 +55,7 @@
             <div class="w5 pull-left text-left">
               <div class="checkbox c-checkbox _special">
                 <label>
-                  <input type="checkbox" class="_good" (click)="goodEle($event.target,good.goodsCode)"/>
+                  <input type="checkbox" class="_good" (click)="goodEle($event.target)"/>
                   <span class="fa fa-check"></span>
                 </label>
               </div>
@@ -72,24 +70,25 @@
                 <div *ngFor="let standard of good.goodsSavSetList">{{standard.attrName}}：{{standard.value}}</div>
               </div>
             </div>
-            <div class="w5 pull-left text-center">
+            <div class="w5 pull-left text-center _batchPrice">
               {{good.batchPrice}}
             </div>
             <div class="w8 pull-left text-center">
               <div class="input-group updateNum">
-                <span class="input-group-addon" (click)="minusNum($event.target,good.goodsCode,good.agentCartId)"><i
+                <span class="input-group-addon" (click)="minusNum($event.target,good.agentCartId)"><i
                   class="fa fa-minus"></i></span>
-                <input class="form-control _num" type="text" (change)="updataNum($event.target,good.goodsCode,good.agentCartId,good.storageNum)"
+                <input class="form-control _num" type="text" (change)="updataNum($event.target,good.agentCartId,good.storageNum)"
                        value="{{good.num}}"/>
-                <span class="input-group-addon" (click)="addNum($event.target,good.goodsCode,good.agentCartId,good.storageNum)"><i
+                <input type="hidden" class="_goodsCod" value="{{good.goodsCode}}">
+                <span class="input-group-addon" (click)="addNum($event.target,good.agentCartId,good.storageNum)"><i
                   class="fa fa-plus"></i></span>
               </div>
             </div>
-            <div class="w5 pull-left text-center">
+            <div class="w5 pull-left text-center _goodTotalPrice">
               {{good.goodsSubtotal}}
             </div>
             <div class="w20 pull-left text-center">
-              <app-buttons [config]="deletebutton" (click)="doDelete(shop.id)"></app-buttons>
+              <app-buttons [config]="deletebutton" (click)="doDelete(good.agentCartId)"></app-buttons>
             </div>
           </li>
         </ul>
@@ -97,11 +96,13 @@
     </ul>
     <!--结算-->
     <div class="clearfix w100 panel-body _pay">
-      <button class="btn btn-danger pull-right">去结算</button>
-      <div class="pull-right col-xs-2 clearfix">
+      <button class="btn btn-danger pull-right" (click)="linkOrderPage()">去结算</button>
+      <div class="pull-right w18 clearfix">
         <span class="_select pull-left">已选择 <b class="_myPrice">{{shopTotalNumber}}</b>件商品</span>
-        <span class="_select pull-left">总价:<b class="_myPrice">&yen;{{shopTotalPrice}}</b></span>
+        <span class="_select pull-left">运费:<b class="_myPrice">&yen;{{priceList.expressPrice}}</b></span>
+        <span class="_select pull-left">总价:<b class="_myPrice">&yen;{{priceList.payment}}</b></span>
       </div>
     </div>
   </div>
 </div>
+

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AjaxService} from "../../core/services/ajax.service";
 import {AppComponent} from "../../app.component";
-const swal = require('sweetalert');
+
 
 @Injectable()
 export class StockManService {

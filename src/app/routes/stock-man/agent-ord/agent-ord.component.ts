@@ -46,7 +46,7 @@ export class AgentOrdComponent implements OnInit {
     let url = '/goodsQuery/query';
     let data = {
       curPage: activePage,
-      pageSize: 2,
+      pageSize: 8,
       kindId: '',
       goodsName: '',
       sortColumn: ''
@@ -133,7 +133,6 @@ export class AgentOrdComponent implements OnInit {
     for(var i=0;i<num.length;i++){
       let item = num.eq(i).next('input').val() + ',' + num.eq(i).val() + ';';
       str += item;
-      console.log(str)
     }
     let url = '/agent/agentCart/addCustCart';
     let data = {

@@ -9,15 +9,15 @@ import {FormsModule} from "@angular/forms";
 import { CarPageComponent } from './car-page/car-page.component';
 import {HomeComponent} from "../home/home/home.component";
 import { PayPageComponent } from './pay-page/pay-page.component';
+import { OrderPageComponent } from './order-page/order-page.component';
 
-const pageChildRoutes: Routes = [
-  {path: 'pay', component: PayPageComponent}
-];
+
 const routes: Routes = [
   {path: '', component:HomeComponent},
   {path: 'agentord', component: AgentOrdComponent},
   {path: 'ordRecord', component: OrdRecordComponent},
-  {path: 'car', component: CarPageComponent,children: pageChildRoutes},
+  {path: 'car', component: CarPageComponent},
+  {path: 'order', component: OrderPageComponent}
 ];
 @NgModule({
   imports: [
@@ -26,7 +26,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes),
   ],
-  declarations: [AgentOrdComponent, OrdRecordComponent, CarPageComponent, PayPageComponent],
+  declarations: [AgentOrdComponent, OrdRecordComponent, CarPageComponent, PayPageComponent, OrderPageComponent],
   providers: [StockManService]
 })
 export class StockManModule {}

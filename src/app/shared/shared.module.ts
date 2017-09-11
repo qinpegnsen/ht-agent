@@ -37,6 +37,7 @@ import {StockManService} from "../routes/stock-man/stock-man.service";
 import {SelectAreaModule} from "./directives/select-area/select-area.module";
 import {HeaderComponent} from "../layout/header/header.component";
 import {HomeComponent} from "../routes/home/home/home.component";
+import {AccordionComponent} from "ngx-bootstrap";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -66,7 +67,7 @@ import {HomeComponent} from "../routes/home/home/home.component";
     SelectAreaModule
   ],
   providers: [
-    ColorsService,StockManService,HeaderComponent
+    ColorsService,StockManService,HeaderComponent,AccordionComponent
   ],
   declarations: [
     FlotDirective,
