@@ -16,7 +16,7 @@ const routes: Routes = [
   {path: '', component:HomeComponent},
   {path: 'agentord', component: AgentOrdComponent},
   {path: 'ordRecord', component: OrdRecordComponent},
-  {path: 'car', component: CarPageComponent},
+  {path: 'cart', component: CarPageComponent},
   {path: 'order', component: OrderPageComponent}
 ];
 @NgModule({

@@ -24,9 +24,12 @@
   user-select: none;
 }
 .clear{clear:both;}
-.line{
+._line{
   height:40px;
   line-height:40px;
+}
+._list{
+  list-style: none;margin:0;padding: 0;
 }
 .color-f50{color: #f50;}
 .font14{font-size: 14px}
@@ -55,7 +58,7 @@
     transform: rotate(360deg);
   }
 };
-
+._p20{padding: 20px}
 .w1{width: 1%}
 .w2{width: 2%}
 .w3{width: 3%}

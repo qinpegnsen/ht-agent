@@ -10,7 +10,6 @@ const headingMain = {
 };
 const stockMan = {
   text: '进货管理',
-  link: '/main/stockMan',
   icon: 'fa fa-cubes',
   submenu: [
     {

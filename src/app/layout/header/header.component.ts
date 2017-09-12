@@ -88,7 +88,7 @@ export class HeaderComponent implements OnInit, OnChanges{
    * 点击的时候展现购物车页面
    */
   showCarPage(){
-    this.router.navigate(['/main/stockMan/car'], {replaceUrl: true});
+    this.router.navigate(['/main/stockMan/cart'], {replaceUrl: true});
   }
 
   /**
