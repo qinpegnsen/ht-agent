@@ -1,130 +1,173 @@
-<div class="content-heading mb-lg">
-  订单页面
-</div>
-<div class="panel h80 prompting">
-  <span> 温馨提示：</span><span>请确认相关商品信息后提交订单。</span>
-</div>
-<div class="w100 clearfix">
-  <div class="_title">
-    <h4>填写并核对订单信息</h4>
+<div *ngIf="flag">
+  <div class="content-heading mb-lg">
+    订单页面
   </div>
-  <!--内容区域-->
-  <div class="_content">
-    <!--收货人栏-->
-    <div class="_acceptPeople">
-      <div class="_title clearfix">
-        <b class="col-l-5 pull-left">收货人信息</b>
-      </div>
-      <div>
-        <div class="w100 clearfix _paddinglr">
-          <div class="text-center col-lg-1 _line _border">
-            {{defaultAddress.receiverName}}
-            <img src="../../../../assets/img/selected-icon.png" alt="">
-          </div>
-          <div class="col-lg-8 _line">
+  <div class="panel h80 prompting">
+    <span> 温馨提示：</span><span>请确认相关商品信息后提交订单。</span>
+  </div>
+  <div class="w100 clearfix">
+    <div class="_title">
+      <h4>填写并核对订单信息</h4>
+    </div>
+    <!--内容区域-->
+    <div class="_content">
+      <!--收货人栏-->
+      <div class="_acceptPeople">
+        <div class="_title clearfix">
+          <b class="col-l-5 pull-left">收货人信息</b>
+        </div>
+        <div>
+          <div class="w100 clearfix _paddinglr">
+            <div class="text-center col-lg-1 _line _border _selected _addrId" id="{{defaultAddress.id}}">
+              {{defaultAddress.receiverName}}
+            </div>
+            <div class="col-lg-8 _line">
             <span>
               {{defaultAddress.mobPhone}}
             </span>
-            <span class="col-xs-offset-1">{{defaultAddress.areaFullName}}{{defaultAddress.address}}</span>
-          </div>
-          <div class="col-lg-1 _line" routerLink="/main/stockAddres/rightpage"
-               [queryParams]="{number:2,id:defaultAddress.id}">
-            编辑
-          </div>
-        </div>
-        <div class="clearfix">
-          <accordion-group panelClass="b mt-sm">
-            <div accordion-heading>更多地址<span class="caret"></span></div>
-            <div class="w100 clearfix _hover" *ngFor="let addres of otherAddress">
-              <div class="text-center col-lg-1 _line">{{addres.receiverName}}</div>
-              <div class="col-lg-8 _line">
-                <span >{{addres.mobPhone}}</span>
-                <span class="col-xs-offset-1">{{addres.areaFullName}}{{addres.address}}</span>
-              </div>
-              <div class="col-lg-1 _line" (click)="changeAddres(addres.id)">
-                设为默认地址
-              </div>
-              <div class="col-lg-1 _line" routerLink="/main/stockAddres/rightpage"
-                   [queryParams]="{number:2,id:addres.id}">
-                编辑
-              </div>
+              <span class="col-xs-offset-1">{{defaultAddress.areaFullName}}{{defaultAddress.address}}</span>
             </div>
-          </accordion-group>
+            <div class="col-lg-1 _line" routerLink="/main/stockAddres/rightpage"
+                 [queryParams]="{number:2,id:defaultAddress.id}">
+              编辑
+            </div>
+          </div>
+          <div class="clearfix">
+            <accordion-group panelClass="b mt-sm">
+              <div accordion-heading>更多地址<span class="caret"></span></div>
+              <div class="w100 clearfix _hover" *ngFor="let addres of otherAddress" (mouseover)="showButton(addres.id)" >
+                <div class="text-center col-lg-1 _line">{{addres.receiverName}}</div>
+                <div class="col-lg-8 _line">
+                  <span >{{addres.mobPhone}}</span>
+                  <span class="col-xs-offset-1">{{addres.areaFullName}}{{addres.address}}</span>
+                </div>
+                <div class="col-lg-1 _line"  *ngIf="addres.id==currentId" (click)="changeAddres(addres.id)">
+                  选择地址
+                </div>
+                <div class="col-lg-1 _line"  *ngIf="addres.id==currentId" routerLink="/main/stockAddres/rightpage"
+                     [queryParams]="{number:2,id:addres.id}">
+                  编辑
+                </div>
+              </div>
+            </accordion-group>
+          </div>
+
+
         </div>
-
-
       </div>
-    </div>
-    <!--订单信息栏-->
-    <div class="_acceptPeople">
-      <div class="_title clearfix">
-        <b class="col-l-5 pull-left">订单信息</b>
+      <!--支付方式-->
+      <div class="_acceptPeople">
+        <div class="_title clearfix">
+          <b class="col-l-5 pull-left">支付方式</b>
+        </div>
+        <div>
+          <div class="w100 clearfix _paddinglr _payWay">
+            <div class="text-center col-lg-1 _line _border _marginR _selected" (click)="changeStyle($event.target)">在线支付</div>
+            <div class="text-center col-lg-1 _line" (click)="changeStyle($event.target)">银行汇款</div>
+          </div>
+        </div>
       </div>
-      <div class="_good">
-        <ul class="clearfix  _storeBt _myStoreTotal _list">
-          <!--店铺列表-->
-          <li class="w100 pull-left text-center _list" *ngFor="let good of orderData.agentOrdItems;let i = index">
-            <!--<div class="clearfix">-->
-            <!--<div class="w5 text-left marLeft  pull-left">-->
-            <!--<div class="checkbox c-checkbox">-->
-            <!--<label>-->
-            <!--<input type="checkbox" class="_store" (click)="storeEle($event.target)"/>-->
-            <!--<span class="fa fa-check"></span>{{store.storeName}}-->
-            <!--</label>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--</div>-->
-            <ul class="clearfix _list">
-              <!--商品列表-->
-              <li class="_list">
-                <div class="w71 pull-left text-left">
-                  <div class="col-xs-1">
-                    <img src="{{good.goodsImage}}" alt="" class=''
-                         onerror="javascript:this.src='../../../assets/img/dummy.png';">
-                  </div>
-                  <div class="col-xs-11">
-                    <div class="extra"><span>商品名字:{{good.goodsName}}</span></div>
-                    <div *ngFor="let standard of good.goodsSavSetList">{{standard.attrName}}：{{standard.value}}</div>
-                  </div>
-                </div>
-                <div class="w5 pull-left text-center">
-                  &yen;{{good.batchPrice}}
-                </div>
-                <div class="w8 pull-left text-center _orderTotalNum">
-                  x{{good.batchNum}}
-                </div>
+      <!--订单信息栏-->
+      <div class="_acceptPeople">
+        <div class="_title clearfix">
+          <b class="col-l-5 pull-left ">订单信息</b>
+        </div>
+        <div class="_good">
+          <div class="_line">
+            <ul class=" clearfix _list">
+              <li class="w70 pull-left text-leftr">
+                <div class="w20 text-center">商品</div>
+              </li>
+              <li class="w10 pull-left text-center">
+                <div>单价</div>
+              </li>
+              <li class="w10 pull-left text-center _orderTotalNum">
+                <div>数量</div>
+              </li>
+              <li class="w10 pull-left text-center">
+                <div>小计</div>
               </li>
             </ul>
-          </li>
-        </ul>
+          </div>
+          <ul class="clearfix  _storeBt _myStoreTotal _list">
+            <!--店铺列表-->
+            <li class="w100 pull-left text-center _list" *ngFor="let good of orderData.agentOrdItems;let i = index">
+              <!--<div class="clearfix">-->
+              <!--<div class="w5 text-left marLeft  pull-left">-->
+              <!--<div class="checkbox c-checkbox">-->
+              <!--<label>-->
+              <!--<input type="checkbox" class="_store" (click)="storeEle($event.target)"/>-->
+              <!--<span class="fa fa-check"></span>{{store.storeName}}-->
+              <!--</label>-->
+              <!--</div>-->
+              <!--</div>-->
+              <!--</div>-->
+              <ul class="clearfix _list">
+                <!--商品列表-->
+                <li class="_list">
+                  <div class="w70 pull-left text-left">
+                    <div class="col-xs-1">
+                      <img src="{{good.goodsImage}}" alt="" class=''
+                           onerror="javascript:this.src='../../../assets/img/dummy.png';">
+                    </div>
+                    <div class="col-xs-11">
+                      <div class="extra _line"><span>商品名字:{{good.goodsName}}</span></div>
+                      <div class='_line' *ngFor="let standard of good.goodsSavSetList">{{standard.attrName}}：{{standard.value}}</div>
+                    </div>
+                  </div>
+                  <div class="w10 pull-left text-center">
+                    &yen;{{good.batchPrice}}
+                  </div>
+                  <div class="w10 pull-left text-center _orderTotalNum">
+                    x{{good.batchNum}}
+                  </div>
+                  <div class="w10 pull-left text-center _orderTotalNum">
+                    &yen;{{good.batchPrice*good.batchNum}}
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--用户留言-->
+      <div class="_acceptPeople">
+        <div class="_title clearfix">
+          <b class="col-l-5 pull-left">用户留言</b>
+        </div>
+        <div>
+          <input type="text"  class="form-control border-b-grey _message"
+                  placeholder="请输入你的留言">
+        </div>
       </div>
     </div>
-  </div>
-  <!--价格信息-->
-  <table class="col-lg-12 _table">
-    <tr>
-      <td class="w80 text-right _line">{{orderData.goodsNum}}件商品</td>
-      <td class="w20 _line clearfix">
-        <span class="w60 pull-right  text-center">&yen;{{orderData.total}}</span>
-        <span class="w30 pull-right text-right">总商品金额：</span>
-      </td>
-    </tr>
-    <tr>
-      <td class="w80 text-right _line"></td>
-      <td class="w20 _line">
-        <span class="w60 pull-right  text-center">{{orderData.expressPrice}}</span>
-        <span class="w30 pull-right text-right">运费：</span>
-      </td>
-    </tr>
-    <tr>
-      <td class="w80 text-right _line"></td>
-      <td class="w20 _line">
-        <span class="w60 pull-right  text-center">{{orderData.payment}}</span>
-        <span class="w30 pull-right text-right">应付总额：</span>
-      </td>
-    </tr>
-  </table>
-  <div class="_paddinglr">
-    <button class="btn btn-danger pull-right" (click)="linkOrderPage()">提交订单</button>
+    <!--价格信息-->
+    <table class="col-lg-12 _table">
+      <tr>
+        <td class="w80 text-right _line">{{orderData.goodsNum}}件商品</td>
+        <td class="w20 _line clearfix">
+          <span class="w60 pull-right  text-center">&yen;{{orderData.total}}</span>
+          <span class="w30 pull-right text-right">总商品金额：</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="w80 text-right _line"></td>
+        <td class="w20 _line">
+          <span class="w60 pull-right  text-center">{{orderData.expressPrice}}</span>
+          <span class="w30 pull-right text-right">运费：</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="w80 text-right _line"></td>
+        <td class="w20 _line">
+          <span class="w60 pull-right  text-center">{{orderData.payment}}</span>
+          <span class="w30 pull-right text-right">应付总额：</span>
+        </td>
+      </tr>
+    </table>
+    <div class="_paddinglr">
+      <button class="btn btn-danger pull-right" routerLink="pay" (click)="goPay()">提交订单</button>
+    </div>
   </div>
 </div>
+<router-outlet></router-outlet>

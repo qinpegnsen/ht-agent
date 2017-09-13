@@ -1,3 +1,30 @@
-<p>
-  pay-page works!
-</p>
+<div *ngIf="payWay=='ONLINE'">
+  <div class="content-heading mb-lg">
+    在线支付
+  </div>
+  <div class="col-lg-12 _border">
+    <div class="_payInfo col-lg-12">
+        <div class="col-lg-2 _state">
+          <img src="../../../../assets/img/select.png" alt="" class="_img">
+        </div>
+        <div class="col-lg-6 _order">
+          <div class="_img _orderNum">订单号:</div>
+        </div>
+        <div class="col-lg-2 _price text-right">
+          <div class="_img _orderNum">订单金额:</div>
+        </div>
+    </div>
+    <div class="text-center pull-left _payBorder _aliPay"></div>
+    <div class="text-center pull-left _payBorder _wxPay"></div>
+    <div class="col-lg-1 _confirm _line text-center">确认支付</div>
+  </div>
+
+</div>
+
+
+<div *ngIf="payWay=='COIN'">
+  <div class="content-heading mb-lg">
+   银行汇款
+  </div>
+
+</div>

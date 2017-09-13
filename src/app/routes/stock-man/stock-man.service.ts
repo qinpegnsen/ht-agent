@@ -40,14 +40,16 @@ export class StockManService {
    * @param data
    */
   sendCar(url,data){
+    let result;
     this.ajax.post({
       url: url,
       data: data,
       async:false,
       success: (res) => {
         let info=res.info;
+        result=res.data;
         if(res.success){
-          AppComponent.rzhAlt("success",info);
+          // AppComponent.rzhAlt("success",info);
         }else{
           AppComponent.rzhAlt("error",info);
         }
@@ -56,6 +58,7 @@ export class StockManService {
         AppComponent.rzhAlt("error",'连接数据库失败');
       }
     });
+    return result;
   }
 
   /**
@@ -97,7 +100,7 @@ export class StockManService {
         let info=res.info;
         if(res.success){
           result=res.data;
-          AppComponent.rzhAlt("success",info);
+          // AppComponent.rzhAlt("success",info);
         }else{
           AppComponent.rzhAlt("error",info);
         }

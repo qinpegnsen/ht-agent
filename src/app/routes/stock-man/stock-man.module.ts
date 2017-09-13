@@ -10,14 +10,15 @@ import { CarPageComponent } from './car-page/car-page.component';
 import {HomeComponent} from "../home/home/home.component";
 import { PayPageComponent } from './pay-page/pay-page.component';
 import { OrderPageComponent } from './order-page/order-page.component';
-
-
+const payChildren: Routes = [
+  {path: 'pay', component:PayPageComponent}
+];
 const routes: Routes = [
   {path: '', component:HomeComponent},
   {path: 'agentord', component: AgentOrdComponent},
   {path: 'ordRecord', component: OrdRecordComponent},
   {path: 'cart', component: CarPageComponent},
-  {path: 'order', component: OrderPageComponent}
+  {path: 'order', component: OrderPageComponent,children:payChildren}
 ];
 @NgModule({
   imports: [

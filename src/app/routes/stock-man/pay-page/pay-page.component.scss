@@ -1,0 +1,47 @@
+.prompting{
+  background: #fcf8e3;
+  padding: 5px 10px;
+}
+._border{
+  border:1px solid #CFDBE2;
+  height:300px;
+  position:relative;
+}
+._border div:nth-child(1){
+  margin-right:50px;
+}
+._confirm{
+  background:#E51C23;
+  color:#fff;
+  position:absolute;right:0;bottom:0;
+}
+._payBorder{
+  border:1px solid #CFDBE2;
+}
+._payInfo{
+  height:200px;
+  background:#FFF7FA ;
+  div{
+    height:100%;
+  }
+}
+._aliPay{
+  margin-right:50px;
+  background: #fff;
+  height:46px;height:46px;width:250px;
+  background: url("../../../../assets/img/alipay.png") center no-repeat;
+}
+._wxPay{
+  background: #fff;
+  height:46px;height:46px;width:250px;
+  background: url("../../../../assets/img/wxpay.png") center no-repeat;
+}
+._state,._order,._price{
+  position:relative;
+}
+._img{
+  position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;
+}
+._orderNum{
+  line-height: 200px;text-align: left;
+}

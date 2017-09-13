@@ -1,17 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import {StockManService} from "../stock-man.service";
-
+import {NavigationEnd, Router} from "@angular/router";
+declare var $:any;
 @Component({
   selector: 'app-order-page',
   templateUrl: './order-page.component.html',
   styleUrls: ['./order-page.component.scss']
 })
 export class OrderPageComponent implements OnInit {
-  private orderData:any;//储存订单的数据
-  private defaultAddress:any;//默认的地址
-  private otherAddress:any;//默认的其他的地址
-  private updatebutton:any;//默认的修改按钮
-  constructor(public stockManService: StockManService) { }
+  private orderData:any;           //储存订单的数据
+  private defaultAddress:any;      //默认的地址
+  private otherAddress:any;        //默认的其他的地址
+  private updatebutton:any;        //默认的修改按钮
+  private currentId:number;        //默认的修改按钮
+  private strData:any;              //商品的编码和数量
+  public flag:boolean=true;        //定义boolean值用来控制内容组件是否显示
+  constructor(
+    public stockManService: StockManService,
+    private router:Router
+  ) { }
 
   /**
    * 初始化的时候获取订单页面的数据
@@ -22,6 +29,21 @@ export class OrderPageComponent implements OnInit {
       title: "修改地址",
       type: "update"
     };
+    /**
+     * 路由事件用来监听地址栏的变化
+     * 1.当新增文章出现的时候，内容组件隐藏
+     * 2.路由变化的时候，刷新页面
+     */
+
+    this.router.events
+      .subscribe((event) => {
+        if (event instanceof NavigationEnd) { // 当导航成功结束时执行
+          // console.log(event.url)
+          if(event.url.indexOf('pay')>0){
+            this.flag=false;
+          }
+        }
+      });
   }
 
   /**
@@ -31,10 +53,10 @@ export class OrderPageComponent implements OnInit {
    * 3.保存其他地址
    */
   getOrDrderData(){
-    let strData=sessionStorage.getItem('orderInfo');
+    this.strData=sessionStorage.getItem('orderInfo');
     let url = '/agent/agentOrdRapidly/loadDataAgentOrder';
     let data = {
-      strData:strData
+      strData:this.strData
     }
     let orderData=this.stockManService.getShopList(url, data);
     this.orderData=orderData.calcDTO;
@@ -59,5 +81,52 @@ export class OrderPageComponent implements OnInit {
     }
     this.stockManService.putData(url, data);
     this.getOrDrderData()
+  }
+
+  /**
+   * 点击的时候按钮出现
+   */
+  showButton(id){
+    this.currentId=id;
+  }
+
+  /**
+   * 点击付款方式时候执行的方法
+   * 1.边框变为红色
+   * 2.右下角出现图片
+   */
+  changeStyle(obj){
+    if( $(obj)[0].className.indexOf('_border')>1){
+      return;
+    }else{
+      $(obj).parents('._paddinglr').find('._border').removeClass("_border");
+      $(obj).parents('._paddinglr').children().removeClass("_selected");
+      let str='<img class="_selectImg" src="../../../../assets/img/selected-icon.png" alt="">'
+      $(obj).addClass("_border");
+      $(obj).addClass("_selected");
+    }
+  }
+
+  /**
+   * 点击去支付的时候执行的方法
+   *
+   */
+  goPay(){
+    let note=$("._message").val();
+    let payWay=$("._payWay ._selected").text();
+    if(payWay=='在线支付'){
+      payWay='ONLINE'
+    }else{
+      payWay='COIN'
+    }
+    let strData=this.strData;
+    let agentAddrId=$("._addrId").prop('id');
+    let data={
+      note:note,
+      payWay:payWay,
+      strData:strData,
+      agentAddrId:agentAddrId
+    }
+    sessionStorage.setItem('orderData', JSON.stringify(data));
   }
 }
