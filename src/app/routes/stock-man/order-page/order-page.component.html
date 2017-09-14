@@ -116,13 +116,13 @@
                     </div>
                   </div>
                   <div class="w10 pull-left text-center">
-                    &yen;{{good.batchPrice}}
+                    &yen;{{good.batchPrice  | number:'1.2-2'}}
                   </div>
                   <div class="w10 pull-left text-center _orderTotalNum">
                     x{{good.batchNum}}
                   </div>
                   <div class="w10 pull-left text-center _orderTotalNum">
-                    &yen;{{good.batchPrice*good.batchNum}}
+                    &yen;{{good.batchPrice*good.batchNum  | number:'1.2-2'}}
                   </div>
                 </li>
               </ul>
@@ -146,21 +146,21 @@
       <tr>
         <td class="w80 text-right _line">{{orderData.goodsNum}}件商品</td>
         <td class="w20 _line clearfix">
-          <span class="w60 pull-right  text-center">&yen;{{orderData.total}}</span>
+          <span class="w60 pull-right  text-center">&yen;{{orderData.total  | number:'1.2-2'}}</span>
           <span class="w30 pull-right text-right">总商品金额：</span>
         </td>
       </tr>
       <tr>
         <td class="w80 text-right _line"></td>
         <td class="w20 _line">
-          <span class="w60 pull-right  text-center">{{orderData.expressPrice}}</span>
+          <span class="w60 pull-right  text-center">{{orderData.expressPrice  | number:'1.2-2'}}</span>
           <span class="w30 pull-right text-right">运费：</span>
         </td>
       </tr>
       <tr>
         <td class="w80 text-right _line"></td>
         <td class="w20 _line">
-          <span class="w60 pull-right  text-center">{{orderData.payment}}</span>
+          <span class="w60 pull-right  text-center">{{orderData.payment  | number:'1.2-2'}}</span>
           <span class="w30 pull-right text-right">应付总额：</span>
         </td>
       </tr>

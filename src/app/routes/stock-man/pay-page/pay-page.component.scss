@@ -34,7 +34,7 @@
 ._wxPay{
   position:relative;
   background: #fff;
-  height:46px;width:253px;
+  height:48px;width:253px;
 }
 ._bgImg{
   position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;
@@ -47,6 +47,10 @@
 }
 ._orderNum{
   line-height: 200px;text-align: left;
+  height:40px;font-size:18px;
+  span{
+    color:#F05151;font-size:28px;
+  }
 }
 ._title{
   font-size: 16px;

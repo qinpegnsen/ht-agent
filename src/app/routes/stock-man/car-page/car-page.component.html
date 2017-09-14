@@ -83,7 +83,7 @@
               </div>
             </div>
             <div class="w5 pull-left text-center _goodTotalPrice">
-              {{good.goodsSubtotal}}
+              {{good.goodsSubtotal  | number:'1.2-2'}}
             </div>
             <div class="w20 pull-left text-center">
               <app-buttons [config]="deletebutton" (click)="doDelete(good.agentCartId)"></app-buttons>
@@ -97,8 +97,8 @@
       <button class="btn btn-danger pull-right" (click)="linkOrderPage()">去结算</button>
       <div class="pull-right w18 clearfix">
         <span class="_select pull-left">已选择 <b class="_myPrice">{{shopTotalNumber}}</b>件商品</span>
-        <span class="_select pull-left">运费:<b class="_myPrice">&yen;{{priceList.expressPrice}}</b></span>
-        <span class="_select pull-left">总价:<b class="_myPrice">&yen;{{priceList.payment}}</b></span>
+        <span class="_select pull-left">运费:<b class="_myPrice">&yen;{{priceList.expressPrice  | number:'1.2-2'}}</b></span>
+        <span class="_select pull-left">总价:<b class="_myPrice">&yen;{{priceList.payment  | number:'1.2-2'}}</b></span>
       </div>
     </div>
   </div>
