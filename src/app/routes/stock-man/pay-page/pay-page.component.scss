@@ -19,22 +19,25 @@
   border:1px solid #CFDBE2;
 }
 ._payInfo{
-  height:200px;
+  height:160px;
   background:#FFF7FA ;
   div{
     height:100%;
   }
 }
 ._aliPay{
+  position:relative;
   margin-right:50px;
   background: #fff;
-  height:46px;height:46px;width:250px;
-  background: url("../../../../assets/img/alipay.png") center no-repeat;
+  height:46px;width:253px;
 }
 ._wxPay{
+  position:relative;
   background: #fff;
-  height:46px;height:46px;width:250px;
-  background: url("../../../../assets/img/wxpay.png") center no-repeat;
+  height:46px;width:253px;
+}
+._bgImg{
+  position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;
 }
 ._state,._order,._price{
   position:relative;
@@ -44,4 +47,13 @@
 }
 ._orderNum{
   line-height: 200px;text-align: left;
+}
+._title{
+  font-size: 16px;
+}
+._style{
+  font-size: 18px;
+}
+._selected{
+  border:1px solid #F05151;
 }

@@ -35,6 +35,27 @@ export class StockManService {
   }
 
   /**
+   * 进行支付get
+   * @param url
+   * @param data
+   */
+  goPay(url,data){
+    let result;
+    this.ajax.get({
+      url: url,
+      data: data,
+      async:false,
+      success: (data) => {
+        result=data.data;
+      },
+      error: () => {
+        AppComponent.rzhAlt("error",'连接数据库失败');
+      }
+    });
+    return result;
+  }
+
+  /**
    *添加到购物车数据post
    * @param url
    * @param data

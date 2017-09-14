@@ -13,17 +13,20 @@ declare var $: any;
 })
 export class CarPageComponent implements OnInit {
 
-  private storeListData: any;//储存购物车商品列表数据
-  private strDataTemp: string;//储存购物车商品的编码和数量，在订单页的时候使用
+  private storeListData: any;              //储存购物车商品列表数据
+  private strDataTemp: string;             //储存购物车商品的编码和数量，在订单页的时候使用
   private deletebutton;//删除按钮
-  private shopTotalNumber: number = 0;//购买的商品总数
+  private shopTotalNumber: number = 0;     //购买的商品总数
   public priceList: object = {
-    expressPrice: 0, //运费
-    payment: 0,//带运费的总费用
-    total: 0,//不带运费的总费用
-  };//价格列表，默认是0
-  constructor(public stockManService: StockManService, public headerComponent: HeaderComponent, private router: Router) {
-  }
+    expressPrice: 0,                         //运费
+    payment: 0,                              //带运费的总费用
+    total: 0,                                //不带运费的总费用
+  };                                         //价格列表，默认是0
+  constructor(
+    public stockManService: StockManService,
+    public headerComponent: HeaderComponent,
+    private router: Router
+  ) {}
 
   /**
    * 1.初始化的时候查询列表
@@ -204,7 +207,7 @@ export class CarPageComponent implements OnInit {
     let url = '/agent/agentCart/updateOneAgentCart'; //加减修改数据
     let data = {
       id: id,
-      num: num
+      num: -1
     }
     this.stockManService.putData(url, data)
 
@@ -225,18 +228,18 @@ export class CarPageComponent implements OnInit {
    * @param id  商品的id 修改商品数量使用
    */
   addNum(obj, id, storageNum) {
-    $(obj).parents("._myPaddingBody").css('background', '#FFF4E8')   //点击的时候样式的变化
+    $(obj).parents("._myPaddingBody").css('background', '#FFF4E8')               //点击的时候样式的变化
     $(obj).parents('._myPaddingBody').find("._good").prop("checked", true)
     $(obj).parents('._myPaddingBody').find("._good").attr("checked", "checked") //增加节点，计数用
 
-    let num = $(obj).parents('.updateNum').find('input').val();//因为有可能点击到span或者是i所以找父级
+    let num = $(obj).parents('.updateNum').find('input').val();                //因为有可能点击到span或者是i所以找父级
     num++;
     if (num > storageNum) num = storageNum;
     $(obj).parents('.updateNum').find('input:first').val(num)
     let url = '/agent/agentCart/updateOneAgentCart'; //加减修改数据
     let data = {
       id: id,
-      num: num
+      num: +1
     }
     this.stockManService.putData(url, data);
     this.inputSelect(obj, '')
@@ -292,10 +295,12 @@ export class CarPageComponent implements OnInit {
     let goodList = $("._good[checked='checked']").parents("._myPaddingBody");
     let strData: string = '';
     for (var i = 0; i < goodList.length; i++) {
-      strData += $(goodList[i]).find("._goodsCod").val() + "," + $(goodList[i]).find("._num").val() + ";"
+      strData += $(goodList[i]).find("._agentCartId").val() + "," ;
     }
     let url = '/agent/agentCart/valuationAgentCart';
-    this.strDataTemp=strData;
+    let lastIndex=strData.lastIndexOf(',');
+    let finalStrData=strData.slice(0,lastIndex);
+    this.strDataTemp=finalStrData;
     let data = {
       strData: strData
     }

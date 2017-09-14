@@ -8,11 +8,11 @@ declare var $:any;
   styleUrls: ['./order-page.component.scss']
 })
 export class OrderPageComponent implements OnInit {
-  private orderData:any;           //储存订单的数据
-  private defaultAddress:any;      //默认的地址
-  private otherAddress:any;        //默认的其他的地址
-  private updatebutton:any;        //默认的修改按钮
-  private currentId:number;        //默认的修改按钮
+  private orderData:any;            //储存订单的数据
+  private defaultAddress:any;       //默认的地址
+  private otherAddress:any;         //默认的其他的地址
+  private updatebutton:any;         //默认的修改按钮
+  private currentId:number;         //默认的修改按钮
   private strData:any;              //商品的编码和数量
   public flag:boolean=true;        //定义boolean值用来控制内容组件是否显示
   constructor(
@@ -21,7 +21,8 @@ export class OrderPageComponent implements OnInit {
   ) { }
 
   /**
-   * 初始化的时候获取订单页面的数据
+   * 1.获取订单页面的数据
+   * 2.监控路由的状态
    */
   ngOnInit() {
     this.getOrDrderData();
@@ -29,6 +30,7 @@ export class OrderPageComponent implements OnInit {
       title: "修改地址",
       type: "update"
     };
+
     /**
      * 路由事件用来监听地址栏的变化
      * 1.当新增文章出现的时候，内容组件隐藏
@@ -38,7 +40,6 @@ export class OrderPageComponent implements OnInit {
     this.router.events
       .subscribe((event) => {
         if (event instanceof NavigationEnd) { // 当导航成功结束时执行
-          // console.log(event.url)
           if(event.url.indexOf('pay')>0){
             this.flag=false;
           }
@@ -101,7 +102,6 @@ export class OrderPageComponent implements OnInit {
     }else{
       $(obj).parents('._paddinglr').find('._border').removeClass("_border");
       $(obj).parents('._paddinglr').children().removeClass("_selected");
-      let str='<img class="_selectImg" src="../../../../assets/img/selected-icon.png" alt="">'
       $(obj).addClass("_border");
       $(obj).addClass("_selected");
     }
@@ -117,7 +117,7 @@ export class OrderPageComponent implements OnInit {
     if(payWay=='在线支付'){
       payWay='ONLINE'
     }else{
-      payWay='COIN'
+      payWay='REMIT'
     }
     let strData=this.strData;
     let agentAddrId=$("._addrId").prop('id');
