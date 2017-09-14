@@ -13,7 +13,7 @@ export class PayPageComponent implements OnInit {
   public payWay:any;                     //支付的方式，用来显示不同的页面
   public ordno:any;                      //订单号
   public pay:any;                        //支付的jine
-  public src:any;                        //图片的地址
+  public payCon:any;                        //图片的地址
   public flag:boolean=true;             //图片的地址
   constructor( public stockManService: StockManService,private router: Router) { }
 
@@ -69,7 +69,8 @@ export class PayPageComponent implements OnInit {
     let data ={
       ordno:this.ordno
     };
-   this.src=this.stockManService.goPay(url,data);
-   this.router.navigate(['/main/stockMan/order/pay/do']);
+   this.payCon=this.stockManService.goPay(url,data);
+   sessionStorage.setItem('payCon',this.payCon);
+   // this.router.navigate(['/main/stockMan/order/pay/do'],{ queryParams:{ id: 1 });
   }
 }
