@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-pay-success',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaySuccessComponent implements OnInit {
 
-  constructor() { }
+  ordno:any;                             //订单的编码
+  price:number;                          //订单的价格
+
+  constructor(private routeInfo: ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.ordno = this.routeInfo.snapshot.queryParams['ordno'];    //获取当前的订单号
+    this.price= this.routeInfo.snapshot.queryParams['price'];     //获取价格
   }
 
 }

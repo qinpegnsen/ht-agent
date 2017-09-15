@@ -12,18 +12,19 @@ import { PayPageComponent } from './pay-page/pay-page.component';
 import { OrderPageComponent } from './order-page/order-page.component';
 import { DoPayComponent } from './do-pay/do-pay.component';
 import { PaySuccessComponent } from './pay-success/pay-success.component';
-const doPayChildren: Routes = [
-  {path: 'do', component:DoPayComponent}
+
+const doChildren: Routes = [
+  {path: 'callBack', component:PaySuccessComponent}
 ];
-const payChildren: Routes = [
-  {path: 'pay', component:PayPageComponent,children:doPayChildren}
-];
+
 const routes: Routes = [
   {path: '', component:HomeComponent},
   {path: 'agentord', component: AgentOrdComponent},
   {path: 'ordRecord', component: OrdRecordComponent},
   {path: 'cart', component: CarPageComponent},
-  {path: 'order', component: OrderPageComponent,children:payChildren}
+  {path: 'order', component: OrderPageComponent},
+  {path: 'pay', component:PayPageComponent},
+  {path: 'do', component:DoPayComponent,children:doChildren}
 ];
 @NgModule({
   imports: [

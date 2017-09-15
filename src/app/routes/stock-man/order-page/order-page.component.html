@@ -28,7 +28,7 @@
               <span class="col-xs-offset-1">{{defaultAddress.areaFullName}}{{defaultAddress.address}}</span>
             </div>
             <div class="col-lg-1 _line" routerLink="/main/stockAddres/rightpage"
-                 [queryParams]="{number:2,id:defaultAddress.id}">
+                 [queryParams]="{number:2,id: defaultAddress && defaultAddress.id}">
               编辑
             </div>
           </div>
@@ -41,13 +41,13 @@
                   <span >{{addres.mobPhone}}</span>
                   <span class="col-xs-offset-1">{{addres.areaFullName}}{{addres.address}}</span>
                 </div>
-                <div class="col-lg-1 _line"  *ngIf="addres.id==currentId" (click)="changeAddres(addres.id)">
+                <a class="col-lg-1 _line _myhover"  *ngIf="addres.id==currentId" (click)="changeAddres(addres.id)">
                   选择地址
-                </div>
-                <div class="col-lg-1 _line"  *ngIf="addres.id==currentId" routerLink="/main/stockAddres/rightpage"
+                </a>
+                <a class="col-lg-1 _line _myhover"  *ngIf="addres.id==currentId" routerLink="/main/stockAddres/rightpage"
                      [queryParams]="{number:2,id:addres.id}">
                   编辑
-                </div>
+                </a>
               </div>
             </accordion-group>
           </div>
@@ -62,8 +62,8 @@
         </div>
         <div>
           <div class="w100 clearfix _paddinglr _payWay">
-            <div class="text-center col-lg-1 _line _border _marginR _selected" (click)="changeStyle($event.target)">在线支付</div>
-            <div class="text-center col-lg-1 _line" (click)="changeStyle($event.target)">银行汇款</div>
+            <div class="text-center col-lg-1 _line _border _marginR _selected _myhover" (click)="changeStyle($event.target)">在线支付</div>
+            <div class="text-center col-lg-1 _line _myhover" (click)="changeStyle($event.target)">银行汇款</div>
           </div>
         </div>
       </div>
@@ -166,8 +166,7 @@
       </tr>
     </table>
     <div class="_paddinglr">
-      <button class="btn btn-danger pull-right" routerLink="pay" (click)="goPay()">提交订单</button>
+      <button class="btn btn-danger pull-right _myhover" (click)="goPay()">提交订单</button>
     </div>
   </div>
 </div>
-<router-outlet></router-outlet>

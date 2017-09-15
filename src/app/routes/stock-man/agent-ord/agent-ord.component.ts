@@ -71,7 +71,9 @@ export class AgentOrdComponent implements OnInit {
     num--;
     if (num < 2) num = 1;
     this.carNum=num
-    $(target).parents('.input-group').find('input:first').val(num)
+    $(target).parents('.input-group').find('input:first').val(num);
+    $(target).parents('tr').find('input:first').prop('checked',true)
+    $(target).parents('tr').find('input:first').attr('checked',true)
   }
 
   /**
@@ -85,6 +87,8 @@ export class AgentOrdComponent implements OnInit {
     if (num > this.shopListdata.voList[i].storageNum) num = this.shopListdata.voList[i].storageNum;
     this.carNum=num;
     $(target).parents('.input-group').find('input:first').val(num)
+    $(target).parents('tr').find('input:first').prop('checked',true)
+    $(target).parents('tr').find('input:first').attr('checked',true)
   }
 
 
@@ -93,12 +97,16 @@ export class AgentOrdComponent implements OnInit {
    * @param obj
    */
   changeNum(obj){
-    this.carNum=obj.value
+    this.carNum=obj.value;
+    $(obj).parents('tr').find('input:first').prop('checked',true)
+    $(obj).parents('tr').find('input:first').attr('checked',true)
   }
+
   /**
    * 点击前面的勾选按钮，然后才加入到购物车
    * @param goodsCode
    */
+
   getData(ele) {
     $(ele).parents("tr").attr('data','flag')
   }

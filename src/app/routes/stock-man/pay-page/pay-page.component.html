@@ -7,6 +7,8 @@
       <div class="_payInfo w100">
         <div class="col-lg-2 _state">
           <img src="../../../../assets/img/select.png" alt="" class="_img">
+
+
         </div>
         <div class="col-lg-6 _order">
           <div class="_orderNum">
@@ -18,10 +20,10 @@
         </div>
       </div>
       <div class="text-center pull-left  _aliPay _pay" (click)="changeStyle($event.target)">
-        <img src="../../../../assets/img/alipay.png" alt="" class="_bgImg">
+        <img src="../../../../assets/img/alipay.png" alt="" class="_bgImg _myhover">
       </div>
       <div class="text-center pull-left  _wxPay _pay" (click)="changeStyle($event.target)">
-        <img src="../../../../assets/img/wxpay.png" alt="" class="_bgImg _selected ">
+        <img src="../../../../assets/img/wxpay.png" alt="" class="_bgImg _selected _myhover">
       </div>
       <img src="{{src}}" alt="">
       <div class="col-lg-1 _confirm _line text-center" (click)="confirmPay()">确认支付</div>

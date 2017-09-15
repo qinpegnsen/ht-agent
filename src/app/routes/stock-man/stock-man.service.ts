@@ -9,7 +9,7 @@ export class StockManService {
   constructor(private ajax: AjaxService) { }
 
   /**
-   * 获取商品列表的数据get
+   * 获取商品列表的数据get  成功不带提示
    * @param url
    * @param data
    */
@@ -35,7 +35,7 @@ export class StockManService {
   }
 
   /**
-   * 进行支付get
+   * 根据编码获取支付的内容  然后利用内容生成二维码 因为要写遮罩，所以单独写了一个  成功不带提示
    * @param url
    * @param data
    */
@@ -46,7 +46,41 @@ export class StockManService {
       data: data,
       async:false,
       success: (data) => {
-        result=data.data;
+        let info=data.info;
+        console.log("█ data ►►►",  data);
+        if(data.success){
+          result=data.data;
+        }else{
+          AppComponent.rzhAlt("error",info);
+        }
+      },
+      error: () => {
+        AppComponent.rzhAlt("error",'连接数据库失败');
+      }
+    });
+    return result;
+  }
+
+  /**
+   * 查看是否支付成功  成功带提示
+   * @param url
+   * @param data
+   */
+  isTrue(url,data){
+    let result;
+    this.ajax.get({
+      url: url,
+      data: data,
+      async:false,
+      success: (data) => {
+        console.log("█ data ►►►",  data);
+        let info=data.info;
+        if(data.success){
+
+          result=data.data;
+        }else{
+          AppComponent.rzhAlt("error",info);
+        }
       },
       error: () => {
         AppComponent.rzhAlt("error",'连接数据库失败');

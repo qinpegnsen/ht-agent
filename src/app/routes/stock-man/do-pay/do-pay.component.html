@@ -1,30 +1,32 @@
-<div class="content-heading mb-lg">
-  在线支付
-</div>
-<div class="_line w100 clearfix">
-  <span class="col-lg-6 pull-left">订单提交成功，请尽快付款！订单号：{{ordno}}</span>
-  <span class="col-lg-2 pull-right _price">
+<div *ngIf="flag">
+  <div class="content-heading mb-lg">
+    在线支付
+  </div>
+  <div class="_line w100 clearfix">
+    <span class="col-lg-6 pull-left">订单提交成功，请尽快付款！订单号：{{ordno}}</span>
+    <span class="col-lg-2 pull-right _price">
     应付金额
     <span >{{price}}</span>
   </span>
-</div>
-<div class="panel  _padingBtm clearfix">
-  <div class="col-lg-6">
-    <div class="text-center">
-      <div>
-        <img src="{{url}}" class="_img">
-      </div>
+  </div>
+  <div class="panel  _padingBtm clearfix">
+    <div class="col-lg-6">
       <div class="text-center">
-        <span class="_text">使用微信扫一扫，扫描二维码支付</span>
+        <div>
+          <img src="{{url}}" class="_img">
+        </div>
+        <div class="text-center">
+          <span class="_text">使用微信扫一扫，扫描二维码支付</span>
+        </div>
       </div>
     </div>
+    <div class="col-lg-6">
+      <img src="../../../../assets/img/phone.jpeg" alt="" class="">
+    </div>
   </div>
-  <div class="col-lg-6">
-    <img src="../../../../assets/img/phone.jpeg" alt="" class="">
+  <div class="col-l-12">
+    <div class="_line _link" routerLink="/main/stockMan/pay"> < 选择其他付款方式</div>
   </div>
 </div>
-<div class="col-l-12">
-  <div class="_line _link" routerLink="/main/stockMan/order/pay"> < 选择其他付款方式</div>
-</div>
-
+<router-outlet></router-outlet>
 

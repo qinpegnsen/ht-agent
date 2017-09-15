@@ -14,7 +14,7 @@ declare var $: any;
 export class CarPageComponent implements OnInit {
 
   private storeListData: any;              //储存购物车商品列表数据
-  private strDataTemp: string;             //储存购物车商品的编码和数量，在订单页的时候使用
+  private strDataTemp: string;             //储存购物车id,在订单页的时候使用
   private deletebutton;//删除按钮
   private shopTotalNumber: number = 0;     //购买的商品总数
   public priceList: object = {
@@ -335,7 +335,7 @@ export class CarPageComponent implements OnInit {
     if(!this.strDataTemp){
       AppComponent.rzhAlt("info","请至少选择一种商品");
     }else{
-      sessionStorage.setItem('orderInfo', this.strDataTemp);
+      sessionStorage.setItem('cartId', this.strDataTemp);
       this.router.navigate(['/main/stockMan/order']);
     }
 

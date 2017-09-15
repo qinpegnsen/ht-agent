@@ -54,7 +54,7 @@ export class OrderPageComponent implements OnInit {
    * 3.保存其他地址
    */
   getOrDrderData(){
-    this.strData=sessionStorage.getItem('orderInfo');
+    this.strData=sessionStorage.getItem('cartId');
     let url = '/agent/agentOrdRapidly/loadDataAgentOrder';
     let data = {
       strData:this.strData
@@ -130,5 +130,6 @@ export class OrderPageComponent implements OnInit {
       agentAddrId:agentAddrId
     }
     sessionStorage.setItem('orderData', JSON.stringify(data));
+    this.router.navigate(['/main/stockMan/pay'])
   }
 }

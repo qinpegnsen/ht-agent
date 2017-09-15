@@ -12,9 +12,9 @@ export class PayPageComponent implements OnInit {
 
   public orderData:any;                  //订单的数据
   public payWay:any;                     //支付的方式，用来显示不同的页面
+  public curWay:any;                     //当前选择的支付方式，传递给下个页面
   public ordno:any;                      //订单号
-  public pay:any;                        //支付的jine
-  public payCon:String='';               //二维码的内容
+  public pay:any;                        //支付的价格
   public flag:boolean=true;             //图片的地址
   constructor( public stockManService: StockManService,private router: Router,public headerComponent: HeaderComponent) { }
 
@@ -42,8 +42,10 @@ export class PayPageComponent implements OnInit {
       .subscribe((event) => {
         if (event instanceof NavigationEnd) { // 当导航成功结束时执行
           if(event.url.indexOf('do')>0){
+            console.log("█ event.url ►►►",  event.url);
             this.flag=false;
           }else if(event.url.indexOf('pay')>0){
+            console.log("█ event.url ►►►",  event.url);
             this.flag=true;
           }
         }
@@ -73,15 +75,11 @@ export class PayPageComponent implements OnInit {
    */
   confirmPay(){
     let obj=$("._selected");
-    if( obj.parents("._pay")[0].className.indexOf('_wxPay')>1){    //微信支付
-      let url = '/nativeWXPay/getPrePayId';
-      let data ={
-        ordno:this.ordno
-      };
-      this.payCon+=this.stockManService.goPay(url,data);
-      this.router.navigate(['/main/stockMan/order/pay/do'],{ queryParams: { payCon: this.payCon,ordno:this.ordno,price:this.pay } })
-    } else{ //支付宝支付
-
+    if( obj.parents("._pay")[0].className.indexOf('_wxPay')>1){
+      this.curWay='_wxPay'; //微信支付
+    } else{
+      this.curWay='_aliPay';//支付宝支付
     }
+    this.router.navigate(['/main/stockMan/do'],{ queryParams: { curWay: this.curWay,ordno:this.ordno,price:this.pay } })
   }
 }
