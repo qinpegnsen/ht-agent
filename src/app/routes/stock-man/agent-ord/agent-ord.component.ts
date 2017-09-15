@@ -4,7 +4,6 @@ import {Page} from "../../../core/page/page";
 import {PageEvent} from "angular2-datatable";
 import {AppComponent} from "../../../app.component";
 import {HeaderComponent} from "../../../layout/header/header.component";
-import {MaskService} from "../../../core/services/mask.service";
 const swal = require('sweetalert');
 
 declare var $: any;
@@ -16,14 +15,10 @@ declare var $: any;
 })
 export class AgentOrdComponent implements OnInit {
 
-  public shopListdata;//存储商品列表的数据
-
-  public carNum:number=1;//存储商品的数量
-
-  private flag: boolean = false;//用来判断在加入购物车之前是否选择了商品
-
-  private showCar: boolean = false;//当全选被选中的时候出现全部加入购物车的按钮
-
+  public shopListdata;                  //存储商品列表的数据
+  public carNum:number=1;              //存储商品的数量
+  private flag: boolean = false;      //用来判断在加入购物车之前是否选择了商品
+  private showCar: boolean = false;   //当全选被选中的时候出现全部加入购物车的按钮
   constructor(public stockManService: StockManService,public headerComponent: HeaderComponent) {}
 
   /**

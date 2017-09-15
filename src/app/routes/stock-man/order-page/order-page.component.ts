@@ -60,12 +60,14 @@ export class OrderPageComponent implements OnInit {
       strData:this.strData
     }
     let orderData=this.stockManService.getShopList(url, data);
-    this.orderData=orderData.calcDTO;
-    for(var i=0;i<orderData.agentAddrsList.length;i++){
-      if(orderData.agentAddrsList[i].isDefault=='Y'){
-        this.defaultAddress=orderData.agentAddrsList[i];
-        orderData.agentAddrsList.splice(i,1)//对数组进行截取，把不是默认的其他数组保存下来
-        this.otherAddress=orderData.agentAddrsList;
+    if(orderData){   //不进行判断有时候会报错
+      this.orderData=orderData.calcDTO;
+      for(var i=0;i<orderData.agentAddrsList.length;i++){
+        if(orderData.agentAddrsList[i].isDefault=='Y'){
+          this.defaultAddress=orderData.agentAddrsList[i];
+          orderData.agentAddrsList.splice(i,1)//对数组进行截取，把不是默认的其他数组保存下来
+          this.otherAddress=orderData.agentAddrsList;
+        }
       }
     }
   }

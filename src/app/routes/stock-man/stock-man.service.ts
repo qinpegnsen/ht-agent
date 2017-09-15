@@ -70,7 +70,33 @@ export class StockManService {
         let info=res.info;
         result=res.data;
         if(res.success){
-          // AppComponent.rzhAlt("success",info);
+          AppComponent.rzhAlt("success",info);
+        }else{
+          AppComponent.rzhAlt("error",info);
+        }
+      },
+      error: () => {
+        AppComponent.rzhAlt("error",'连接数据库失败');
+      }
+    });
+    return result;
+  }
+
+  /**
+   *生成订单post
+   * @param url
+   * @param data
+   */
+  bornOrder(url,data){
+    let result;
+    this.ajax.post({
+      url: url,
+      data: data,
+      async:false,
+      success: (res) => {
+        let info=res.info;
+        result=res.data;
+        if(res.success){
         }else{
           AppComponent.rzhAlt("error",info);
         }

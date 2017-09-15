@@ -20,11 +20,11 @@
       <div class="text-center pull-left  _aliPay _pay" (click)="changeStyle($event.target)">
         <img src="../../../../assets/img/alipay.png" alt="" class="_bgImg">
       </div>
-      <div class="text-center pull-left  _wxPay _pay _selected " (click)="changeStyle($event.target)">
-        <img src="../../../../assets/img/wxpay.png" alt="" class="_bgImg">
+      <div class="text-center pull-left  _wxPay _pay" (click)="changeStyle($event.target)">
+        <img src="../../../../assets/img/wxpay.png" alt="" class="_bgImg _selected ">
       </div>
       <img src="{{src}}" alt="">
-      <div class="col-lg-1 _confirm _line text-center" routerLink="do" (click)="confirmPay()">确认支付</div>
+      <div class="col-lg-1 _confirm _line text-center" (click)="confirmPay()">确认支付</div>
     </div>
 
   </div>
@@ -69,5 +69,4 @@
     </div>
   </div>
 </ng-container>
-
 <router-outlet></router-outlet>

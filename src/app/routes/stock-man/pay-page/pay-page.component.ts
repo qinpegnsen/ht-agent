@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {StockManService} from "../stock-man.service";
 import {NavigationEnd, Router} from "@angular/router";
+import {HeaderComponent} from "app/layout/header/header.component";
 declare var $:any;
 @Component({
   selector: 'app-pay-page',
@@ -13,20 +14,21 @@ export class PayPageComponent implements OnInit {
   public payWay:any;                     //支付的方式，用来显示不同的页面
   public ordno:any;                      //订单号
   public pay:any;                        //支付的jine
-  public payCon:any;                        //图片的地址
+  public payCon:String='';               //二维码的内容
   public flag:boolean=true;             //图片的地址
-  constructor( public stockManService: StockManService,private router: Router) { }
+  constructor( public stockManService: StockManService,private router: Router,public headerComponent: HeaderComponent) { }
 
   /**
-   * 1.把数据拿出来进行请求
+   * 1.把数据拿出来进行请求，生成订单
    * 2.对支付方式进行赋值，根据不容的方式在，在同一个组件显示不同的页面
    * 3.监控路由的状态，决定是否显示二维码页面
+   * 4.生成订单会刷新购物会减少，在执行刷新购物车的方法
    */
   ngOnInit() {
     this.orderData=JSON.parse(sessionStorage.getItem('orderData'));
     this.payWay=this.orderData.payWay;
     let url = '/agentOrd/addCustCart';
-    let payData=this.stockManService.sendCar(url,this.orderData);
+    let payData=this.stockManService.bornOrder(url,this.orderData);
     this.ordno=payData.ordno;
     this.pay=payData.pay;
 
@@ -41,9 +43,14 @@ export class PayPageComponent implements OnInit {
         if (event instanceof NavigationEnd) { // 当导航成功结束时执行
           if(event.url.indexOf('do')>0){
             this.flag=false;
+          }else if(event.url.indexOf('pay')>0){
+            this.flag=true;
           }
         }
       });
+
+
+    this.headerComponent.getShopTotal()
   }
 
   /**
@@ -65,12 +72,16 @@ export class PayPageComponent implements OnInit {
    * @param ordno  订单号
    */
   confirmPay(){
-    let url = '/nativeWXPay/getPrePayId';
-    let data ={
-      ordno:this.ordno
-    };
-   this.payCon=this.stockManService.goPay(url,data);
-   sessionStorage.setItem('payCon',this.payCon);
-   // this.router.navigate(['/main/stockMan/order/pay/do'],{ queryParams:{ id: 1 });
+    let obj=$("._selected");
+    if( obj.parents("._pay")[0].className.indexOf('_wxPay')>1){    //微信支付
+      let url = '/nativeWXPay/getPrePayId';
+      let data ={
+        ordno:this.ordno
+      };
+      this.payCon+=this.stockManService.goPay(url,data);
+      this.router.navigate(['/main/stockMan/order/pay/do'],{ queryParams: { payCon: this.payCon,ordno:this.ordno,price:this.pay } })
+    } else{ //支付宝支付
+
+    }
   }
 }

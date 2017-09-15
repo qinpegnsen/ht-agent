@@ -11,6 +11,7 @@ import {HomeComponent} from "../home/home/home.component";
 import { PayPageComponent } from './pay-page/pay-page.component';
 import { OrderPageComponent } from './order-page/order-page.component';
 import { DoPayComponent } from './do-pay/do-pay.component';
+import { PaySuccessComponent } from './pay-success/pay-success.component';
 const doPayChildren: Routes = [
   {path: 'do', component:DoPayComponent}
 ];
@@ -31,7 +32,7 @@ const routes: Routes = [
     FormsModule,
     RouterModule.forChild(routes),
   ],
-  declarations: [AgentOrdComponent, OrdRecordComponent, CarPageComponent, PayPageComponent, OrderPageComponent, DoPayComponent],
+  declarations: [AgentOrdComponent, OrdRecordComponent, CarPageComponent, PayPageComponent, OrderPageComponent, DoPayComponent, PaySuccessComponent],
   providers: [StockManService]
 })
 export class StockManModule {}
