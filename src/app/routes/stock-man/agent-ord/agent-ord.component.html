@@ -3,7 +3,7 @@
 </div>
 <div class="panel panel-default">
   <div class="panel-body">
-    <table class="table-striped table" #shopList="rzhDataTable" [rzhData]="shopListdata"
+    <table class="table" #shopList="rzhDataTable" [rzhData]="shopListdata"
            (pageChange)="queryshopList($event)">
       <thead>
       <tr>
@@ -35,7 +35,7 @@
         <th checkAll class="text-left">
           <div class="checkbox c-checkbox">
             <label>
-              <input type="checkbox" (click)="showTotalCar()"/>
+              <input type="checkbox" (click)="allSelect($event.target)" class="_all"/>
               <span class="fa fa-check"></span>全选
             </label>
           </div>
@@ -54,7 +54,7 @@
           <td>
             <div class="checkbox c-checkbox">
               <label>
-                <input type="checkbox" (change)="getData($event.target)"/>
+                <input type="checkbox" (click)="goodSelect($event.target)" class="_good"/>
                 <span class="fa fa-check"></span>推荐
               </label>
             </div>
