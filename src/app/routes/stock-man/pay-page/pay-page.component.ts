@@ -55,7 +55,6 @@ export class PayPageComponent implements OnInit {
       .subscribe((event) => {
         if (event instanceof NavigationEnd) { // 当导航成功结束时执行
           if(event.url.indexOf('do')>0){
-            console.log("█ event.url ►►►",  event.url);
             this.flag=false;
           }else if(event.url.indexOf('pay')>0){
             console.log("█ event.url ►►►",  event.url);

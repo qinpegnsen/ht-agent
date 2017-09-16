@@ -47,7 +47,6 @@ export class StockManService {
       async:false,
       success: (data) => {
         let info=data.info;
-        console.log("█ data ►►►",  data);
         if(data.success){
           result=data.data;
         }else{
