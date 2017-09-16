@@ -139,9 +139,11 @@ export class AgentOrdComponent implements OnInit {
     if (goodLength == checkGoodLength) {
       $('._all').prop("checked", true)
       $('._all').attr("checked", true)
+      this.showCar=true;
     } else {
       $('._all').prop("checked", false)
       $('._all').attr("checked", false)
+      this.showCar=false;
     }
   }
 
