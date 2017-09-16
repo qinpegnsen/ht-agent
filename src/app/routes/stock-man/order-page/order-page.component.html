@@ -17,7 +17,7 @@
           <b class="col-l-5 pull-left">收货人信息</b>
         </div>
         <div>
-          <div class="w100 clearfix _paddinglr">
+          <div class="w100 clearfix">
             <div class="text-center col-lg-1 _line _border _selected _addrId" id="{{defaultAddress.id}}">
               {{defaultAddress.receiverName}}
             </div>
@@ -51,8 +51,6 @@
               </div>
             </accordion-group>
           </div>
-
-
         </div>
       </div>
       <!--支付方式-->
@@ -61,7 +59,7 @@
           <b class="col-l-5 pull-left">支付方式</b>
         </div>
         <div>
-          <div class="w100 clearfix _paddinglr _payWay">
+          <div class="w100 clearfix _payWay">
             <div class="text-center col-lg-1 _line _border _marginR _selected _myhover" (click)="changeStyle($event.target)">在线支付</div>
             <div class="text-center col-lg-1 _line _myhover" (click)="changeStyle($event.target)">银行汇款</div>
           </div>
@@ -166,7 +164,7 @@
       </tr>
     </table>
     <div class="_paddinglr">
-      <button class="btn btn-danger pull-right _myhover" (click)="goPay()">提交订单</button>
+      <button class="btn btn-danger pull-right _myhover _button" (click)="goPay()">提交订单</button>
     </div>
   </div>
 </div>

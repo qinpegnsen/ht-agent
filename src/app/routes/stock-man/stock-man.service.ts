@@ -73,7 +73,7 @@ export class StockManService {
       data: data,
       async:false,
       success: (data) => {
-        console.log("█ data ►►►",  data);
+        // console.log("█ data ►►►",  data);
         let info=data.info;
         if(data.success){
 
@@ -132,7 +132,7 @@ export class StockManService {
         result=res.data;
         if(res.success){
         }else{
-          AppComponent.rzhAlt("error",info);
+          // AppComponent.rzhAlt("error",info);
         }
       },
       error: () => {

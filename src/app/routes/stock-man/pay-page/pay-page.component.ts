@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {StockManService} from "../stock-man.service";
 import {NavigationEnd, Router} from "@angular/router";
 import {HeaderComponent} from "app/layout/header/header.component";
+import {isUndefined} from "util";
 declare var $:any;
 @Component({
   selector: 'app-pay-page',
@@ -29,8 +30,20 @@ export class PayPageComponent implements OnInit {
     this.payWay=this.orderData.payWay;
     let url = '/agentOrd/addCustCart';
     let payData=this.stockManService.bornOrder(url,this.orderData);
-    this.ordno=payData.ordno;
-    this.pay=payData.pay;
+
+    if(!payData){  //在用户刷新，或者下个页面返回的时候会用到
+      let url = '/agentOrd/loadByOrdno';
+      let data={
+        ordno:sessionStorage.getItem('ordno')
+      }
+      let payData=this.stockManService.getShopList(url,data);
+      this.ordno=payData.ordno;
+      this.pay=payData.pay;
+    }else{
+      sessionStorage.setItem('ordno',payData.ordno);//把订单编码存起来，在用户刷新，或者下个页面返回的时候会用到
+      this.ordno=payData.ordno;
+      this.pay=payData.pay;
+    }
 
     /**
      * 路由事件用来监听地址栏的变化
