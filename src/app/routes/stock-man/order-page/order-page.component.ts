@@ -59,7 +59,8 @@ export class OrderPageComponent implements OnInit {
     let data = {
       strData:this.strData
     }
-    let orderData=this.stockManService.getShopList(url, data);
+    let orderData=this.stockManService.getShopListOne(url, data);
+    console.log("█ orderData ►►►",  orderData);
     if(orderData){   //不进行判断有时候会报错
       this.orderData=orderData.calcDTO;
       for(var i=0;i<orderData.agentAddrsList.length;i++){
@@ -69,6 +70,10 @@ export class OrderPageComponent implements OnInit {
           this.otherAddress=orderData.agentAddrsList;
         }
       }
+    }else {
+      console.log("█ 52 ►►►",  52);
+      this.router.navigate(['/main/home'])
+      return;
     }
   }
 
@@ -102,8 +107,8 @@ export class OrderPageComponent implements OnInit {
     if( $(obj)[0].className.indexOf('_border')>1){
       return;
     }else{
-      $(obj).parents('._paddinglr').find('._border').removeClass("_border");
-      $(obj).parents('._paddinglr').children().removeClass("_selected");
+      $(obj).parents('._payWay').find('._border').removeClass("_border");
+      $(obj).parents('._payWay').children().removeClass("_selected");
       $(obj).addClass("_border");
       $(obj).addClass("_selected");
     }

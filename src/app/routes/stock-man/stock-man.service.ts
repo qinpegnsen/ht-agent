@@ -1,12 +1,43 @@
 import { Injectable } from '@angular/core';
 import {AjaxService} from "../../core/services/ajax.service";
 import {AppComponent} from "../../app.component";
+import {Router} from "@angular/router";
 
 
 @Injectable()
 export class StockManService {
 
-  constructor(private ajax: AjaxService) { }
+  constructor(private ajax: AjaxService,private router: Router) { }
+
+  /**
+   * 获取商品列表的数据get  独有的，因为做了特殊处理
+   * @param url
+   * @param data
+   */
+  getShopListOne(url,data){
+    let result;
+    this.ajax.get({
+      url: url,
+      data: data,
+      async:false,
+      success: (data) => {
+        let info=data.info;
+        if(data.success){
+          result=data.data;
+        }else{
+          console.log("█ data ►►►",  data);
+          console.log("█ 1 ►►►",  1);
+          if(data.info=='代理商购物车商品无查询数据'){
+            result='';
+          }
+        }
+      },
+      error: () => {
+        AppComponent.rzhAlt("error",'连接数据库失败');
+      }
+    });
+    return result;
+  }
 
   /**
    * 获取商品列表的数据get  成功不带提示

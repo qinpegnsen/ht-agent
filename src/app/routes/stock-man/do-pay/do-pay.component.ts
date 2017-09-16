@@ -90,12 +90,12 @@ export class DoPayComponent implements OnInit {
       ordno:this.ordno
     }
     let result=this.stockManService.isTrue(url,data);
-    console.log("█ result ►►►",  result);
     if(result){//支付成功的收
       clearInterval(this.time);
       AppComponent.rzhAlt("success","支付成功");
       this.router.navigate(['/main/stockMan/do/callBack'],{ queryParams: { ordno:this.ordno,price:this.price } })
     }else{//一分钟结束还没支付
+      console.log("█ this.timeAdd ►►►",  this.timeAdd);
       if(this.timeAdd==60000){
         clearInterval(this.time);
         AppComponent.rzhAlt("errer","支付已超时");

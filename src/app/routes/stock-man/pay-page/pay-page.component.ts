@@ -30,7 +30,7 @@ export class PayPageComponent implements OnInit {
     this.payWay=this.orderData.payWay;
     let url = '/agentOrd/addCustCart';
     let payData=this.stockManService.bornOrder(url,this.orderData);
-
+    console.log("█ payData ►►►",  payData);
     if(!payData){  //在用户刷新，或者下个页面返回的时候会用到
       let url = '/agentOrd/loadByOrdno';
       let data={
@@ -57,7 +57,6 @@ export class PayPageComponent implements OnInit {
           if(event.url.indexOf('do')>0){
             this.flag=false;
           }else if(event.url.indexOf('pay')>0){
-            console.log("█ event.url ►►►",  event.url);
             this.flag=true;
           }
         }
