@@ -4,6 +4,7 @@ import {isNullOrUndefined} from "util";
 import {StockAddresService} from "./stock-addres.service";
 import {ActivatedRoute} from "@angular/router";
 import {AjaxService} from "../../../core/services/ajax.service";
+import {PatternService} from "../../../core/forms/pattern.service";
 const swal = require('sweetalert');
 
 @Component({
@@ -32,8 +33,9 @@ export class StockAddresComponent implements OnInit {
     totalRow:5,
     voList:[]
   }
+  private organ={}
 
-  constructor(private ajax:AjaxService,private routeInfo:ActivatedRoute,private StockAddresService:StockAddresService) { }
+  constructor(private ajax:AjaxService,private routeInfo:ActivatedRoute,private StockAddresService:StockAddresService,private patterns: PatternService) { }
 
   ngOnInit() {
     this.queryId = this.routeInfo.snapshot.queryParams['ids'];
@@ -52,6 +54,14 @@ export class StockAddresComponent implements OnInit {
       title:'删除',
     };
     this.queryList()//获取代理商收货地址的列表
+  }
+
+
+  //获取区域数据
+  private getAreaData(area){
+    let me = this;
+    me.organ['areaCode'] = area.areaCode;
+    me.queryList();
   }
 
 
@@ -94,9 +104,7 @@ export class StockAddresComponent implements OnInit {
         }
         console.log(data)
         _this.StockAddresService.delCode(url, data); //删除数据
-        let datas={id:id}
-        let urls= "/agent/pageQuery";
-        _this.StockAddresService.controlDatas(urls,datas);//实现局部刷新
+       _this.queryList();
       }
     );
   }

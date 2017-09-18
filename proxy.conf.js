@@ -24,6 +24,13 @@ const PROXY_CONFIG = [
     ],
     target: "http://192.168.10.109:8088",   //拦截 context配置路径，经过此地址
     secure: false
+  },
+  {
+    context: [
+      "/res"
+    ],
+    target: "http://192.168.10.109:8082",   //拦截 context配置路径，经过此地址
+    secure: false
   }
 ];
 module.exports = PROXY_CONFIG;

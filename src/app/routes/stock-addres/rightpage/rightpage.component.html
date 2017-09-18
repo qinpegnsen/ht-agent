@@ -7,7 +7,7 @@
         <fieldset class="b0">
           <legend>添加代理商收货地址</legend>
         </fieldset>
-        <input class="form-control" required [(ngModel)]="areaCode" name="areaCode" type="hidden"/>
+        <input class="form-control" required [(ngModel)]="limitForm.areaCode" name="areaCode" type="hidden"/>
         <fieldset>
           <div class="form-group">
             <label class="col-sm-3 control-label"> <i>*</i> 收货人名称</label>
@@ -25,7 +25,7 @@
           <div class="form-group">
             <label class="col-sm-3 control-label"><i>*</i>选择区域</label>
             <div class="col-sm-8">
-              <app-select-area [required]="true" (myData)="getAreaData($event)"></app-select-area>
+              <app-four-areas (myData)="getAreaData($event)"></app-four-areas>
             </div>
           </div>
         </fieldset>
@@ -43,18 +43,23 @@
           </div>
         </fieldset>
         <fieldset>
-          <div class="form-group">
-            <label class="col-sm-3 control-label">手机号</label>
-            <div class="col-sm-8">
-              <input class="form-control" type="text" name="mobPhone" ngModel [(ngModel)]="limitForm.mobPhone"/>
+        <div class="form-group">
+          <label class="col-sm-3 control-label"> <i>*</i> 手机号</label>
+          <div class="col-sm-8">
+            <input class="form-control" required name="mobPhone" [(ngModel)]="limitForm.mobPhone"
+                   #mobPhone="ngModel" type="text" [pattern]="patterns.phone"/>
+            <div [hidden]="mobPhone.valid || mobPhone.pristine"
+                 class="alert alert-danger">
+              手机号是必填项，请填写手机号
             </div>
           </div>
-        </fieldset>
+        </div>
+      </fieldset>
         <fieldset>
           <div class="form-group">
             <label class="col-sm-3 control-label">座机</label>
             <div class="col-sm-8">
-              <input class="form-control" type="text" name="telPhone" ngModel [(ngModel)]="limitForm.telPhone"/>
+              <input class="form-control" type="text" name="telPhone" ngModel [(ngModel)]="limitForm.telPhone" [(ngModel)]="staff.telephone"/>
             </div>
           </div>
         </fieldset>
@@ -92,7 +97,7 @@
         <fieldset class="b0">
           <legend>修改代理商收货地址</legend>
         </fieldset>
-        <input class="form-control" required [(ngModel)]="areaCode" name="areaCode" type="hidden"/>
+        <input class="form-control" required [(ngModel)]="limitForm.areaCode" name="areaCode" type="hidden"/>
         <input class="form-control" required [(ngModel)]="id" name="id" type="hidden"/>
         <fieldset>
           <div class="form-group">
@@ -111,7 +116,7 @@
           <div class="form-group">
             <label class="col-sm-3 control-label"><i>*</i>选择区域</label>
             <div class="col-sm-8">
-              <app-select-area [required]="true" (myData)="getAreaData($event)"></app-select-area>
+              <app-four-areas (myData)="getAreaData($event)" [selectedAreaName]="staff.areaFullName"></app-four-areas>
             </div>
           </div>
         </fieldset>
@@ -130,17 +135,30 @@
         </fieldset>
         <fieldset>
           <div class="form-group">
+            <label class="col-sm-3 control-label"> <i>*</i> 手机号</label>
+            <div class="col-sm-8">
+              <input class="form-control" required name="mobPhone" [(ngModel)]="staff.mobPhone"
+                     #mobPhone="ngModel" type="text" [pattern]="patterns.phone"/>
+              <div [hidden]="mobPhone.valid || mobPhone.pristine"
+                   class="alert alert-danger">
+                手机号是必填项，请填写手机号
+              </div>
+            </div>
+          </div>
+        </fieldset>
+       <!-- <fieldset>
+          <div class="form-group">
             <label class="col-sm-3 control-label">手机号</label>
             <div class="col-sm-8">
               <input class="form-control" type="text" name="mobPhone" ngModel [(ngModel)]="staff.mobPhone"/>
             </div>
           </div>
-        </fieldset>
+        </fieldset>-->
         <fieldset>
           <div class="form-group">
             <label class="col-sm-3 control-label">座机</label>
             <div class="col-sm-8">
-              <input class="form-control" type="text" name="telPhone" ngModel [(ngModel)]="staff.telPhone"/>
+              <input class="form-control" type="text" name="telPhone" ngModel [(ngModel)]="staff.telPhone" [(ngModel)]="staff.telephone"/>
             </div>
           </div>
         </fieldset>

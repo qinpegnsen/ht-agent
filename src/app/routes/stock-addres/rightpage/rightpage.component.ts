@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {SettingsService} from "../../../core/settings/settings.service";
 import {AjaxService} from "../../../core/services/ajax.service";
+import {StockAddresService} from "../stock-addres/stock-addres.service";
+import {StockAddresComponent} from "../stock-addres/stock-addres.component";
+import {PatternService} from "../../../core/forms/pattern.service";
 const swal = require('sweetalert');
 
 @Component({
@@ -11,7 +14,9 @@ const swal = require('sweetalert');
 })
 export class RightpageComponent implements OnInit {
   private queryId:number;//获取添加，修改的ID
-  private  staff= {}
+  private  staff= {
+    mobPhone:''
+  }
   private organ={}
   private id;//获取代理商的id
   private limitForm = {
@@ -20,12 +25,13 @@ export class RightpageComponent implements OnInit {
     mobPhone: '',
     telPhone:'',
     address:'',
-    id:''
+    id:'',
+    areaFullName:''
   }
 
 
   // 构造 初始化
-  constructor(public settings: SettingsService,private router:Router,private routeInfo:ActivatedRoute,private ajax:AjaxService) {
+  constructor(public settings: SettingsService,private router:Router,private routeInfo:ActivatedRoute,private ajax:AjaxService,private StockAddresComponent:StockAddresComponent,private patterns: PatternService) {
     this.settings.showRightPage("30%"); // 此方法必须调用！页面右侧显示，带滑动效果,可以自定义宽度：..%  或者 ..px
   }
 
@@ -33,9 +39,23 @@ export class RightpageComponent implements OnInit {
     this.queryId = this.routeInfo.snapshot.queryParams['number'];
     this.id = this.routeInfo.snapshot.queryParams['id'];
 
-    /**
-     * 请求详细数据，并显示()
-     */
+    if(this.queryId==2){
+      this.loadAddres();
+    }
+
+  }
+
+  /**
+   * 关闭取消右侧页面
+   */
+  cancel(){
+    this.settings.closeRightPageAndRouteBack(); //关闭右侧滑动页面
+  }
+
+  /**
+   * 请求详细数据，并显示()
+   */
+  loadAddres(){
     if(typeof(this.id)) {
       this.ajax.get({
         url: '/agent/agentAddr/loadAgentAddrById',
@@ -52,19 +72,12 @@ export class RightpageComponent implements OnInit {
     }
   }
 
-  /**
-   * 关闭取消右侧页面
-   */
-  cancel(){
-    this.settings.closeRightPageAndRouteBack(); //关闭右侧滑动页面
-  }
-
   //获取区域数据
   private getAreaData(area){
-    //console.log("█ area ►►►",  area);
     let me = this;
-    me.organ['areaCode'] = area.areaCode;
+    me.limitForm['areaCode'] = area.areaCode;
   }
+
 
 
   /**
@@ -81,17 +94,17 @@ export class RightpageComponent implements OnInit {
         data: {
           'receiverName': _this.limitForm.receiverName,
           'areaCode':_this.limitForm.areaCode,
-          'mobPhone': value.mobPhone,
+          'mobPhone': _this.limitForm.mobPhone,
           'telPhone':_this.limitForm.telPhone,
           'address':_this.limitForm.address
         },
         success: (res) => {
           if (res.success) {
-            _this.router.navigate(['/main/limit'], {replaceUrl: true}); //路由跳转
+            _this.router.navigate(['/main/stockAddres'], {replaceUrl: true}); //路由跳转
             swal('新增代理商收货地址提交成功！', '','success');
+            _this.StockAddresComponent.queryList();//实现局部刷新
           } else {
-            let errorMsg = res.data.substring(res.data.indexOf('$$') + 2, res.data.indexOf('@@'))
-            swal(res.info, errorMsg, 'error');
+            swal(res.info,);
           }
         },
         error: (data) => {
@@ -104,17 +117,18 @@ export class RightpageComponent implements OnInit {
         url: '/agent/agentAddr/updateAgentAddr',
         async: false,
         data: {
-          'id':_this.limitForm.id,
+          'id':_this.id,
           'receiverName': _this.limitForm.receiverName,
           'areaCode':_this.limitForm.areaCode,
-          'mobPhone': value.mobPhone,
+          'mobPhone': _this.staff.mobPhone,
           'telPhone':_this.limitForm.telPhone,
           'address':_this.limitForm.address
         },
         success: (res) => {
           if (res.success) {
-            _this.router.navigate(['/main/limit'], {replaceUrl: true}); //路由跳转
+            _this.router.navigate(['/main/stockAddres'], {replaceUrl: true}); //路由跳转
             swal('修改代理商收货地址提交成功！', '','success');
+            _this.StockAddresComponent.queryList();//实现局部刷新
           } else {
             let errorMsg = res.data.substring(res.data.indexOf('$$') + 2, res.data.indexOf('@@'))
             swal(res.info, errorMsg, 'error');

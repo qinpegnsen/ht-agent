@@ -3,6 +3,7 @@ import {isNull, isNullOrUndefined} from "util";
 import {areaJSON} from "./area";
 import {AjaxService} from "./ajax.service";
 import {ToasterConfig, ToasterService} from "angular2-toaster";
+import {SubmitService} from "../forms/submit.service";
 
 @Injectable()
 export class RzhtoolsService {
@@ -10,7 +11,7 @@ export class RzhtoolsService {
   private enumData = {};
 
   // Angular2框架负责注入对象
-  constructor(private ajax: AjaxService, private toaster: ToasterService) {
+  constructor(private ajax: AjaxService, private toaster: ToasterService, public submit: SubmitService) {
     this.areaJson = areaJSON;
   }
 
@@ -369,6 +370,23 @@ export class RzhtoolsService {
       }
     });
     return ret;
+  }
+
+  /**
+   * 获取下级区域列表
+   * 四级区域使用
+   * @param areaCode    当前级别编码
+   * @param level   当前级别
+   * @returns {any}
+   */
+  getAreaList(areaCode?:string, level?: number){
+    if(isNullOrUndefined(level)) level = 0;
+    let data = {
+      area_code: areaCode,
+      level: level+1
+    };
+    let areas = this.submit.getData('/res/area/queryAreasByCode',data);
+    return areas;
   }
 
 }

@@ -38,6 +38,7 @@ import {SelectAreaModule} from "./directives/select-area/select-area.module";
 import {HeaderComponent} from "../layout/header/header.component";
 import {HomeComponent} from "../routes/home/home/home.component";
 import {AccordionComponent} from "ngx-bootstrap";
+import {FoueAreasModule} from "./directives/foue-areas/foue-areas.module";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -64,7 +65,8 @@ import {AccordionComponent} from "ngx-bootstrap";
     ToasterModule,
     DataTableModule,
     RzhButtonsModule,
-    SelectAreaModule
+    SelectAreaModule,
+    FoueAreasModule
   ],
   providers: [
     ColorsService,StockManService,HeaderComponent,AccordionComponent
@@ -112,6 +114,7 @@ import {AccordionComponent} from "ngx-bootstrap";
     NowDirective,
     ScrollableDirective,
     JqcloudDirective,
+    FoueAreasModule,
     SelectAreaModule
   ]
 })
