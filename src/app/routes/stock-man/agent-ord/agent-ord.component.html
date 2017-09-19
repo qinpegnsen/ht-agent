@@ -11,22 +11,22 @@
         <th class="w40 text-left">
           <rzhDefaultSorter by="name">商品名称</rzhDefaultSorter>
         </th>
-        <th class="w15">
+        <th class="w10">
           <rzhDefaultSorter>规格</rzhDefaultSorter>
         </th>
         <th class="w5 text-center">
           <rzhDefaultSorter>分类名称</rzhDefaultSorter>
         </th>
-        <th class="w5 text-center">
+        <th class="w6 text-center">
           <rzhDefaultSorter>品牌</rzhDefaultSorter>
         </th>
         <th class="w5 text-center">
           <rzhDefaultSorter>单位</rzhDefaultSorter>
         </th>
-        <th class="w5 text-center">
+        <th class="w7 text-center">
           <rzhDefaultSorter>价格</rzhDefaultSorter>
         </th>
-        <th class="w10 text-center">
+        <th class="w12 text-center">
           <rzhDefaultSorter>数量</rzhDefaultSorter>
         </th>
         <th class="w10 text-center">操作</th>
@@ -48,7 +48,7 @@
         </th>
       </tr>
       </thead>
-      <tbody>
+      <tbody class="font14">
       <ng-container *ngFor="let shop of shopList.data;let i = index">
         <tr>
           <td>
@@ -59,12 +59,12 @@
               </label>
             </div>
           </td>
-          <td class="text-left">
-            <div class="col-xs-1 p0">
+          <td class="text-left goods-info-box">
+            <div class="goods-img">
               <img src="{{shop.goodsImage}}" alt="" class='special'
                    onerror="javascript:this.src='../../../assets/img/dummy.png';">
             </div>
-            <div class="col-xs-11">
+            <div class="goods-name">
               <div (click)="showDetail(shop)">{{shop.goodsName}}</div>
               <div class="extra"><span>商品编码:{{shop.goodsCode}}</span></div>
             </div>
@@ -79,7 +79,7 @@
           <td class="text-center">{{shop.unit}}</td>
           <td class="text-center">￥ {{shop.goodsPrice.batchPrice  | number:'1.2-2'}}</td>
           <td class="text-center">
-            <div class="input-group">
+            <div class="input-group input-group-sm">
               <span class="input-group-addon" (click)="minusNum($event.target)"><i class="fa fa-minus"></i></span>
               <input class="form-control _num text-center" type="text" value="1" (change)="changeNum($event.target)"/>
               <input type="hidden" value="{{shop.goodsCode}}">

@@ -39,6 +39,7 @@ import {HeaderComponent} from "../layout/header/header.component";
 import {HomeComponent} from "../routes/home/home/home.component";
 import {AccordionComponent} from "ngx-bootstrap";
 import {FoueAreasModule} from "./directives/foue-areas/foue-areas.module";
+import {HoverDirective} from "./hover/hover.directive";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -80,9 +81,11 @@ import {FoueAreasModule} from "./directives/foue-areas/foue-areas.module";
     NowDirective,
     ScrollableDirective,
     JqcloudDirective,
-    HomeComponent
+    HomeComponent,
+    HoverDirective
   ],
   exports: [
+    HoverDirective,
     DataTableModule,
     RzhButtonsModule,
     CommonModule,

@@ -1,7 +1,6 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Page} from "../../../../core/page/page";
 import {PageEvent} from "angular2-datatable";
-import {isUndefined} from "util";
 import {SubmitService} from "../../../../core/forms/submit.service";
 import {OrdRecordComponent} from "../ord-record.component";
 
@@ -14,8 +13,6 @@ export class AllOrdersComponent implements OnInit {
   public curCancelOrderId:string;
   public curDeliverOrderId:string;
   public lookLogisticsOrderId:string;
-  private beginTime:string;
-  private endTime:string;
   public goodsList: Page = new Page();
   constructor(private parentComp:OrdRecordComponent,
               private submit: SubmitService,) { }
@@ -23,7 +20,7 @@ export class AllOrdersComponent implements OnInit {
   ngOnInit() {
     let me = this;
     me.parentComp.orderType = 1;
-    me.queryDatas(1)
+    me.queryDatas('')
   }
 
   /**
@@ -31,20 +28,19 @@ export class AllOrdersComponent implements OnInit {
    * @param event
    * @param curPage
    */
-  public queryDatas(curPage, event?: PageEvent) {
+  public queryDatas(state,event?: PageEvent) {
     let _this = this, activePage = 1;
     if (typeof event !== 'undefined') {
       activePage = event.activePage;
-    } else if (!isUndefined(curPage)) {
-      activePage = curPage;
     }
-    let requestUrl = '/goodsQuery/query';
+    let requestUrl = ' /agentOrd/pageAgentState';
     let requestData = {
       curPage: activePage,
-      pageSize: 2,
-      sortColumns: '',
+      pageSize: 10,
+      state: state,
     };
     _this.goodsList = new Page(_this.submit.getData(requestUrl, requestData));
+    console.log("█ _this.goodsList ►►►",  _this.goodsList);
   }
 
   /**
