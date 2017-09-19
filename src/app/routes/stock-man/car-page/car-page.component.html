@@ -62,15 +62,15 @@
             </div>
             <div class="w57 pull-left text-left">
               <div class="col-xs-1">
-                <img src="{{good.goodsImage}}" alt="" class='_img'
-                     onerror="javascript:this.src='../../../assets/img/dummy.png';">
-              </div>
+              <img src="{{good.goodsImage}}" alt="" class='_img'
+                   onerror="javascript:this.src='../../../assets/img/dummy.png';">
+            </div>
               <div class="col-xs-11">
                 <div class="extra"><span>商品名字：{{good.goodsName}}</span></div>
                 <div *ngFor="let standard of good.goodsSavSetList">{{standard.attrName}}：{{standard.value}}</div>
               </div>
             </div>
-            <div class="w5 pull-left text-center _batchPrice">￥ {{good.batchPrice}}</div>
+            <div class="w5 pull-left text-center _batchPrice">￥ {{good.batchPrice | number:'1.2-2'}}</div>
             <div class="w9 pull-left text-center">
               <div class="input-group updateNum">
                 <span class="input-group-addon" (click)="minusNum($event.target,good.agentCartId)"><i

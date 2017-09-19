@@ -5,8 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './ord-record.component.html',
   styleUrls: ['./ord-record.component.scss']
 })
-export class OrdRecordComponent implements OnInit {
 
+
+export class OrdRecordComponent implements OnInit {
+  public orderType: number = 1;
   constructor() { }
 
   ngOnInit() {

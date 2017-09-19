@@ -73,22 +73,6 @@ export class MenuService {
     sessionStorage.setItem('userMenu', menuItemsString); //保存menu信息至cookie
   }
   /**
-   * 获取子菜单
-   * @param menuText
-   */
-  getSubMenu(link){
-    //这个link可能是一级菜单，二级菜单、三级菜单……，只需要取第一级路由即可（取到/main/**）
-    let path = '/main/' + link.split('/')[1];
-    console.log("█ path ►►►",  path);
-    let subMenus = [];
-    this.getMenu().forEach((menuItem) => {
-      if (menuItem[link] == path && !isNullOrUndefined(menuItem['submenu'])){
-        subMenus = menuItem['submenu']
-      }
-    })
-    return subMenus;
-  }
-  /**
    * 获取权限菜单
    * @returns {Array<any>}
    */
