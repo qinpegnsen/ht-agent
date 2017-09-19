@@ -101,16 +101,15 @@
               <span class="m10">种类名称:</span> <span>{{shop.kindName}}</span>
             </div>
             <div class="bg-table change text-left">
-              <span class="m10">邮箱:</span> <span>{{shop.isBatch}}</span>
+              <span class="m10">店铺名称:</span> <span>{{shop.storeName}}</span>
             </div>
             <div class="bg-table change text-left">
-              <span class="m10">最后登陆时间:</span> <span>{{shop.haveGift}}</span>
+              <span class="m10">创建时间:</span> <span>{{shop.createTime}}</span>
             </div>
             <div class="bg-table change text-left">
-              <span class="m10">状态:</span> <span> {{shop.state}}</span>
-            </div>
-            <div class="bg-table change text-left">
-              <span class="m10">qq:</span> <span>{{shop.goodsAudit}}</span>
+              <span class="m10">是否免运费:</span>
+              <span *ngIf="shop.isFreight=='N'">否</span>
+              <span *ngIf="shop.isFreight=='Y'">是</span>
             </div>
           </td>
         </tr>
