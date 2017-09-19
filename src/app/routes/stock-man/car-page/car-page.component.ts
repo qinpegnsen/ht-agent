@@ -280,7 +280,7 @@ export class CarPageComponent implements OnInit {
    * @param obj
    */
   goodTotalPrice(obj) {
-    let price = $(obj).parents("._myPaddingBody").find('._batchPrice').text();
+    let price = $(obj).parents("._myPaddingBody").find('._batchPrice').text().slice(1);
     let num = $(obj).parents("._myPaddingBody").find('._num').val();
     let totalPrice = price * num;
     $(obj).parents("._myPaddingBody").find('._goodTotalPrice').text(totalPrice);
