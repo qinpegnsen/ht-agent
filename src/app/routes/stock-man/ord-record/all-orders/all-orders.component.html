@@ -21,21 +21,24 @@
       </div>
       <table class="w100 b">
       <tr class="text-center">
-        <td class="w40 p text-left position-relative bb">
-          <span class="goods-img goods-lg-img mr"><img [src]="goods.goodsImage"
+        <ng-container  *ngFor="let item of goods.agentOrdItemList;let i = index">
+          <td class="w40 p text-left position-relative bb">
+          <span class="goods-img goods-lg-img mr"><img [src]="item.goodsImage"
                                                        onerror="javascript:this.src='../../../assets/img/dummy.png'" alt=""></span>
-          <div class="goods-lg-info">
-            <p class="mb0 font13 omg2 two-row mb-sm">
-              <a class="goods-name" href="javascript:;">{{goods.goodsName}}</a>
-            </p>
-            <p class="mb0 one-row omg" *ngFor="let attr of goods.goodsBaseSaList">
-              <span class="inline">{{attr.attrName}}：</span>
-              <span class="inline" *ngFor="let val of attr.goodsBaseSavList">{{val.value}}</span>
-            </p>
-          </div>
-        </td>
-        <td class="w10 bb">{{0.356 | number:'1.2-2'}}</td>
-        <td class="w10 bb">3</td>
+            <div class="goods-lg-info">
+              <p class="mb0 font13 omg2 two-row mb-sm">
+                <a class="goods-name" href="javascript:;">{{item.goodsName}}</a>
+              </p>
+              <p class="mb0 one-row omg" *ngFor="let attr of item.goodsBaseSaList">
+                <span class="inline">{{attr.attrName}}：</span>
+                <span class="inline" *ngFor="let val of attr.goodsBaseSavList">{{val.value}}</span>
+              </p>
+            </div>
+          </td>
+          <td class="w10 bb">{{itembatchPrice| number:'1.2-2'}}</td>
+          <td class="w10 bb">{{item.batchNum}}</td>
+          <br>
+        </ng-container>
         <td class="w10 bl position-relative" rowspan="2">
           <span class="mb0 cursor-p" myHoverColor [myHover]="'#CC1635'" (mouseenter)="showUserInfo(i)"
                 (mouseleave)="hideBuyerInfo(i)">等风来
@@ -43,14 +46,14 @@
           <div class="szh-buyer-info text-left" #i (mouseenter)="showUserInfo(i)" (mouseleave)="hideBuyerInfo(i)">
             <div class="info-con">
               <p class="pl mb-sm"><i class="fa fa-user"></i> 用户信息</p>
-              <dl><dt>姓名：</dt><dd>三楂红</dd></dl>
-              <dl><dt>电话：</dt><dd>13526898899</dd></dl>
-              <dl><dt>地址：</dt><dd>你都不能白金汉爵速度解决哈哈哈丢我人近几年那你就</dd></dl>
+              <dl><dt>姓名：</dt><dd>{{goods.linkman}}</dd></dl>
+              <dl><dt>电话：</dt><dd>{{goods.mobile}}</dd></dl>
+              <dl><dt>地址：</dt><dd>{{goods.addr}}</dd></dl>
             </div>
           </div>
         </td>
         <td class="w10 bl" rowspan="2">
-          <span class="main-red font14">¥{{690.123 | number:'1.2-2'}}</span><br>
+          <span class="main-red font14">¥{{goods.pay | number:'1.2-2'}}</span><br>
           <span class="font-gray">（免运费）</span><br>
           <span class="font-gray">在线支付</span>
         </td>
@@ -67,23 +70,23 @@
           <button class="m-sm btn btn-xs btn-outline btn-danger fa fa-retweet"> 订单退款</button>
         </td>
       </tr>
-      <tr class="text-center">
-        <td class="w40 p text-left position-relative bb">
-          <span class="goods-img goods-lg-img mr"><img [src]="goods.goodsImage"
-                                                       onerror="javascript:this.src='../../../assets/img/dummy.png'" alt=""></span>
-          <div class="goods-lg-info">
-            <p class="mb0 font13 omg2 two-row mb-sm">
-              <a class="goods-name" href="javascript:;">{{goods.goodsName}}</a>
-            </p>
-            <p class="mb0 one-row omg" *ngFor="let attr of goods.goodsBaseSaList">
-              <span class="inline">{{attr.attrName}}：</span>
-              <span class="inline" *ngFor="let val of attr.goodsBaseSavList">{{val.value}}、</span>
-            </p>
-          </div>
-        </td>
-        <td class="w10 bb">{{0.356 |  number:'1.2-2'}}</td>
-        <td class="w10">3</td>
-      </tr>
+      <!--<tr class="text-center">-->
+        <!--<td class="w40 p text-left position-relative bb">-->
+          <!--<span class="goods-img goods-lg-img mr"><img [src]="goods.goodsImage"-->
+                                                       <!--onerror="javascript:this.src='../../../assets/img/dummy.png'" alt=""></span>-->
+          <!--<div class="goods-lg-info">-->
+            <!--<p class="mb0 font13 omg2 two-row mb-sm">-->
+              <!--<a class="goods-name" href="javascript:;">{{goods.goodsName}}</a>-->
+            <!--</p>-->
+            <!--<p class="mb0 one-row omg" *ngFor="let attr of goods.goodsBaseSaList">-->
+              <!--<span class="inline">{{attr.attrName}}：</span>-->
+              <!--<span class="inline" *ngFor="let val of attr.goodsBaseSavList">{{val.value}}、</span>-->
+            <!--</p>-->
+          <!--</div>-->
+        <!--</td>-->
+        <!--<td class="w10 bb">{{0.356 |  number:'1.2-2'}}</td>-->
+        <!--<td class="w10">3</td>-->
+      <!--</tr>-->
     </table>
     </td>
   </tr>
