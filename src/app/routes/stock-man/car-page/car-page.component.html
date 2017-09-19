@@ -8,7 +8,7 @@
   <!--头部-->
   <div class="panel-body _headBg">
     <ul class=" clearfix _list">
-      <li class="w7 pull-left text-left _myALL _list">
+      <li class="w10 pull-left text-left _myALL _list">
         <div class="checkbox c-checkbox m0">
           <label>
             <input type="checkbox" class="_all" (change)="allEle($event.target)"/>
@@ -16,19 +16,19 @@
           </label>
         </div>
       </li>
-      <li class="w55 pull-left text-left">
+      <li class="w40 pull-left text-left">
         <div>商品</div>
       </li>
-      <li class="w5 pull-left text-center">
+      <li class="w10 pull-left text-center">
         <div>单价</div>
       </li>
-      <li class="w9 pull-left text-center">
+      <li class="w10 pull-left text-center">
         <div>数量</div>
       </li>
-      <li class="w5 pull-left text-center">
+      <li class="w10 pull-left text-center">
         <div>小计</div>
       </li>
-      <li class="w19 pull-left text-center">
+      <li class="w20 pull-left text-center">
         <div>操作</div>
       </li>
     </ul>
@@ -52,7 +52,7 @@
         <ul class="clearfix panel panel-default _extra _list">
           <!--商品列表-->
           <li class="_myPaddingBody clearfix _list" *ngFor="let good of store.agentGoodsVOList;let i = index">
-            <div class="w5 pull-left text-left">
+            <div class="w10 pull-left text-left">
               <div class="checkbox c-checkbox _special">
                 <label>
                   <input type="checkbox" class="_good" (click)="goodEle($event.target)"/>
@@ -60,32 +60,33 @@
                 </label>
               </div>
             </div>
-            <div class="w57 pull-left text-left">
-              <div class="col-xs-1">
-              <img src="{{good.goodsImage}}" alt="" class='_img'
-                   onerror="javascript:this.src='../../../assets/img/dummy.png';">
-            </div>
-              <div class="col-xs-11">
+            <div class="w40 pull-left text-left goods-info-box">
+              <div class="goods-img">
+                <img src="{{good.goodsImage}}" alt="" class='_img'
+                     onerror="javascript:this.src='../../../assets/img/dummy.png';">
+              </div>
+              <div class="goods-name">
                 <div class="extra"><span>商品名字：{{good.goodsName}}</span></div>
                 <div *ngFor="let standard of good.goodsSavSetList">{{standard.attrName}}：{{standard.value}}</div>
               </div>
             </div>
-            <div class="w5 pull-left text-center _batchPrice">￥ {{good.batchPrice | number:'1.2-2'}}</div>
-            <div class="w9 pull-left text-center">
-              <div class="input-group updateNum">
+            <div class="w10 pull-left text-center _batchPrice">￥ {{good.batchPrice | number:'1.2-2'}}</div>
+            <div class="w10 pull-left text-center">
+              <div class="input-group updateNum input-group-sm">
                 <span class="input-group-addon" (click)="minusNum($event.target,good.agentCartId)"><i
                   class="fa fa-minus"></i></span>
-                <input class="form-control _num text-center" type="text" (change)="updataNum($event.target,good.agentCartId,good.storageNum)"
+                <input class="form-control _num text-center" type="text"
+                       (change)="updataNum($event.target,good.agentCartId,good.storageNum)"
                        value="{{good.num}}"/>
                 <input type="hidden" class="_agentCartId" value="{{good.agentCartId}}">
                 <span class="input-group-addon" (click)="addNum($event.target,good.agentCartId,good.storageNum)"><i
                   class="fa fa-plus"></i></span>
               </div>
             </div>
-            <div class="w5 pull-left text-center _goodTotalPrice">
-              ￥ {{good.goodsSubtotal  | number:'1.2-2'}}
+            <div class="w10 pull-left text-center _goodTotalPrice">
+              ￥ {{good.goodsSubtotal | number:'1.2-2'}}
             </div>
-            <div class="w19 pull-left text-center">
+            <div class="w20 pull-left text-center">
               <app-buttons [config]="deletebutton" (click)="doDelete(good.agentCartId)"></app-buttons>
             </div>
           </li>
@@ -99,7 +100,8 @@
       </div>
       <div class="pull-right w18 clearfix">
         <span class="_select pull-left">已选择 <b class="_myPrice">{{shopTotalNumber}}</b>件商品</span>
-        <span class="_select pull-left">运费：<b class="_myPrice">&yen; {{priceList.expressPrice  | number:'1.2-2'}}</b></span>
+        <span class="_select pull-left">运费：<b
+          class="_myPrice">&yen; {{priceList.expressPrice  | number:'1.2-2'}}</b></span>
         <span class="_select pull-left">总价：<b class="_myPrice">&yen; {{priceList.payment  | number:'1.2-2'}}</b></span>
       </div>
     </div>
