@@ -28,9 +28,8 @@ export class PayPageComponent implements OnInit {
   ngOnInit() {
     this.orderData=JSON.parse(sessionStorage.getItem('orderData'));
     this.payWay=this.orderData.payWay;
-    let url = '/agentOrd/addCustCart';
+    let url = '/agentOrd/addAgentOrd';
     let payData=this.stockManService.bornOrder(url,this.orderData);
-    console.log("█ payData ►►►",  payData);
     if(!payData){  //在用户刷新，或者下个页面返回的时候会用到
       let url = '/agentOrd/loadByOrdno';
       let data={
