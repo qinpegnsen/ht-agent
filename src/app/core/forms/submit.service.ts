@@ -37,13 +37,7 @@ export class SubmitService {
           });
           result=res.data;
         } else {
-          let errorMsg;
-          if (isNullOrUndefined(res.data)) {
-            errorMsg = res.info
-          } else {
-            errorMsg = res.data.substring(res.data.indexOf('$$') + 2, res.data.indexOf('@@'))
-          }
-          AppComponent.rzhAlt("error", res.info, errorMsg);
+          swal(res.info,'','error');
         }
       },
       error: (res) => {
@@ -73,10 +67,8 @@ export class SubmitService {
           let errorMsg;
           if (isNullOrUndefined(res.data)) {
             errorMsg = res.info
-          } else {
-            errorMsg = res.data.substring(res.data.indexOf('$$') + 2, res.data.indexOf('@@'))
           }
-          AppComponent.rzhAlt("error", res.info, errorMsg);
+          swal(res.info,'','error');
         }
       },
       error: (res) => {
@@ -110,13 +102,7 @@ export class SubmitService {
           });
           result=res.data;
         } else {
-          let errorMsg;
-          if (isNullOrUndefined(res.data)) {
-            errorMsg = res.info
-          } else {
-            errorMsg = res.data.substring(res.data.indexOf('$$') + 2, res.data.indexOf('@@'))
-          }
-          AppComponent.rzhAlt("error", res.info, errorMsg);
+          swal(res.info,'','error');
         }
       },
       error: (res) => {

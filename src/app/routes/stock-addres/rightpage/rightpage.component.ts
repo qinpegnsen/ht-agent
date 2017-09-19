@@ -15,6 +15,7 @@ const swal = require('sweetalert');
 export class RightpageComponent implements OnInit {
   private queryId:number;//获取添加，修改的ID
   private  staff= {
+    areaCode:'',
     mobPhone:''
   }
   private organ={}
@@ -63,7 +64,7 @@ export class RightpageComponent implements OnInit {
         data: {id: this.id},
         success: (res) => {
           console.log(res)
-          this.staff = res.data;
+          this.limitForm = res.data;
         },
         error: (res) => {
           console.log("post limit error");
@@ -104,7 +105,7 @@ export class RightpageComponent implements OnInit {
             swal('新增代理商收货地址提交成功！', '','success');
             _this.StockAddresComponent.queryList();//实现局部刷新
           } else {
-            swal(res.info,);
+            swal(res.info);
           }
         },
         error: (data) => {
@@ -120,7 +121,7 @@ export class RightpageComponent implements OnInit {
           'id':_this.id,
           'receiverName': _this.limitForm.receiverName,
           'areaCode':_this.limitForm.areaCode,
-          'mobPhone': _this.staff.mobPhone,
+          'mobPhone': _this.limitForm.mobPhone,
           'telPhone':_this.limitForm.telPhone,
           'address':_this.limitForm.address
         },
@@ -130,8 +131,7 @@ export class RightpageComponent implements OnInit {
             swal('修改代理商收货地址提交成功！', '','success');
             _this.StockAddresComponent.queryList();//实现局部刷新
           } else {
-            let errorMsg = res.data.substring(res.data.indexOf('$$') + 2, res.data.indexOf('@@'))
-            swal(res.info, errorMsg, 'error');
+            swal(res.info,'','error');
           }
         },
         error: (data) => {
