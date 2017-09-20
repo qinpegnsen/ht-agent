@@ -94,9 +94,9 @@ export class DoPayComponent implements OnInit {
       clearInterval(this.time);
       AppComponent.rzhAlt("success","支付成功");
       this.router.navigate(['/main/stockMan/do/callBack'],{ queryParams: { ordno:this.ordno,price:this.price } })
-    }else{//一分钟结束还没支付
+    }else{//二分钟结束还没支付
       console.log("█ this.timeAdd ►►►",  this.timeAdd);
-      if(this.timeAdd==60000){
+      if(this.timeAdd==120000){
         clearInterval(this.time);
         AppComponent.rzhAlt("errer","支付已超时");
       }
