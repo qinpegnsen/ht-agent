@@ -76,12 +76,12 @@
               查看物流</p>
           </td>
           <td class="w10 bl" *ngIf="j==0" rowspan="2">
-            <button class="m-sm btn btn-xs btn-outline btn-warning fa fa-ban" (click)="cancelOrder(goods.goodsName)">
+            <button *ngIf="goods.state=='CR'" class="m-sm btn btn-xs btn-outline btn-warning fa fa-ban" (click)="cancelOrder(goods.goodsName)">
               取消订单
             </button>
             <br>
-            <button *ngIf="goods.state!='CR'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-retweet"> 订单退款</button>
-            <button *ngIf="goods.state=='CR'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-retweet"> 去付款</button>
+            <button *ngIf="goods.state=='CR'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-retweet _backColor" (click)="goPay(goods.ordno)"> 去付款</button>
+            <button *ngIf="goods.state=='SUCCESS'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-retweet">确认收货</button>
           </td>
         </tr>
       </table>

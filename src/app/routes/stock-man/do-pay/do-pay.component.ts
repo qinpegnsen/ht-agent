@@ -44,8 +44,10 @@ export class DoPayComponent implements OnInit {
         if (event instanceof NavigationEnd) { // 当导航成功结束时执行
           if(event.url.indexOf('callBack')>0){
             _this.flag=false;
+            clearInterval(_this.time);
           }else if(event.url.indexOf('do')>0){
             _this.flag=true;
+            clearInterval(_this.time);
           }
         }
       });

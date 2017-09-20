@@ -3,6 +3,7 @@ import {Page} from "../../../../core/page/page";
 import {PageEvent} from "angular2-datatable";
 import {SubmitService} from "../../../../core/forms/submit.service";
 import {OrdRecordComponent} from "../ord-record.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-all-orders',
@@ -13,7 +14,11 @@ export class AllOrdersComponent implements OnInit {
   public curCancelOrderId:string;
   public lookLogisticsOrderId:string;
   public goodsList: Page = new Page();
-  constructor(private submit: SubmitService,private parentComp:OrdRecordComponent) { }
+  constructor(
+    private submit: SubmitService,
+    private parentComp:OrdRecordComponent,
+    private router: Router,
+  ) { }
 
   /**
    * 1.设置当前点击的颜色
@@ -75,6 +80,13 @@ export class AllOrdersComponent implements OnInit {
    */
   lookLogistics(orderId){
     this.lookLogisticsOrderId = orderId;
+  }
+
+  /**
+   * 去付款
+   */
+  goPay(ordno){
+    this.router.navigate(['/main/stockMan/pay'],{ queryParams: {'ordno':ordno} })
   }
 
 }
