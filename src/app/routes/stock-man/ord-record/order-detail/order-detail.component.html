@@ -4,11 +4,12 @@
     <div class="content p-lg b bt0">
       <dl>
         <dt>收&nbsp;货&nbsp;人：</dt>
-        <dd>刘能13920181664天津 天津市 和平区 水上公园北路</dd>
+        <dd>{{orderData.linkman}}{{orderData.mobile}}{{orderData.addr}}</dd>
       </dl>
       <dl>
         <dt>支付方式：</dt>
-        <dd>在线支付(付款单号：940537964101561009)</dd>
+        <dd *ngIf="orderData.payWay=='ONLINE'">在线支付</dd>
+        <dd *ngIf="orderData.payWay=='REMIT'">银行转账</dd>
       </dl>
       <dl>
         <dt>发&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：</dt>
@@ -18,11 +19,11 @@
       </dl>
       <dl>
         <dt>买家留言：</dt>
-        <dd style="word-break:break-all">1234567897897854</dd>
+        <dd style="word-break:break-all">{{orderData.remark}}</dd>
       </dl>
       <dl class="line pt-lg">
         <dt>订单编号：</dt>
-        <dd>2270000000026200
+        <dd>{{orderData.ordno}}
           <span class="pull-right" (mouseenter)="showTimeList(times)"
                 (mouseleave)="hideTimesList(times)"
                 myHoverColor
@@ -32,9 +33,7 @@
           <div class="more b w100" #times (mouseenter)="showTimeList(times)" (mouseleave)="hideTimesList(times)"><span
             class="arrow"></span>
             <ul class="list-unstyled font12 mb0">
-              <li><span>2017-01-17 10:28:21</span>买家下单</li>
-              <li><span>2017-01-17 10:28:21</span>买家下单</li>
-              <li><span>2017-01-17 10:28:21</span>买家下单</li>
+              <li><span>{{orderData.createTime}}</span>买家下单时间</li>
             </ul>
           </div>
         </dd>

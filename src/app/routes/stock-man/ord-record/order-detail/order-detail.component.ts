@@ -18,6 +18,10 @@ export class OrderDetailComponent implements OnInit {
     public stockManService: StockManService,
   ) { }
 
+  /**
+   * 1.获取页面传递的数据
+   * 2.获取订单的信息
+   */
   ngOnInit() {
     let me = this;
     let ordno = me.routeInfo.snapshot.queryParams['ordno'];//获取进货记录未付款页面跳转过来的参数
@@ -27,6 +31,7 @@ export class OrderDetailComponent implements OnInit {
       ordno:ordno
     }
     this.orderData=this.stockManService.getShopList(url,data);
+    console.log("█ this.orderData ►►►",  this.orderData);
   }
 
   /**

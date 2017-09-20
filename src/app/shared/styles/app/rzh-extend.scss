@@ -91,6 +91,20 @@ $largeImg: 80px;      // 商品列表图片的宽，较大的图
   bottom: 10px;
 }
 
+.goods-md-info{
+  position: absolute;
+  left: $middleImg+20;
+  top: 10px;
+  right: 10px;
+  bottom: 10px;
+}
+
+.goods-md-img{
+  display: inline-block;
+  width: $middleImg;
+  height: $middleImg;
+}
+
 .position-relative{
   position: relative
 }
