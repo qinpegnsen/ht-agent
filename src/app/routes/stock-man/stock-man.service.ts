@@ -211,7 +211,6 @@ export class StockManService {
         let info=res.info;
         if(res.success){
           result=res.data;
-          // AppComponent.rzhAlt("success",info);
         }else{
           AppComponent.rzhAlt("error",info);
         }

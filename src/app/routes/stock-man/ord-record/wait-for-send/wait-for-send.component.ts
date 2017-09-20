@@ -39,7 +39,7 @@ export class WaitForSendComponent implements OnInit {
     let requestData = {
       curPage: activePage,
       pageSize: 10,
-      state: 'DELIVERY',
+      state: 'PREPARE',
     };
     _this.goodsList = new Page(_this.submit.getData(requestUrl, requestData));
   }

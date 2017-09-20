@@ -5,7 +5,7 @@
   <li class="w10 pull-left text-center">买家</li>
   <li class="w10 pull-left text-center">订单金额（元）</li>
   <li class="w10 pull-left text-center">交易状态</li>
-  <li class="w10 pull-left text-center">交易操作</li>
+  <li class="w10 pull-left text-center">操作</li>
 </ul>
 <table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="goodsList"
        (pageChange)="queryDatas($event)">
@@ -72,11 +72,7 @@
               查看物流</p>
           </td>
           <td class="w10 bl" *ngIf="j==0" rowspan="2">
-            <button class="m-sm btn btn-xs btn-outline btn-warning fa fa-ban" (click)="cancelOrder(goods.goodsName)">
-              取消订单
-            </button>
-            <br>
-            <button class="m-sm btn btn-xs btn-outline btn-danger fa fa-retweet"> 订单退款</button>
+            <button class="m-sm btn btn-xs btn-outline btn-danger fa fa-retweet"> 确认收货</button>
           </td>
         </tr>
       </table>

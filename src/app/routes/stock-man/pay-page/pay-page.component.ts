@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {StockManService} from "../stock-man.service";
-import {NavigationEnd, Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {HeaderComponent} from "app/layout/header/header.component";
 import {isUndefined} from "util";
 declare var $:any;
@@ -17,7 +17,12 @@ export class PayPageComponent implements OnInit {
   public ordno:any;                      //订单号
   public pay:any;                        //支付的价格
   public flag:boolean=true;             //图片的地址
-  constructor( public stockManService: StockManService,private router: Router,public headerComponent: HeaderComponent) { }
+  constructor(
+    public stockManService: StockManService,
+    private router: Router,
+    public headerComponent: HeaderComponent,
+    private routeInfo:ActivatedRoute
+) { }
 
   /**
    * 1.把数据拿出来进行请求，生成订单
@@ -27,13 +32,18 @@ export class PayPageComponent implements OnInit {
    */
   ngOnInit() {
     this.orderData=JSON.parse(sessionStorage.getItem('orderData'));
+
+    let ordno = this.routeInfo.snapshot.queryParams['ordno'];//获取进货记录未付款页面跳转过来的参数
+    console.log("█ ordno ►►►",  ordno);
+
     this.payWay=this.orderData.payWay;
     let url = '/agentOrd/addAgentOrd';
     let payData=this.stockManService.bornOrder(url,this.orderData);
+    console.log("█ payData ►►►",  payData);
     if(!payData){  //在用户刷新，或者下个页面返回的时候会用到
       let url = '/agentOrd/loadByOrdno';
       let data={
-        ordno:sessionStorage.getItem('ordno')
+        ordno:ordno?ordno:sessionStorage.getItem('ordno')
       }
       let payData=this.stockManService.getShopList(url,data);
       this.ordno=payData.ordno;

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Page} from "../../../../core/page/page";
 import {PageEvent} from "angular2-datatable";
 import {SubmitService} from "../../../../core/forms/submit.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {OrdRecordComponent} from "../ord-record.component";
 
 @Component({
@@ -13,7 +13,11 @@ import {OrdRecordComponent} from "../ord-record.component";
 export class WaitForPayComponent implements OnInit {
   public curCancelOrderId:string;
   public goodsList: Page = new Page();
-  constructor(private submit: SubmitService,private router: Router,private parentComp:OrdRecordComponent) { }
+  constructor(
+    private submit: SubmitService,
+    private router: Router,
+    private parentComp:OrdRecordComponent
+  ) { }
 
   /**
    * 1.设置当前点击的颜色
@@ -72,7 +76,7 @@ export class WaitForPayComponent implements OnInit {
   /**
    * 去付款
    */
-  goPay(){
-    this.router.navigate(['/main/stockMan/do/callBac'],{ queryParams: {  } })
+  goPay(ordno){
+    this.router.navigate(['/main/stockMan/pay'],{ queryParams: {'ordno':ordno} })
   }
 }

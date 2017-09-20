@@ -95,6 +95,10 @@ $largeImg: 80px;      // 商品列表图片的宽，较大的图
   position: relative
 }
 
+._backColor{
+  background: #27CCC9;
+}
+
 //loading 样式
 @keyframes loading {
   from {
