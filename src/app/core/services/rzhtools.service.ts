@@ -351,7 +351,7 @@ export class RzhtoolsService {
    * @param file
    */
   uploadImg = function (file: any) {
-    let _this = this, ret: Array<any> = new Array(),data:any = new FormData();
+    let _this = this, ret: Array<any> = new Array(), data: any = new FormData();
     data.append("limitFile", file);
     _this.ajax.post({
       url: "/goodsEdit/uploadGoodsBodyImage",
@@ -379,14 +379,23 @@ export class RzhtoolsService {
    * @param level   当前级别
    * @returns {any}
    */
-  getAreaList(areaCode?:string, level?: number){
-    if(isNullOrUndefined(level)) level = 0;
+  getAreaList(areaCode?: string, level?: number) {
+    if (isNullOrUndefined(level)) level = 0;
     let data = {
       area_code: areaCode,
-      level: level+1
+      level: level + 1
     };
-    let areas = this.submit.getData('/res/area/queryAreasByCode',data);
+    let areas = this.submit.getData('/res/area/queryAreasByCode', data);
     return areas;
+  }
+
+  /**
+   * json 转 object
+   * @param val
+   * @returns {any}
+   */
+  static jsonToObject(val: string) {
+    return JSON.parse(val);
   }
 
 }

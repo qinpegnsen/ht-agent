@@ -4,6 +4,7 @@ import {PageEvent} from "angular2-datatable";
 import {SubmitService} from "../../../../core/forms/submit.service";
 import {OrdRecordComponent} from "../ord-record.component";
 import {Router} from "@angular/router";
+import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 
 @Component({
   selector: 'app-all-orders',
@@ -40,7 +41,7 @@ export class AllOrdersComponent implements OnInit {
     if (typeof event !== 'undefined') {
       activePage = event.activePage;
     }
-    let requestUrl = ' /agentOrd/pageAgentState';
+    let requestUrl = ' /agentOrd/queryAgentState';
     let requestData = {
       curPage: activePage,
       pageSize: 10,
@@ -87,6 +88,14 @@ export class AllOrdersComponent implements OnInit {
    */
   goPay(ordno){
     this.router.navigate(['/main/stockMan/pay'],{ queryParams: {'ordno':ordno} })
+  }
+
+  /**
+   * json 转 object
+   * @param val
+   */
+  jsonToObject(val:string){
+    return RzhtoolsService.jsonToObject(val);
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {BsDatepickerConfig} from "ngx-bootstrap/datepicker";
 
 @Component({
   selector: 'app-ord-record',
@@ -8,8 +9,14 @@ import { Component, OnInit } from '@angular/core';
 
 export class OrdRecordComponent implements OnInit {
   public orderType: number = 1;
+  bsConfig: Partial<BsDatepickerConfig>;
 
-  constructor() { }
+  constructor() {
+    this.bsConfig = Object.assign({}, {
+      locale: 'cn',
+      containerClass: 'theme-blue'
+    });
+  }
 
   ngOnInit() {
   }

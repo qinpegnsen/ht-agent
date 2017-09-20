@@ -37,7 +37,7 @@ import {StockManService} from "../routes/stock-man/stock-man.service";
 import {SelectAreaModule} from "./directives/select-area/select-area.module";
 import {HeaderComponent} from "../layout/header/header.component";
 import {HomeComponent} from "../routes/home/home/home.component";
-import {AccordionComponent} from "ngx-bootstrap";
+import {AccordionComponent, BsDatepickerModule} from "ngx-bootstrap";
 import {FoueAreasModule} from "./directives/foue-areas/foue-areas.module";
 import {HoverDirective} from "./hover/hover.directive";
 
@@ -63,6 +63,7 @@ import {HoverDirective} from "./hover/hover.directive";
     TimepickerModule.forRoot(),
     TooltipModule.forRoot(),
     TypeaheadModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     ToasterModule,
     DataTableModule,
     RzhButtonsModule,
@@ -88,6 +89,7 @@ import {HoverDirective} from "./hover/hover.directive";
     HoverDirective,
     DataTableModule,
     RzhButtonsModule,
+    BsDatepickerModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

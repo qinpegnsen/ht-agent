@@ -36,7 +36,7 @@ export class FinishedComponent implements OnInit {
     if (typeof event !== 'undefined') {
       activePage = event.activePage;
     }
-    let requestUrl = ' /agentOrd/pageAgentState';
+    let requestUrl = ' /agentOrd/queryAgentState';
     let requestData = {
       curPage: activePage,
       pageSize: 10,

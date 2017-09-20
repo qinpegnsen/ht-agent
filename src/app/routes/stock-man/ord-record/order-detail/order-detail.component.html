@@ -122,12 +122,12 @@
       </td>
       <td class="bb">{{0.356 | number:'1.2-2'}}</td>
       <td class="bb">3</td>
-      <td class="bl" rowspan="2">
+      <td class="bl" [attr.rowspan]="goods.agentOrdItemList.length">
         <span class="main-red font14">¥{{690.123 | number:'1.2-2'}}</span><br>
         <span class="font-gray">（免运费）</span><br>
         <span class="font-gray">在线支付</span>
       </td>
-      <td class="bl" rowspan="2">
+      <td class="bl" [attr.rowspan]="goods.agentOrdItemList.length">
         <p class="font-gray mb-sm cursor-p">待发货</p>
         <button class="m-sm btn btn-xs btn-warning fa fa-ban"> 取消订单</button>
         <br>
