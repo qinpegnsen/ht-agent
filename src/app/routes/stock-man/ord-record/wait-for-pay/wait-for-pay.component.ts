@@ -8,11 +8,9 @@ import {OrdRecordComponent} from "../ord-record.component";
 })
 export class WaitForPayComponent implements OnInit {
 
-  constructor(private parentComp:OrdRecordComponent) { }
+  constructor() { }
 
   ngOnInit() {
-    let me = this;
-    me.parentComp.orderType = 2
   }
 
 }

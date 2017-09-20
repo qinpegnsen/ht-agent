@@ -8,11 +8,9 @@ import {OrdRecordComponent} from "../ord-record.component";
 })
 export class FinishedComponent implements OnInit {
 
-  constructor(private parentComp:OrdRecordComponent) { }
+  constructor() { }
 
   ngOnInit() {
-    let me = this;
-    me.parentComp.orderType = 5
   }
 
 }

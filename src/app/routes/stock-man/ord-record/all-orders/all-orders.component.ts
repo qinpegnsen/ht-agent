@@ -14,12 +14,10 @@ export class AllOrdersComponent implements OnInit {
   public curDeliverOrderId:string;
   public lookLogisticsOrderId:string;
   public goodsList: Page = new Page();
-  constructor(private parentComp:OrdRecordComponent,
-              private submit: SubmitService,) { }
+  constructor(private submit: SubmitService,) { }
 
   ngOnInit() {
     let me = this;
-    me.parentComp.orderType = 1;
     me.queryDatas('')
   }
 

@@ -2,6 +2,11 @@
      扩展样式
  ========================================================================== */
 
+$xsImg: 40px;         // 商品列表图片的宽，较小的图
+$smallImg: 50px;      // 商品列表图片的宽，较小的图
+$middleImg: 60px;     // 商品列表图片的宽，中等大小的图
+$largeImg: 80px;      // 商品列表图片的宽，较大的图
+
 @charset "UTF-8";
 //重写弹框布局距离
 .toast-top-center,.toast-top-right{
@@ -36,6 +41,28 @@
   cursor:pointer
 }
 
+//扩展背景颜色
+.bg-table{ background: #e8ecf1;  }
+
+// 扩展主要颜色，山楂红色
+.main-red{ color: #CC1635;}
+.font-gray{ color: #999}
+.gold-star{color: gold;}
+.gold-star{color: gold;}
+// 单行显示，溢出隐藏（……）适用于宽度固定的元素
+._omg{overflow: hidden; text-overflow: ellipsis; white-space:nowrap;}
+
+/* 支持webkit内核的浏览器，相对较适用于移动端的单行文本溢出隐藏* 宽度相对于父级*/
+.omg{display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 1;/** 显示的行数 **/overflow: hidden;}
+/*多行文本溢出隐藏，设置-webkit-line-clamp: n */
+.omg2{display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;/** 显示的行数 **/overflow: hidden;}
+
+.goods-lg-img{
+  display: inline-block;
+  width: $largeImg;
+  height: $largeImg;
+}
+
 .color-f50{color: #f50;}
 .font12{font-size: 12px}
 .font13{font-size: 13px}
@@ -55,6 +82,18 @@
 .ml10{margin-left:10px;}
 .mt20{margin-top: 20px;}
 .cursor-p{cursor: pointer}
+
+.goods-lg-info{
+  position: absolute;
+  left: $largeImg+20;
+  top: 10px;
+  right: 10px;
+  bottom: 10px;
+}
+
+.position-relative{
+  position: relative
+}
 
 //loading 样式
 @keyframes loading {

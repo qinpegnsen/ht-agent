@@ -7,12 +7,10 @@ import {OrdRecordComponent} from "../ord-record.component";
   styleUrls: ['./order-detail.component.scss']
 })
 export class OrderDetailComponent implements OnInit {
-  constructor(private parentComp:OrdRecordComponent) { }
-  public orderStep = 0;
+  constructor() { }
 
   ngOnInit() {
-    let me = this;
-    me.parentComp.orderType = 100;
+
   }
 
   showTimeList(target){

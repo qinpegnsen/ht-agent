@@ -12,12 +12,10 @@ import {OrdRecordComponent} from "../ord-record.component";
 })
 export class WaitForSendComponent implements OnInit {
   public goodsList: Page = new Page();
-  constructor(private parentComp:OrdRecordComponent,
-              private submit: SubmitService,) { }
+  constructor(private submit: SubmitService,) { }
 
   ngOnInit() {
     let me = this;
-    me.parentComp.orderType = 3;
     me.queryDatas(1)
   }
 

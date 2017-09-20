@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 
 
 export class OrdRecordComponent implements OnInit {
-  public orderType: number = 1;
   constructor() { }
 
   ngOnInit() {
