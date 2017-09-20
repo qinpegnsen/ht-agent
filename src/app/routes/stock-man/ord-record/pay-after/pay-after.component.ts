@@ -5,23 +5,20 @@ import {SubmitService} from "../../../../core/forms/submit.service";
 import {OrdRecordComponent} from "../ord-record.component";
 
 @Component({
-  selector: 'app-all-orders',
-  templateUrl: './all-orders.component.html',
-  styleUrls: ['./all-orders.component.scss']
+  selector: 'app-pay-after',
+  templateUrl: './pay-after.component.html',
+  styleUrls: ['./pay-after.component.scss']
 })
-export class AllOrdersComponent implements OnInit {
+export class PayAfterComponent implements OnInit {
+
   public curCancelOrderId:string;
   public lookLogisticsOrderId:string;
   public goodsList: Page = new Page();
   constructor(private submit: SubmitService,private parentComp:OrdRecordComponent) { }
 
-  /**
-   * 1.设置当前点击的颜色
-   * 2.获取当前状态的列表
-   */
   ngOnInit() {
     let me = this;
-    me.parentComp.orderType = 1;
+    me.parentComp.orderType = 3;
     me.queryDatas()
   }
 
@@ -39,7 +36,7 @@ export class AllOrdersComponent implements OnInit {
     let requestData = {
       curPage: activePage,
       pageSize: 10,
-      state: '',
+      state: 'PAID',
     };
     _this.goodsList = new Page(_this.submit.getData(requestUrl, requestData));
   }

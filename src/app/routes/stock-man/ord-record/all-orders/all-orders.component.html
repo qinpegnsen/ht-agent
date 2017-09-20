@@ -8,7 +8,7 @@
   <li class="w10 pull-left text-center">交易操作</li>
 </ul>
 <table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="goodsList"
-       (pageChange)="queryDatas(1,$event)">
+       (pageChange)="queryDatas($event)">
   <tbody>
   <tr class="mt" *ngFor="let goods of dataTable.data;let i = index">
     <td class="w100 p0 font12 bt0">
@@ -31,8 +31,8 @@
                 <a class="goods-name" href="javascript:;">{{item.goodsName}}</a>
               </p>
               <p class="mb0 one-row omg" *ngFor="let attr of item.goodsBaseSaList">
-                <span class="inline">{{attr.attrName}}：ddddddddddddd</span>
-                <span class="inline" *ngFor="let val of attr.goodsSavSet">{{val.value}}aaaaaaaa</span>
+                <span class="inline">{{attr.attrName}}：</span>
+                <span class="inline" *ngFor="let val of attr.goodsSavSet">{{val}}</span>
               </p>
             </div>
           </td>
@@ -40,14 +40,14 @@
           <td class="w10 bb">{{item.batchNum}}</td>
           <td class="w10 bl position-relative" *ngIf="j==0" rowspan="2">
             <span class="mb0 cursor-p" myHoverColor [myHover]="'#CC1635'" (mouseenter)="showUserInfo(i)"
-                  (mouseleave)="hideBuyerInfo(i)">等风来
+                  (mouseleave)="hideBuyerInfo(i)">{{goods.agentName}}
             </span>
               <div class="szh-buyer-info text-left" #i (mouseenter)="showUserInfo(i)" (mouseleave)="hideBuyerInfo(i)">
               <div class="info-con">
                 <p class="pl mb-sm"><i class="fa fa-user"></i> 用户信息</p>
                 <dl>
                   <dt>姓名：</dt>
-                  <dd>{{goods.linkman}}/dd>
+                  <dd>{{goods.linkman}}</dd>
                 </dl>
                 <dl>
                   <dt>电话：</dt>
@@ -72,10 +72,6 @@
               查看物流</p>
           </td>
           <td class="w10 bl" *ngIf="j==0" rowspan="2">
-            <button class="m-sm btn btn-xs btn-outline btn-green fa fa-truck" (click)="deliverOrder(goods.goodsName)">
-              设置发货
-            </button>
-            <br>
             <button class="m-sm btn btn-xs btn-outline btn-warning fa fa-ban" (click)="cancelOrder(goods.goodsName)">
               取消订单
             </button>

@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Page} from "../../../../core/page/page";
 import {PageEvent} from "angular2-datatable";
-import {isUndefined} from "util";
 import {SubmitService} from "../../../../core/forms/submit.service";
 import {OrdRecordComponent} from "../ord-record.component";
 
@@ -11,12 +10,19 @@ import {OrdRecordComponent} from "../ord-record.component";
   styleUrls: ['./wait-for-send.component.scss']
 })
 export class WaitForSendComponent implements OnInit {
+  public curCancelOrderId:string;
+  public lookLogisticsOrderId:string;
   public goodsList: Page = new Page();
-  constructor(private submit: SubmitService,) { }
+  constructor(private submit: SubmitService,private parentComp:OrdRecordComponent) { }
 
+  /**
+   * 1.设置当前点击的颜色
+   * 2.获取当前状态的列表
+   */
   ngOnInit() {
     let me = this;
-    me.queryDatas(1)
+    me.parentComp.orderType = 4;
+    me.queryDatas()
   }
 
   /**
@@ -24,20 +30,51 @@ export class WaitForSendComponent implements OnInit {
    * @param event
    * @param curPage
    */
-  public queryDatas(curPage, event?: PageEvent) {
+  public queryDatas(event?: PageEvent) {
     let _this = this, activePage = 1;
     if (typeof event !== 'undefined') {
       activePage = event.activePage;
-    } else if (!isUndefined(curPage)) {
-      activePage = curPage;
     }
-    let requestUrl = '/goodsQuery/query';
+    let requestUrl = ' /agentOrd/pageAgentState';
     let requestData = {
       curPage: activePage,
-      pageSize: 2,
-      sortColumns: '',
+      pageSize: 10,
+      state: 'DELIVERY',
     };
     _this.goodsList = new Page(_this.submit.getData(requestUrl, requestData));
+  }
+
+  /**
+   * 显示买家信息
+   * @param event
+   * @param i
+   */
+  showUserInfo(i){
+    i.style.display = 'block';
+  }
+
+  /**
+   * 隐藏买家信息
+   * @param i
+   */
+  hideBuyerInfo(i){
+    i.style.display = 'none';
+  }
+
+  /**
+   *  取消订单
+   * @param orderId
+   */
+  cancelOrder(orderId){
+    this.curCancelOrderId = orderId;
+  }
+
+  /**
+   *查看物流信息
+   * @param orderId
+   */
+  lookLogistics(orderId){
+    this.lookLogisticsOrderId = orderId;
   }
 
 }

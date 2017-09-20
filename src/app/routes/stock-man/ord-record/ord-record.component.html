@@ -2,11 +2,12 @@
   <div class="panel-body">
     <div *ngIf="orderType!=100">
       <ul class="order-guide list-unstyled clearfix bb">
-        <li class="pull-left"  routerLink="all-orders">所有订单</li>
-        <li class="pull-left"  routerLink="wait-for-pay">待支付</li>
-        <li class="pull-left"  routerLink="wait-for-send">待发货</li>
-        <li class="pull-left"  routerLink="finished">已完成</li>
-        <li class="pull-left"  routerLink="canceled">已取消</li>
+        <li class="pull-left"  [class.cur-order]="orderType==1" routerLink="all-orders">所有订单</li>
+        <li class="pull-left"  [class.cur-order]="orderType==2" routerLink="wait-for-pay">待支付</li>
+        <li class="pull-left"  [class.cur-order]="orderType==3" routerLink="pay-after">待配货</li>
+        <li class="pull-left"  [class.cur-order]="orderType==4" routerLink="wait-for-send">待发货</li>
+        <li class="pull-left"  [class.cur-order]="orderType==5" routerLink="finished">已完成</li>
+        <li class="pull-left"  [class.cur-order]="orderType==6" routerLink="canceled">已取消</li>
       </ul>
       <!--查询 start-->
       <div class="row clearfix p text-right">

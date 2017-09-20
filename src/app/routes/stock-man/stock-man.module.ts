@@ -18,12 +18,14 @@ import {FinishedComponent} from "./ord-record/finished/finished.component";
 import {CanceledComponent} from "./ord-record/canceled/canceled.component";
 import {OrderDetailComponent} from "./ord-record/order-detail/order-detail.component";
 import {AllOrdersComponent} from "./ord-record/all-orders/all-orders.component";
+import { PayAfterComponent } from './ord-record/pay-after/pay-after.component';
 
 
 const orderRecordChildren: Routes = [
     {path: '', redirectTo: 'all-orders'},
     {path: 'all-orders', component: AllOrdersComponent},
     {path: 'wait-for-pay', component: WaitForPayComponent},
+    {path: 'pay-after', component: PayAfterComponent},
     {path: 'wait-for-send', component: WaitForSendComponent},
     {path: 'finished', component: FinishedComponent},
     {path: 'canceled', component: CanceledComponent},
@@ -63,7 +65,8 @@ const routes: Routes = [
     FinishedComponent,
     CanceledComponent,
     OrderDetailComponent,
-    AllOrdersComponent
+    AllOrdersComponent,
+    PayAfterComponent
   ],
   providers: [StockManService]
 })
