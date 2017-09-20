@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {OrdRecordComponent} from "../ord-record.component";
+import {ActivatedRoute} from "@angular/router";
+import {StockManService} from "../../stock-man.service";
 
 @Component({
   selector: 'app-order-detail',
@@ -7,15 +9,38 @@ import {OrdRecordComponent} from "../ord-record.component";
   styleUrls: ['./order-detail.component.scss']
 })
 export class OrderDetailComponent implements OnInit {
-  constructor() { }
+
+  public orderData: any;              //订单的数据
+
+  constructor(
+    private parentComp:OrdRecordComponent,
+    private routeInfo:ActivatedRoute,
+    public stockManService: StockManService,
+  ) { }
 
   ngOnInit() {
-
+    let me = this;
+    let ordno = me.routeInfo.snapshot.queryParams['ordno'];//获取进货记录未付款页面跳转过来的参数
+    me.parentComp.orderType = 100;
+    let url = '/agentOrd/loadByOrdno';
+    let data={
+      ordno:ordno
+    }
+    this.orderData=this.stockManService.getShopList(url,data);
   }
 
+  /**
+   * 展示时间列表
+   * @param target
+   */
   showTimeList(target){
     target.style.display = 'block';
   }
+
+  /**
+   * 隐藏时间列表
+   * @param target
+   */
   hideTimesList(target){
     target.style.display = 'none';
   }

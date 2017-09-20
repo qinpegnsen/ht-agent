@@ -34,7 +34,6 @@ export class PayPageComponent implements OnInit {
     this.orderData=JSON.parse(sessionStorage.getItem('orderData'));
 
     let ordno = this.routeInfo.snapshot.queryParams['ordno'];//获取进货记录未付款页面跳转过来的参数
-    console.log("█ ordno ►►►",  ordno);
 
     this.payWay=this.orderData.payWay;
     let url = '/agentOrd/addAgentOrd';
