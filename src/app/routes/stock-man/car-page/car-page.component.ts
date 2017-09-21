@@ -235,17 +235,26 @@ export class CarPageComponent implements OnInit {
 
     let goodNum = $(obj).parents('.updateNum').find('input').val();                //因为有可能点击到span或者是i所以找父级
 
-    if (goodNum == storageNum) {
-      goodNum = storageNum;
-    }else{
-      goodNum++;
-      let url = '/agent/agentCart/updateOneAgentCart'; //加减修改数据
-      let data = {
-        id: id,
-        num: +1
-      }
-      this.stockManService.putData(url, data);
+    // if (goodNum == storageNum) {
+    //   goodNum = storageNum;
+    //   AppComponent.rzhAlt("info",'商品数量不能超过'+goodNum);
+    // }else{
+    //   goodNum++;
+    //   let url = '/agent/agentCart/updateOneAgentCart'; //加减修改数据
+    //   let data = {
+    //     id: id,
+    //     num: +1
+    //   }
+    //   this.stockManService.putData(url, data);
+    // }
+
+    goodNum++;
+    let url = '/agent/agentCart/updateOneAgentCart'; //加减修改数据
+    let data = {
+      id: id,
+      num: +1
     }
+    this.stockManService.putData(url, data);
     $(obj).parents('.updateNum').find('input:first').val(goodNum)
     this.inputSelect(obj, '')
     this.getPriceList()
@@ -288,7 +297,9 @@ export class CarPageComponent implements OnInit {
     let price = $(obj).parents("._myPaddingBody").find('._batchPrice').text().slice(1);
     let num = $(obj).parents("._myPaddingBody").find('._num').val();
     let totalPrice = price * num;
-    $(obj).parents("._myPaddingBody").find('._goodTotalPrice').text(totalPrice);
+    let strNum=String(totalPrice);
+    let trueNum=Number(strNum.substr(0,strNum.indexOf(".")+3))
+    $(obj).parents("._myPaddingBody").find('._goodTotalPrice').text(trueNum);
   }
 
   /**
