@@ -31,11 +31,12 @@ export class PayPageComponent implements OnInit {
    * 4.生成订单会刷新购物会减少，在执行刷新购物车的方法
    */
   ngOnInit() {
+    let ordno = this.routeInfo.snapshot.queryParams['ordno'];//获取进货记录未付款跳转过来的参数
+
     this.orderData=JSON.parse(sessionStorage.getItem('orderData'));
-
-    let ordno = this.routeInfo.snapshot.queryParams['ordno'];//获取进货记录未付款页面跳转过来的参数
-
-    this.payWay=this.orderData.payWay;
+    if(this.orderData){
+      this.payWay=this.orderData.payWay;
+    }
     let url = '/agentOrd/addAgentOrd';
     let payData=this.stockManService.bornOrder(url,this.orderData);
     console.log("█ payData ►►►",  payData);
@@ -45,6 +46,7 @@ export class PayPageComponent implements OnInit {
         ordno:ordno?ordno:sessionStorage.getItem('ordno')
       }
       let payData=this.stockManService.getShopList(url,data);
+      console.log("█ payData ►►►",  payData);
       this.ordno=payData.ordno;
       this.pay=payData.pay;
     }else{
@@ -65,6 +67,8 @@ export class PayPageComponent implements OnInit {
           if(event.url.indexOf('do')>0){
             this.flag=false;
           }else if(event.url.indexOf('pay')>0){
+            console.log("█ event.url ►►►",  event.url);
+            console.log("█ this.flag ►►►",  this.flag);
             this.flag=true;
           }
         }

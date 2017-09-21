@@ -153,7 +153,7 @@
         <span class="font-gray">在线支付</span>
       </td>
       <td class="bl" [attr.rowspan]="orderData.agentOrdItemList.length">
-        <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"> 去支付</button>
+        <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'" (click)="goPay(orderData.ordno)"> 去支付</button>
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"> 取消订单</button>
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='SUCCESS'"> 确认收货</button>
         <br>

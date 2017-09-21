@@ -77,6 +77,7 @@ export class WaitForPayComponent implements OnInit {
    * 去付款
    */
   goPay(ordno){
+    console.log("█ ordno ►►►",  ordno);
     this.router.navigate(['/main/stockMan/pay'],{ queryParams: {'ordno':ordno} })
   }
 }

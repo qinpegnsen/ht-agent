@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {OrdRecordComponent} from "../ord-record.component";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {StockManService} from "../../stock-man.service";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 
@@ -17,6 +17,7 @@ export class OrderDetailComponent implements OnInit {
     private parentComp:OrdRecordComponent,
     private routeInfo:ActivatedRoute,
     public stockManService: StockManService,
+    private router: Router
   ) { }
 
   /**
@@ -49,6 +50,13 @@ export class OrderDetailComponent implements OnInit {
    */
   hideTimesList(target){
     target.style.display = 'none';
+  }
+
+  /**
+   * 去付款
+   */
+  goPay(ordno){
+    this.router.navigate(['/main/stockMan/pay'],{ queryParams: {'ordno':ordno} })
   }
 
   /**
