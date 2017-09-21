@@ -59,12 +59,16 @@ export class AgentOrdComponent implements OnInit {
    */
   allSelect(obj) {
     if ($(obj).prop("checked")) {
+      $("._good").attr("checked", true);
+      $("._good").prop("checked", true);
       $(obj).attr("checked", true)
-      $('tbody').css('background', '#FFF4E8')   //点击的时候样式的变化
+      $('._good[checked="checked"]').parents('tr').css('background', '#FFF4E8')   //点击的时候样式的变化
       this.showCar=true;
     } else {
-      $(obj).attr("checked", false)
-      $('tbody').css('background', '#fff');   //点击的时候样式的变化
+      $(obj).attr("checked", false);
+      $("._good").attr("checked", false);
+      $("._good").prop("checked", false);
+      $('._good').parents('tr').css('background', '#fff');   //点击的时候样式的变化
       this.showCar=false;
     }
   }
@@ -124,14 +128,17 @@ export class AgentOrdComponent implements OnInit {
    */
 
   goodSelect(obj) {
+    let me = this;
     if ($(obj).prop("checked")) {
       $(obj).attr("checked", true)
-      $(obj).parents("tr").css('background', '#FFF4E8')   //点击的时候样式的变化
+      $(obj).parents("tr").css('background', '#FFF4E8')   //点击的时候样式的变化;
+      me.showCar=true;        //让批量选择的购物车出现
     } else {
       $(obj).attr("checked", false)
       $(obj).parents("tr").css('background', '#fff');   //点击的时候样式的变化
+      me.showCar=false;        //让批量选择的购物车隐藏
     }
-    this.inputSelect(obj);
+    me.inputSelect(obj);
   }
 
   /**
@@ -146,11 +153,9 @@ export class AgentOrdComponent implements OnInit {
     if (goodLength == checkGoodLength) {
       $('._all').prop("checked", true)
       $('._all').attr("checked", true)
-      this.showCar=true;
     } else {
       $('._all').prop("checked", false)
       $('._all').attr("checked", false)
-      this.showCar=false;
     }
   }
 
@@ -159,23 +164,27 @@ export class AgentOrdComponent implements OnInit {
    * @param goodsCode
    */
   addCart(goodsCode, ele) {
-    if ($(ele).parents("tr").find('._good').prop("checked")) {
-      let url = '/agent/agentCart/addCustCart';
-      let data = {
-        strData: `${goodsCode},${this.carNum};`
-      }
-      this.stockManService.sendCar(url, data);
-      this.headerComponent.getShopTotal()
-    } else {
-      AppComponent.rzhAlt("info", '请先选择商品');
+    $(ele).parents("tr").find('._good').prop("checked",'checked');
+    $(ele).parents("tr").find('._good').attr("checked",'checked');
+    let url = '/agent/agentCart/addCustCart';
+    let data = {
+      strData: `${goodsCode},${this.carNum};`
     }
+    this.stockManService.sendCar(url, data);
+    this.headerComponent.getShopTotal()
+
+
   }
 
   /**
-   * 点击全选后，将本页面商品全部添加到购物车
+   * 批量选择的购物车
    */
   addAllCart() {
-    let num = $("._num"), str = '';
+    if($('_all').prop("checked")){  //全选
+      var num = $("._num"), str = '';
+    }else {//批量选择
+      var num = $('._good[checked="checked"]').parents('tr').find("._num"), str = '';
+    }
     for (var i = 0; i < num.length; i++) {
       let item = num.eq(i).next('input').val() + ',' + num.eq(i).val() + ';';
       str += item;

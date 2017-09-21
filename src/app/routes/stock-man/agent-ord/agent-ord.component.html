@@ -32,7 +32,7 @@
         <th class="w10 text-center">操作</th>
       </tr>
       <tr>
-        <th checkAll class="text-left">
+        <th  class="text-left">
           <div class="checkbox c-checkbox">
             <label>
               <input type="checkbox" (click)="allSelect($event.target)" class="_all"/>
@@ -40,7 +40,7 @@
             </label>
           </div>
         </th>
-        <th checkAll class="shopCar" *ngIf="showCar">
+        <th  class="shopCar" *ngIf="showCar">
           <a (click)="addAllCart()" title="加入购物车" class="addCar">
             <em class="fa fa-shopping-cart"></em>
           </a>
