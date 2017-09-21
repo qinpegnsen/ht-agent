@@ -18,7 +18,7 @@ export class DoPayComponent implements OnInit {
   price: number;                          //订单的价格
   public payCon: String = '';               //二维码的内容
   public time: any;                       //二维码的内容
-  public curWay: any;                     //当前支付的放肆
+  public curWay: any;                     //当前支付的方式
   public timeAdd: number = 0;               //累计的时间
   public flag: boolean = true;              //累计的时间
 

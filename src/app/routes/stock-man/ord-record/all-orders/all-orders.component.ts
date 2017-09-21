@@ -86,8 +86,8 @@ export class AllOrdersComponent implements OnInit {
   /**
    * 去付款
    */
-  goPay(ordno){
-    this.router.navigate(['/main/stockMan/pay'],{ queryParams: {'ordno':ordno} })
+  goPay(ordno,payWay){
+    this.router.navigate(['/main/stockMan/pay'],{ queryParams: {'ordno':ordno,"payWay":payWay} })
   }
 
   /**

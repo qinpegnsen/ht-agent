@@ -32,14 +32,18 @@ export class PayPageComponent implements OnInit {
    */
   ngOnInit() {
     let ordno = this.routeInfo.snapshot.queryParams['ordno'];//获取进货记录未付款跳转过来的参数
+    let transPayWay = this.routeInfo.snapshot.queryParams['payWay'];    //获取当前的订单号
 
     this.orderData=JSON.parse(sessionStorage.getItem('orderData'));
-    if(this.orderData){
+    console.log("█ this.orderData ►►►",  this.orderData);
+
+    if(transPayWay){   //如果有地址栏传递过来的就用地址传递过来的
+      this.payWay=transPayWay;
+    }else if(this.orderData){
       this.payWay=this.orderData.payWay;
     }
     let url = '/agentOrd/addAgentOrd';
     let payData=this.stockManService.bornOrder(url,this.orderData);
-    console.log("█ payData ►►►",  payData);
     if(!payData){  //在用户刷新，或者下个页面返回的时候会用到
       let url = '/agentOrd/loadByOrdno';
       let data={
