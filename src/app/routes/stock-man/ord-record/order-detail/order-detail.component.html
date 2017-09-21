@@ -65,30 +65,55 @@
 </div>
 <div class="rate-of-progress mt-xl mb-xl w100">
   <div class="szh-progress-bar w90">
-    <div class="already-progress w50"></div>
+    <div *ngIf="orderData.state=='CR'" class="already-progress _w0"></div>
+    <div *ngIf="orderData.state=='PADI'" class="already-progress w25"></div>
+    <div *ngIf="orderData.state=='PREPARE'" class="already-progress w50"></div>
+    <div *ngIf="orderData.state=='DELIVERY'" class="already-progress w75"></div>
+    <div *ngIf="orderData.state=='SUCCESS'" class="already-progress w100"></div>
+
   </div>
   <dl class="cur">
     <dt>提交订单</dt>
     <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
     <dd>2017-05-19 10:03:22</dd>
   </dl>
-  <dl class="cur">
+  <dl class="cur" *ngIf="orderData.state=='PADI'||orderData.state=='PREPARE'||orderData.state=='DELIVERY'||orderData.state=='SUCCESS'">
     <dt>完成付款</dt>
     <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
     <dd>2017-05-19 10:03:22</dd>
   </dl>
-  <dl class="cur">
+  <dl  *ngIf="orderData.state!='PADI'||orderData.state!='PREPARE'||orderData.state!='DELIVERY'||orderData.state!='SUCCESS'">
+    <dt>完成付款</dt>
+    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+    <dd>2017-05-19 10:03:22</dd>
+  </dl>
+  <dl class="cur" *ngIf="orderData.state=='PREPARE'||orderData.state=='DELIVERY'||orderData.state=='SUCCESS'">
+    <dt>商家配货</dt>
+    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+    <dd>2017-05-19 10:03:22</dd>
+  </dl>
+  <dl  *ngIf="orderData.state!='PREPARE'||orderData.state!='DELIVERY'||orderData.state!='SUCCESS'">
+    <dt>商家配货</dt>
+    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+    <dd>2017-05-19 10:03:22</dd>
+  </dl>
+  <dl class="cur" *ngIf="orderData.state=='DELIVERY'||orderData.state=='SUCCESS'">
     <dt>商家发货</dt>
     <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
     <dd>2017-05-19 10:03:22</dd>
   </dl>
-  <dl>
+  <dl *ngIf="orderData.state!='DELIVERY'||orderData.state!='SUCCESS'">
+    <dt>商家发货</dt>
+    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+    <dd>2017-05-19 10:03:22</dd>
+  </dl>
+  <dl class="cur" *ngIf="orderData.state=='SUCCESS'">
     <dt>确认收货</dt>
     <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
     <dd>2017-05-19 10:03:22</dd>
   </dl>
-  <dl>
-    <dt>评价</dt>
+  <dl *ngIf="orderData.state!='SUCCESS'">
+    <dt>确认收货</dt>
     <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
     <dd>2017-05-19 10:03:22</dd>
   </dl>
@@ -105,54 +130,34 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="text-center">
+    <tr class="text-center" *ngFor="let item of orderData.agentOrdItemList">
       <td class="text-left p position-relative bb">
-          <span class="goods-img goods-md-img mr"><img [src]="000"
+          <span class="goods-img goods-md-img mr"><img [src]="item"
                                                        onerror="javascript:this.src='../../../assets/img/dummy.png'"
                                                        alt=""></span>
         <div class="goods-md-info">
-          <p class="mb0 font13 omg2 two-row mb-sm">
-            <a class="goods-name" href="javascript:;">商品名</a>
+          <p class="mb0 font13 omg2 one-row mb-sm">
+            <a class="goods-name" href="javascript:;">{{item.goodsName}}</a>
           </p>
-          <p class="mb0 one-row omg font12">
-            <span class="inline">颜色：</span>
-            <span class="inline">红色</span>
+          <p class="mb0 one-row omg font12" *ngFor="let info of jsonToObject(item.goodsSavSet)">
+            <span class="inline">{{info.attrName}}：</span>
+            <span class="inline">{{info.value}}</span>
           </p>
         </div>
       </td>
-      <td class="bb">{{0.356 | number:'1.2-2'}}</td>
-      <td class="bb">3</td>
-      <td class="bl" [attr.rowspan]="goods.agentOrdItemList.length">
-        <span class="main-red font14">¥{{690.123 | number:'1.2-2'}}</span><br>
+      <td class="bb">{{item.batchPrice| number:'1.2-2'}}</td>
+      <td class="bb">{{item.batchNum}}</td>
+      <td class="bl" [attr.rowspan]="orderData.agentOrdItemList.length">
+        <span class="main-red font14">¥ {{item.batchPrice*item.batchNum | number:'1.2-2'}}</span><br>
         <span class="font-gray">（免运费）</span><br>
         <span class="font-gray">在线支付</span>
       </td>
-      <td class="bl" [attr.rowspan]="goods.agentOrdItemList.length">
-        <p class="font-gray mb-sm cursor-p">待发货</p>
-        <button class="m-sm btn btn-xs btn-warning fa fa-ban"> 取消订单</button>
+      <td class="bl" [attr.rowspan]="orderData.agentOrdItemList.length">
+        <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"> 去支付</button>
+        <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"> 取消订单</button>
+        <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='SUCCESS'"> 确认收货</button>
         <br>
-        <button class="m-sm btn btn-xs btn-green fa fa-truck"> 发货</button>
-        <br>
-        <button class="m-sm btn btn-xs btn-danger fa fa-retweet"> 退款</button>
       </td>
-    </tr>
-    <tr class="text-center">
-      <td class="text-left p position-relative bb">
-          <span class="goods-img goods-md-img mr">
-            <img [src]="000" onerror="javascript:this.src='../../../assets/img/dummy.png'"
-                                                       alt=""></span>
-        <div class="goods-md-info">
-          <p class="mb0 font13 omg2 two-row mb-sm">
-            <a class="goods-name" href="javascript:;">商品名</a>
-          </p>
-          <p class="mb0 one-row omg font12">
-            <span class="inline">颜色：</span>
-            <span class="inline">红色</span>
-          </p>
-        </div>
-      </td>
-      <td class="bb">{{0.356 | number:'1.2-2'}}</td>
-      <td class="bb">3</td>
     </tr>
     </tbody>
     <tfoot>
@@ -160,12 +165,12 @@
       <td colspan="10" class="gray-bg order-footer p-sm pr-xl font12">
         <dl class="text-right mb0">
           <dt>运费：</dt>
-          <dd><span class="main-red font18">{{3.6 | number:'1.2-2'}}</span>元</dd>
+          <dd><span class="main-red font18">{{orderData.freightPrice | number:'1.2-2'}}</span>元</dd>
         </dl>
         <dl
           class="text-right mb0">
           <dt>订单应付金额：</dt>
-          <dd><span class="main-red font20">{{120 | number:'1.2-2'}}</span>元</dd>
+          <dd><span class="main-red font20">{{orderData.pay | number:'1.2-2'}}</span>元</dd>
         </dl>
       </td>
     </tr>

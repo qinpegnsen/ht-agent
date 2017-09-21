@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {OrdRecordComponent} from "../ord-record.component";
 import {ActivatedRoute} from "@angular/router";
 import {StockManService} from "../../stock-man.service";
+import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 
 @Component({
   selector: 'app-order-detail',
@@ -48,6 +49,14 @@ export class OrderDetailComponent implements OnInit {
    */
   hideTimesList(target){
     target.style.display = 'none';
+  }
+
+  /**
+   * json 转 object
+   * @param val
+   */
+  jsonToObject(val:string){
+    return RzhtoolsService.jsonToObject(val);
   }
 }
 

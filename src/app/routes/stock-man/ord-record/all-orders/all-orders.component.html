@@ -28,7 +28,7 @@
                 <a class="goods-name" href="javascript:;">{{item.goodsName}}</a>
               </p>
               <p class="mb0 one-row omg" *ngFor="let info of jsonToObject(item.goodsSavSet)">
-                <span class="inline">{{info.attrName}}</span>
+                <span class="inline">{{info.attrName}}：</span>
                 <span class="inline">{{info.value}}</span>
               </p>
             </div>
