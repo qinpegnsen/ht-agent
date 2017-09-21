@@ -45,10 +45,10 @@ export class DoPayComponent implements OnInit {
         if (event instanceof NavigationEnd) { // 当导航成功结束时执行
           if (event.url.indexOf('callBack') > 0) {
             _this.flag = false;
-            clearInterval(_this.time);
           } else if (event.url.indexOf('do') > 0) {
             _this.flag = true;
-            clearInterval(_this.time);
+          }else if(event.url.indexOf('do') ==-1){
+            clearInterval(timer);
           }
         }
       });
@@ -77,8 +77,8 @@ export class DoPayComponent implements OnInit {
      * 每隔5s种调一次，看是否支付成功，倒计时1分钟
      */
 
-    _this.time = setInterval(function () {
-      _this.isSuccess();
+    var timer = setInterval(function () {
+      _this.isSuccess(timer);
       console.log("█ 22 ►►►",  22);
       _this.timeAdd += 5000;
     }, 5000)
@@ -88,7 +88,7 @@ export class DoPayComponent implements OnInit {
   /**
    * 判断是否支付成功
    */
-  isSuccess() {
+  isSuccess(timer) {
     let url = '/agentOrd/isPayByOrdno';
     let data = {
       ordno: this.ordno
@@ -96,13 +96,13 @@ export class DoPayComponent implements OnInit {
     let result = this.stockManService.isTrue(url, data);
     console.log("█ result ►►►",  result);
     if (result) {//支付成功的收
-      clearInterval(this.time);
+      clearInterval(timer);
       AppComponent.rzhAlt("success", "支付成功");
       this.router.navigate(['/main/stockMan/do/callBack'], {queryParams: {ordno: this.ordno, price: this.price}})
-    } else {//二分钟结束还没支付
+    } else {//一分钟结束还没支付
       console.log("█ this.timeAdd ►►►", this.timeAdd);
-      if (this.timeAdd == 120000) {
-        clearInterval(this.time);
+      if (this.timeAdd == 60000) {
+        clearInterval(timer);
         AppComponent.rzhAlt("errer", "支付已超时");
       }
     }

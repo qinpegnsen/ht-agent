@@ -35,7 +35,6 @@ export class PayPageComponent implements OnInit {
     let transPayWay = this.routeInfo.snapshot.queryParams['payWay'];    //获取当前的订单号
 
     this.orderData=JSON.parse(sessionStorage.getItem('orderData'));
-    console.log("█ this.orderData ►►►",  this.orderData);
 
     if(transPayWay){   //如果有地址栏传递过来的就用地址传递过来的
       this.payWay=transPayWay;
