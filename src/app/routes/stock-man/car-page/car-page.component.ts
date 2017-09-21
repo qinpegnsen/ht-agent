@@ -26,8 +26,7 @@ export class CarPageComponent implements OnInit {
   constructor(
     public stockManService: StockManService,
     public headerComponent: HeaderComponent,
-    private router: Router,
-    public patterns: PatternService
+    private router: Router
   ) {}
 
   /**

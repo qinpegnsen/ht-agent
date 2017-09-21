@@ -21,8 +21,7 @@ export class AgentOrdComponent implements OnInit {
   private showCar: boolean = false;      //当全选被选中的时候出现全部加入购物车的按钮
   constructor(
     public stockManService: StockManService,
-    public headerComponent: HeaderComponent,
-    public patterns: PatternService
+    public headerComponent: HeaderComponent
   ) {
   }
 
