@@ -78,9 +78,9 @@
                 <input class="form-control _num text-center" type="text"
                        (change)="updataNum($event.target,good.agentCartId,good.storageNum)"
                        value="{{good.num}}"/>
-                <input type="hidden" class="_agentCartId" value="{{good.agentCartId}}">
+                <input type="hidden" class="_agentCartId" value="{{good.agentCartId}}" [pattern]="patterns.positive">
                 <span class="input-group-addon" (click)="addNum($event.target,good.agentCartId,good.storageNum)"><i
-                  class="fa fa-plus"></i></span>
+                  class="fa fa-plus" disabled></i></span>
               </div>
             </div>
             <div class="w10 pull-left text-center _goodTotalPrice">

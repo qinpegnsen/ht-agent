@@ -4,6 +4,7 @@ import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
 import {HeaderComponent} from "../../../layout/header/header.component";
 import {Router} from "@angular/router";
 import {AppComponent} from "../../../app.component";
+import {PatternService} from "../../../core/forms/pattern.service";
 const swal = require('sweetalert');
 declare var $: any;
 @Component({
@@ -25,7 +26,8 @@ export class CarPageComponent implements OnInit {
   constructor(
     public stockManService: StockManService,
     public headerComponent: HeaderComponent,
-    private router: Router
+    private router: Router,
+    public patterns: PatternService
   ) {}
 
   /**
@@ -234,7 +236,10 @@ export class CarPageComponent implements OnInit {
 
     let num = $(obj).parents('.updateNum').find('input').val();                //因为有可能点击到span或者是i所以找父级
     num++;
-    if (num > storageNum) num = storageNum;
+    if (num > storageNum) {
+      num = storageNum;
+      $(obj).prop('checked','checked');
+    }
     $(obj).parents('.updateNum').find('input:first').val(num)
     let url = '/agent/agentCart/updateOneAgentCart'; //加减修改数据
     let data = {

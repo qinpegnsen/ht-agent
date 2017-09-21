@@ -226,3 +226,14 @@ $largeImg: 80px;      // 商品列表图片的宽，较大的图
 .h12{height: 12px};
 .h560{height: 560px};
 
+ /**
+ 去掉number 输入框的箭头
+  */
+input[type=number].num {
+  -moz-appearance:textfield;
+}
+input[type=number].num::-webkit-inner-spin-button,
+input[type=number].num::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

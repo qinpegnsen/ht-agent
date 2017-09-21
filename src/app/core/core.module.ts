@@ -12,6 +12,7 @@ import { throwIfAlreadyLoaded } from './module-import-guard';
 import {AjaxService} from "./services/ajax.service";
 import {MaskService} from "./services/mask.service";
 import {SubmitService} from "./forms/submit.service";
+import {PatternService} from "./forms/pattern.service";
 
 @NgModule({
   imports: [
@@ -23,7 +24,8 @@ import {SubmitService} from "./forms/submit.service";
     MenuService,
     AjaxService,
     MaskService,
-    SubmitService
+    SubmitService,
+    PatternService
   ],
   declarations: [
   ],

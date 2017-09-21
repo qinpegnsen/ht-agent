@@ -4,6 +4,7 @@ import {Page} from "../../../core/page/page";
 import {PageEvent} from "angular2-datatable";
 import {AppComponent} from "../../../app.component";
 import {HeaderComponent} from "../../../layout/header/header.component";
+import {PatternService} from "../../../core/forms/pattern.service";
 const swal = require('sweetalert');
 
 declare var $: any;
@@ -18,7 +19,11 @@ export class AgentOrdComponent implements OnInit {
   public shopListdata;                    //存储商品列表的数据
   public carNum: number = 1;              //存储商品的数量
   private showCar: boolean = false;      //当全选被选中的时候出现全部加入购物车的按钮
-  constructor(public stockManService: StockManService, public headerComponent: HeaderComponent) {
+  constructor(
+    public stockManService: StockManService,
+    public headerComponent: HeaderComponent,
+    public patterns: PatternService
+  ) {
   }
 
   /**
@@ -93,7 +98,10 @@ export class AgentOrdComponent implements OnInit {
   addNum(i, obj) {
     let num = $(obj).parents('.input-group').find('input').val();//因为有可能点击到span或者是i所以找父级
     num++;
-    if (num > this.shopListdata.voList[i].storageNum) num = this.shopListdata.voList[i].storageNum;
+    if (num > this.shopListdata.voList[i].storageNum) {
+      num = this.shopListdata.voList[i].storageNum;
+      $(obj).prop('checked','checked');
+    }
     this.carNum = num;
     $(obj).parents('.input-group').find('input:first').val(num)
     $(obj).parents('tr').find('._good').prop('checked', true)
