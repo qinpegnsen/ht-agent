@@ -233,19 +233,20 @@ export class CarPageComponent implements OnInit {
     $(obj).parents('._myPaddingBody').find("._good").prop("checked", true)
     $(obj).parents('._myPaddingBody').find("._good").attr("checked", "checked") //增加节点，计数用
 
-    let num = $(obj).parents('.updateNum').find('input').val();                //因为有可能点击到span或者是i所以找父级
-    num++;
-    if (num > storageNum) {
-      num = storageNum;
-      $(obj).prop('checked','checked');
+    let goodNum = $(obj).parents('.updateNum').find('input').val();                //因为有可能点击到span或者是i所以找父级
+
+    if (goodNum == storageNum) {
+      goodNum = storageNum;
+    }else{
+      goodNum++;
+      let url = '/agent/agentCart/updateOneAgentCart'; //加减修改数据
+      let data = {
+        id: id,
+        num: +1
+      }
+      this.stockManService.putData(url, data);
     }
-    $(obj).parents('.updateNum').find('input:first').val(num)
-    let url = '/agent/agentCart/updateOneAgentCart'; //加减修改数据
-    let data = {
-      id: id,
-      num: +1
-    }
-    this.stockManService.putData(url, data);
+    $(obj).parents('.updateNum').find('input:first').val(goodNum)
     this.inputSelect(obj, '')
     this.getPriceList()
     this.getShopTotalNum();
