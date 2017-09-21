@@ -17,6 +17,7 @@ export class OrdRecordComponent implements OnInit {
   constructor() {
     this.bsConfig = Object.assign({}, {
       locale: 'cn',
+      rangeInputFormat:"YYYY/MM/DD",
       containerClass: 'theme-blue'
     });
   }
