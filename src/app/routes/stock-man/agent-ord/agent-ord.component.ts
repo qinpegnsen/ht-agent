@@ -136,13 +136,17 @@ export class AgentOrdComponent implements OnInit {
     } else {
       $(obj).attr("checked", false)
       $(obj).parents("tr").css('background', '#fff');   //点击的时候样式的变化
-      me.showCar=false;        //让批量选择的购物车隐藏
+      if($('._good[checked="checked"]').length>0){ //如果长度为0就让购物车的按钮隐藏
+        me.showCar=true;
+      }else{
+        me.showCar=false;
+      }
     }
     me.inputSelect(obj);
   }
 
   /**
-   * 点击单个商品input的时候，上级nput的变化  这里用到了回调来解决在bug
+   * 点击单个商品input的时候，上级input的变化  这里用到了回调来解决在bug
    * @param obj
    *@param boolean  true 控制总选按钮的变化  false控制店铺按钮的变化
    *

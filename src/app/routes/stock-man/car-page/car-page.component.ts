@@ -156,7 +156,6 @@ export class CarPageComponent implements OnInit {
     } else {
       $(obj).attr('checked', false)
       $(obj).removeAttr('checked')
-      console.log("█ 1 ►►►", 1);
       $(obj).parents("._myStore").find("._myPaddingBody").css('background', '#fff')   //点击的时候样式的变化
       $(obj).parents('._myStore').find("._good").prop("checked", false)
       $(obj).parents('._myStore').find("._good").attr("checked", false)
