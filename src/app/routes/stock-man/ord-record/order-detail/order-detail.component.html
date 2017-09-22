@@ -71,8 +71,6 @@
     <div *ngIf="orderData.state=='PREPARE'" class="already-progress w50"></div>
     <div *ngIf="orderData.state=='DELIVERY'" class="already-progress w75"></div>
     <div *ngIf="orderData.state=='SUCCESS'" class="already-progress w100"></div>
-
-
   </div>
   <ng-container *ngIf="orderData.state=='CR'">
     <dl class="cur">
@@ -222,6 +220,7 @@
     </dl>
   </ng-container>
 </div>
+
 <div class="w100">
   <table class="w100 b">
     <thead class="w100">
@@ -236,7 +235,7 @@
     <tbody>
     <tr class="text-center" *ngFor="let item of orderData.agentOrdItemList">
       <td class="text-left p position-relative bb">
-          <span class="goods-img goods-md-img mr"><img [src]="item"
+          <span class="goods-img goods-md-img mr"><img [src]="item.goodsImage"
                                                        onerror="javascript:this.src='../../../assets/img/dummy.png'"
                                                        alt=""></span>
         <div class="goods-md-info">
@@ -263,6 +262,8 @@
         </button>
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"> 取消订单</button>
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='SUCCESS'"> 确认收货</button>
+
+        <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CLOSE'" (click)="againBuy(item.goodsCode,item.batchNum)"> 去购买</button>
         <br>
       </td>
     </tr>

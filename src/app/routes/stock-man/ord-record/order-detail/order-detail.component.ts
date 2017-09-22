@@ -3,6 +3,7 @@ import {OrdRecordComponent} from "../ord-record.component";
 import {ActivatedRoute, Router} from "@angular/router";
 import {StockManService} from "../../stock-man.service";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
+import {HeaderComponent} from "../../../../layout/header/header.component";
 
 @Component({
   selector: 'app-order-detail',
@@ -17,7 +18,8 @@ export class OrderDetailComponent implements OnInit {
     private parentComp:OrdRecordComponent,
     private routeInfo:ActivatedRoute,
     public stockManService: StockManService,
-    private router: Router
+    private router: Router,
+    public headerComponent: HeaderComponent
   ) { }
 
   /**
@@ -68,6 +70,18 @@ export class OrderDetailComponent implements OnInit {
    */
   jsonToObject(val:string){
     return RzhtoolsService.jsonToObject(val);
+  }
+
+  /**
+   * 取消的订单再次进行购买
+   */
+  againBuy(goodsCode, num){
+    let url = '/agent/agentCart/addCustCart';
+    let data = {
+      strData: `${goodsCode},${num};`
+    }
+    this.stockManService.sendCar(url, data)
+    this.headerComponent.getShopTotal()
   }
 }
 
