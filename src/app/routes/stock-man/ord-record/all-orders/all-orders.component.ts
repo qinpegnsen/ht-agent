@@ -5,6 +5,7 @@ import {SubmitService} from "../../../../core/forms/submit.service";
 import {OrdRecordComponent} from "../ord-record.component";
 import {Router} from "@angular/router";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
+import {StockManService} from "../../stock-man.service";
 
 @Component({
   selector: 'app-all-orders',
@@ -12,13 +13,13 @@ import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
   styleUrls: ['./all-orders.component.scss']
 })
 export class AllOrdersComponent implements OnInit {
-  public curCancelOrderId:string;
   public lookLogisticsOrderId:string;
   public goodsList: Page = new Page();
   constructor(
     private submit: SubmitService,
     private parentComp:OrdRecordComponent,
     private router: Router,
+    private stockManService: StockManService
   ) { }
 
   /**
@@ -71,8 +72,12 @@ export class AllOrdersComponent implements OnInit {
    *  取消订单
    * @param orderId
    */
-  cancelOrder(orderId){
-    this.curCancelOrderId = orderId;
+  cancelOrder(ordno){
+    let url='/agentOrd/delAgentOrd';
+    let data={
+      ordno:ordno
+    }
+    this.stockManService.delAgentOrd(url,data)
   }
 
   /**

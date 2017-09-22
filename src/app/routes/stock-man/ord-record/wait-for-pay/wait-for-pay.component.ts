@@ -4,6 +4,7 @@ import {PageEvent} from "angular2-datatable";
 import {SubmitService} from "../../../../core/forms/submit.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {OrdRecordComponent} from "../ord-record.component";
+import {StockManService} from "../../stock-man.service";
 
 @Component({
   selector: 'app-wait-for-pay',
@@ -11,12 +12,12 @@ import {OrdRecordComponent} from "../ord-record.component";
   styleUrls: ['./wait-for-pay.component.scss']
 })
 export class WaitForPayComponent implements OnInit {
-  public curCancelOrderId:string;
   public goodsList: Page = new Page();
   constructor(
     private submit: SubmitService,
     private router: Router,
-    private parentComp:OrdRecordComponent
+    private parentComp:OrdRecordComponent,
+    private stockManService: StockManService
   ) { }
 
   /**
@@ -69,8 +70,12 @@ export class WaitForPayComponent implements OnInit {
    *  取消订单
    * @param orderId
    */
-  cancelOrder(orderId){
-    this.curCancelOrderId = orderId;
+  cancelOrder(ordno){
+    let url='/agentOrd/delAgentOrd';
+    let data={
+      ordno:ordno
+    }
+    this.stockManService.delAgentOrd(url,data)
   }
 
   /**

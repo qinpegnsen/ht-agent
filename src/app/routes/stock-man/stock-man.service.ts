@@ -197,7 +197,7 @@ export class StockManService {
   }
 
   /**
-   * 修改put
+   * 修改put 成功不返回
    * @param url
    * @param data
    */
@@ -221,4 +221,36 @@ export class StockManService {
     });
     return result;
   }
+
+
+  /**
+   *删除代理商订单 成功返回
+   * @param url
+   * @param data
+   */
+
+  delAgentOrd(url,data){
+    let result;
+    this.ajax.put({
+      url: url,
+      data: data,
+      async:false,
+      success: (res) => {
+        let info=res.info;
+        if(res.success){
+          console.log("█ res ►►►",  res);
+          result=res.data;
+          AppComponent.rzhAlt("success",info);
+        }else{
+          AppComponent.rzhAlt("error",info);
+        }
+      },
+      error: () => {
+        AppComponent.rzhAlt("error",'连接数据库失败');
+      }
+    });
+    return result;
+  }
+
+
 }
