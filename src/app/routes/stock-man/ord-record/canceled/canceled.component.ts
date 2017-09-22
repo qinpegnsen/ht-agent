@@ -13,7 +13,6 @@ import {HeaderComponent} from "../../../../layout/header/header.component";
 })
 export class CanceledComponent implements OnInit {
 
-  public curCancelOrderId:string;
   public lookLogisticsOrderId:string;
   public goodsList: Page = new Page();
   constructor(
@@ -69,17 +68,9 @@ export class CanceledComponent implements OnInit {
     i.style.display = 'none';
   }
 
-  /**
-   *  取消订单
-   * @param orderId
-   */
-  cancelOrder(orderId){
-    this.curCancelOrderId = orderId;
-  }
-
 
   /**
-   * 取消的订单再次进行购买
+   * 再次进行购买
    */
   againBuy(goodsCode, num) {
     let url = '/agent/agentCart/addCustCart';
@@ -89,6 +80,7 @@ export class CanceledComponent implements OnInit {
     this.stockManService.sendCar(url, data)
     this.headerComponent.getShopTotal()
   }
+
   /**
    *查看物流信息
    * @param orderId

@@ -3,6 +3,8 @@ import {Page} from "../../../../core/page/page";
 import {PageEvent} from "angular2-datatable";
 import {SubmitService} from "../../../../core/forms/submit.service";
 import {OrdRecordComponent} from "../ord-record.component";
+import {StockManService} from "../../stock-man.service";
+import {HeaderComponent} from "../../../../layout/header/header.component";
 
 @Component({
   selector: 'app-finished',
@@ -11,10 +13,14 @@ import {OrdRecordComponent} from "../ord-record.component";
 })
 export class FinishedComponent implements OnInit {
 
-  public curCancelOrderId:string;
   public lookLogisticsOrderId:string;
   public goodsList: Page = new Page();
-  constructor(private submit: SubmitService,private parentComp:OrdRecordComponent) { }
+  constructor(
+    private submit: SubmitService,
+    private parentComp:OrdRecordComponent,
+    public stockManService: StockManService,
+    public headerComponent: HeaderComponent
+  ) { }
 
   /**
    * 1.设置当前点击的颜色
@@ -63,11 +69,15 @@ export class FinishedComponent implements OnInit {
   }
 
   /**
-   *  取消订单
-   * @param orderId
+   * 再次进行购买
    */
-  cancelOrder(orderId){
-    this.curCancelOrderId = orderId;
+  againBuy(goodsCode, num) {
+    let url = '/agent/agentCart/addCustCart';
+    let data = {
+      strData: `${goodsCode},${num};`
+    }
+    this.stockManService.sendCar(url, data)
+    this.headerComponent.getShopTotal()
   }
 
   /**
