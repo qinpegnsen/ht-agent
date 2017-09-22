@@ -22,7 +22,7 @@ export class FinishedComponent implements OnInit {
    */
   ngOnInit() {
     let me = this;
-    me.parentComp.orderType = 5;
+    me.parentComp.orderType = 6;
     me.queryDatas()
   }
 
