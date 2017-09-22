@@ -12,8 +12,8 @@ import {HeaderComponent} from "../../../../layout/header/header.component";
 })
 export class OrderDetailComponent implements OnInit {
 
-  public orderData: any;              //订单的数据
-
+  public orderData: any;                                  //订单的数据
+  public LogisticsData;                                   //获取物流的信息
   constructor(
     private parentComp:OrdRecordComponent,
     private routeInfo:ActivatedRoute,
@@ -25,6 +25,7 @@ export class OrderDetailComponent implements OnInit {
   /**
    * 1.获取页面传递的数据
    * 2.获取订单的信息
+   * 3.获取物流追踪的信息
    */
   ngOnInit() {
     let me = this;
@@ -38,7 +39,8 @@ export class OrderDetailComponent implements OnInit {
     if(!this.orderData){
       this.orderData='';//避免报错
     }
-    console.log("█ this.orderData ►►►",  this.orderData);
+
+    this.showLogistics()
   }
 
   /**
@@ -83,6 +85,20 @@ export class OrderDetailComponent implements OnInit {
     this.stockManService.sendCar(url, data)
     this.headerComponent.getShopTotal()
   }
+
+  /**
+   *显示物流信息
+   * @param orderId
+   */
+  showLogistics(){
+    let url='/ord/tail/queryList';
+    let data={
+      ordno:'1234123451235'                //目前是写死的，以后再改
+    };
+    this.LogisticsData=this.stockManService.getShopList(url,data);
+    console.log("█ this.LogisticsData ►►►",  this.LogisticsData);
+  }
+
 }
 
 

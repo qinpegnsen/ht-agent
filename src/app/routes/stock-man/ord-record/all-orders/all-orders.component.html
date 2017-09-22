@@ -76,7 +76,7 @@
               查看物流
             </p>
             <div class="szh-buyer-info text-left" #Logistics (mouseenter)="showLogistics(Logistics)"
-                 (mouseleave)="showLogistics(Logistics)">
+                 (mouseleave)="hideLogistics(Logistics)">
               <div class="info-con">
                 <p class="pl mb-sm"><i class="fa fa-user"></i> 物流信息</p>
                 <div *ngFor="let item of LogisticsData;let i=index" class="mb5">
