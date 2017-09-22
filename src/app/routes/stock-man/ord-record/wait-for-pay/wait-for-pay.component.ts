@@ -71,11 +71,12 @@ export class WaitForPayComponent implements OnInit {
    * @param orderId
    */
   cancelOrder(ordno){
-    let url='/agentOrd/delAgentOrd';
+    let url='/agentOrd/cancelAgentOrd';
     let data={
       ordno:ordno
     }
-    this.stockManService.delAgentOrd(url,data)
+    this.stockManService.delAgentOrd(url,data);
+    this.queryDatas();
   }
 
   /**

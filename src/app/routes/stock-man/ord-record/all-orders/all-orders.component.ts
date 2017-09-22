@@ -70,14 +70,16 @@ export class AllOrdersComponent implements OnInit {
 
   /**
    *  取消订单
+   *  1.取消完刷新页面
    * @param orderId
    */
   cancelOrder(ordno){
-    let url='/agentOrd/delAgentOrd';
+    let url='/agentOrd/cancelAgentOrd';
     let data={
       ordno:ordno
     }
-    this.stockManService.delAgentOrd(url,data)
+    this.stockManService.delAgentOrd(url,data);
+    this.queryDatas();
   }
 
   /**
