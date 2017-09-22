@@ -63,60 +63,164 @@
     </dl>
   </div>
 </div>
-<div class="rate-of-progress mt-xl mb-xl w100">
+<!--其他的状态-->
+<div class="rate-of-progress mt-xl mb-xl w100" *ngIf="orderData.state!='CLOSE'">
   <div class="szh-progress-bar w90">
     <div *ngIf="orderData.state=='CR'" class="already-progress _w0"></div>
-    <div *ngIf="orderData.state=='PADI'" class="already-progress w25"></div>
+    <div *ngIf="orderData.state=='PAID'" class="already-progress w25"></div>
     <div *ngIf="orderData.state=='PREPARE'" class="already-progress w50"></div>
     <div *ngIf="orderData.state=='DELIVERY'" class="already-progress w75"></div>
     <div *ngIf="orderData.state=='SUCCESS'" class="already-progress w100"></div>
 
+
   </div>
-  <dl class="cur">
-    <dt>提交订单</dt>
-    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-    <dd>2017-05-19 10:03:22</dd>
-  </dl>
-  <dl class="cur" *ngIf="orderData.state=='PADI'||orderData.state=='PREPARE'||orderData.state=='DELIVERY'||orderData.state=='SUCCESS'">
-    <dt>完成付款</dt>
-    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-    <dd>2017-05-19 10:03:22</dd>
-  </dl>
-  <dl  *ngIf="orderData.state!='PADI'||orderData.state!='PREPARE'||orderData.state!='DELIVERY'||orderData.state!='SUCCESS'">
-    <dt>完成付款</dt>
-    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-    <dd>2017-05-19 10:03:22</dd>
-  </dl>
-  <dl class="cur" *ngIf="orderData.state=='PREPARE'||orderData.state=='DELIVERY'||orderData.state=='SUCCESS'">
-    <dt>商家配货</dt>
-    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-    <dd>2017-05-19 10:03:22</dd>
-  </dl>
-  <dl  *ngIf="orderData.state!='PREPARE'||orderData.state!='DELIVERY'||orderData.state!='SUCCESS'">
-    <dt>商家配货</dt>
-    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-    <dd>2017-05-19 10:03:22</dd>
-  </dl>
-  <dl class="cur" *ngIf="orderData.state=='DELIVERY'||orderData.state=='SUCCESS'">
-    <dt>商家发货</dt>
-    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-    <dd>2017-05-19 10:03:22</dd>
-  </dl>
-  <dl *ngIf="orderData.state!='DELIVERY'||orderData.state!='SUCCESS'">
-    <dt>商家发货</dt>
-    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-    <dd>2017-05-19 10:03:22</dd>
-  </dl>
-  <dl class="cur" *ngIf="orderData.state=='SUCCESS'">
-    <dt>确认收货</dt>
-    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-    <dd>2017-05-19 10:03:22</dd>
-  </dl>
-  <dl *ngIf="orderData.state!='SUCCESS'">
-    <dt>确认收货</dt>
-    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-    <dd>2017-05-19 10:03:22</dd>
-  </dl>
+  <ng-container *ngIf="orderData.state=='CR'">
+    <dl class="cur">
+      <dt>提交订单</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl>
+      <dt>完成付款</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl>
+      <dt>商家配货</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl>
+      <dt>商家发货</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl>
+      <dt>确认收货</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+  </ng-container>
+  <ng-container *ngIf="orderData.state=='PAID'">
+    <dl class="cur">
+      <dt>提交订单</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl class="cur">
+      <dt>完成付款</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl>
+      <dt>商家配货</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl>
+      <dt>商家发货</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl>
+      <dt>确认收货</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+  </ng-container>
+  <ng-container *ngIf="orderData.state=='PREPARE'">
+    <dl class="cur">
+      <dt>提交订单</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl class="cur">
+      <dt>完成付款</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl class="cur">
+      <dt>商家配货</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl>
+      <dt>商家发货</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl>
+      <dt>确认收货</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+  </ng-container>
+  <ng-container *ngIf="orderData.state=='DELIVERY'">
+    <dl class="cur">
+      <dt>提交订单</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl class="cur">
+      <dt>完成付款</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl class="cur">
+      <dt>商家配货</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl class="cur">
+      <dt>商家发货</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl>
+      <dt>确认收货</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+  </ng-container>
+  <ng-container *ngIf="orderData.state=='SUCCESS'">
+    <dl class="cur">
+      <dt>提交订单</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl class="cur">
+      <dt>完成付款</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl class="cur">
+      <dt>商家配货</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl class="cur">
+      <dt>商家发货</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+    <dl class="cur">
+      <dt>确认收货</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+  </ng-container>
+</div>
+
+<!--订单关闭的状态-->
+<div class="rate-of-progress mt-xl mb-xl w100" *ngIf="orderData.state=='CLOSE'">
+  <div *ngIf="orderData.state=='CLOSE'" class="already-progress _w0"></div>
+  <ng-container *ngIf="orderData.state=='CLOSE'">
+    <dl class="cur">
+      <dt>订单关闭</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dd>2017-05-19 10:03:22</dd>
+    </dl>
+  </ng-container>
 </div>
 <div class="w100">
   <table class="w100 b">
@@ -148,12 +252,15 @@
       <td class="bb">{{item.batchPrice| number:'1.2-2'}}</td>
       <td class="bb">{{item.batchNum}}</td>
       <td class="bl" [attr.rowspan]="orderData.agentOrdItemList.length">
-        <span class="main-red font14">¥ {{item.batchPrice*item.batchNum | number:'1.2-2'}}</span><br>
-        <span class="font-gray">（免运费）</span><br>
-        <span class="font-gray">在线支付</span>
+        <span class="main-red font14">{{item.batchPrice*item.batchNum | number:'1.2-2'}}</span><br>
+        <span class="font-gray">运费 {{orderData.freightPrice | number:'1.2-2'}}</span><br>
+        <span class="font-gray" *ngIf="orderData.payWay=='ONLINE'">在线支付</span>
+        <span class="font-gray" *ngIf="orderData.payWay=='REMIT'">银行汇款</span>
       </td>
       <td class="bl" [attr.rowspan]="orderData.agentOrdItemList.length">
-        <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'" (click)="goPay(orderData.ordno)"> 去支付</button>
+        <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"
+                (click)="goPay(orderData.ordno)"> 去支付
+        </button>
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"> 取消订单</button>
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='SUCCESS'"> 确认收货</button>
         <br>

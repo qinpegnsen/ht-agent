@@ -33,6 +33,9 @@ export class OrderDetailComponent implements OnInit {
       ordno:ordno
     }
     this.orderData=this.stockManService.getShopList(url,data);
+    if(!this.orderData){
+      this.orderData='';//避免报错
+    }
     console.log("█ this.orderData ►►►",  this.orderData);
   }
 

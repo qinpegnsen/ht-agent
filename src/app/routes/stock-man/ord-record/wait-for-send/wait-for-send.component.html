@@ -59,9 +59,10 @@
             </div>
           </td>
           <td class="w10 bl" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length">
-            <span class="main-red font14">¥{{goods.pay | number:'1.2-2'}}</span><br>
-            <span class="font-gray">（免运费）</span><br>
-            <span class="font-gray">在线支付</span>
+            <span class="main-red font14">{{goods.pay | number:'1.2-2'}}</span><br>
+            <span class="font-gray">运费 {{goods.freightPrice | number:'1.2-2'}}</span><br>
+            <span class="font-gray" *ngIf="goods.payWay=='ONLINE'">在线支付</span>
+            <span class="font-gray" *ngIf="goods.payWay=='REMIT'">银行汇款</span>
           </td>
           <td class="w10 bl" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length">
             <p class="font-gray mb-sm cursor-p" *ngIf="goods.state=='CR'">待支付</p>
@@ -69,7 +70,7 @@
             <p class="font-gray mb-sm cursor-p" *ngIf="goods.state=='PREPARE'">待发货</p>
             <p class="font-gray mb-sm cursor-p" *ngIf="goods.state=='SUCCESS'">已完成</p>
             <p class="font-gray mb-sm cursor-p" *ngIf="goods.state=='CLOSE'">已取消</p>
-            <p class="cursor-p mb-sm" myHoverColor [myHover]="'#CC1635'" routerLink="../order-detail">查看详情</p>
+            <p class="cursor-p mb-sm" myHoverColor [myHover]="'#CC1635'" routerLink="../order-detail" [queryParams]="{ordno:goods.ordno}">查看详情</p>
             <p class="cursor-p mb-sm" myHoverColor [myHover]="'orange'" (click)="lookLogistics(goods.goodsName)">
               查看物流</p>
           </td>
