@@ -6,6 +6,7 @@ import {OrdRecordComponent} from "../ord-record.component";
 import {Router} from "@angular/router";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 import {StockManService} from "../../stock-man.service";
+import {HeaderComponent} from "../../../../layout/header/header.component";
 
 @Component({
   selector: 'app-all-orders',
@@ -13,13 +14,14 @@ import {StockManService} from "../../stock-man.service";
   styleUrls: ['./all-orders.component.scss']
 })
 export class AllOrdersComponent implements OnInit {
-  public lookLogisticsOrderId:string;
-  public goodsList: Page = new Page();
+  public goodsList: Page = new Page();                    //获取列表的数据
+  public LogisticsData;                                   //获取物流的信息
   constructor(
     private submit: SubmitService,
     private parentComp:OrdRecordComponent,
     private router: Router,
-    private stockManService: StockManService
+    private stockManService: StockManService,
+    public headerComponent: HeaderComponent
   ) { }
 
   /**
@@ -83,11 +85,24 @@ export class AllOrdersComponent implements OnInit {
   }
 
   /**
-   *查看物流信息
+   *显示物流信息
    * @param orderId
    */
-  lookLogistics(orderId){
-    this.lookLogisticsOrderId = orderId;
+  showLogistics(Logistics){
+    Logistics.style.display = 'block';
+    let url='/ord/tail/queryList';
+    let data={
+      ordno:'1234123451235'                //目前是写死的，以后再改
+    };
+    this.LogisticsData=this.stockManService.getShopList(url,data)[3].traceVos;
+  }
+
+  /**
+   *隐藏物流信息
+   * @param orderId
+   */
+  hideLogistics(Logistics){
+    Logistics.style.display = 'none';
   }
 
   /**
@@ -103,6 +118,19 @@ export class AllOrdersComponent implements OnInit {
    */
   jsonToObject(val:string){
     return RzhtoolsService.jsonToObject(val);
+  }
+
+
+  /**
+   * 再次进行购买
+   */
+  againBuy(goodsCode, num) {
+    let url = '/agent/agentCart/addCustCart';
+    let data = {
+      strData: `${goodsCode},${num};`
+    }
+    this.stockManService.sendCar(url, data)
+    this.headerComponent.getShopTotal()
   }
 
 }

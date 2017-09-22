@@ -39,7 +39,7 @@
             <span class="mb0 cursor-p" myHoverColor [myHover]="'#CC1635'" (mouseenter)="showUserInfo(i)"
                   (mouseleave)="hideBuyerInfo(i)">{{goods.agentName}}
             </span>
-              <div class="szh-buyer-info text-left" #i (mouseenter)="showUserInfo(i)" (mouseleave)="hideBuyerInfo(i)">
+            <div class="szh-buyer-info text-left" #i (mouseenter)="showUserInfo(i)" (mouseleave)="hideBuyerInfo(i)">
               <div class="info-con">
                 <p class="pl mb-sm"><i class="fa fa-user"></i> 用户信息</p>
                 <dl>
@@ -63,22 +63,47 @@
             <span class="font-gray" *ngIf="goods.payWay=='ONLINE'">在线支付</span>
             <span class="font-gray" *ngIf="goods.payWay=='REMIT'">银行汇款</span>
           </td>
-          <td class="w10 bl" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length">
+          <td class="w10 bl  position-relative" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length">
             <p class="font-gray mb-sm cursor-p" *ngIf="goods.state=='CR'">待支付</p>
             <p class="font-gray mb-sm cursor-p" *ngIf="goods.state=='PAID'">待配货</p>
             <p class="font-gray mb-sm cursor-p" *ngIf="goods.state=='PREPARE'">待发货</p>
             <p class="font-gray mb-sm cursor-p" *ngIf="goods.state=='SUCCESS'">已完成</p>
             <p class="font-gray mb-sm cursor-p" *ngIf="goods.state=='CLOSE'">已取消</p>
-            <p class="cursor-p mb-sm" myHoverColor [myHover]="'#CC1635'" routerLink="../order-detail" [queryParams]="{ordno:goods.ordno}">查看详情</p>
-            <p class="cursor-p mb-sm" myHoverColor [myHover]="'orange'" (click)="lookLogistics(goods.goodsName)">
-              查看物流</p>
+            <p class="cursor-p mb-sm" myHoverColor [myHover]="'#CC1635'" routerLink="../order-detail"
+               [queryParams]="{ordno:goods.ordno}">查看详情</p>
+            <p class="cursor-p mb-sm" myHoverColor [myHover]="'orange'" (mouseenter)="showLogistics(Logistics)"
+               (mouseleave)="hideLogistics(Logistics)">
+              查看物流
+            </p>
+            <div class="szh-buyer-info text-left" #Logistics (mouseenter)="showLogistics(Logistics)"
+                 (mouseleave)="showLogistics(Logistics)">
+              <div class="info-con">
+                <p class="pl mb-sm"><i class="fa fa-user"></i> 物流信息</p>
+                <div *ngFor="let item of LogisticsData;let i=index" class="mb5">
+                  <div>时间：{{item.acceptTime}}</div>
+                  <div>状态：{{item.acceptStation}}</div>
+                </div>
+              </div>
+            </div>
+
           </td>
           <td class="w10 bl" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length">
-            <button *ngIf="goods.state=='CR'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-retweet _backColor" (click)="goPay(goods.ordno,goods.payWay)"> 去付款</button>  <br>
-            <button *ngIf="goods.state=='CR'" class="m-sm btn btn-xs btn-outline btn-warning fa fa-ban" (click)="cancelOrder(goods.ordno)">
+            <button *ngIf="goods.state=='CR'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-retweet _backColor"
+                    (click)="goPay(goods.ordno,goods.payWay)"> 去付款
+            </button>
+            <br>
+            <button *ngIf="goods.state=='CR'" class="m-sm btn btn-xs btn-outline btn-warning fa fa-ban"
+                    (click)="cancelOrder(goods.ordno)">
               取消订单
             </button>
-            <button *ngIf="goods.state=='SUCCESS'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-retweet">确认收货</button>
+            <button *ngIf="goods.state=='DELIVERY'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-retweet">确认收货
+            </button>
+            <button *ngIf="goods.state=='SUCCESS'" class="m-sm btn btn-xs btn-warning fa fa-plus"
+                    (click)="againBuy(item.goodsCode,item.batchNum)"> 再进货
+            </button>
+            <button *ngIf="goods.state=='CLOSE'" class="m-sm btn btn-xs btn-warning fa fa-plus"
+                    (click)="againBuy(item.goodsCode,item.batchNum)"> 再进货
+            </button>
           </td>
         </tr>
       </table>

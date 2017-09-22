@@ -21,12 +21,9 @@ export class StockManService {
       data: data,
       async:false,
       success: (data) => {
-        let info=data.info;
         if(data.success){
           result=data.data;
         }else{
-          console.log("█ data ►►►",  data);
-          console.log("█ 1 ►►►",  1);
           if(data.info=='代理商购物车商品无查询数据'){
             result='';
           }
