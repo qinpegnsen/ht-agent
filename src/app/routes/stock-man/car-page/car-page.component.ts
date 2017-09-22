@@ -174,6 +174,7 @@ export class CarPageComponent implements OnInit {
     if ($(obj).prop('checked')) {
       $(obj).parents("._padingBtm").find("._myPaddingBody").css('background', '#FFF4E8')   //点击的时候样式的变化
       $(obj).parents('._padingBtm').find("._store").prop("checked", true);
+      console.log("█ 1 ►►►",  1);
     } else {
       $(obj).parents("._padingBtm").find("._myPaddingBody").css('background', '#fff')   //点击的时候样式的变化
       $(obj).parents('._padingBtm').find("._store").prop("checked", false)
