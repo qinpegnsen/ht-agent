@@ -353,6 +353,19 @@ export class CarPageComponent implements OnInit {
       sessionStorage.setItem('cartId', this.strDataTemp);
       this.router.navigate(['/main/stockMan/order']);
     }
-
   }
+
+
+  /**
+   * keyUp  的时候检查输入的值
+   */
+  checkVal(obj){
+
+    if(obj.value==''){
+      obj.value=1;
+    }else{
+      obj.value=Math.floor(obj.value);   //如果是小数，取整数
+    }
+  }
+
 }

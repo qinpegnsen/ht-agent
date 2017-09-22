@@ -201,5 +201,17 @@ export class AgentOrdComponent implements OnInit {
     this.headerComponent.getShopTotal()
   }
 
+  /**
+   * keyUp  的时候检查输入的值
+   */
+  checkVal(obj){
+
+    if(obj.value==''){
+      obj.value=1;
+    }else{
+      obj.value=Math.floor(obj.value);   //如果是小数，取整数
+    }
+  }
+
 
 }

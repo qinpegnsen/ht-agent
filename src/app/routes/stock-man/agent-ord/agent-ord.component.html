@@ -81,7 +81,7 @@
           <td class="_myNmu">
             <div class="input-group input-group-sm width120 text-center">
               <span class="input-group-addon" (click)="minusNum($event.target)"><i class="fa fa-minus"></i></span>
-              <input class="form-control _num num  text-center" type="number"  value="1" (change)="changeNum($event.target)"/>
+              <input class="form-control _num num  text-center" #input  type="number"  value="1" (change)="changeNum($event.target)" (keyup)="checkVal(input)" required/>
               <input type="hidden" value="{{shop.goodsCode}}">
               <span class="input-group-addon" (click)="addNum(i,$event.target)"><i class="fa fa-plus"></i></span>
             </div>
