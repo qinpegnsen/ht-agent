@@ -296,8 +296,8 @@ export class CarPageComponent implements OnInit {
     let price = $(obj).parents("._myPaddingBody").find('._batchPrice').text().slice(1);
     let num = $(obj).parents("._myPaddingBody").find('._num').val();
     let totalPrice = price * num;
-    let strNum=String(totalPrice);
-    let trueNum=Number(strNum.substr(0,strNum.indexOf(".")+3))
+
+    var trueNum=totalPrice.toFixed(2);
     $(obj).parents("._myPaddingBody").find('._goodTotalPrice').text(trueNum);
   }
 

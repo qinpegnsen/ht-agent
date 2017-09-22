@@ -75,7 +75,7 @@
               <div class="input-group updateNum input-group-sm  width120 clearfix">
                 <span class="input-group-addon" (click)="minusNum($event.target,good.agentCartId)"><i
                   class="fa fa-minus"></i></span>
-                <input class="form-control _num num text-center" type="number"
+                <input class="form-control _num num text-center" type="number" #input
                        (change)="updataNum($event.target,good.agentCartId,good.storageNum)"
                        value="{{good.num}}" (keyup)="checkVal(input)"/>
                 <input type="hidden" class="_agentCartId" value="{{good.agentCartId}}" >
