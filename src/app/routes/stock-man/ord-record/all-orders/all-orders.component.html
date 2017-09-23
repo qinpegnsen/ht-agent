@@ -75,13 +75,38 @@
                (mouseleave)="hideLogistics(Logistics)">
               查看物流
             </p>
-            <div class="szh-buyer-info text-left" #Logistics (mouseenter)="showLogistics(Logistics)"
+            <div class="szh-buyer-info text-left _logisticsP" #Logistics (mouseenter)="showLogistics(Logistics)"
                  (mouseleave)="hideLogistics(Logistics)">
-              <div class="info-con">
-                <p class="pl mb-sm"><i class="fa fa-user"></i> 物流信息</p>
-                <div *ngFor="let item of LogisticsData;let i=index" class="mb5">
-                  <div>时间：{{item.acceptTime}}</div>
-                  <div>状态：{{item.acceptStation}}</div>
+              <div class="info-con _logisticsW">
+                <p class="pl mb-sm"><i class="fa fa-shopping-cart"></i> 物流信息</p>
+
+
+                <!--<div *ngFor="let item of LogisticsData;let i=index" class="mb5">-->
+                  <!--<div>时间：{{item.acceptTime}}</div>-->
+                  <!--<div>状态：{{item.acceptStation}}</div>-->
+                <!--</div>-->
+
+
+                <div class="_logistics">
+                  <ul class="timeline-alt p0">
+                    <ng-container *ngFor="let item of LogisticsData;let i=index;">
+                      <li class="mb0">
+                        <div class="timeline-badge primary">
+                          <em class="fa fa-users"></em>
+                        </div>
+                        <div class="timeline-panel">
+                          <div class="right" ng-reflect-klass="popover" ng-reflect-ng-class="right">
+                            <div>
+                              <p>
+                                <span class="mr">{{item.acceptTime}}</span>
+                                <span>{{item.acceptStation}}</span>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </li>
+                    </ng-container>
+                  </ul>
                 </div>
               </div>
             </div>

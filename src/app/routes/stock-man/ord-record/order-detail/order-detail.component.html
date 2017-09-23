@@ -50,16 +50,7 @@
       </li>
     </ul>
     <dl>
-    <dt>订单跟踪</dt>
-    <dd class="pl-xl">
-    <ul class="list-unstyled">
-    <li *ngFor="let item of LogisticsData[3].traceVos;let i=index;">
-    <span class="mr10">{{i+1}}</span>
-    <span class="mr5">{{item.acceptTime}}</span>
-    <span class="mr5">{{item.acceptStation}}</span>
-    </li>
-    </ul>
-    </dd>
+
     </dl>
 
 
@@ -223,6 +214,7 @@
   </ng-container>
 </div>
 
+<!--物流信息-->
 <div class="_logistics">
   <ul class="timeline-alt p0">
     <ng-container *ngFor="let item of LogisticsData;let i=index;">
@@ -245,27 +237,11 @@
           </div>
         </div>
       </li>
-
-      <!--<li  *ngFor="let detail of item.traceVos;let i=index;">-->
-      <!--<div  class="timeline-badge primary">-->
-      <!--<em  class="fa fa-users"></em>-->
-      <!--</div>-->
-      <!--<div  class="timeline-panel">-->
-      <!--<div  class="popover right" ng-reflect-klass="popover" ng-reflect-ng-class="right">-->
-      <!--<div  class="popover-content">-->
-      <!--<p >-->
-      <!--{{detail.acceptTime}}-->
-      <!--{{detail.acceptStation}}-->
-      <!--</p>-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--</div>-->
-      <!--</li>-->
     </ng-container>
   </ul>
 </div>
 
-
+<!--订单信息-->
 <div class="w100">
   <table class="w100 b">
     <thead class="w100">

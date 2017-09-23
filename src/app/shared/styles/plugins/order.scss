@@ -67,15 +67,22 @@ $buyer-info-box-width: 200px;
   background-color: #FFFCE9;
   border-radius: 4px;
   position: absolute;
-  z-index: 2;
-  left: 40%;
+  z-index: 200000000000;
+  bottom:60%;right:60%;
   box-shadow: 1px 1px 1px 3px #FFFCE9;
+}
+._logisticsP{
+  width: $buyer-info-box-width+120;
+  bottom:-30%;right:70%;
 }
 .szh-buyer-info .info-con{
   padding: 10px;
   width: $buyer-info-box-width;
   background-color: #fff;
   border-radius: 4px;
+}
+._logisticsW{
+  width: 100% !important;
 }
 .szh-buyer-info dl{
   margin-bottom: 3px;
