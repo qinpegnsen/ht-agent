@@ -98,10 +98,10 @@
             </button>
             <button *ngIf="goods.state=='DELIVERY'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-retweet">确认收货
             </button>
-            <button *ngIf="goods.state=='SUCCESS'" class="m-sm btn btn-xs btn-warning fa fa-plus"
+            <button *ngIf="goods.state=='SUCCESS'" class="m-sm btn btn-xs btn-warning fa fa-shopping-cart"
                     (click)="againBuy(item.goodsCode,item.batchNum)"> 再进货
             </button>
-            <button *ngIf="goods.state=='CLOSE'" class="m-sm btn btn-xs btn-warning fa fa-plus"
+            <button *ngIf="goods.state=='CLOSE'" class="m-sm btn btn-xs btn-warning fa fa-shopping-cart"
                     (click)="againBuy(item.goodsCode,item.batchNum)"> 再进货
             </button>
           </td>
