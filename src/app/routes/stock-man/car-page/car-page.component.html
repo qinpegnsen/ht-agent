@@ -52,11 +52,14 @@
         <ul class="clearfix panel panel-default _extra _list">
           <!--商品列表-->
           <li class="_myPaddingBody clearfix _list" *ngFor="let good of store.agentGoodsVOList;let i = index">
+            <div *ngIf="good.isBatch=='N'" class="wmask"></div>
             <div class="w10 pull-left text-left">
               <div class="checkbox c-checkbox _special">
                 <label>
                   <input type="checkbox" class="_good" (click)="goodEle($event.target)"/>
                   <span class="fa fa-check"></span>
+                  <ng-container *ngIf="good.isBatch=='N'">已失效</ng-container>
+                  <ng-container *ngIf="good.isBuy=='N'">已下架</ng-container>
                 </label>
               </div>
             </div>
@@ -78,7 +81,7 @@
                 <input class="form-control _num num text-center" type="number" #input
                        (change)="updataNum($event.target,good.agentCartId,good.storageNum)"
                        value="{{good.num}}" (keyup)="checkVal(input)"/>
-                <input type="hidden" class="_agentCartId" value="{{good.agentCartId}}" >
+                <input type="hidden" class="_agentCartId" value="{{good.agentCartId}}">
                 <span class="input-group-addon" (click)="addNum($event.target,good.agentCartId,good.storageNum)"><i
                   class="fa fa-plus" disabled></i></span>
               </div>
@@ -86,7 +89,7 @@
             <div class="w10 pull-left text-center _goodTotalPrice">
               ￥ {{good.goodsSubtotal | number:'1.2-2'}}
             </div>
-            <div class="w20 pull-left text-center">
+            <div class="w20 pull-left text-center _delMask">
               <app-buttons [config]="deletebutton" (click)="doDelete(good.agentCartId)"></app-buttons>
             </div>
           </li>

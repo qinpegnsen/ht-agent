@@ -34,7 +34,7 @@ $largeImg: 80px;      // 商品列表图片的宽，较大的图
   line-height:40px;
 }
 ._list{
-  list-style: none;margin:0;padding: 0;
+  list-style: none;margin:0;padding: 0;position: relative;
 }
 //悬浮时手型
 ._myhover:hover{

@@ -361,12 +361,15 @@ export class CarPageComponent implements OnInit {
    * keyUp  的时候检查输入的值
    */
   checkVal(obj){
-
-    if(obj.value==''){
+    if(obj.value==''||obj.value==0){
       obj.value=1;
     }else{
       obj.value=Math.floor(obj.value);   //如果是小数，取整数
     }
+  }
+
+  disable(){
+    console.log("█ 1 ►►►",  1);
   }
 
 }
