@@ -68,7 +68,8 @@
                     <span>{{item.description}}</span>
                   </p>
                   <p *ngFor="let detail of item.traceVos;let i=index;">
-                    <span class="mr" >{{detail.acceptTime}}</span>
+                    <span class="mr" *ngIf="">{{detail.day}}</span>
+                    <span class="mr">{{detail.time}}</span>
                     <span>{{detail.acceptStation}}</span>
                   </p>
                 </div>
