@@ -40,6 +40,7 @@ import {HomeComponent} from "../routes/home/home/home.component";
 import {AccordionComponent, BsDatepickerModule} from "ngx-bootstrap";
 import {FoueAreasModule} from "./directives/foue-areas/foue-areas.module";
 import {HoverDirective} from "./hover/hover.directive";
+import {SubstringPipe} from "./pipe/substring.pipe";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -83,10 +84,12 @@ import {HoverDirective} from "./hover/hover.directive";
     ScrollableDirective,
     JqcloudDirective,
     HomeComponent,
+    SubstringPipe,
     HoverDirective
   ],
   exports: [
     HoverDirective,
+    SubstringPipe,
     DataTableModule,
     RzhButtonsModule,
     BsDatepickerModule,
