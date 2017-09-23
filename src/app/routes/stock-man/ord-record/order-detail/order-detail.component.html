@@ -50,7 +50,7 @@
       </dl>
     </div>
   </div>
-  <div class="szh-order-condition bt br bb">
+  <div class="szh-order-condition bt br bb _w78">
     <div class="order-head _position">包裹信息</div>
     <!--物流信息-->
     <div class="_logistics">
@@ -63,12 +63,12 @@
             <div class="timeline-panel">
               <div class="right" >
                 <div>
-                  <p>
+                  <p *ngIf="item.state!='DELIVERY'">
                     <span class="mr">{{item.createTime}}</span>
                     <span>{{item.description}}</span>
                   </p>
                   <p *ngFor="let detail of item.traceVos;let i=index;">
-                    <span class="mr">{{detail.acceptTime}}</span>
+                    <span class="mr" >{{detail.acceptTime}}</span>
                     <span>{{detail.acceptStation}}</span>
                   </p>
                 </div>

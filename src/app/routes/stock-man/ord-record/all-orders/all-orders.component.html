@@ -78,7 +78,12 @@
             <div class="szh-buyer-info text-left _logisticsP" #Logistics (mouseenter)="showLogistics(Logistics)"
                  (mouseleave)="hideLogistics(Logistics)">
               <div class="info-con _logisticsW">
-                <p class="pl mb-sm"><i class="fa fa-truck"></i> 物流信息</p>
+                <p class="pl mb-sm clearfix">
+                  <span class="fa fa-truck pull-left _line-height"></span>
+                  <span class="pull-left">物流信息</span>
+                  <span class="pull-right" routerLink="../order-detail"
+                        [queryParams]="{ordno:goods.ordno}">查看更多</span>
+                </p>
                 <div class="_logistics">
                   <ul class="timeline-alt p0">
                     <ng-container *ngFor="let item of LogisticsData;let i=index;">
@@ -86,11 +91,11 @@
                         <div class="timeline-badge primary">
                           <em class="fa fa-truck"></em>
                         </div>
-                        <div class="timeline-panel">
+                        <div class="timeline-panel _mrl">
                           <div class="right" ng-reflect-klass="popover" ng-reflect-ng-class="right">
                             <div>
                               <p>
-                                <span class="mr">{{item.acceptTime}}</span>
+                                <span class="mr">{{item.acceptTime}}</span><br>
                                 <span>{{item.acceptStation}}</span>
                               </p>
                             </div>

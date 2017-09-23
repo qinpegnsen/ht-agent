@@ -1,7 +1,7 @@
 /* ========================================================================
      Component: timeline
  ========================================================================== */
- 
+
 $timeline-badge-size:           36px;
 $timeline-datetime-height:      20px;
 $timeline-separator-width:      120px;
@@ -24,13 +24,13 @@ $timeline-separator-width:      120px;
       background-color: #d1d2d3;
       left: $timeline-badge-size / 2;
     }
-    
-    // clear all float element using a last item  
+
+    // clear all float element using a last item
     .timeline-end {
       float: none;
       clear: both;
     }
-    
+
     // change popover default colors to use no title
     .popover {
       &.left > .arrow:after {
@@ -53,7 +53,7 @@ $timeline-separator-width:      120px;
   > li {
     @include clearfix();
     margin-bottom: 20px;
-    
+
     &.timeline-separator {
       position: relative;
       float: none;
@@ -130,7 +130,7 @@ $timeline-separator-width:      120px;
       color: #fff;
       background-color: #999;
       z-index: 100;
-      
+
       // Color variants
       &.primary { background-color: $brand-primary; }
       &.success { background-color: $brand-success; }
@@ -145,7 +145,7 @@ $timeline-separator-width:      120px;
       &.dark    { background-color: $brand-dark;    }
       &.yellow  { background-color: $brand-yellow;  }
   }
-    
+
 }
 
 .timeline-alt {
@@ -174,7 +174,7 @@ $timeline-separator-width:      120px;
 // Timeline for Desktops
 // --------------------------------
 @media only screen and (min-width: $mq-desktop) {
-    
+
     .timeline {
       &:before {
         left: 50%;
@@ -184,7 +184,7 @@ $timeline-separator-width:      120px;
         float: left;
         clear: left;
         width: 45%;
-        
+
         &.timeline-inverted {
           float: right;
           clear: right;
@@ -232,7 +232,7 @@ $timeline-separator-width:      120px;
           right: -14px;
           left: auto;
         }
-        
+
         .popover .arrow {
           display: block;
         }
@@ -257,5 +257,5 @@ $timeline-separator-width:      120px;
     }
 
 
-    
+
 }
