@@ -14,6 +14,7 @@ export class OrderDetailComponent implements OnInit {
 
   public orderData: any;                                  //订单的数据
   public LogisticsData;                                   //获取物流的信息
+  public expressName;                                     //快递公司的名字
   constructor(
     private parentComp:OrdRecordComponent,
     private routeInfo:ActivatedRoute,
@@ -96,7 +97,7 @@ export class OrderDetailComponent implements OnInit {
       ordno:'1234123451235'                //目前是写死的，以后再改
     };
     this.LogisticsData=this.stockManService.getShopList(url,data);
-    console.log("█ this.LogisticsData ►►►",  this.LogisticsData);
+    this.expressName=this.LogisticsData[3].expressName;
   }
 
 }

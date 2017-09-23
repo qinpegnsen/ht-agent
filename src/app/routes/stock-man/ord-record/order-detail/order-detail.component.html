@@ -3,8 +3,16 @@
     <div class="order-head p b">订单信息</div>
     <div class="content p-lg b bt0">
       <dl>
-        <dt>收&nbsp;货&nbsp;人：</dt>
-        <dd>{{orderData.linkman}}{{orderData.mobile}}{{orderData.addr}}</dd>
+        <dt>买家姓名：</dt>
+        <dd>{{orderData.linkman}}</dd>
+      </dl>
+      <dl>
+        <dt>联系电话：</dt>
+        <dd>{{orderData.mobile}}</dd>
+      </dl>
+      <dl>
+        <dt>收货地址：</dt>
+        <dd>{{orderData.addr}}</dd>
       </dl>
       <dl>
         <dt>支付方式：</dt>
@@ -12,10 +20,8 @@
         <dd *ngIf="orderData.payWay=='REMIT'">银行转账</dd>
       </dl>
       <dl>
-        <dt>发&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;票：</dt>
-        <dd>
-          <span>不需要发票</span>
-        </dd>
+        <dt>快递公司：</dt>
+        <dd>{{expressName}}</dd>
       </dl>
       <dl>
         <dt>买家留言：</dt>
@@ -41,17 +47,33 @@
     </div>
   </div>
   <div class="szh-order-condition bt br bb">
-    <p class="font16"><i class="icon-ok-circle green"></i>订单状态：<span>订单已经提交，等待买家付款</span></p>
-    <ul class="list-unstyled font12">
-      <li>1. 买家尚未对该订单进行支付。</li>
-      <li>2. 如果买家未对该笔订单进行支付操作，系统将于订单生成
-        <time>24</time>
-        小时后自动关闭。
-      </li>
-    </ul>
-    <dl>
-
-    </dl>
+    <div class="order-head _position">包裹信息</div>
+    <!--物流信息-->
+    <div class="_logistics">
+      <ul class="timeline-alt p0">
+        <ng-container *ngFor="let item of LogisticsData;let i=index;">
+          <li class="mb0">
+            <div class="timeline-badge primary">
+              <em class="fa fa-users"></em>
+            </div>
+            <div class="timeline-panel">
+              <div class="right" >
+                <div>
+                  <p>
+                    <span class="mr">{{item.createTime}}</span>
+                    <span>{{item.description}}</span>
+                  </p>
+                  <p *ngFor="let detail of item.traceVos;let i=index;">
+                    <span class="mr">{{detail.acceptTime}}</span>
+                    <span>{{detail.acceptStation}}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
 
 
   </div>
@@ -212,33 +234,6 @@
       <dd>{{orderData.createTime}}</dd>
     </dl>
   </ng-container>
-</div>
-
-<!--物流信息-->
-<div class="_logistics">
-  <ul class="timeline-alt p0">
-    <ng-container *ngFor="let item of LogisticsData;let i=index;">
-      <li class="mb0">
-        <div class="timeline-badge primary">
-          <em class="fa fa-users"></em>
-        </div>
-        <div class="timeline-panel">
-          <div class="right" ng-reflect-klass="popover" ng-reflect-ng-class="right">
-            <div>
-              <p>
-                <span class="mr">{{item.createTime}}</span>
-                <span>{{item.description}}</span>
-              </p>
-              <p *ngFor="let detail of item.traceVos;let i=index;">
-                <span class="mr">{{detail.acceptTime}}</span>
-                <span>{{detail.acceptStation}}</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </li>
-    </ng-container>
-  </ul>
 </div>
 
 <!--订单信息-->
