@@ -68,13 +68,13 @@ export class LoginComponent implements OnInit {
         'pwd': me.password
       },
       success: (result) => {
-        console.log(result);
+        // console.log(result);
         MaskService.hideMask();
         end = new Date().getTime();
         let info = result.data;
         if (result.success) {
           let user = result.data;
-          console.log("█ result ►►►", user);
+          AppComponent.rzhAlt("error", result.info);
           // me.myMenu.addMenu(result.data.menuVOList);
           sessionStorage.setItem('loginInfo', JSON.stringify(user)); //用户信息存入session
           me.setting.user.name = user.agentName; //修改user变量
@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
         }
         else {
           console.log("█ result ►►►", JSON.stringify(result));
-          AppComponent.rzhAlt("error", info);
+          AppComponent.rzhAlt("error", result.info);
         }
       },
       error: (result) => {
