@@ -58,8 +58,6 @@
   right: 0;
   top: 0;
   bottom: 0;
-  //padding: 25px;
-  overflow-y: auto;
 }
 .rate-of-progress{
   min-width: 880px;
@@ -136,7 +134,8 @@
   width:20px !important;height:20px !important;font-size:10px !important;line-height:20px !important;left:9px !important;
 }
 ._logistics{
-  padding-top:15px;margin-bottom: 10px;
+  padding-top:15px;margin-bottom: 10px;position: absolute;top:42px;overflow-y: auto;
+  height:250px;
 }
 ._position{
   padding-left:15px !important;line-height:42px;

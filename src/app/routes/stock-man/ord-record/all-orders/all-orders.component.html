@@ -78,21 +78,13 @@
             <div class="szh-buyer-info text-left _logisticsP" #Logistics (mouseenter)="showLogistics(Logistics)"
                  (mouseleave)="hideLogistics(Logistics)">
               <div class="info-con _logisticsW">
-                <p class="pl mb-sm"><i class="fa fa-shopping-cart"></i> 物流信息</p>
-
-
-                <!--<div *ngFor="let item of LogisticsData;let i=index" class="mb5">-->
-                  <!--<div>时间：{{item.acceptTime}}</div>-->
-                  <!--<div>状态：{{item.acceptStation}}</div>-->
-                <!--</div>-->
-
-
+                <p class="pl mb-sm"><i class="fa fa-truck"></i> 物流信息</p>
                 <div class="_logistics">
                   <ul class="timeline-alt p0">
                     <ng-container *ngFor="let item of LogisticsData;let i=index;">
                       <li class="mb0">
                         <div class="timeline-badge primary">
-                          <em class="fa fa-users"></em>
+                          <em class="fa fa-truck"></em>
                         </div>
                         <div class="timeline-panel">
                           <div class="right" ng-reflect-klass="popover" ng-reflect-ng-class="right">

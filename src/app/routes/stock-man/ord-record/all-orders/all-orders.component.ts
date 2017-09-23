@@ -90,11 +90,11 @@ export class AllOrdersComponent implements OnInit {
    */
   showLogistics(Logistics){
     Logistics.style.display = 'block';
-    let url='/ord/tail/queryList';
+    let url='/ord/tail/queryDeliveryList';
     let data={
       ordno:'1234123451235'                //目前是写死的，以后再改
     };
-    this.LogisticsData=this.stockManService.getShopList(url,data)[3].traceVos;
+    this.LogisticsData=this.stockManService.getShopList(url,data);
   }
 
   /**

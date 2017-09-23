@@ -21,7 +21,11 @@
       </dl>
       <dl>
         <dt>快递公司：</dt>
-        <dd>{{expressName}}</dd>
+        <dd>{{express.expressName}}</dd>
+      </dl>
+      <dl>
+        <dt>快递单号：</dt>
+        <dd>{{express.expressNo}}</dd>
       </dl>
       <dl>
         <dt>买家留言：</dt>
@@ -54,7 +58,7 @@
         <ng-container *ngFor="let item of LogisticsData;let i=index;">
           <li class="mb0">
             <div class="timeline-badge primary">
-              <em class="fa fa-users"></em>
+              <em class="fa fa-truck"></em>
             </div>
             <div class="timeline-panel">
               <div class="right" >
