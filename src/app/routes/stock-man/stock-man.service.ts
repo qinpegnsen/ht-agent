@@ -235,7 +235,6 @@ export class StockManService {
       success: (res) => {
         let info=res.info;
         if(res.success){
-          console.log("█ res ►►►",  res);
           result=res.data;
           AppComponent.rzhAlt("success",info);
         }else{

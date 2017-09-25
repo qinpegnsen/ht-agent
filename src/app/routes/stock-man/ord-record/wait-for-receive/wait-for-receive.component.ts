@@ -5,7 +5,7 @@ import {SubmitService} from "../../../../core/forms/submit.service";
 import {OrdRecordComponent} from "../ord-record.component";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 import {StockManService} from "../../stock-man.service";
-
+const swal = require('sweetalert');
 
 @Component({
   selector: 'app-wait-for-receive',
@@ -19,7 +19,7 @@ export class WaitForReceiveComponent implements OnInit {
   constructor(
     private submit: SubmitService,
     private parentComp:OrdRecordComponent,
-    private stockManService: StockManService,
+    public stockManService: StockManService
   ) { }
 
   /**
@@ -89,12 +89,25 @@ export class WaitForReceiveComponent implements OnInit {
    * 确认收货
    */
   confirmRecive(ordno) {
-    let url = '/agentOrd/updateStateToSuccess';
-    let data = {
-      ordno: ordno
-    }
-    this.stockManService.putData(url, data)
-    this.queryDatas();
+    let that=this;
+    swal({
+        title: '您确认收到货了吗？',
+        type: 'info',
+        confirmButtonText: '确认', //‘确认’按钮命名
+        showCancelButton: true, //显示‘取消’按钮
+        cancelButtonText: '取消', //‘取消’按钮命名
+        closeOnConfirm: false  //点击‘确认’后，执行另外一个提示框
+      },
+      function () {  //点击‘确认’时执行
+        swal.close(); //关闭弹框
+        let url = '/agentOrd/updateStateToSuccess';
+        let data = {
+          ordno: ordno
+        }
+        that.stockManService.delAgentOrd(url, data);
+        that.queryDatas();
+      }
+    );
   }
 
 }
