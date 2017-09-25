@@ -3,6 +3,7 @@ import {Page} from "../../../../core/page/page";
 import {PageEvent} from "angular2-datatable";
 import {SubmitService} from "../../../../core/forms/submit.service";
 import {OrdRecordComponent} from "../ord-record.component";
+import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 
 @Component({
   selector: 'app-wait-for-send',
@@ -77,4 +78,11 @@ export class WaitForSendComponent implements OnInit {
     this.lookLogisticsOrderId = orderId;
   }
 
+  /**
+   * json 转 object
+   * @param val
+   */
+  jsonToObject(val:string){
+    return RzhtoolsService.jsonToObject(val);
+  }
 }

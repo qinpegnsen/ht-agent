@@ -5,6 +5,7 @@ import {SubmitService} from "../../../../core/forms/submit.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {OrdRecordComponent} from "../ord-record.component";
 import {StockManService} from "../../stock-man.service";
+import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 
 @Component({
   selector: 'app-wait-for-pay',
@@ -84,5 +85,13 @@ export class WaitForPayComponent implements OnInit {
    */
   goPay(ordno,payWay){
     this.router.navigate(['/main/stockMan/pay'],{ queryParams: {'ordno':ordno,"payWay":payWay} })
+  }
+
+  /**
+   * json 转 object
+   * @param val
+   */
+  jsonToObject(val:string){
+    return RzhtoolsService.jsonToObject(val);
   }
 }

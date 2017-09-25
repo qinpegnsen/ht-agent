@@ -5,6 +5,7 @@ import {SubmitService} from "../../../../core/forms/submit.service";
 import {OrdRecordComponent} from "../ord-record.component";
 import {StockManService} from "../../stock-man.service";
 import {HeaderComponent} from "../../../../layout/header/header.component";
+import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 
 @Component({
   selector: 'app-finished',
@@ -66,6 +67,14 @@ export class FinishedComponent implements OnInit {
    */
   hideBuyerInfo(i){
     i.style.display = 'none';
+  }
+
+  /**
+   * json 转 object
+   * @param val
+   */
+  jsonToObject(val:string){
+    return RzhtoolsService.jsonToObject(val);
   }
 
   /**

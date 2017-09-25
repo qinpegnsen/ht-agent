@@ -28,9 +28,9 @@
               <p class="mb0 font13 omg2 two-row mb-sm">
                 <a class="goods-name" href="javascript:;">{{item.goodsName}}</a>
               </p>
-              <p class="mb0 one-row omg" *ngFor="let attr of item.goodsBaseSaList">
-                <span class="inline">{{attr.attrName}}：</span>
-                <span class="inline" *ngFor="let val of attr.goodsSavSet">{{val}}</span>
+              <p class="mb0 one-row omg" *ngFor="let info of jsonToObject(item.goodsSavSet)">
+                <span class="inline">{{info.attrName}}：</span>
+                <span class="inline">{{info.value}}</span>
               </p>
             </div>
           </td>

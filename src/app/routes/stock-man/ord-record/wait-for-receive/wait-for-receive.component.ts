@@ -3,6 +3,7 @@ import {Page} from "../../../../core/page/page";
 import {PageEvent} from "angular2-datatable";
 import {SubmitService} from "../../../../core/forms/submit.service";
 import {OrdRecordComponent} from "../ord-record.component";
+import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 
 
 @Component({
@@ -63,13 +64,6 @@ export class WaitForReceiveComponent implements OnInit {
     i.style.display = 'none';
   }
 
-  /**
-   *  取消订单
-   * @param orderId
-   */
-  cancelOrder(orderId){
-    this.curCancelOrderId = orderId;
-  }
 
   /**
    *查看物流信息
@@ -77,6 +71,14 @@ export class WaitForReceiveComponent implements OnInit {
    */
   lookLogistics(orderId){
     this.lookLogisticsOrderId = orderId;
+  }
+
+  /**
+   * json 转 object
+   * @param val
+   */
+  jsonToObject(val:string){
+    return RzhtoolsService.jsonToObject(val);
   }
 
 }
