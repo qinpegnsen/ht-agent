@@ -119,7 +119,7 @@
                     (click)="cancelOrder(goods.ordno)">
               取消订单
             </button>
-            <button *ngIf="goods.state=='DELIVERY'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-retweet">确认收货
+            <button *ngIf="goods.state=='DELIVERY'" (click)="confirmRecive(goods.ordno)" class="m-sm btn btn-xs btn-outline btn-danger fa fa-retweet">确认收货
             </button>
             <button *ngIf="goods.state=='SUCCESS'" class="m-sm btn btn-xs btn-warning fa fa-shopping-cart"
                     (click)="againBuy(item.goodsCode,item.batchNum)"> 再进货

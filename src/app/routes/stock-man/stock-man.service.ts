@@ -221,7 +221,7 @@ export class StockManService {
 
 
   /**
-   *删除代理商订单 成功返回
+   *删除代理商订单 成功返回 put
    * @param url
    * @param data
    */

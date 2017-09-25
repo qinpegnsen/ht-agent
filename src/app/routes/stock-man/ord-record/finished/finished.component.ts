@@ -96,4 +96,6 @@ export class FinishedComponent implements OnInit {
   lookLogistics(orderId){
     this.lookLogisticsOrderId = orderId;
   }
+
+
 }

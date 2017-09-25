@@ -133,4 +133,18 @@ export class AllOrdersComponent implements OnInit {
     this.headerComponent.getShopTotal()
   }
 
+
+  /**
+   * 确认收货
+   */
+  confirmRecive(ordno) {
+    let url = '/agentOrd/updateStateToSuccess';
+    let data = {
+      ordno: ordno
+    }
+    this.stockManService.putData(url, data)
+    this.queryDatas();
+  }
+
+
 }

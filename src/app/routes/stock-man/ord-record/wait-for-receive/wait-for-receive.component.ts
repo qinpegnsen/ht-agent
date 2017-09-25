@@ -4,6 +4,7 @@ import {PageEvent} from "angular2-datatable";
 import {SubmitService} from "../../../../core/forms/submit.service";
 import {OrdRecordComponent} from "../ord-record.component";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
+import {StockManService} from "../../stock-man.service";
 
 
 @Component({
@@ -13,10 +14,13 @@ import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 })
 export class WaitForReceiveComponent implements OnInit {
 
-  public curCancelOrderId:string;
   public lookLogisticsOrderId:string;
   public goodsList: Page = new Page();
-  constructor(private submit: SubmitService,private parentComp:OrdRecordComponent) { }
+  constructor(
+    private submit: SubmitService,
+    private parentComp:OrdRecordComponent,
+    private stockManService: StockManService,
+  ) { }
 
   /**
    * 1.设置当前点击的颜色
@@ -79,6 +83,18 @@ export class WaitForReceiveComponent implements OnInit {
    */
   jsonToObject(val:string){
     return RzhtoolsService.jsonToObject(val);
+  }
+
+  /**
+   * 确认收货
+   */
+  confirmRecive(ordno) {
+    let url = '/agentOrd/updateStateToSuccess';
+    let data = {
+      ordno: ordno
+    }
+    this.stockManService.putData(url, data)
+    this.queryDatas();
   }
 
 }
