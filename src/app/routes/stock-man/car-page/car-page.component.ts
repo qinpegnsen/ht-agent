@@ -149,14 +149,14 @@ export class CarPageComponent implements OnInit {
   storeEle(obj) {
     if ($(obj).prop('checked')) {
       $(obj).attr('checked', true)
-      $(obj).parents("._myStore").find("._myPaddingBody").css('background', '#FFF4E8')   //点击的时候样式的变化
+      $(obj).parents("._myStore").find('._good').parents("._myPaddingBody").css('background', '#FFF4E8')   //点击的时候样式的变化
       $(obj).parents('._myStore').find("._good").prop("checked", true);
       $(obj).parents('._myStore').find("._good").attr("checked", true);
 
     } else {
       $(obj).attr('checked', false)
       $(obj).removeAttr('checked')
-      $(obj).parents("._myStore").find("._myPaddingBody").css('background', '#fff')   //点击的时候样式的变化
+      $(obj).parents("._myStore").find('._good').parents("._myPaddingBody").css('background', '#fff')   //点击的时候样式的变化
       $(obj).parents('._myStore').find("._good").prop("checked", false)
       $(obj).parents('._myStore').find("._good").attr("checked", false)
     }
@@ -172,11 +172,10 @@ export class CarPageComponent implements OnInit {
    */
   allEle(obj) {
     if ($(obj).prop('checked')) {
-      $(obj).parents("._padingBtm").find("._myPaddingBody").css('background', '#FFF4E8')   //点击的时候样式的变化
+      $(obj).parents("._padingBtm").find('._good').parents("._myPaddingBody").css('background', '#FFF4E8')   //点击的时候样式的变化
       $(obj).parents('._padingBtm').find("._store").prop("checked", true);
-      console.log("█ 1 ►►►",  1);
     } else {
-      $(obj).parents("._padingBtm").find("._myPaddingBody").css('background', '#fff')   //点击的时候样式的变化
+      $(obj).parents("._padingBtm").find('._good').parents("._myPaddingBody").css('background', '#fff')   //点击的时候样式的变化
       $(obj).parents('._padingBtm').find("._store").prop("checked", false)
     }
     let target = $(obj).parents('._padingBtm').find("._store");
@@ -228,25 +227,12 @@ export class CarPageComponent implements OnInit {
    * @param storageNum  库存的数量 修改的时候不能大于库存量
    * @param id  商品的id 修改商品数量使用
    */
-  addNum(obj, id, storageNum) {
+  addNum(obj, id) {
     $(obj).parents("._myPaddingBody").css('background', '#FFF4E8')               //点击的时候样式的变化
     $(obj).parents('._myPaddingBody').find("._good").prop("checked", true)
     $(obj).parents('._myPaddingBody').find("._good").attr("checked", "checked") //增加节点，计数用
 
     let goodNum = $(obj).parents('.updateNum').find('input').val();                //因为有可能点击到span或者是i所以找父级
-
-    // if (goodNum == storageNum) {
-    //   goodNum = storageNum;
-    //   AppComponent.rzhAlt("info",'商品数量不能超过'+goodNum);
-    // }else{
-    //   goodNum++;
-    //   let url = '/agent/agentCart/updateOneAgentCart'; //加减修改数据
-    //   let data = {
-    //     id: id,
-    //     num: +1
-    //   }
-    //   this.stockManService.putData(url, data);
-    // }
 
     goodNum++;
     let url = '/agent/agentCart/updateOneAgentCart'; //加减修改数据

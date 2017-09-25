@@ -52,7 +52,7 @@
         <ul class="clearfix panel panel-default _extra _list">
           <!--商品列表-->
           <li class="_myPaddingBody clearfix _list" *ngFor="let good of store.agentGoodsVOList;let i = index">
-            <div *ngIf="good.isBatch=='N'" class="wmask"></div>
+            <div *ngIf="good.isBatch=='N'||good.isBuy=='N'" class="wmask"></div>
             <div class="w10 pull-left text-left">
               <div class="checkbox c-checkbox _special">
                 <label *ngIf="!(good.isBatch=='N'||good.isBuy=='N')" >
