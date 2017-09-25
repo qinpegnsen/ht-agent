@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
       // Components
       slide_links: 'blank',    // Individual links for each slide (Options: false, 'num', 'name', 'blank')
       slides: [    // Slideshow Images
-        {image: '/assets/login/img/backgrounds/1.jpg'}
+        {image: '/assets/login/img/backgrounds/login-bg.png'}
         // {image : '/assets/login/img/backgrounds/2.jpg'},
         // {image : '/assets/login/img/backgrounds/3.jpg'},
         // {image : '/assets/login/img/backgrounds/4.jpg'}
