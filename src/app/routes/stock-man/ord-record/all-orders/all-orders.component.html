@@ -81,8 +81,8 @@
                 <p class="pl mb-sm clearfix">
                   <span class="fa fa-truck pull-left _line-height"></span>
                   <span class="pull-left">物流信息</span>
-                  <span class="pull-right" routerLink="../order-detail"
-                        [queryParams]="{ordno:goods.ordno}">查看更多</span>
+                  <a class="pull-right _myhover" routerLink="../order-detail"
+                        [queryParams]="{ordno:goods.ordno}">查看更多</a>
                 </p>
                 <div class="_logistics">
                   <ul class="timeline-alt p0">
@@ -95,7 +95,7 @@
                           <div class="right">
                             <div>
                               <p>
-                                <span class="mr">{{item.acceptTime}}</span><br>
+                                <span class="mr _myColor">{{item.acceptTime}}</span><br>
                                 <span>{{item.acceptStation}}</span>
                               </p>
                             </div>

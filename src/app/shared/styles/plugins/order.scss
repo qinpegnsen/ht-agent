@@ -68,7 +68,7 @@ $buyer-info-box-width: 200px;
   border-radius: 4px;
   position: absolute;
   z-index: 200000000000;
-  bottom:60%;right:60%;
+  left:50%;
   box-shadow: 1px 1px 1px 3px #FFFCE9;
 }
 ._logisticsP{
@@ -80,6 +80,25 @@ $buyer-info-box-width: 200px;
   width: $buyer-info-box-width;
   background-color: #fff;
   border-radius: 4px;
+  dl{
+    margin-bottom: 3px;
+    font-size: 0;
+  }
+  dt,dd{
+    font-size: 12px;
+    display: inline-block;
+    line-height: 18px;
+  }
+  dt{
+    font-weight: normal;
+    text-align: right;
+    width: 23%;
+    margin-right:2%;
+  }
+  dd{
+    width: 75%;
+    vertical-align: top;
+  }
 }
 ._logisticsW{
   width: 100% !important;
