@@ -1,6 +1,6 @@
 .szh-order-details{
-  width: 300px;
-  display: inline-block;
+  width: 300px;height: 294px;
+  float:left;
 }
 .szh-order-details .order-head {
   background-color: #f5f5f5;
@@ -29,7 +29,7 @@
   font-size: 13px;
 }
 .szh-order-details .content dl.line{
-  border-top: 1px dotted #ddd;
+  //border-top: 1px dotted #ddd;
   position: relative;
 }
 .szh-order-details .content .more{
@@ -54,7 +54,7 @@
 }
 .szh-order-condition{
   position: absolute;
-  left: 300px;
+  left: 600px;
   right: 0;
   top: 0;
   bottom: 0;
@@ -145,4 +145,7 @@
 }
 ._orderInfo{
   font-size: 14px;font-size:14px;
+}
+.content{
+  height:251px;
 }

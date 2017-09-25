@@ -1,37 +1,25 @@
-<div class="szh-order-info position-relative">
+<div class="szh-order-info position-relative clearfix">
   <div class="szh-order-details">
-    <div class="order-head p b"><span class="fa fa-info-circle mr _orderInfo"></span><span>订单信息</span></div>
-    <div class="content p-lg b bt0">
-      <dl>
-        <dt>买家姓名：</dt>
-        <dd>{{orderData.linkman}}</dd>
-      </dl>
-      <dl>
-        <dt>联系电话：</dt>
-        <dd>{{orderData.mobile}}</dd>
-      </dl>
-      <dl>
-        <dt>收货地址：</dt>
-        <dd>{{orderData.addr}}</dd>
-      </dl>
+    <div class="order-head p bl bt bb"><span class="fa fa-info-circle mr _orderInfo"></span><span>订单信息</span></div>
+    <div class="content p-lg bl bt bb bt0">
       <dl>
         <dt>支付方式：</dt>
         <dd *ngIf="orderData.payWay=='ONLINE'">在线支付</dd>
         <dd *ngIf="orderData.payWay=='REMIT'">银行转账</dd>
       </dl>
       <dl>
-        <dt>快递公司：</dt>
-        <dd>{{express.expressName}}</dd>
+        <dt>运费：</dt>
+        <dd><span>￥{{orderData.freightPrice | number:'1.2-2'}}</span></dd>
       </dl>
       <dl>
-        <dt>快递单号：</dt>
-        <dd>{{express.expressNo}}</dd>
+        <dt>应付总额：</dt>
+        <dd><span>￥{{orderData.pay | number:'1.2-2'}}</span></dd>
       </dl>
       <dl>
         <dt>买家留言：</dt>
         <dd style="word-break:break-all">{{orderData.remark}}</dd>
       </dl>
-      <dl class="line pt-lg">
+      <dl class="line">
         <dt>订单编号：</dt>
         <dd>{{orderData.ordno}}
           <span class="pull-right" (mouseenter)="showTimeList(times)"
@@ -47,6 +35,31 @@
             </ul>
           </div>
         </dd>
+      </dl>
+    </div>
+  </div>
+  <div class="szh-order-details">
+    <div class="order-head p b"><span class="fa fa-user mr _orderInfo"></span><span>收货信息</span></div>
+    <div class="content p-lg b bt0">
+      <dl>
+        <dt>买家姓名：</dt>
+        <dd>{{orderData.linkman}}</dd>
+      </dl>
+      <dl>
+        <dt>联系电话：</dt>
+        <dd>{{orderData.mobile}}</dd>
+      </dl>
+      <dl>
+        <dt>收货地址：</dt>
+        <dd>{{orderData.addr}}</dd>
+      </dl>
+      <dl>
+        <dt>快递公司：</dt>
+        <dd>{{express.expressName}}</dd>
+      </dl>
+      <dl>
+        <dt>快递单号：</dt>
+        <dd>{{express.expressNo}}</dd>
       </dl>
     </div>
   </div>
@@ -123,12 +136,12 @@
     <dl class="cur">
       <dt>提交订单</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{LogisticsData[0].description}}</dd>
+      <dd>{{LogisticsData[0].createTime}}</dd>
     </dl>
     <dl class="cur">
       <dt>已支付</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{LogisticsData[1].description}}</dd>
+      <dd>{{LogisticsData[1].createTime}}</dd>
     </dl>
     <dl>
       <dt>已配货</dt>
@@ -297,11 +310,11 @@
       <td colspan="10" class="gray-bg order-footer p-sm pr-xl font12">
         <dl class="text-right mb0">
           <dt class="w8">运费：</dt>
-          <dd class="w8"><span class="main-red font18">￥{{orderData.freightPrice | number:'1.2-2'}}</span>元</dd>
+          <dd class="w8"><span class="main-red font20">￥{{orderData.freightPrice | number:'1.2-2'}}</span></dd>
         </dl>
         <dl class="text-right mb0">
           <dt class="w8">订单应付金额：</dt>
-          <dd class="w8"><span class="main-red font20">￥{{orderData.pay | number:'1.2-2'}}</span>元</dd>
+          <dd class="w8"><span class="main-red font20">￥{{orderData.pay | number:'1.2-2'}}</span></dd>
         </dl>
       </td>
     </tr>
