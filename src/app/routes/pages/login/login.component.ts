@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
         let info = result.data;
         if (result.success) {
           let user = result.data;
-          AppComponent.rzhAlt("error", result.info);
+          AppComponent.rzhAlt("success", result.info);
           // me.myMenu.addMenu(result.data.menuVOList);
           sessionStorage.setItem('loginInfo', JSON.stringify(user)); //用户信息存入session
           me.setting.user.name = user.agentName; //修改user变量
