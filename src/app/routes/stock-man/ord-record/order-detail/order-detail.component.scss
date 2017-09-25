@@ -1,5 +1,5 @@
 .szh-order-details{
-  width: 350px;
+  width: 300px;
   display: inline-block;
 }
 .szh-order-details .order-head {
@@ -14,13 +14,13 @@
   font-size: 12px;
 }
 .szh-order-details .content dt{
-  width: 20%;
+  width: 30%;
   text-align: right;
   font-weight: normal;
   color: #888;
 }
 .szh-order-details .content dd{
-  width: 80%;
+  width: 70%;
   color: #666;
   line-height: 20px;
   vertical-align: top;
@@ -54,7 +54,7 @@
 }
 .szh-order-condition{
   position: absolute;
-  left: 350px;
+  left: 300px;
   right: 0;
   top: 0;
   bottom: 0;
