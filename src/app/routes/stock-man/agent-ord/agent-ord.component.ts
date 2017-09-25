@@ -101,10 +101,10 @@ export class AgentOrdComponent implements OnInit {
   addNum(i, obj) {
     let num = $(obj).parents('.input-group').find('input').val();//因为有可能点击到span或者是i所以找父级
     num++;
-    if (num > this.shopListdata.voList[i].storageNum) {
-      num = this.shopListdata.voList[i].storageNum;
-      $(obj).prop('checked','checked');
-    }
+    // if (num > this.shopListdata.voList[i].storageNum) {
+    //   num = this.shopListdata.voList[i].storageNum;
+    //   $(obj).prop('checked','checked');
+    // }
     this.carNum = num;
     $(obj).parents('.input-group').find('input:first').val(num)
     $(obj).parents('tr').find('._good').prop('checked', true)

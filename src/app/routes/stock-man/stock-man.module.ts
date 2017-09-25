@@ -52,7 +52,7 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     FormsModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild(routes)
   ],
   declarations: [
     AgentOrdComponent,
