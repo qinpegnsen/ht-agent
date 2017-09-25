@@ -1,9 +1,9 @@
 <ul class="clearfix order-table-head list-unstyled mb0 p b">
   <li class="w40 pull-left text-center">商品</li>
-  <li class="w10 pull-left text-center">单价（元）</li>
+  <li class="w10 pull-left text-center">单价</li>
   <li class="w10 pull-left text-center">数量</li>
   <li class="w10 pull-left text-center">买家</li>
-  <li class="w10 pull-left text-center">订单金额（元）</li>
+  <li class="w10 pull-left text-center">订单金额</li>
   <li class="w10 pull-left text-center">交易状态</li>
   <li class="w10 pull-left text-center">操作</li>
 </ul>
@@ -33,7 +33,7 @@
               </p>
             </div>
           </td>
-          <td class="w10 bb">￥ {{item.batchPrice| number:'1.2-2'}}</td>
+          <td class="w10 bb">￥{{item.batchPrice| number:'1.2-2'}}</td>
           <td class="w10 bb">{{item.batchNum}}</td>
           <td class="w10 bl position-relative" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length">
             <span class="mb0 cursor-p" myHoverColor [myHover]="'#CC1635'" (mouseenter)="showUserInfo(i)"
@@ -58,7 +58,7 @@
             </div>
           </td>
           <td class="w10 bl" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length">
-            <span class="main-red font14">￥ {{goods.pay | number:'1.2-2'}}</span><br>
+            <span class="main-red font14">￥{{goods.pay | number:'1.2-2'}}</span><br>
             <span class="font-gray">运费 ￥{{goods.freightPrice | number:'1.2-2'}}</span><br>
             <span class="font-gray" *ngIf="goods.payWay=='ONLINE'">在线支付</span>
             <span class="font-gray" *ngIf="goods.payWay=='REMIT'">银行汇款</span>
