@@ -10,8 +10,18 @@ import { HandledComponent } from './handled/handled.component';
 import { CompletedComponent } from './completed/completed.component';
 import { AbnormalComponent } from './abnormal/abnormal.component';
 
+const shoppingOrderChildren: Routes = [
+  {path: '', redirectTo: 'all-work-orders'},
+  {path: 'all-work-orders', component: AllWorkOrdersComponent},
+  {path: 'wait-for-orders', component: WaitForOrdersComponent},
+  {path: 'order-receive', component: OrderReceiveComponent},
+  {path: 'handled', component: HandledComponent},
+  {path: 'completed', component: CompletedComponent},
+  {path: 'abnormal', component: AbnormalComponent}
+]
+
 const routes: Routes = [
-  {path: '', component:ShoppingOrderComponent},
+  {path: '', component:ShoppingOrderComponent,children:shoppingOrderChildren},
 ];
 
 @NgModule({
