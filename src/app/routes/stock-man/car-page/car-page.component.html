@@ -55,12 +55,11 @@
             <div *ngIf="good.isBatch=='N'" class="wmask"></div>
             <div class="w10 pull-left text-left">
               <div class="checkbox c-checkbox _special">
-                <label>
+                <label *ngIf="!(good.isBatch=='N'||good.isBuy=='N')" >
                   <input type="checkbox" class="_good" (click)="goodEle($event.target)"/>
                   <span class="fa fa-check"></span>
-                  <ng-container *ngIf="good.isBatch=='N'">已失效</ng-container>
-                  <ng-container *ngIf="good.isBuy=='N'">已下架</ng-container>
                 </label>
+                <ng-container *ngIf="good.isBatch=='N'||good.isBuy=='N'">已失效</ng-container>
               </div>
             </div>
             <div class="w40 pull-left text-left goods-info-box">
