@@ -3,11 +3,11 @@
     <div *ngIf="orderType!=100">
       <ul class="order-guide list-unstyled clearfix bb">
         <li class="pull-left"  [class.cur-order]="orderType==1" routerLink="all-work-orders">所有工单</li>
-        <li class="pull-left"  [class.cur-order]="orderType==2" routerLink="wait-for-work-orders">待接单</li>
-        <li class="pull-left"  [class.cur-order]="orderType==3" routerLink="pay-after">已结单</li>
-        <li class="pull-left"  [class.cur-order]="orderType==4" routerLink="wait-for-send">已处理</li>
-        <li class="pull-left"  [class.cur-order]="orderType==5" routerLink="wait-for-receive">已完成</li>
-        <li class="pull-left"  [class.cur-order]="orderType==6" routerLink="finished">异常工单</li>
+        <li class="pull-left"  [class.cur-order]="orderType==2" routerLink="wait-for-orders">待接单</li>
+        <li class="pull-left"  [class.cur-order]="orderType==3" routerLink="order-receive">已结单</li>
+        <li class="pull-left"  [class.cur-order]="orderType==4" routerLink="handled">已处理</li>
+        <li class="pull-left"  [class.cur-order]="orderType==5" routerLink="completed">已完成</li>
+        <li class="pull-left"  [class.cur-order]="orderType==6" routerLink="abnormal">异常工单</li>
       </ul>
       <!--查询 start-->
       <div class="row clearfix p text-right">
