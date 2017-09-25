@@ -10,6 +10,7 @@ defineLocale('cn', zhCn);
 })
 export class ShoppingOrderComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
+  public orderType: number = 1;
   constructor() {
     this.bsConfig = Object.assign({}, {
       locale: 'cn',

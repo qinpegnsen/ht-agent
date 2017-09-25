@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ShoppingOrderComponent} from "../shopping-order.component";
 
 @Component({
   selector: 'app-handled',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HandledComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private parentComp:ShoppingOrderComponent,
+  ) { }
 
   ngOnInit() {
+    this.parentComp.orderType = 4;
+
   }
 
 }
