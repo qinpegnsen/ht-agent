@@ -41,13 +41,14 @@ export class AllWorkOrdersComponent implements OnInit {
     let requestData = {
       sortColumns:'',
       curPage: activePage,
-      pageSize: 10,
+      pageSize: 15,
       agentCode:'',
       wono:'',
       ordno:'',
-      ordType:'',
+      ordType:'ORD',//工单类型 售后工单
       stateEnum: '',
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
+    console.log("█ _this.workOrderList ►►►",  _this.workOrderList);
   }
 }

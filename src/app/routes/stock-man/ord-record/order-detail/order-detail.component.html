@@ -263,7 +263,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="text-center" *ngFor="let item of orderData.agentOrdItemList">
+    <tr class="text-center" *ngFor="let item of orderData.agentOrdItemList;let i=index;">
       <td class="text-left p position-relative bb">
           <span class="goods-img goods-md-img mr"><img [src]="item.goodsImage"
                                                        onerror="javascript:this.src='../../../assets/img/dummy.png'"
@@ -280,12 +280,12 @@
       </td>
       <td class="bb">￥{{item.batchPrice| number:'1.2-2'}}</td>
       <td class="bb">{{item.batchNum}}</td>
-      <td class="bl" [attr.rowspan]="orderData.agentOrdItemList.length">
+      <td class="bl" *ngIf="i==0" [attr.rowspan]="orderData.agentOrdItemList.length">
         <span class="main-red font14">￥{{item.batchPrice*item.batchNum | number:'1.2-2'}}</span><br>
         <span class="font-gray" *ngIf="orderData.payWay=='ONLINE'">在线支付</span>
         <span class="font-gray" *ngIf="orderData.payWay=='REMIT'">银行汇款</span>
       </td>
-      <td class="bl" [attr.rowspan]="orderData.agentOrdItemList.length">
+      <td class="bl" *ngIf="i==0" [attr.rowspan]="orderData.agentOrdItemList.length">
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"
                 (click)="goPay(orderData.ordno)"> 去支付
         </button>

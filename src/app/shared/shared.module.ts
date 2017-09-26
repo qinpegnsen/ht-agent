@@ -31,7 +31,6 @@ import { VectormapDirective } from './directives/vectormap/vectormap.directive';
 import { NowDirective } from './directives/now/now.directive';
 import { ScrollableDirective } from './directives/scrollable/scrollable.directive';
 import { JqcloudDirective } from './directives/jqcloud/jqcloud.directive';
-import {RzhButtonsModule} from "../routes/buttons/rzh-buttons.module";
 import {DataTableModule} from "./directives/ng2-datatable/DataTableModule";
 import {StockManService} from "../routes/stock-man/stock-man.service";
 import {SelectAreaModule} from "./directives/select-area/select-area.module";
@@ -41,6 +40,7 @@ import {AccordionComponent, BsDatepickerModule} from "ngx-bootstrap";
 import {FoueAreasModule} from "./directives/foue-areas/foue-areas.module";
 import {HoverDirective} from "./hover/hover.directive";
 import {SubstringPipe} from "./pipe/substring.pipe";
+import {RzhButtonsModule} from "../routes/buttons/rzh-buttons.module";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -49,9 +49,10 @@ import {SubstringPipe} from "./pipe/substring.pipe";
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
+    RzhButtonsModule,
+    ButtonsModule.forRoot(),
     AccordionModule.forRoot(),
     AlertModule.forRoot(),
-    ButtonsModule.forRoot(),
     CarouselModule.forRoot(),
     CollapseModule.forRoot(),
     DatepickerModule.forRoot(),
@@ -67,7 +68,6 @@ import {SubstringPipe} from "./pipe/substring.pipe";
     BsDatepickerModule.forRoot(),
     ToasterModule,
     DataTableModule,
-    RzhButtonsModule,
     SelectAreaModule,
     FoueAreasModule
   ],

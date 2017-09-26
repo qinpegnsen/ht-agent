@@ -8,13 +8,13 @@ declare var $:any;
   styleUrls: ['./order-page.component.scss']
 })
 export class OrderPageComponent implements OnInit {
-  private orderData:any;            //储存订单的数据
-  private defaultAddress:any;       //默认的地址
-  private otherAddress:any;         //默认的其他的地址
-  private updatebutton:any;         //默认的修改按钮
-  private currentId:number;         //默认的修改按钮
-  private strData:any;              //商品的编码和数量
-  public flag:boolean=true;        //定义boolean值用来控制内容组件是否显示
+  private orderData:any;                      //储存订单的数据
+  private defaultAddress:Array<any>=[];       //默认的地址
+  private otherAddress:Array<any>=[];         //默认的其他的地址
+  private updatebutton:any;                   //默认的修改按钮
+  private currentId:number;                   //默认的修改按钮
+  private strData:any;                        //商品的编码和数量
+  public flag:boolean=true;                   //定义boolean值用来控制内容组件是否显示
   constructor(
     public stockManService: StockManService,
     private router:Router
@@ -70,8 +70,8 @@ export class OrderPageComponent implements OnInit {
           this.otherAddress=orderData.agentAddrsList;
         }
       }
+      console.log("█ this.defaultAddress ►►►",  this.defaultAddress);
     }else {
-      console.log("█ 52 ►►►",  52);
       this.router.navigate(['/main/home'])
       return;
     }
