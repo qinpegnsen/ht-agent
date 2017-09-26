@@ -11,7 +11,7 @@
             </li>
             <!-- END user info-->
 
-            <li *ngFor='let item of menuItems' [ngClass]="{'nav-heading': item.heading}" [routerLinkActive]="['active']">
+            <li *ngFor='let item of menuItems' [ngClass]="{'nav-heading': item.heading}">
                 <!-- menu heading -->
                 <span *ngIf="item.heading">{{(item.translate | translate) || item.text}}</span>
                 <!-- external links -->
