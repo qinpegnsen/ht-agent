@@ -7,7 +7,7 @@ export class ShoppingOrderService {
   constructor(private ajax: AjaxService) { }
 
   /**
-   *结单拒单 成功返回 put
+   *接单拒单 成功返回 put
    * @param url
    * @param data
    */

@@ -47,7 +47,7 @@ export class OrderReceiveComponent implements OnInit {
       wono:'',
       ordno:'',
       ordType:'ORD',//工单类型 售后工单
-      stateEnum: 'ACCEPT', //已结单
+      stateEnum: 'ACCEPT', //已接单
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
   }

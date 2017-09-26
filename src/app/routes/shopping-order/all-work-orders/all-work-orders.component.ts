@@ -55,27 +55,31 @@ export class AllWorkOrdersComponent implements OnInit {
 
 
   /**
-   * 结单
+   * 接单
    * @param woAgengId 代理商工单id
+   * 1. 刷新页面
    */
   toAccept(woAgengId){
     let url = '/woAgent/updateWoAgentToAccept';
     let data = {
       woAgengId:woAgengId
     };
-    this.shoppingOrderService.toAcceptWork(url,data)
+    this.shoppingOrderService.toAcceptWork(url,data);
+    this.queryDatas()
   }
 
   /**
    * 拒单
    * @param woAgengId 代理商工单id
+   * 1. 刷新页面
    */
   toReject(woAgengId){
     let url = '/woAgent/updateWoAgentToReject';
     let data = {
       woAgengId:woAgengId
     };
-    this.shoppingOrderService.toAcceptWork(url,data)
+    this.shoppingOrderService.toAcceptWork(url,data);
+    this.queryDatas();
   }
 
   /**
@@ -93,12 +97,14 @@ export class AllWorkOrdersComponent implements OnInit {
   /**
    * 发货
    * @param id
+   * 1. 刷新页面
    */
   deliver(id){
     let url = '/woAgent/updateWoAgentToReject';
     let data = {
       id:id
     };
-    this.shoppingOrderService.toAcceptWork(url,data)
+    this.shoppingOrderService.toAcceptWork(url,data);
+    this.queryDatas();
   }
 }

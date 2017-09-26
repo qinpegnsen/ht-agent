@@ -9,42 +9,7 @@
         <li class="pull-left" [class.cur-order]="orderType==5" routerLink="completed">已完成</li>
         <li class="pull-left" [class.cur-order]="orderType==6" routerLink="abnormal">异常工单</li>
       </ul>
-      <!--查询 start-->
-      <div class="row clearfix p text-right">
-        <div class="place-time clearfix mb col-lg-3">
-          <div class="pl0 pr0 pull-left w100">
-            <input type="text" class="form-control border-b-grey" minlength="128" placeholder="请输入要查询的工单号">
-          </div>
-        </div>
-        <div class="place-time clearfix mb col-lg-3">
-          <div class="pl0 pr0 pull-left w100">
-            <input type="text" class="form-control border-b-grey" minlength="128" placeholder="请输入要查询的工订单号">
-          </div>
-        </div>
-        <div class="search-term clearfix ml mb col-lg-3">
-          <div class="pr0 pull-left w100">
-            <select class="form-control pl-sm pr-sm" name="sss" id="0">
-              <option value="11">请输入要搜索的状态</option>
-              <option value="11">买家账号</option>
-              <option value="22">商品名称</option>
-              <option value="33">订单编号</option>
-            </select>
-          </div>
-        </div>
-        <div class="w10 pl-sm pr0 pull-left col-lg-23">
-          <div class="form-group mb0 pr0 text-left">
-            <button type="button" title="搜索"
-                    class="btn btn-primary bar-h3-btn mr0 ng-scope">
-              <em class="icon-magnifier fa-fw"></em>
-            </button>
-          </div>
-        </div>
-      </div>
-      <!--查询 end-->
-      <ul class="order-guide list-unstyled clearfix bb" *ngIf="orderType==100">
-        <li class="pull-left" routerLink="all-orders">订单列表</li>
-        <li class="pull-left cur-order">商品详情</li>
-      </ul>
+
       <!--路由嵌套 begin-->
       <router-outlet></router-outlet>
       <!--路由嵌套 end-->

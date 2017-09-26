@@ -47,34 +47,38 @@ export class WaitForOrdersComponent implements OnInit {
       wono:'',
       ordno:'',
       ordType:'ORD',//工单类型 售后工单
-      stateEnum: 'NO', //待结单
+      stateEnum: 'NO', //待接单
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
   }
 
 
   /**
-   * 结单
+   * 接单
    * @param woAgengId 代理商工单id
+   * 1.刷新页面
    */
   toAccept(woAgengId){
     let url = '/woAgent/updateWoAgentToAccept';
     let data = {
       woAgengId:woAgengId
     };
-    this.shoppingOrderService.toAcceptWork(url,data)
+    this.shoppingOrderService.toAcceptWork(url,data);
+    this.queryDatas()
   }
 
   /**
    * 拒单
    * @param woAgengId 代理商工单id
+   * 1.刷新页面
    */
   toReject(woAgengId){
     let url = '/woAgent/updateWoAgentToReject';
     let data = {
       woAgengId:woAgengId
     };
-    this.shoppingOrderService.toAcceptWork(url,data)
+    this.shoppingOrderService.toAcceptWork(url,data);
+    this.queryDatas();
   }
 
 }

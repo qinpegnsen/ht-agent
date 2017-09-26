@@ -1,3 +1,40 @@
+<!--查询开始-->
+<div class="row clearfix p text-right">
+  <div class="place-time clearfix mb col-lg-3">
+    <div class="pl0 pr0 pull-left w100">
+      <input type="text" class="form-control border-b-grey" minlength="128" placeholder="请输入要查询的工单号">
+    </div>
+  </div>
+  <div class="place-time clearfix mb col-lg-3">
+    <div class="pl0 pr0 pull-left w100">
+      <input type="text" class="form-control border-b-grey" minlength="128" placeholder="请输入要查询的工订单号">
+    </div>
+  </div>
+  <div class="search-term clearfix ml mb col-lg-3">
+    <div class="pr0 pull-left w100">
+      <select class="form-control pl-sm pr-sm" name="sss" id="0">
+        <option value="11">请输入要搜索的状态</option>
+        <option value="11">买家账号</option>
+        <option value="22">商品名称</option>
+        <option value="33">订单编号</option>
+      </select>
+    </div>
+  </div>
+  <div class="w10 pl-sm pr0 pull-left col-lg-23">
+    <div class="form-group mb0 pr0 text-left">
+      <button type="button" title="搜索"
+              class="btn btn-primary bar-h3-btn mr0 ng-scope">
+        <em class="icon-magnifier fa-fw"></em>
+      </button>
+    </div>
+  </div>
+</div>
+<!--查询结束-->
+<ul class="order-guide list-unstyled clearfix bb" *ngIf="orderType==100">
+  <li class="pull-left" routerLink="all-orders">订单列表</li>
+  <li class="pull-left cur-order">商品详情</li>
+</ul>
+<!--导航开始-->
 <ul class="clearfix order-table-head list-unstyled mb0 pt pb b">
   <li class="w5 pull-left text-center">ID</li>
   <li class="w10 pull-left text-center">工单号</li>
@@ -8,6 +45,8 @@
   <li class="w10 pull-left text-center">状态</li>
   <li class="w20 pull-left text-center">操作</li>
 </ul>
+<!--导航结束-->
+<!--列表开始-->
 <table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="workOrderList"
        (pageChange)="queryDatas($event)">
   <tbody>
@@ -24,7 +63,7 @@
               (click)="toReject(order.id)"> 拒单
       </button>
       <button *ngIf="order.state=='NO'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-check _backColor"
-              (click)="toAccept(order.id)"> 结单
+              (click)="toAccept(order.id)"> 接单
       </button>
       <button *ngIf="order.state=='ACCEPT'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-truck _backColor"
               (click)="deliver(order.id)"> 发货
@@ -52,3 +91,4 @@
   </tr>
   </tfoot>
 </table>
+<!--列表结束-->
