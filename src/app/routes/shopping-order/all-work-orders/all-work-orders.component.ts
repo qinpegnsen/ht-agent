@@ -11,7 +11,7 @@ import {SubmitService} from "../../../core/forms/submit.service";
 })
 export class AllWorkOrdersComponent implements OnInit {
 
-  public goodsList: Page = new Page();                    //获取列表的数据
+  public workOrderList: Page = new Page();                    //获取列表的数据
   constructor(
     private parentComp:ShoppingOrderComponent,
     private submit: SubmitService,
@@ -43,6 +43,6 @@ export class AllWorkOrdersComponent implements OnInit {
       pageSize: 10,
       state: '',
     };
-    _this.goodsList = new Page(_this.submit.getData(requestUrl, requestData));
+    _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
   }
 }
