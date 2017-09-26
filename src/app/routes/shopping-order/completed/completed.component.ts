@@ -23,7 +23,7 @@ export class CompletedComponent implements OnInit {
    */
   ngOnInit() {
     this.parentComp.orderType = 5;
-
+    this.queryDatas();
   }
 
   /**
@@ -36,11 +36,16 @@ export class CompletedComponent implements OnInit {
     if (typeof event !== 'undefined') {
       activePage = event.activePage;
     }
-    let requestUrl = ' /agentOrd/queryAgentState';
+    let requestUrl = '/woAgent/query';
     let requestData = {
+      sortColumns:'',
       curPage: activePage,
-      pageSize: 10,
-      state: '',
+      pageSize: 15,
+      agentCode:'',
+      wono:'',
+      ordno:'',
+      ordType:'ORD',//工单类型 售后工单
+      stateEnum: 'DONE',//已完成
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
   }

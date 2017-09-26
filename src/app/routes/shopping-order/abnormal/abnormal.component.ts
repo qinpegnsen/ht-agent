@@ -23,6 +23,7 @@ export class AbnormalComponent implements OnInit {
    */
   ngOnInit() {
     this.parentComp.orderType = 6;
+    this.queryDatas();
   }
 
   /**
@@ -35,11 +36,16 @@ export class AbnormalComponent implements OnInit {
     if (typeof event !== 'undefined') {
       activePage = event.activePage;
     }
-    let requestUrl = ' /agentOrd/queryAgentState';
+    let requestUrl = '/woAgent/query';
     let requestData = {
+      sortColumns:'',
       curPage: activePage,
-      pageSize: 10,
-      state: '',
+      pageSize: 15,
+      agentCode:'',
+      wono:'',
+      ordno:'',
+      ordType:'ORD',//工单类型 售后工单
+      stateEnum: 'END',//异常工单
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
   }

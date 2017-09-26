@@ -41,6 +41,8 @@ import {FoueAreasModule} from "./directives/foue-areas/foue-areas.module";
 import {HoverDirective} from "./hover/hover.directive";
 import {SubstringPipe} from "./pipe/substring.pipe";
 import {RzhButtonsModule} from "../routes/buttons/rzh-buttons.module";
+import {StatePipe} from "./pipe/state.pipe";
+import {RzhtoolsService} from "../core/services/rzhtools.service";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -72,7 +74,7 @@ import {RzhButtonsModule} from "../routes/buttons/rzh-buttons.module";
     FoueAreasModule
   ],
   providers: [
-    ColorsService,StockManService,HeaderComponent,AccordionComponent
+    ColorsService,StockManService,HeaderComponent,AccordionComponent,RzhtoolsService
   ],
   declarations: [
     FlotDirective,
@@ -85,7 +87,8 @@ import {RzhButtonsModule} from "../routes/buttons/rzh-buttons.module";
     JqcloudDirective,
     HomeComponent,
     SubstringPipe,
-    HoverDirective
+    HoverDirective,
+    StatePipe
   ],
   exports: [
     HoverDirective,
@@ -123,7 +126,8 @@ import {RzhButtonsModule} from "../routes/buttons/rzh-buttons.module";
     ScrollableDirective,
     JqcloudDirective,
     FoueAreasModule,
-    SelectAreaModule
+    SelectAreaModule,
+    StatePipe
   ]
 })
 
