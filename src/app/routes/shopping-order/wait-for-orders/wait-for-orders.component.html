@@ -38,7 +38,7 @@
           <td class="w10 bb">{{item.batchNum}}</td>
           <td class="w10 bl position-relative" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length">
             <span class="mb0 cursor-p" myHoverColor [myHover]="'#CC1635'" (mouseenter)="showUserInfo(i)"
-                  (mouseleave)="hideBuyerInfo(i)">{{goods.agentName}}
+                  (mouseleave)="hideBuyerInfo(i)">{{goods.linkman}}
             </span>
             <div class="szh-buyer-info text-left" #i (mouseenter)="showUserInfo(i)" (mouseleave)="hideBuyerInfo(i)">
               <div class="info-con">

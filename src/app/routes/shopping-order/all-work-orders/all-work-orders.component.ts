@@ -37,11 +37,16 @@ export class AllWorkOrdersComponent implements OnInit {
     if (typeof event !== 'undefined') {
       activePage = event.activePage;
     }
-    let requestUrl = ' /agentOrd/queryAgentState';
+    let requestUrl = '/woAgent/query';
     let requestData = {
+      sortColumns:'',
       curPage: activePage,
       pageSize: 10,
-      state: '',
+      agentCode:'',
+      wono:'',
+      ordno:'',
+      ordType:'',
+      stateEnum: '',
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
   }
