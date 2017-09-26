@@ -15,10 +15,10 @@ import {SubmitService} from "../../../../core/forms/submit.service";
 export class AllSaleComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
   private agentTime;
-  public goodsList: Page = new Page();
+  public woList: Page = new Page();
 
 
-  constructor(private AfterSaleComponent:AfterSaleComponent, private submit: SubmitService) {
+  constructor(private AfterSaleComponent:AfterSaleComponent, private submit: SubmitService,private RzhtoolsService:RzhtoolsService) {
     this.bsConfig = Object.assign({}, {
       locale: 'cn',
       rangeInputFormat: 'YYYY/MM/DD',//将时间格式转化成年月日的格式
@@ -29,6 +29,7 @@ export class AllSaleComponent implements OnInit {
   ngOnInit() {
     let _this = this;
     _this.AfterSaleComponent.orderType = 1;
+    _this.queryDatas(1);
   }
 
   /**
@@ -43,7 +44,7 @@ export class AllSaleComponent implements OnInit {
     } else if (!isUndefined(curPage)) {
       activePage = curPage;
     }
-    let requestUrl = '/agentOrd/queryAgentOrdAdmin';
+    let requestUrl = '/woAgent/query';
     //格式化时间格式
     let dateStr = '';
     if (this.agentTime) {
@@ -53,9 +54,12 @@ export class AllSaleComponent implements OnInit {
     let requestData = {
       curPage: activePage,
       pageSize: 10,
-      dateStr: dateStr,
+      ordType:'SELL_AFTER'
+      // dateStr: dateStr,
     };
-    _this.goodsList = new Page(_this.submit.getData(requestUrl, requestData));
+    _this.woList = new Page(_this.submit.getData(requestUrl, requestData));
+    console.log("█ _this.woList ►►►",  _this.woList);
+
   }
 
 }

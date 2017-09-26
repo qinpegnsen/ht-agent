@@ -7,6 +7,7 @@ import { ProcessedComponent } from './after-sale/processed/processed.component';
 import { AgreedComponent } from './after-sale/agreed/agreed.component';
 import { RefusedComponent } from './after-sale/refused/refused.component';
 import {SharedModule} from "app/shared/shared.module";
+import {RzhtoolsService} from "../../core/services/rzhtools.service";
 
 const routes: Routes = [
   {path: '', redirectTo: 'sales'},
@@ -25,6 +26,9 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule
+  ],
+  providers: [
+    RzhtoolsService
   ],
   declarations: [AfterSaleComponent, AllSaleComponent, ProcessedComponent, AgreedComponent, RefusedComponent]
 })
