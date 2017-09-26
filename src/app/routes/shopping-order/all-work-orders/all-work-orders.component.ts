@@ -4,6 +4,7 @@ import {ShoppingOrderComponent} from "../shopping-order.component";
 import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {ShoppingOrderService} from "../shopping-order.service";
+import {RzhtoolsService} from "../../../core/services/rzhtools.service";
 
 @Component({
   selector: 'app-all-work-orders',
@@ -13,20 +14,27 @@ import {ShoppingOrderService} from "../shopping-order.service";
 export class AllWorkOrdersComponent implements OnInit {
 
   public workOrderList: Page = new Page();                    //获取列表的数据
+  public wono:string='';                                      //工单号
+  public ordno:string='';                                     //订单号
+  public stateEnum:string='';                                 //工单状态
+  public stateEnumList;                                       //工单状态的列表
   constructor(
     private parentComp:ShoppingOrderComponent,
     private submit: SubmitService,
-    private shoppingOrderService: ShoppingOrderService
+    private shoppingOrderService: ShoppingOrderService,
+    private rzhtoolsService: RzhtoolsService
   ) { }
 
   /**
    * 1.设置当前点击的颜色
    * 2.获取当前状态的列表
+   * 3.获取订单状态的列表，用来搜索
    */
   ngOnInit() {
     let me = this;
     me.parentComp.orderType = 1;
     me.queryDatas()
+    this.stateEnumList=this.rzhtoolsService.getEnumDataList(1305);
   }
 
   /**
@@ -45,10 +53,10 @@ export class AllWorkOrdersComponent implements OnInit {
       curPage: activePage,
       pageSize: 15,
       agentCode:'',
-      wono:'',
-      ordno:'',
+      wono:this.wono,
+      ordno:this.ordno,
       ordType:'ORD',//工单类型 售后工单
-      stateEnum: '',
+      stateEnum:this.stateEnum,
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
   }
@@ -106,5 +114,13 @@ export class AllWorkOrdersComponent implements OnInit {
     };
     this.shoppingOrderService.toAcceptWork(url,data);
     this.queryDatas();
+  }
+
+  /**
+   * 获取搜索框选择的状态值
+   * @param val
+   */
+  getState(val){
+    this.stateEnum=val;
   }
 }

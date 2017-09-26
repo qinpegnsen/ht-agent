@@ -2,28 +2,25 @@
 <div class="row clearfix p text-right">
   <div class="place-time clearfix mb col-lg-3">
     <div class="pl0 pr0 pull-left w100">
-      <input type="text" class="form-control border-b-grey" minlength="128" placeholder="请输入要查询的工单号">
+      <input type="text" class="form-control border-b-grey" minlength="128" [(ngModel)]="wono" placeholder="请输入要查询的工单号">
     </div>
   </div>
   <div class="place-time clearfix mb col-lg-3">
     <div class="pl0 pr0 pull-left w100">
-      <input type="text" class="form-control border-b-grey" minlength="128" placeholder="请输入要查询的工订单号">
+      <input type="text" class="form-control border-b-grey" minlength="128" [(ngModel)]="ordno" placeholder="请输入要查询的订单号">
     </div>
   </div>
   <div class="search-term clearfix ml mb col-lg-3">
     <div class="pr0 pull-left w100">
-      <select class="form-control pl-sm pr-sm" name="sss" id="0">
-        <option value="11">请输入要搜索的状态</option>
-        <option value="11">买家账号</option>
-        <option value="22">商品名称</option>
-        <option value="33">订单编号</option>
+      <select class="form-control pl-sm pr-sm" name="state" #stateEnum (change)="getState(stateEnum.value)">
+        <option value="{{item.key}}" *ngFor="let item of stateEnumList">{{item.val}}</option>
       </select>
     </div>
   </div>
   <div class="w10 pl-sm pr0 pull-left col-lg-23">
     <div class="form-group mb0 pr0 text-left">
       <button type="button" title="搜索"
-              class="btn btn-primary bar-h3-btn mr0 ng-scope">
+              class="btn btn-primary bar-h3-btn mr0 ng-scope" (click)="queryDatas()">
         <em class="icon-magnifier fa-fw"></em>
       </button>
     </div>
