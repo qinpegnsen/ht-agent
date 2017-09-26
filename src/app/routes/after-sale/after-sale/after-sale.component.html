@@ -1,0 +1,22 @@
+<div class="content-heading mb-lg">代理商售后工单</div>
+<div class="order panel mb">
+  <div class="panel-body">
+    <div *ngIf="orderType!=100">
+      <ul class="order-guide list-unstyled clearfix bb">
+        <li class="pull-left" [class.cur-order]="orderType==1" routerLink="all-sale">所有订单</li>
+        <li class="pull-left" [class.cur-order]="orderType==2" routerLink="processed">待处理</li>
+        <li class="pull-left" [class.cur-order]="orderType==3" routerLink="agreed">已同意</li>
+        <li class="pull-left" [class.cur-order]="orderType==4" routerLink="refused">已拒绝</li>
+      </ul>
+    </div>
+
+    <ul class="order-guide list-unstyled clearfix bb" *ngIf="orderType==100">
+      <li class="pull-left" routerLink="all-stock">订单列表</li>
+      <li class="pull-left cur-order">商品详情</li>
+    </ul>
+    <!--路由嵌套 begin-->
+    <router-outlet></router-outlet>
+    <!--路由嵌套 end-->
+  </div>
+</div>
+

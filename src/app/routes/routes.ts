@@ -12,7 +12,8 @@ export const routes = [
       {path: 'stockMan', loadChildren: './stock-man/stock-man.module#StockManModule'},
       {path: 'shopOrder', loadChildren: './shopping-order/shopping-order.module#ShoppingOrderModule'},
       {path: 'stockAddres', loadChildren: './stock-addres/stock-addres.module#StockAddresModule'},
-      {path: 'edit-pw', loadChildren: './edit-pw/edit-pw.module#EditPwModule'}
+      {path: 'edit-pw', loadChildren: './edit-pw/edit-pw.module#EditPwModule'},
+      {path: 'afterSale', loadChildren: './after-sale/after-sale.module#AfterSaleModule'}
     ]
   },
   {

@@ -63,21 +63,20 @@ export class RightpageComponent implements OnInit {
         async: false, //同步请求
         data: {id: this.id},
         success: (res) => {
-          console.log(res)
           this.limitForm = res.data;
         },
         error: (res) => {
           console.log("post limit error");
         }
       });
-    }
-  }
+    };
+  };
 
   //获取区域数据
   private getAreaData(area){
     let me = this;
     me.limitForm['areaCode'] = area.areaCode;
-  }
+  };
 
 
 

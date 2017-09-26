@@ -40,7 +40,6 @@ export class MenuService {
     }
   foreachPushMenu(items:Array<menuVO>) {
     let menuItems:Array<MenuItem> = [],menuItem:MenuItem;
-    console.log("█ items ►►►",  items);
     if(!isNullOrUndefined(items)){
       items.forEach((item) => {
         menuItem = new MenuItem();

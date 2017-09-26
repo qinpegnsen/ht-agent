@@ -102,7 +102,6 @@ export class StockAddresComponent implements OnInit {
         data = {
           id:id
         }
-        console.log(data)
         _this.StockAddresService.delCode(url, data); //删除数据
        _this.queryList();
       }
