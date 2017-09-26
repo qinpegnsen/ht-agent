@@ -2,12 +2,12 @@
   <div class="panel-body">
     <div *ngIf="orderType!=100">
       <ul class="order-guide list-unstyled clearfix bb">
-        <li class="pull-left"  [class.cur-order]="orderType==1" routerLink="all-work-orders">所有工单</li>
-        <li class="pull-left"  [class.cur-order]="orderType==2" routerLink="wait-for-orders">待接单</li>
-        <li class="pull-left"  [class.cur-order]="orderType==3" routerLink="order-receive">已接单</li>
-        <li class="pull-left"  [class.cur-order]="orderType==4" routerLink="handled">已处理</li>
-        <li class="pull-left"  [class.cur-order]="orderType==5" routerLink="completed">已完成</li>
-        <li class="pull-left"  [class.cur-order]="orderType==6" routerLink="abnormal">异常工单</li>
+        <li class="pull-left" [class.cur-order]="orderType==1" routerLink="all-work-orders">所有工单</li>
+        <li class="pull-left" [class.cur-order]="orderType==2" routerLink="wait-for-orders">待接单</li>
+        <li class="pull-left" [class.cur-order]="orderType==3" routerLink="order-receive">已接单</li>
+        <li class="pull-left" [class.cur-order]="orderType==4" routerLink="handled">已处理</li>
+        <li class="pull-left" [class.cur-order]="orderType==5" routerLink="completed">已完成</li>
+        <li class="pull-left" [class.cur-order]="orderType==6" routerLink="abnormal">异常工单</li>
       </ul>
       <!--查询 start-->
       <div class="row clearfix p text-right">
@@ -37,16 +37,17 @@
                     class="btn btn-primary bar-h3-btn mr0 ng-scope">
               <em class="icon-magnifier fa-fw"></em>
             </button>
+          </div>
         </div>
       </div>
       <!--查询 end-->
+      <ul class="order-guide list-unstyled clearfix bb" *ngIf="orderType==100">
+        <li class="pull-left" routerLink="all-orders">订单列表</li>
+        <li class="pull-left cur-order">商品详情</li>
+      </ul>
+      <!--路由嵌套 begin-->
+      <router-outlet></router-outlet>
+      <!--路由嵌套 end-->
     </div>
-    <ul class="order-guide list-unstyled clearfix bb" *ngIf="orderType==100">
-      <li class="pull-left" routerLink="all-orders">订单列表</li>
-      <li class="pull-left cur-order">商品详情</li>
-    </ul>
-    <!--路由嵌套 begin-->
-    <router-outlet></router-outlet>
-    <!--路由嵌套 end-->
   </div>
 </div>

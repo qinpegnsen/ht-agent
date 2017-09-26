@@ -4,7 +4,6 @@ import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
 import {HeaderComponent} from "../../../layout/header/header.component";
 import {Router} from "@angular/router";
 import {AppComponent} from "../../../app.component";
-import {PatternService} from "../../../core/forms/pattern.service";
 const swal = require('sweetalert');
 declare var $: any;
 @Component({
@@ -301,13 +300,25 @@ export class CarPageComponent implements OnInit {
     }
     let url = '/agent/agentCart/valuationAgentCart';
     let lastIndex=strData.lastIndexOf(',');
-    let finalStrData=strData.slice(0,lastIndex);
+    let finalStrData=strData.slice(0,lastIndex);//把最后的，去掉
     this.strDataTemp=finalStrData;
     let data = {
       strData: strData
     }
     if (data.strData) {  //只有有选中的商品才会执行
-      this.priceList = this.stockManService.putData(url, data);
+      let priceData=this.stockManService.putData(url, data);
+      console.log("█ this.priceList ►►►",  this.priceList);
+      if(!this.priceList){//如果返回的是false，说明商品的状态不合法，这时候要刷新页面
+        this.priceList= {
+          expressPrice: 0,                         //运费
+          payment: 0,                              //带运费的总费用
+          total: 0,                                //不带运费的总费用
+        };
+        this.getCarList()
+      }else{
+        this.priceList =priceData;//如果是真的话才进行赋值
+      }
+
     } else {  //没有选中默认为0
       this.priceList = {
         expressPrice: 0, //运费
@@ -352,10 +363,6 @@ export class CarPageComponent implements OnInit {
     }else{
       obj.value=Math.floor(obj.value);   //如果是小数，取整数
     }
-  }
-
-  disable(){
-    console.log("█ 1 ►►►",  1);
   }
 
 }

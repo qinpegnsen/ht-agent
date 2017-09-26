@@ -3,6 +3,7 @@ import {ShoppingOrderComponent} from "../shopping-order.component";
 import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
+import {ShoppingOrderService} from "../shopping-order.service";
 
 @Component({
   selector: 'app-abnormal',
@@ -14,7 +15,8 @@ export class AbnormalComponent implements OnInit {
   public workOrderList: Page = new Page();                    //获取列表的数据
   constructor(
     private parentComp:ShoppingOrderComponent,
-    private submit: SubmitService
+    private submit: SubmitService,
+    private shoppingOrderService: ShoppingOrderService
   ) { }
 
   /**
@@ -48,5 +50,17 @@ export class AbnormalComponent implements OnInit {
       stateEnum: 'END',//异常工单
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
+  }
+
+  /**
+   * 查看详情
+   * @param woAgengId
+   */
+  lookInfo(woAgengId){
+    let url = '/woAgent/updateWoAgentToReject';
+    let data = {
+      woAgengId:woAgengId
+    };
+    this.shoppingOrderService.toAcceptWork(url,data)
   }
 }

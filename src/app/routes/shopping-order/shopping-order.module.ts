@@ -9,6 +9,7 @@ import { OrderReceiveComponent } from './order-receive/order-receive.component';
 import { HandledComponent } from './handled/handled.component';
 import { CompletedComponent } from './completed/completed.component';
 import { AbnormalComponent } from './abnormal/abnormal.component';
+import {ShoppingOrderService} from "./shopping-order.service";
 
 const shoppingOrderChildren: Routes = [
   {path: '', redirectTo: 'all-work-orders'},
@@ -30,6 +31,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  declarations: [ShoppingOrderComponent, AllWorkOrdersComponent, WaitForOrdersComponent, OrderReceiveComponent, HandledComponent, CompletedComponent, AbnormalComponent]
+  declarations: [ShoppingOrderComponent, AllWorkOrdersComponent, WaitForOrdersComponent, OrderReceiveComponent, HandledComponent, CompletedComponent, AbnormalComponent],
+  providers: [ShoppingOrderService]
 })
 export class ShoppingOrderModule { }

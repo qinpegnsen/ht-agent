@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import {AjaxService} from "../../core/services/ajax.service";
 import {AppComponent} from "../../app.component";
-import {Router} from "@angular/router";
 
 
 @Injectable()
 export class StockManService {
 
-  constructor(private ajax: AjaxService,private router: Router) { }
+  constructor(private ajax: AjaxService) { }
 
   /**
    * 获取商品列表的数据get  独有的，因为做了特殊处理
@@ -209,7 +208,8 @@ export class StockManService {
         if(res.success){
           result=res.data;
         }else{
-          AppComponent.rzhAlt("error",info);
+          result=res.success;
+          AppComponent.rzhAlt("info",info);
         }
       },
       error: () => {

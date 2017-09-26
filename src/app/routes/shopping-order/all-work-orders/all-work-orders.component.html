@@ -21,16 +21,16 @@
     <td class="w10 text-center">{{order.state | rzhState :'1305' }}</td>
     <td class="w20 text-center">
       <button *ngIf="order.state=='NO'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-close _backColor"
-              (click)="goPay(goods.ordno,goods.payWay)"> 拒单
+              (click)="toReject(order.id)"> 拒单
       </button>
       <button *ngIf="order.state=='NO'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-check _backColor"
-              (click)="goPay(goods.ordno,goods.payWay)"> 结单
+              (click)="toAccept(order.id)"> 结单
       </button>
       <button *ngIf="order.state=='ACCEPT'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-truck _backColor"
-              (click)="goPay(goods.ordno,goods.payWay)"> 发货
+              (click)="deliver(order.id)"> 发货
       </button>
       <button *ngIf="order.state=='DEAL'||order.state=='DONE'||order.state=='END'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-info-circle _backColor"
-              (click)="goPay(goods.ordno,goods.payWay)">查看详情
+              (click)="lookInfo(order.ordno)">查看详情
       </button>
     </td>
   </tr>

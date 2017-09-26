@@ -110,6 +110,7 @@
               <span class="m10">是否免运费:</span>
               <span *ngIf="shop.isFreight=='N'">否</span>
               <span *ngIf="shop.isFreight=='Y'">是</span>
+              <span>{{shop.isFreight | rzhState :'7777' }}</span>
             </div>
           </td>
         </tr>

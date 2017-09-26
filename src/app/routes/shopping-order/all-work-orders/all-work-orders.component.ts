@@ -3,6 +3,7 @@ import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
 import {ShoppingOrderComponent} from "../shopping-order.component";
 import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
+import {ShoppingOrderService} from "../shopping-order.service";
 
 @Component({
   selector: 'app-all-work-orders',
@@ -15,6 +16,7 @@ export class AllWorkOrdersComponent implements OnInit {
   constructor(
     private parentComp:ShoppingOrderComponent,
     private submit: SubmitService,
+    private shoppingOrderService: ShoppingOrderService
   ) { }
 
   /**
@@ -49,5 +51,54 @@ export class AllWorkOrdersComponent implements OnInit {
       stateEnum: '',
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
+  }
+
+
+  /**
+   * 结单
+   * @param woAgengId 代理商工单id
+   */
+  toAccept(woAgengId){
+    let url = '/woAgent/updateWoAgentToAccept';
+    let data = {
+      woAgengId:woAgengId
+    };
+    this.shoppingOrderService.toAcceptWork(url,data)
+  }
+
+  /**
+   * 拒单
+   * @param woAgengId 代理商工单id
+   */
+  toReject(woAgengId){
+    let url = '/woAgent/updateWoAgentToReject';
+    let data = {
+      woAgengId:woAgengId
+    };
+    this.shoppingOrderService.toAcceptWork(url,data)
+  }
+
+  /**
+   * 查看详情
+   * @param woAgengId
+   */
+  lookInfo(ordno){
+    let url = '/woAgent/updateWoAgentToReject';
+    let data = {
+      ordno:ordno
+    };
+    this.shoppingOrderService.toAcceptWork(url,data)
+  }
+
+  /**
+   * 发货
+   * @param id
+   */
+  deliver(id){
+    let url = '/woAgent/updateWoAgentToReject';
+    let data = {
+      id:id
+    };
+    this.shoppingOrderService.toAcceptWork(url,data)
   }
 }

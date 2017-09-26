@@ -3,6 +3,7 @@ import {ShoppingOrderComponent} from "../shopping-order.component";
 import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
 import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
+import {ShoppingOrderService} from "../shopping-order.service";
 
 @Component({
   selector: 'app-wait-for-orders',
@@ -15,6 +16,7 @@ export class WaitForOrdersComponent implements OnInit {
   constructor(
     private parentComp:ShoppingOrderComponent,
     private submit: SubmitService,
+    private shoppingOrderService: ShoppingOrderService
   ) { }
 
   /**
@@ -48,6 +50,31 @@ export class WaitForOrdersComponent implements OnInit {
       stateEnum: 'NO', //待结单
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
+  }
+
+
+  /**
+   * 结单
+   * @param woAgengId 代理商工单id
+   */
+  toAccept(woAgengId){
+    let url = '/woAgent/updateWoAgentToAccept';
+    let data = {
+      woAgengId:woAgengId
+    };
+    this.shoppingOrderService.toAcceptWork(url,data)
+  }
+
+  /**
+   * 拒单
+   * @param woAgengId 代理商工单id
+   */
+  toReject(woAgengId){
+    let url = '/woAgent/updateWoAgentToReject';
+    let data = {
+      woAgengId:woAgengId
+    };
+    this.shoppingOrderService.toAcceptWork(url,data)
   }
 
 }

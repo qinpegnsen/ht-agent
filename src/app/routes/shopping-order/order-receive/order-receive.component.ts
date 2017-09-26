@@ -3,6 +3,7 @@ import {ShoppingOrderComponent} from "../shopping-order.component";
 import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
+import {ShoppingOrderService} from "../shopping-order.service";
 
 @Component({
   selector: 'app-order-receive',
@@ -14,7 +15,8 @@ export class OrderReceiveComponent implements OnInit {
   public workOrderList: Page = new Page();                    //获取列表的数据
   constructor(
     private parentComp:ShoppingOrderComponent,
-    private submit: SubmitService
+    private submit: SubmitService,
+    private shoppingOrderService: ShoppingOrderService
   ) { }
 
   /**
@@ -48,6 +50,18 @@ export class OrderReceiveComponent implements OnInit {
       stateEnum: 'ACCEPT', //已结单
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
+  }
+
+  /**
+   * 发货
+   * @param id
+   */
+  deliver(id){
+    let url = '/woAgent/updateWoAgentToReject';
+    let data = {
+      id:id
+    };
+    this.shoppingOrderService.toAcceptWork(url,data)
   }
 
 }
