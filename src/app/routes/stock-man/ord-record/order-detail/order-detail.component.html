@@ -90,11 +90,13 @@
                   </p>
                   <p *ngFor="let detail of item.traceVos;let i=index;"class="every-line">
                   <span class="mr logis-time" *ngIf="i==0">
-                    <b class="mr-lg">{{detail.day}}</b>
-                    <b class="mr-lg">{{detail.day | getWeek}}</b>
-                    {{detail.time}}</span>
+                    <ng-container *ngIf="detail.day!=LogisticsData[s-1].day">
+                      <b class="mr-lg">{{detail.day}}</b>
+                      <b class="mr-lg">{{detail.day | getWeek}}</b>
+                    </ng-container>
+                  {{detail.time}}</span>
                     <ng-container *ngIf="i>0">
-                      <span class="mr logis-time" *ngIf="detail.day==item.traceVos[i-1].day">{{detail.time}}</span>
+                      <span class="mr logis-time" *ngIf="detail.day==item.traceVos[i-1].day || detail.day==LogisticsData[s-1].day">{{detail.time}}</span>
                       <span class="mr logis-time" *ngIf="detail.day!=item.traceVos[i-1].day">
                         <b class="mr-lg">{{detail.day}}</b>
                         <b class="mr-lg">{{detail.day | getWeek}}</b>

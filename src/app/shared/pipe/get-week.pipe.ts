@@ -10,8 +10,8 @@ export class GetWeekPipe implements PipeTransform {
   transform(value: any, args?: any): any {
     if(isNullOrUndefined(value)) return null;
     else {
-      let value = new Date();
-      return RzhtoolsService.getWeek(value,'cn');
+      let val =  new Date(value);
+      return RzhtoolsService.getWeek(val,'cn');
     }
   }
 

@@ -75,7 +75,7 @@ import {GetWeekPipe} from "./pipe/get-week.pipe";
     FoueAreasModule
   ],
   providers: [
-    ColorsService,StockManService,HeaderComponent,AccordionComponent
+    ColorsService,StockManService,HeaderComponent,AccordionComponent,RzhtoolsService
   ],
   declarations: [
     FlotDirective,
