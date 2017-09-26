@@ -43,6 +43,7 @@ import {SubstringPipe} from "./pipe/substring.pipe";
 import {RzhButtonsModule} from "../routes/buttons/rzh-buttons.module";
 import {StatePipe} from "./pipe/state.pipe";
 import {RzhtoolsService} from "../core/services/rzhtools.service";
+import {GetWeekPipe} from "./pipe/get-week.pipe";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -74,7 +75,7 @@ import {RzhtoolsService} from "../core/services/rzhtools.service";
     FoueAreasModule
   ],
   providers: [
-    ColorsService,StockManService,HeaderComponent,AccordionComponent,RzhtoolsService
+    ColorsService,StockManService,HeaderComponent,AccordionComponent
   ],
   declarations: [
     FlotDirective,
@@ -88,7 +89,8 @@ import {RzhtoolsService} from "../core/services/rzhtools.service";
     HomeComponent,
     SubstringPipe,
     HoverDirective,
-    StatePipe
+    StatePipe,
+    GetWeekPipe
   ],
   exports: [
     HoverDirective,
@@ -127,7 +129,8 @@ import {RzhtoolsService} from "../core/services/rzhtools.service";
     JqcloudDirective,
     FoueAreasModule,
     SelectAreaModule,
-    StatePipe
+    StatePipe,
+    GetWeekPipe
   ]
 })
 

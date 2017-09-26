@@ -19,6 +19,13 @@ const PROXY_CONFIG = [
   },
   {
     context: [
+      "/ord"
+    ],
+    target: "http://192.168.10.182:8080",   //拦截 context配置路径，经过此地址
+    secure: false
+  },
+  {
+    context: [
       "/login",
       "/admin",
     ],

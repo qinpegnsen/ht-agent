@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {isNull, isNullOrUndefined} from "util";
+import {isNull, isNullOrUndefined, isUndefined} from "util";
 import {areaJSON} from "./area";
 import {AjaxService} from "./ajax.service";
 import {ToasterConfig, ToasterService} from "angular2-toaster";
@@ -437,12 +437,16 @@ export class RzhtoolsService {
   }
 
   /**
+   *
    * 根据日期获取是星期几
    * @param date 日期
+   * @param lan 语言（'cn':中文，'en':英语）默认英文
    * @returns {string}
    */
-  static getWeek = function (date: Date) {
+  static getWeek = function (date: Date, lan?) {
+    console.log("█ date ►►►",  date);
     let today = new Array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
+    if (!isUndefined(lan) && lan == 'cn') today = new Array('周一', '周二', '周三', '周四', '周五', '周六', '周日');
     let week = today[date.getDay()];
     // let weeks: Array<any> = this.getEnumDataList(SettingsService.enums.week), week: string, num: number = date.getDay() + 1;
     // for (let i = 0; i < weeks.length; i++) {
