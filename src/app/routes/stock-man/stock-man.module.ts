@@ -20,6 +20,7 @@ import {OrderDetailComponent} from "./ord-record/order-detail/order-detail.compo
 import {AllOrdersComponent} from "./ord-record/all-orders/all-orders.component";
 import { PayAfterComponent } from './ord-record/pay-after/pay-after.component';
 import { WaitForReceiveComponent } from './ord-record/wait-for-receive/wait-for-receive.component';
+import {RzhtoolsService} from "../../core/services/rzhtools.service";
 
 
 const orderRecordChildren: Routes = [
@@ -71,7 +72,7 @@ const routes: Routes = [
     PayAfterComponent,
     WaitForReceiveComponent
   ],
-  providers: [StockManService]
+  providers: [StockManService,RzhtoolsService]
 })
 export class StockManModule {}
 
