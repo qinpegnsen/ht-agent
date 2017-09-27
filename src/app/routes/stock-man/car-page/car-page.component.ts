@@ -16,7 +16,7 @@ export class CarPageComponent implements OnInit {
   private storeListData: any;              //储存购物车商品列表数据
   private strDataTemp: string;             //储存购物车id,在订单页的时候使用
   private deletebutton;//删除按钮
-  private shopTotalNumber: number = 0;     //购买的商品总数
+  public shopTotalNumber: number = 0;     //购买的商品总数
   public priceList: object = {
     expressPrice: 0,                         //运费
     payment: 0,                              //带运费的总费用
@@ -124,7 +124,7 @@ export class CarPageComponent implements OnInit {
    * @param obj  当前选择的元素
    *
    */
-  goodEle(obj) {
+  goodEle(obj,target) {
     if ($(obj).prop("checked")) {
       $(obj).attr("checked", true)
       $(obj).parents("._myPaddingBody").css('background', '#FFF4E8')   //点击的时候样式的变化
@@ -135,8 +135,8 @@ export class CarPageComponent implements OnInit {
       $(obj).parents("._myStore").find("._store").prop("checked", false);
     }
     this.inputSelect(obj, '');
+    this.getPriceList(obj,target);
     this.getShopTotalNum();
-    this.getPriceList();
   }
 
   /**
@@ -158,8 +158,8 @@ export class CarPageComponent implements OnInit {
       $(obj).parents('._myStore').find("._good").attr("checked", false)
     }
     this.inputSelect(obj, 1)  //调用选择框的方法
+    this.getPriceList(obj);
     this.getShopTotalNum();
-    this.getPriceList();
   }
 
   /**
@@ -177,8 +177,8 @@ export class CarPageComponent implements OnInit {
     }
     let target = $(obj).parents('._padingBtm').find("._store");
     this.storeEle(target);
+    this.getPriceList(obj);
     this.getShopTotalNum();
-    this.getPriceList();
   }
 
 
@@ -208,7 +208,7 @@ export class CarPageComponent implements OnInit {
     }
     this.stockManService.putData(url, data)
 
-    this.getPriceList();
+    this.getPriceList(obj);
     this.inputSelect(obj, '');
     this.getShopTotalNum();
     this.goodTotalPrice(obj);
@@ -240,7 +240,7 @@ export class CarPageComponent implements OnInit {
     this.stockManService.putData(url, data);
     $(obj).parents('.updateNum').find('input:first').val(goodNum)
     this.inputSelect(obj, '')
-    this.getPriceList()
+    this.getPriceList(obj)
     this.getShopTotalNum();
     this.goodTotalPrice(obj)
   }
@@ -267,9 +267,8 @@ export class CarPageComponent implements OnInit {
     }
     this.stockManService.putData(url, data);
     this.inputSelect(obj, '')
-    this.getPriceList()
+    this.getPriceList(obj)
     this.getShopTotalNum();
-    this.goodTotalPrice(obj)
   }
 
   /**
@@ -289,8 +288,9 @@ export class CarPageComponent implements OnInit {
    * 获取价格的列表
    * @param goodsCode
    * @param shopNum
+   * @param obj  用来判断是否加遮罩
    */
-  getPriceList() {
+  getPriceList(obj,target?) {
     let goodList = $("._good[checked='checked']").parents("._myPaddingBody");
     let strData: string = '';
     for (var i = 0; i < goodList.length; i++) {
@@ -301,44 +301,38 @@ export class CarPageComponent implements OnInit {
     let finalStrData=strData.slice(0,lastIndex);//把最后的，去掉
     this.strDataTemp=finalStrData;
     let data = {
-      strData: strData
+      strData: finalStrData
     }
     if (data.strData) {  //只有有选中的商品才会执行
       let priceData=this.stockManService.putData(url, data);
-      console.log("█ priceData ►►►",  priceData);
-      if(priceData=='选择购买商品状态不合法'){//如果返回的是false，说明商品的状态不合法，这时候要刷新页面
-        this.priceList= {
-          expressPrice: 0,                         //运费
-          payment: 0,                              //带运费的总费用
-          total: 0,                                //不带运费的总费用
-        };
-        this.shopTotalNumber=0;
-        this.strDataTemp='';
-        this.getCarList()
+      if(!priceData){//如果返回的是false，说明商品的状态不合法，这时候要刷新页面
+        this.ngOnInit();//ngngOnInit  还是只是刷新的数据列表 总的按钮并没有取消掉
+        $("._all").prop('checked',false);//手动取消掉
+        $("._all").attr('checked',false);
       }else{
         this.priceList =priceData;//如果是真的话才进行赋值
       }
-
     } else {  //没有选中默认为0
+      this.goodTotalPrice(obj)
       this.priceList = {
         expressPrice: 0, //运费
         payment: 0,//带运费的总费用
         total: 0,//不带运费的总费用
       }
     }
+    this.getShopTotalNum();
     let expressPrice = this.priceList['expressPrice'];
   }
 
   /**
-   * 购买商品的总数
+   * 购买商品种类的数量  而不是件数的总量
+   * 等页面渲染完成之后再做
    */
   getShopTotalNum() {
-    let numArr = $("._good[checked='checked']").parents("._myPaddingBody").find("._num");
-    let tempData: number = 0;
-    for (var i = 0; i < numArr.length; i++) {
-      tempData += Number($(numArr[i]).val())
-    }
-    this.shopTotalNumber = tempData;
+    setTimeout(()=>{
+      let numArr = $("._good:checked");
+      this.shopTotalNumber = numArr.length;
+    },0)
   }
 
   /**

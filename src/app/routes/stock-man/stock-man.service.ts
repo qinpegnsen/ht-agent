@@ -25,7 +25,7 @@ export class StockManService {
         }else{
           if(data.info=='代理商购物车商品无查询数据'){
             result='';
-          }else if(data.info=='选择购买商品状态不合法'){
+          }else if(data.info=='购买商品包含已下架商品法'||data.info=='购买商品不可批发商品'){
             result=data.info;
           }
         }
@@ -210,8 +210,7 @@ export class StockManService {
         if(res.success){
           result=res.data;
         }else{
-          result=res.info;
-          console.log("█ res ►►►",  res);
+          result=res.success;
           AppComponent.rzhAlt("info",info);
         }
       },

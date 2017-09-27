@@ -51,15 +51,15 @@
 
         <ul class="clearfix panel panel-default _extra _list">
           <!--商品列表-->
-          <li class="_myPaddingBody clearfix _list" *ngFor="let good of store.agentGoodsVOList;let i = index">
+          <li class="_myPaddingBody clearfix _list"  *ngFor="let good of store.agentGoodsVOList;let i = index">
             <div *ngIf="good.isBatch=='N'||good.isBuy=='N'" class="wmask"></div>
             <div class="w10 pull-left text-left">
               <div class="checkbox c-checkbox _special">
                 <label *ngIf="!(good.isBatch=='N'||good.isBuy=='N')" >
-                  <input type="checkbox" class="_good" (click)="goodEle($event.target)"/>
+                  <input type="checkbox" class="_good" (click)="goodEle($event.target,good)" />
                   <span class="fa fa-check"></span>
                 </label>
-                <ng-container *ngIf="good.isBatch=='N'">禁售</ng-container>
+                <ng-container *ngIf="good.isBatch=='N'">禁止批发</ng-container>
                 <ng-container *ngIf="good.isBuy=='N'">下架</ng-container>
               </div>
             </div>
@@ -102,7 +102,7 @@
         <button class="btn btn-danger _caculate _button" (click)="linkOrderPage()">去结算</button>
       </div>
       <div class="pull-right w18 clearfix">
-        <span class="_select pull-left">已选择 <b class="_myPrice">{{shopTotalNumber}}</b>件商品</span>
+        <span class="_select pull-left">已选择 <b class="_myPrice">{{shopTotalNumber}}</b>种商品</span>
         <span class="_select pull-left">运费：<b
           class="_myPrice">&yen;{{priceList.expressPrice  | number:'1.2-2'}}</b></span>
         <span class="_select pull-left">总价：<b class="_myPrice">&yen;{{priceList.payment  | number:'1.2-2'}}</b></span>

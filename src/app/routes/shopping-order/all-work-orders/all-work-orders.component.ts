@@ -55,7 +55,7 @@ export class AllWorkOrdersComponent implements OnInit {
       agentCode:'',
       wono:this.wono,
       ordno:this.ordno,
-      ordType:'ORD',//工单类型 售后工单
+      ordType:'ORD',//工单类型 购物订单
       stateEnum:this.stateEnum,
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
@@ -104,13 +104,18 @@ export class AllWorkOrdersComponent implements OnInit {
 
   /**
    * 发货
-   * @param id
-   * 1. 刷新页面
+   * @param woAgentId    代理商工单id
+   * @param ordno        订单编码
+   * @param expressCode  快递公司唯一代码
+   * @param expressNo    快递单号
    */
-  deliver(id){
-    let url = '/woAgent/updateWoAgentToReject';
+  deliver(woAgentId,ordno,expressCode,expressNo){
+    let url = '/woAgent/delivery';
     let data = {
-      id:id
+      woAgentId:woAgentId,
+      ordno:ordno,
+      expressCode:expressCode,
+      expressNo:expressNo,
     };
     this.shoppingOrderService.toAcceptWork(url,data);
     this.queryDatas();
