@@ -82,6 +82,7 @@ export class WaitForReceiveComponent implements OnInit {
       ordno:'1234123451235'                //目前是写死的，以后再改
     };
     this.LogisticsData=this.stockManService.getShopList(url,data);
+    console.log("█ this.LogisticsData ►►►",  this.LogisticsData);
   }
 
   /**
