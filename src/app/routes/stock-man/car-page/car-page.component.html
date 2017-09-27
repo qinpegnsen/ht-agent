@@ -59,7 +59,8 @@
                   <input type="checkbox" class="_good" (click)="goodEle($event.target)"/>
                   <span class="fa fa-check"></span>
                 </label>
-                <ng-container *ngIf="good.isBatch=='N'||good.isBuy=='N'">已失效</ng-container>
+                <ng-container *ngIf="good.isBatch=='N'">禁售</ng-container>
+                <ng-container *ngIf="good.isBuy=='N'">下架</ng-container>
               </div>
             </div>
             <div class="w40 pull-left text-left goods-info-box">

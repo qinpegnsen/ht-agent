@@ -9,8 +9,8 @@ declare var $:any;
 })
 export class OrderPageComponent implements OnInit {
   private orderData:any;                      //储存订单的数据
-  private defaultAddress:Array<any>=[];       //默认的地址
-  private otherAddress:Array<any>=[];         //默认的其他的地址
+  private defaultAddress:any;                 //默认的地址
+  private otherAddress:any;                   //默认的其他的地址
   private updatebutton:any;                   //默认的修改按钮
   private currentId:number;                   //默认的修改按钮
   private strData:any;                        //商品的编码和数量
@@ -60,6 +60,11 @@ export class OrderPageComponent implements OnInit {
       strData:this.strData
     }
     let orderData=this.stockManService.getShopListOne(url, data);
+    if(orderData=='选择购买商品状态不合法'){//如果商品的状态不合法，在跳转到购物车的页面，然后刷新就有遮罩
+      console.log("█ 1 ►►►",  1);
+      this.router.navigate(['/main/stockMan/cart']);
+      console.log("█ 2 ►►►",  2);
+    }
     console.log("█ orderData ►►►",  orderData);
     if(orderData){   //不进行判断有时候会报错
       this.orderData=orderData.calcDTO;

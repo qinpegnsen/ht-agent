@@ -83,8 +83,6 @@ export class CarPageComponent implements OnInit {
         that.stockManService.deleteData(url, data)
         that.getCarList()
         that.headerComponent.getShopTotal()
-      } else {
-        swal("Cancelled", "Your imaginary file is safe :)", "error");
       }
     });
   }
@@ -307,13 +305,15 @@ export class CarPageComponent implements OnInit {
     }
     if (data.strData) {  //只有有选中的商品才会执行
       let priceData=this.stockManService.putData(url, data);
-      console.log("█ this.priceList ►►►",  this.priceList);
-      if(!this.priceList){//如果返回的是false，说明商品的状态不合法，这时候要刷新页面
+      console.log("█ priceData ►►►",  priceData);
+      if(priceData=='选择购买商品状态不合法'){//如果返回的是false，说明商品的状态不合法，这时候要刷新页面
         this.priceList= {
           expressPrice: 0,                         //运费
           payment: 0,                              //带运费的总费用
           total: 0,                                //不带运费的总费用
         };
+        this.shopTotalNumber=0;
+        this.strDataTemp='';
         this.getCarList()
       }else{
         this.priceList =priceData;//如果是真的话才进行赋值
