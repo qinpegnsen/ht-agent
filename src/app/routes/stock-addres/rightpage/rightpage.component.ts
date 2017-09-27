@@ -14,6 +14,7 @@ const swal = require('sweetalert');
 })
 export class RightpageComponent implements OnInit {
   private queryId:number;//获取添加，修改的ID
+  private source:string; //订单页面携带的数据
   private  staff= {
     areaCode:'',
     mobPhone:''
@@ -38,6 +39,7 @@ export class RightpageComponent implements OnInit {
 
   ngOnInit() {
     this.queryId = this.routeInfo.snapshot.queryParams['number'];
+    this.source = this.routeInfo.snapshot.queryParams['source'];//订单页面携带的数据
     this.id = this.routeInfo.snapshot.queryParams['id'];
 
     if(this.queryId==2){
@@ -126,7 +128,11 @@ export class RightpageComponent implements OnInit {
         },
         success: (res) => {
           if (res.success) {
-            _this.router.navigate(['/main/stockAddres'], {replaceUrl: true}); //路由跳转
+            if(_this.source=='cart'){
+              _this.router.navigate(['/main/stockMan/order'], {replaceUrl: false}); //路由跳转
+            }else{
+              _this.router.navigate(['/main/stockAddres'], {replaceUrl: true}); //路由跳转
+            }
             swal('修改代理商收货地址提交成功！', '','success');
             _this.StockAddresComponent.queryList();//实现局部刷新
           } else {

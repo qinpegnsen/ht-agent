@@ -14,7 +14,8 @@ const swal = require('sweetalert');
 })
 export class WaitForReceiveComponent implements OnInit {
 
-  public lookLogisticsOrderId:string;
+  public LogisticsData;                                   //获取物流的信息
+
   public goodsList: Page = new Page();
   constructor(
     private submit: SubmitService,
@@ -70,11 +71,25 @@ export class WaitForReceiveComponent implements OnInit {
 
 
   /**
-   *查看物流信息
+   *显示物流信息
    * @param orderId
    */
-  lookLogistics(orderId){
-    this.lookLogisticsOrderId = orderId;
+  showLogistics(Logistics){
+    console.log("█ 1 ►►►",  1);
+    Logistics.style.display = 'block';
+    let url='/ord/tail/queryDeliveryList';
+    let data={
+      ordno:'1234123451235'                //目前是写死的，以后再改
+    };
+    this.LogisticsData=this.stockManService.getShopList(url,data);
+  }
+
+  /**
+   *隐藏物流信息
+   * @param orderId
+   */
+  hideLogistics(Logistics){
+    Logistics.style.display = 'none';
   }
 
   /**
