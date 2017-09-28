@@ -18,6 +18,8 @@ export class AllWorkOrdersComponent implements OnInit {
   public ordno:string='';                                     //订单号
   public stateEnum:string='';                                 //工单状态
   public stateEnumList;                                       //工单状态的列表
+  public curWoAgentId: string;                                //工单的id
+  public curOrdno: string;                                    //订单编码
   constructor(
     private parentComp:ShoppingOrderComponent,
     private submit: SubmitService,
@@ -106,19 +108,10 @@ export class AllWorkOrdersComponent implements OnInit {
    * 发货
    * @param woAgentId    代理商工单id
    * @param ordno        订单编码
-   * @param expressCode  快递公司唯一代码
-   * @param expressNo    快递单号
    */
-  deliver(woAgentId,ordno,expressCode,expressNo){
-    let url = '/woAgent/delivery';
-    let data = {
-      woAgentId:woAgentId,
-      ordno:ordno,
-      expressCode:expressCode,
-      expressNo:expressNo,
-    };
-    this.shoppingOrderService.toAcceptWork(url,data);
-    this.queryDatas();
+  deliver(woAgentId,ordno){
+    this.curWoAgentId = woAgentId;
+    this.curOrdno=ordno;
   }
 
   /**
@@ -127,5 +120,14 @@ export class AllWorkOrdersComponent implements OnInit {
    */
   getState(val){
     this.stateEnum=val;
+  }
+
+  /**
+   * 发货回调函数
+   * @param data
+   */
+  getDeliverOrderData(data) {
+    this.curOrdno = null;//输入属性发生变化的时候，弹窗才会打开，所以每次后来都清空，造成变化的迹象
+    if(data.type) this.queryDatas(data.page)
   }
 }

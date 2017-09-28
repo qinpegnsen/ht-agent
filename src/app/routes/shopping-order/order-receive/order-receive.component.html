@@ -54,8 +54,12 @@
     <td class="w10 text-center">{{order.state | rzhState :'1305' }}</td>
     <td class="w20 text-center">
       <button class="m-sm btn btn-xs btn-outline btn-danger fa fa-truck _backColor"
-              (click)="deliver(order.id)"> 发货
+              (click)="deliver(order.id,order.ordno)"> 发货
       </button>
+      <ng-container>
+        <app-deliver-goods  [woAgentId]="curWoAgentId" [ordno]="curOrdno" [page]="workOrderList.curPage"
+                            (deliverGoods)="getDeliverOrderData($event)"></app-deliver-goods>
+      </ng-container>
     </td>
   </tr>
   </tbody>

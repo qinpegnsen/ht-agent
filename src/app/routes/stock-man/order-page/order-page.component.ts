@@ -125,6 +125,7 @@ export class OrderPageComponent implements OnInit {
   goPay(){
     let note=$("._message").val();
     let payWay=$("._payWay ._selected").text();
+    console.log("█ payWay ►►►",  payWay);
     if(payWay=='在线支付'){
       payWay='ONLINE'
     }else{

@@ -34,7 +34,7 @@
     </ul>
   </div>
   <!--主体-->
-  <div>
+  <div class="clearfix">
     <ul class="clearfix  _storeBt _myStoreTotal _list">
       <!--店铺列表-->
       <li class="w100 pull-left text-center _storeBt _myStore _list" *ngFor="let store of storeListData;let i = index">
@@ -96,18 +96,34 @@
         </ul>
       </li>
     </ul>
-    <!--结算-->
-    <div class="clearfix w100 panel-body _pay">
-      <div class="pull-right">
-        <button class="btn btn-danger _caculate _button" (click)="linkOrderPage()">去结算</button>
-      </div>
-      <div class="pull-right w18 clearfix">
-        <span class="_select pull-left">已选择 <b class="_myPrice">{{shopTotalNumber}}</b>种商品</span>
-        <span class="_select pull-left">运费：<b
-          class="_myPrice">&yen;{{priceList.expressPrice  | number:'1.2-2'}}</b></span>
-        <span class="_select pull-left">总价：<b class="_myPrice">&yen;{{priceList.payment  | number:'1.2-2'}}</b></span>
-      </div>
-    </div>
+    <!--价格信息-->
+    <table class="col-lg-12 _table">
+      <tr>
+        <td class="w80 text-right _line">{{shopTotalNumber}}种商品</td>
+        <td class="w20 _line clearfix">
+          <span class="w60 pull-right  text-center">&yen;{{priceList.total  | number:'1.2-2'}}</span>
+          <span class="w30 pull-right text-right">总商品金额：</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="w80 text-right _line"></td>
+        <td class="w20 _line">
+          <span class="w60 pull-right  text-center">&yen;{{priceList.expressPrice  | number:'1.2-2'}}</span>
+          <span class="w30 pull-right text-right">运费：</span>
+        </td>
+      </tr>
+      <tr>
+        <td class="w80 text-right _line"></td>
+        <td class="w20 _line">
+          <span class="w60 pull-right  text-center">&yen;{{priceList.payment  | number:'1.2-2'}}</span>
+          <span class="w30 pull-right text-right">应付总额：</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!--提交订单-->
+  <div class="_paddinglr">
+    <button class="btn btn-danger pull-right _myhover _button" (click)="linkOrderPage()">去结算</button>
   </div>
 </div>
 

@@ -11,6 +11,7 @@ import { CompletedComponent } from './completed/completed.component';
 import { AbnormalComponent } from './abnormal/abnormal.component';
 import {ShoppingOrderService} from "./shopping-order.service";
 import {RzhtoolsService} from "../../core/services/rzhtools.service";
+import {DeliverComponent} from "./deliver/deliver.component";
 
 const shoppingOrderChildren: Routes = [
   {path: '', redirectTo: 'all-work-orders'},
@@ -32,7 +33,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SharedModule
   ],
-  declarations: [ShoppingOrderComponent, AllWorkOrdersComponent, WaitForOrdersComponent, OrderReceiveComponent, HandledComponent, CompletedComponent, AbnormalComponent],
+  declarations: [ShoppingOrderComponent, AllWorkOrdersComponent, WaitForOrdersComponent, OrderReceiveComponent, HandledComponent, CompletedComponent, AbnormalComponent,DeliverComponent],
   providers: [ShoppingOrderService,RzhtoolsService]
 })
 export class ShoppingOrderModule { }

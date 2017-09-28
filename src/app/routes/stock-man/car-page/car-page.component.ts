@@ -311,6 +311,7 @@ export class CarPageComponent implements OnInit {
         $("._all").attr('checked',false);
       }else{
         this.priceList =priceData;//如果是真的话才进行赋值
+        console.log("█ this.priceList ►►►",  this.priceList);
       }
     } else {  //没有选中默认为0
       this.goodTotalPrice(obj)

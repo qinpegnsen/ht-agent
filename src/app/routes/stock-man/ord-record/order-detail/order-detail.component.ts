@@ -13,7 +13,7 @@ import {HeaderComponent} from "../../../../layout/header/header.component";
 export class OrderDetailComponent implements OnInit {
 
   public orderData: any;                                  //订单的数据
-  public LogisticsData;                                   //获取物流的信息
+  public logisticsData;                                   //获取物流的信息
   public express;                                         //快递公司的信息
   constructor(
     private parentComp:OrdRecordComponent,
@@ -96,9 +96,9 @@ export class OrderDetailComponent implements OnInit {
     let data={
       ordno:'1234123451235'                //目前是写死的，以后再改
     };
-    this.LogisticsData=this.stockManService.getShopList(url,data);
-    console.log("█ this.LogisticsData ►►►",  this.LogisticsData);
-    this.express=this.LogisticsData[1];
+    this.logisticsData=this.stockManService.getShopList(url,data);
+    console.log("█ this.LogisticsData ►►►",  this.logisticsData);
+    this.express=this.logisticsData[1];
   }
 
 }

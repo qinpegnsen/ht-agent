@@ -16,9 +16,9 @@
         <div class="_title clearfix">
           <b class="col-l-5 pull-left">收货人信息</b>
         </div>
-        <div *ngIf="defaultAddress?.address">
-          <span routerLink="/main/stockAddres/rightpage" [queryParams]="{number:1}" class='_myhover font14'>添加地址</span>
-        </div>
+        <!--<div *ngIf="defaultAddress?.address">-->
+          <!--<span routerLink="/main/stockAddres/rightpage" [queryParams]="{number:1}" class='_myhover font14'>添加地址</span>-->
+        <!--</div>-->
         <div *ngIf="defaultAddress?.address">
           <div class="w100 clearfix">
             <div class="text-center col-lg-1 _line _border _selected _addrId" id="{{defaultAddress?.id}}">
@@ -36,7 +36,7 @@
             </div>
           </div>
           <div class="clearfix">
-            <accordion-group panelClass="b mt-sm">
+            <accordion-group panelClass="b mt-sm" class="_myBorder">
               <div accordion-heading>更多地址<span class="caret"></span></div>
               <div class="w100 clearfix _hover" *ngFor="let addres of otherAddress" (mouseover)="showButton(addres.id)">
                 <div class="text-center col-lg-1 _line">{{addres.receiverName}}</div>
@@ -63,9 +63,7 @@
         </div>
         <div>
           <div class="w100 clearfix _payWay">
-            <div class="text-center col-lg-1 _line _border _marginR _selected _myhover p0"
-                 (click)="changeStyle($event.target)">在线支付
-            </div>
+            <div class="text-center col-lg-1 _line _border _marginR _selected _myhover p0" (click)="changeStyle($event.target)">在线支付</div>
             <div class="text-center col-lg-1 _line _myhover p0" (click)="changeStyle($event.target)">银行汇款</div>
           </div>
         </div>
@@ -121,13 +119,13 @@
                     </div>
                   </div>
                   <div class="w10 pull-left text-center">
-                    &yen; {{good.batchPrice | number:'1.2-2'}}
+                    &yen;{{good.batchPrice | number:'1.2-2'}}
                   </div>
                   <div class="w10 pull-left text-center _orderTotalNum">
                     x{{good.batchNum}}
                   </div>
                   <div class="w10 pull-left text-center _orderTotalNum">
-                    &yen; {{good.batchPrice*good.batchNum | number:'1.2-2'}}
+                    &yen;{{good.batchPrice*good.batchNum | number:'1.2-2'}}
                   </div>
                 </li>
               </ul>
@@ -151,25 +149,26 @@
       <tr>
         <td class="w80 text-right _line">{{orderData?.goodsNum}}件商品</td>
         <td class="w20 _line clearfix">
-          <span class="w60 pull-right  text-center">&yen; {{orderData?.total  | number:'1.2-2'}}</span>
+          <span class="w60 pull-right  text-center">&yen;{{orderData?.total  | number:'1.2-2'}}</span>
           <span class="w30 pull-right text-right">总商品金额：</span>
         </td>
       </tr>
       <tr>
         <td class="w80 text-right _line"></td>
         <td class="w20 _line">
-          <span class="w60 pull-right  text-center">{{orderData?.expressPrice  | number:'1.2-2'}}</span>
+          <span class="w60 pull-right  text-center">&yen;{{orderData?.expressPrice  | number:'1.2-2'}}</span>
           <span class="w30 pull-right text-right">运费：</span>
         </td>
       </tr>
       <tr>
         <td class="w80 text-right _line"></td>
         <td class="w20 _line">
-          <span class="w60 pull-right  text-center">{{orderData?.payment  | number:'1.2-2'}}</span>
+          <span class="w60 pull-right  text-center">&yen;{{orderData?.payment  | number:'1.2-2'}}</span>
           <span class="w30 pull-right text-right">应付总额：</span>
         </td>
       </tr>
     </table>
+    <!--提交订单-->
     <div class="_paddinglr">
       <button class="btn btn-danger pull-right _myhover _button" (click)="goPay()">提交订单</button>
     </div>

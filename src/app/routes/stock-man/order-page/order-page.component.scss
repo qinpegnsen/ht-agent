@@ -3,7 +3,7 @@
   padding: 5px 10px;
 }
 ._content{
-  border:1px solid #F0F0F0;
+  //border:1px solid #F0F0F0;
   background-color: #fff;
   padding: 0 20px;
 }
@@ -61,4 +61,7 @@ td{
 }
 ._button{
   width:150px;height:45px;font-size:16px;
+}
+._myBorder{
+  border:0px solid #fff!important;
 }

@@ -18,10 +18,11 @@ export class OrderReceiveComponent implements OnInit {
   public ordno:string='';                                     //订单号
   public stateEnum:string='';                                 //工单状态
   public stateEnumList;                                       //工单状态的列表
+  public curWoAgentId: string;                                //工单的id
+  public curOrdno: string;                                    //订单编码
   constructor(
     private parentComp:ShoppingOrderComponent,
     private submit: SubmitService,
-    private shoppingOrderService: ShoppingOrderService,
     private rzhtoolsService: RzhtoolsService
   ) { }
 
@@ -62,14 +63,12 @@ export class OrderReceiveComponent implements OnInit {
 
   /**
    * 发货
-   * @param id
+   * @param woAgentId    代理商工单id
+   * @param ordno        订单编码
    */
-  deliver(id){
-    let url = '/woAgent/updateWoAgentToReject';
-    let data = {
-      id:id
-    };
-    this.shoppingOrderService.toAcceptWork(url,data)
+  deliver(woAgentId,ordno){
+    this.curWoAgentId = woAgentId;
+    this.curOrdno=ordno;
   }
 
   /**
@@ -78,6 +77,15 @@ export class OrderReceiveComponent implements OnInit {
    */
   getState(val){
     this.stateEnum=val;
+  }
+
+  /**
+   * 发货回调函数
+   * @param data
+   */
+  getDeliverOrderData(data) {
+    this.curOrdno = null;//输入属性发生变化的时候，弹窗才会打开，所以每次后来都清空，造成变化的迹象
+    if(data.type) this.queryDatas(data.page)
   }
 
 }

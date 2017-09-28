@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AjaxService} from "../../core/services/ajax.service";
 import {AppComponent} from "../../app.component";
+import {isNullOrUndefined} from "util";
 @Injectable()
 export class ShoppingOrderService {
 
@@ -23,6 +24,30 @@ export class ShoppingOrderService {
         if(res.success){
           result=res.data;
           AppComponent.rzhAlt("success",info);
+        }else{
+          AppComponent.rzhAlt("error",info);
+        }
+      },
+      error: () => {
+        AppComponent.rzhAlt("error",'连接数据库失败');
+      }
+    });
+    return result;
+  }
+
+  /**
+   * 查询物流公司列表  get 成功不提示
+   */
+  public getBasicExpressList(url,data){
+    let result;
+    this.ajax.get({
+      url: url,
+      data: data,
+      async:false,
+      success: (res) => {
+        let info=res.info;
+        if(res.success){
+          result=res.data;
         }else{
           AppComponent.rzhAlt("error",info);
         }
