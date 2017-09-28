@@ -49,10 +49,10 @@
     <td class="w25 text-center">{{order.ord.address}}</td>
     <td class="w10 text-center">{{order.state | rzhState :'1305' }}</td>
     <td class="w20 text-center">
-      <button class="m-sm btn btn-xs btn-outline btn-danger fa fa-close _backColor"
+      <button class="m-sm btn btn-xs btn-outline btn-danger fa fa-close _backColor _refuseBg"
               (click)="toReject(order.id)"> 拒单
       </button>
-      <button class="m-sm btn btn-xs btn-outline btn-danger fa fa-check _backColor"
+      <button class="m-sm btn btn-xs btn-outline btn-info fa fa-check _backColor"
               (click)="toAccept(order.id)"> 接单
       </button>
     </td>

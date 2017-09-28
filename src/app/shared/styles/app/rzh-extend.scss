@@ -116,6 +116,10 @@ $largeImg: 80px;      // 商品列表图片的宽，较大的图
   color:white !important;
 }
 
+._refuseBg{
+  background: red;
+}
+
 //loading 样式
 @keyframes loading {
   from {
