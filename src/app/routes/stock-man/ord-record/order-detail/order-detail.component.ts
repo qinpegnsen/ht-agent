@@ -14,8 +14,9 @@ export class OrderDetailComponent implements OnInit {
 
   public orderData: any;                                  //订单的数据
   public logisticsData;                                   //获取物流的信息
-  public express;                                         //快递公司的信息
+  public deliveryData;                                    //快递公司的信息
   public ordno;                                           //订单号
+  public atime:Array<string> = new Array();             //存储状态时间的数组
   constructor(
     private parentComp:OrdRecordComponent,
     private routeInfo:ActivatedRoute,
@@ -34,8 +35,9 @@ export class OrderDetailComponent implements OnInit {
     this.ordno = me.routeInfo.snapshot.queryParams['ordno'];//获取进货记录未付款页面跳转过来的参数
     me.parentComp.orderType = 100;
 
-    this.getOrderData()
-    this.showLogistics()
+    this.getOrderData();
+    this.showLogistics();
+    this.getDelivery();
   }
 
   /**
@@ -47,9 +49,22 @@ export class OrderDetailComponent implements OnInit {
       ordno:this.ordno
     }
     this.orderData=this.stockManService.getShopList(url,data);
+    console.log("█ this.orderData ►►►",  this.orderData);
     if(!this.orderData){
       this.orderData='';//避免报错
     }
+  }
+
+  /**
+   * 获取快递公司的信息
+   */
+  getDelivery(){
+    let url = '/ord/tail/loadByDelivery';
+    let data={
+      ordno:'1234123451235'                //目前是写死的，以后再改
+    }
+    this.deliveryData=this.stockManService.getShopList(url,data);
+    console.log("█ this.deliveryData ►►►",  this.deliveryData);
   }
 
   /**
@@ -95,6 +110,9 @@ export class OrderDetailComponent implements OnInit {
     this.headerComponent.getShopTotal()
   }
 
+
+
+
   /**
    *显示物流信息
    * @param orderId
@@ -105,8 +123,20 @@ export class OrderDetailComponent implements OnInit {
       ordno:'1234123451235'                //目前是写死的，以后再改
     };
     this.logisticsData=this.stockManService.getShopList(url,data);
-    console.log("█ this.LogisticsData ►►►",  this.logisticsData);
-    // this.express=this.logisticsData[1];
+
+    for (let item of this.logisticsData){
+      if (item.state == 'SUCCESS') {
+        this.atime[5] = item.acceptTime;
+      } else if (item.state == 'DELIVERY') {
+        this.atime[4] = item.acceptTime;
+      } else if (item.state == 'PREPARE') {
+        this.atime[3] = item.acceptTime;
+      } else if (item.state == 'PAID') {
+        this.atime[2] = item.acceptTime;
+      } else if (item.state == 'CR') {
+        this.atime[1] = item.acceptTime;
+      }
+    }
   }
 
 
