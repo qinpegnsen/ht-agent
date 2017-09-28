@@ -69,8 +69,8 @@
         <app-deliver-goods  [woAgentId]="curWoAgentId" [ordno]="curOrdno" [page]="workOrderList.curPage"
           (deliverGoods)="getDeliverOrderData($event)"></app-deliver-goods>
       </ng-container>
-      <button *ngIf="order.state=='DEAL'||order.state=='DONE'||order.state=='END'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-info-circle _backColor"
-              (click)="lookInfo(order.ordno)">查看详情
+      <button *ngIf="order.state=='DEAL'||order.state=='DONE'||order.state=='END'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-info-circle _backColor" routerLink="../work-detail"
+              [queryParams]="{ordno:order.ordno}">查看详情
       </button>
     </td>
   </tr>

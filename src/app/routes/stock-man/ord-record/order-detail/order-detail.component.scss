@@ -130,9 +130,6 @@
 ._w0{
   width:0px !important;
 }
-.timeline-badge{
-  width:20px !important;height:20px !important;font-size:10px !important;line-height:20px !important;left:9px !important;
-}
 ._logistics{
   padding-top:15px;margin-bottom: 10px;position: absolute;top:42px;overflow-y: auto;
   height:250px;width:100%;
@@ -157,25 +154,28 @@
   }
   .timeline-alt > li > .timeline-badge {
     position: absolute;
-    left: 8px;
+    left: 15px;
     z-index: 100;
     color: #fff;
-    width: 20px;
-    height: 20px;
+    width: 6px;
+    height: 6px;
+    margin-top: 8px;
     font-size: 12px;
     border-radius: 20px;
     line-height: 20px;
     text-align: center;
+    background-color: #d8d8d8;
   }
   .logis-time{
     display: inline-block;
     text-align: right;
-    min-width: 180px;
+    min-width: 170px;
     position: absolute;
     left: 0;
   }
   .every-line{
     position: relative;
-    padding-left: 190px;
+    padding-left: 180px;
   }
 }
+
