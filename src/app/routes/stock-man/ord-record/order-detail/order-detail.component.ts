@@ -15,6 +15,7 @@ export class OrderDetailComponent implements OnInit {
   public orderData: any;                                  //订单的数据
   public logisticsData;                                   //获取物流的信息
   public express;                                         //快递公司的信息
+  public ordno;                                           //订单号
   constructor(
     private parentComp:OrdRecordComponent,
     private routeInfo:ActivatedRoute,
@@ -30,18 +31,25 @@ export class OrderDetailComponent implements OnInit {
    */
   ngOnInit() {
     let me = this;
-    let ordno = me.routeInfo.snapshot.queryParams['ordno'];//获取进货记录未付款页面跳转过来的参数
+    this.ordno = me.routeInfo.snapshot.queryParams['ordno'];//获取进货记录未付款页面跳转过来的参数
     me.parentComp.orderType = 100;
+
+    this.getOrderData()
+    this.showLogistics()
+  }
+
+  /**
+   * 获取订单的数据
+   */
+  getOrderData(){
     let url = '/agentOrd/loadByOrdno';
     let data={
-      ordno:ordno
+      ordno:this.ordno
     }
     this.orderData=this.stockManService.getShopList(url,data);
     if(!this.orderData){
       this.orderData='';//避免报错
     }
-
-    this.showLogistics()
   }
 
   /**
@@ -99,6 +107,21 @@ export class OrderDetailComponent implements OnInit {
     this.logisticsData=this.stockManService.getShopList(url,data);
     console.log("█ this.LogisticsData ►►►",  this.logisticsData);
     this.express=this.logisticsData[1];
+  }
+
+
+  /**
+   *  取消订单
+   *  1.取消完刷新页面
+   * @param orderId
+   */
+  cancelOrder(ordno){
+    let url='/agentOrd/cancelAgentOrd';
+    let data={
+      ordno:ordno
+    }
+    this.stockManService.delAgentOrd(url,data);
+    this.getOrderData();
   }
 
 }

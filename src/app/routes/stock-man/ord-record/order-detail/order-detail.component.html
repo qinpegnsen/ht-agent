@@ -311,7 +311,7 @@
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"
                 (click)="goPay(orderData.ordno)"> 去支付
         </button>
-        <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"> 取消订单</button>
+        <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'" (click)="cancelOrder(item.ordno)"> 取消订单</button>
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='SUCCESS'">
           {{logisticsData[4].description}}
         </button>
