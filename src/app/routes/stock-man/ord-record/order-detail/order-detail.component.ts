@@ -106,7 +106,7 @@ export class OrderDetailComponent implements OnInit {
     };
     this.logisticsData=this.stockManService.getShopList(url,data);
     console.log("█ this.LogisticsData ►►►",  this.logisticsData);
-    this.express=this.logisticsData[1];
+    // this.express=this.logisticsData[1];
   }
 
 

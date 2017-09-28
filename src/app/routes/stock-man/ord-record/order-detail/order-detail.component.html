@@ -27,7 +27,7 @@
           <div class="more b w100" #times (mouseenter)="showTimeList(times)" (mouseleave)="hideTimesList(times)"><span
             class="arrow"></span>
             <ul class="list-unstyled font12 mb0">
-              <li><span>{{orderData.acceptTime}}</span>买家下单时间</li>
+              <li><span>{{orderData.createTime}}</span>买家下单时间</li>
             </ul>
           </div>
         </dd>
@@ -49,14 +49,14 @@
         <dt>收货地址：</dt>
         <dd>{{orderData.addr}}</dd>
       </dl>
-      <dl *ngIf="orderData.state=='DELIVERY'">
-        <dt>快递公司：</dt>
-        <dd>{{express.expressName}}</dd>
-      </dl>
-      <dl *ngIf="orderData.state=='DELIVERY'">
-        <dt>快递单号：</dt>
-        <dd>{{express.expressNo}}</dd>
-      </dl>
+      <!--<dl *ngIf="orderData.state=='DELIVERY'">-->
+        <!--<dt>快递公司：</dt>-->
+        <!--<dd>{{express.expressName}}</dd>-->
+      <!--</dl>-->
+      <!--<dl *ngIf="orderData.state=='DELIVERY'">-->
+        <!--<dt>快递单号：</dt>-->
+        <!--<dd>{{express.expressNo}}</dd>-->
+      <!--</dl>-->
     </div>
   </div>
   <div class="szh-order-condition bt br bb" *ngIf="orderData.state=='DELIVERY'">
@@ -66,14 +66,12 @@
       <ul class="timeline-alt p0">
         <ng-container *ngFor="let item of logisticsData;let s=index;">
           <li class="mb0">
-            <div class="timeline-badge primary">
-              <em class="fa fa-truck"></em>
-            </div>
+            <div class="timeline-badge gray-bg thc" [class.bg]="s==0"></div>
             <div class="timeline-panel">
               <div class="right">
                 <div>
-                  <p *ngIf="item.state!='DELIVERY'" class="every-line">
-                  <span class="mr" *ngIf="s==0">
+                  <p class="every-line">
+                  <span class="mr logis-time" *ngIf="s==0">
                       <b class="mr-lg">{{item.day}}</b>
                       <b class="mr-lg">{{item.day | getWeek}}</b>
                       {{item.time}}
@@ -86,24 +84,7 @@
                       {{item.time}}
                     </span>
                     </ng-container>
-                    <span class="every-info">{{item.description}}</span>
-                  </p>
-                  <p *ngFor="let detail of item.traceVos;let i=index;"class="every-line">
-                  <span class="mr logis-time" *ngIf="i==0">
-                    <ng-container *ngIf="detail.day!=logisticsData[s-1].day">
-                      <b class="mr-lg">{{detail.day}}</b>
-                      <b class="mr-lg">{{detail.day | getWeek}}</b>
-                    </ng-container>
-                  {{detail.time}}</span>
-                    <ng-container *ngIf="i>0">
-                      <span class="mr logis-time" *ngIf="detail.day==item.traceVos[i-1].day || detail.day==logisticsData[s-1].day">{{detail.time}}</span>
-                      <span class="mr logis-time" *ngIf="detail.day!=item.traceVos[i-1].day">
-                        <b class="mr-lg">{{detail.day}}</b>
-                        <b class="mr-lg">{{detail.day | getWeek}}</b>
-                        {{detail.time}}
-                      </span>
-                    </ng-container>
-                    <span class="every-info">{{detail.acceptStation}}</span>
+                    <span class="every-info">{{item.acceptStation}}</span>
                   </p>
                 </div>
               </div>
@@ -127,7 +108,7 @@
     <dl class="cur">
       <dt>提交订单</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{logisticsData[0].acceptTime}}</dd>
+      <dd>{{logisticsData[0].createTime}}</dd>
     </dl>
     <dl>
       <dt>已支付</dt>
@@ -154,12 +135,12 @@
     <dl class="cur">
       <dt>提交订单</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{logisticsData[0].acceptTime}}</dd>
+      <dd>{{logisticsData[0].createTime}}</dd>
     </dl>
     <dl class="cur">
       <dt>已支付</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{logisticsData[1].acceptTime}}</dd>
+      <dd>{{logisticsData[1].createTime}}</dd>
     </dl>
     <dl>
       <dt>已配货</dt>
@@ -181,17 +162,17 @@
     <dl class="cur">
       <dt>提交订单</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{logisticsData[0].acceptTime}}</dd>
+      <dd>{{logisticsData[0].createTime}}</dd>
     </dl>
     <dl class="cur">
       <dt>已支付</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{logisticsData[1].acceptTime}}</dd>
+      <dd>{{logisticsData[1].createTime}}</dd>
     </dl>
     <dl class="cur">
       <dt>已配货</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{logisticsData[2].acceptTime}}</dd>
+      <dd>{{logisticsData[2].createTime}}</dd>
     </dl>
     <dl>
       <dt>已发货</dt>
@@ -208,22 +189,22 @@
     <dl class="cur">
       <dt>提交订单</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{logisticsData[0].acceptTime}}</dd>
+      <dd>{{logisticsData[0].createTime}}</dd>
     </dl>
     <dl class="cur">
       <dt>已支付</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{logisticsData[1].acceptTime}}</dd>
+      <dd>{{logisticsData[1].createTime}}</dd>
     </dl>
     <dl class="cur">
       <dt>已配货</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{logisticsData[2].acceptTime}}</dd>
+      <dd>{{logisticsData[2].createTime}}</dd>
     </dl>
     <dl class="cur">
       <dt>已发货</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{logisticsData[3].acceptTime}}</dd>
+      <dd>{{logisticsData[3].createTime}}</dd>
     </dl>
     <dl>
       <dt>订单完成</dt>
@@ -235,27 +216,27 @@
     <dl class="cur">
       <dt>提交订单</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{logisticsData[0].acceptTime}}</dd>
+      <dd>{{logisticsData[0].createTime}}</dd>
     </dl>
     <dl class="cur">
       <dt>已支付</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{logisticsData[1].acceptTime}}</dd>
+      <dd>{{logisticsData[1].createTime}}</dd>
     </dl>
     <dl class="cur">
       <dt>已配货</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{logisticsData[2].acceptTime}}</dd>
+      <dd>{{logisticsData[2].createTime}}</dd>
     </dl>
     <dl class="cur">
       <dt>已发货</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{logisticsData[3].acceptTime}}</dd>
+      <dd>{{logisticsData[3].createTime}}</dd>
     </dl>
     <dl class="cur">
       <dt>订单完成</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{logisticsData[4].acceptTime}}</dd>
+      <dd>{{logisticsData[4].createTime}}</dd>
     </dl>
   </ng-container>
 </div>
@@ -267,7 +248,7 @@
     <dl class="cur">
       <dt>订单关闭</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{orderData.acceptTime}}</dd>
+      <dd>{{orderData.createTime}}</dd>
     </dl>
   </ng-container>
 </div>
@@ -311,7 +292,7 @@
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"
                 (click)="goPay(orderData.ordno)"> 去支付
         </button>
-        <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'" (click)="cancelOrder(orderData.ordno)"> 取消订单</button>
+        <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"> 取消订单</button>
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='SUCCESS'">
           {{logisticsData[4].description}}
         </button>
