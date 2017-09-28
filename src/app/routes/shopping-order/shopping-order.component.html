@@ -9,9 +9,13 @@
         <li class="pull-left" [class.cur-order]="orderType==5" routerLink="completed">已完成</li>
         <li class="pull-left" [class.cur-order]="orderType==6" routerLink="abnormal">异常工单</li>
       </ul>
-      <!--路由嵌套 begin-->
-      <router-outlet></router-outlet>
-      <!--路由嵌套 end-->
     </div>
+    <ul class="order-guide list-unstyled clearfix bb" *ngIf="orderType==100">
+      <li class="pull-left" routerLink="all-work-orders">订单列表</li>
+      <li class="pull-left cur-order">商品详情</li>
+    </ul>
+    <!--路由嵌套 begin-->
+    <router-outlet></router-outlet>
+    <!--路由嵌套 end-->
   </div>
 </div>
