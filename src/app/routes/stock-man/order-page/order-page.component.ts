@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {StockManService} from "../stock-man.service";
 import {NavigationEnd, Router} from "@angular/router";
+import {Location} from "@angular/common";
 declare var $:any;
 @Component({
   selector: 'app-order-page',
@@ -17,7 +18,8 @@ export class OrderPageComponent implements OnInit {
   public flag:boolean=true;                   //定义boolean值用来控制内容组件是否显示
   constructor(
     public stockManService: StockManService,
-    private router:Router
+    private router:Router,
+    private location:Location,
   ) { }
 
   /**
@@ -60,13 +62,11 @@ export class OrderPageComponent implements OnInit {
       strData:this.strData
     }
     let orderData=this.stockManService.getShopListOne(url, data);
-    if(orderData=='选择购买商品状态不合法'){//如果商品的状态不合法，在跳转到购物车的页面，然后刷新就有遮罩
-      console.log("█ 1 ►►►",  1);
-      this.router.navigate(['/main/stockMan/cart']);
-      console.log("█ 2 ►►►",  2);
+    if(orderData=='购买商品不可批发商品'||orderData=='购买商品包含已下架商品法'){//如果商品的状态不合法，在跳转到购物车的页面，然后刷新就有遮罩
+      this.location.back();
+      return;
     }
-    console.log("█ orderData ►►►",  orderData);
-    if(orderData){   //不进行判断有时候会报错
+    if(orderData&&orderData!='购买商品不可批发商品'||orderData!='购买商品包含已下架商品法'){   //不进行判断有时候会报错
       this.orderData=orderData.calcDTO;
       for(var i=0;i<orderData.agentAddrsList.length;i++){
         if(orderData.agentAddrsList[i].isDefault=='Y'){
@@ -75,7 +75,6 @@ export class OrderPageComponent implements OnInit {
           this.otherAddress=orderData.agentAddrsList;
         }
       }
-      console.log("█ this.defaultAddress ►►►",  this.defaultAddress);
     }else {
       this.router.navigate(['/main/home'])
       return;

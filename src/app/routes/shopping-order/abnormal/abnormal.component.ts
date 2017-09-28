@@ -54,7 +54,7 @@ export class AbnormalComponent implements OnInit {
       agentCode:'',
       wono:this.wono,
       ordno:this.ordno,
-      ordType:'ORD',//工单类型 售后工单
+      ordType:'ORD',//工单类型 购物订单
       stateEnum:this.stateEnum?this.stateEnum:'END',
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
