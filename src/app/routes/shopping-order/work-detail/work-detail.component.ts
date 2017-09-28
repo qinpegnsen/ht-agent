@@ -4,6 +4,7 @@ import {HeaderComponent} from "../../../layout/header/header.component";
 import {StockManService} from "../../stock-man/stock-man.service";
 import {ShoppingOrderComponent} from "../shopping-order.component";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'app-work-detail',
@@ -46,7 +47,8 @@ export class WorkDetailComponent implements OnInit {
       ordno:this.ordno
     }
     this.orderData=this.stockManService.getShopList(url,data);
-    if(!this.orderData){
+    console.log("█ this.orderData ►►►",  this.orderData);
+    if(isNullOrUndefined(this.orderData)){
       this.orderData='';//避免报错
     }
   }
