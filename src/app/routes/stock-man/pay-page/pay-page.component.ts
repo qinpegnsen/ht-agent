@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {StockManService} from "../stock-man.service";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {HeaderComponent} from "app/layout/header/header.component";
-import {isUndefined} from "util";
+import {isNullOrUndefined, isUndefined} from "util";
+import {Location} from "@angular/common";
+import {AppComponent} from "../../../app.component";
 declare var $:any;
 @Component({
   selector: 'app-pay-page',
@@ -21,8 +23,9 @@ export class PayPageComponent implements OnInit {
     public stockManService: StockManService,
     private router: Router,
     public headerComponent: HeaderComponent,
-    private routeInfo:ActivatedRoute
-) { }
+    private routeInfo:ActivatedRoute,
+    private location:Location
+  ) { }
 
   /**
    * 1.把数据拿出来进行请求，生成订单
@@ -43,7 +46,8 @@ export class PayPageComponent implements OnInit {
     }
     let url = '/agentOrd/addAgentOrd';
     let payData=this.stockManService.bornOrder(url,this.orderData);
-    if(!payData){  //在用户刷新，或者下个页面返回的时候会用到
+    console.log("█ payData ►►►",  payData);
+    if(isNullOrUndefined(payData)){  //在用户刷新，或者下个页面返回的时候会用到
       let url = '/agentOrd/loadByOrdno';
       let data={
         ordno:ordno?ordno:sessionStorage.getItem('ordno')
@@ -52,6 +56,10 @@ export class PayPageComponent implements OnInit {
       console.log("█ payData ►►►",  payData);
       this.ordno=payData.ordno;
       this.pay=payData.pay;
+    }if(payData=='购买商品不可批发商品'||payData=='购买商品包含已下架商品'){
+      AppComponent.rzhAlt("error",payData);
+      this.location.back();
+      return;
     }else{
       sessionStorage.setItem('ordno',payData.ordno);//把订单编码存起来，在用户刷新，或者下个页面返回的时候会用到
       this.ordno=payData.ordno;

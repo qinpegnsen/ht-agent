@@ -19,7 +19,7 @@ export class OrderPageComponent implements OnInit {
   constructor(
     public stockManService: StockManService,
     private router:Router,
-    private location:Location,
+    private location:Location
   ) { }
 
   /**
@@ -62,11 +62,12 @@ export class OrderPageComponent implements OnInit {
       strData:this.strData
     }
     let orderData=this.stockManService.getShopListOne(url, data);
+    console.log("█ orderData ►►►",  orderData);
     if(orderData=='购买商品不可批发商品'||orderData=='购买商品包含已下架商品法'){//如果商品的状态不合法，在跳转到购物车的页面，然后刷新就有遮罩
       this.location.back();
       return;
     }
-    if(orderData&&orderData!='购买商品不可批发商品'||orderData!='购买商品包含已下架商品法'){   //不进行判断有时候会报错
+    if(orderData&&orderData!='购买商品不可批发商品'||orderData!='购买商品包含已下架商品'){   //不进行判断有时候会报错
       this.orderData=orderData.calcDTO;
       for(var i=0;i<orderData.agentAddrsList.length;i++){
         if(orderData.agentAddrsList[i].isDefault=='Y'){

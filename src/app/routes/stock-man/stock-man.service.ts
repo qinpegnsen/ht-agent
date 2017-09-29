@@ -160,7 +160,7 @@ export class StockManService {
         result=res.data;
         if(res.success){
         }else{
-          // AppComponent.rzhAlt("error",info);
+          result=info;
         }
       },
       error: () => {
