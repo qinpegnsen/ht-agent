@@ -5,10 +5,10 @@
       <dl>
         <dt>买家留言：</dt>
         <dd>{{orderData.remark}}</dd>
-      </dl><dl>
+      </dl>
+      <dl>
         <dt>支付方式：</dt>
-        <dd *ngIf="orderData.payWay=='ONLINE'">在线支付</dd>
-        <dd *ngIf="orderData.payWay=='REMIT'">银行转账</dd>
+        <dd>{{orderData.payWay | rzhState :'1017'}}</dd>
       </dl>
       <dl>
         <dt>运费：</dt>
@@ -65,7 +65,7 @@
   <div class="szh-order-condition bt br bb">
     <div class="order-head _position"><i class="fa fa-truck mr"></i><span>包裹信息</span></div>
     <!--物流信息-->
-    <div class="_logistics order-track"  *ngIf="orderData.state=='DELIVERY'">
+    <div class="_logistics order-track" *ngIf="orderData.state=='DELIVERY'">
       <ul class="timeline-alt p0">
         <ng-container *ngFor="let item of logisticsData;let s=index;">
           <li class="mb0">
@@ -113,7 +113,7 @@
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
       <dd>{{atime[1]}}</dd>
     </dl>
-      <dl>
+    <dl>
       <dt>已支付</dt>
       <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
       <dd></dd>
@@ -288,14 +288,15 @@
       <td class="bb">{{item.batchNum}}</td>
       <td class="bl" *ngIf="i==0" [attr.rowspan]="orderData.agentOrdItemList.length">
         <span class="main-red font14">￥{{item.batchPrice*item.batchNum | number:'1.2-2'}}</span><br>
-        <span class="font-gray" *ngIf="orderData.payWay=='ONLINE'">在线支付</span>
-        <span class="font-gray" *ngIf="orderData.payWay=='REMIT'">银行汇款</span>
+        <span class="font-gray">{{orderData.payWay | rzhState :'1017'}}</span>
       </td>
       <td class="bl" *ngIf="i==0" [attr.rowspan]="orderData.agentOrdItemList.length">
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"
                 (click)="goPay(orderData.ordno)"> 去支付
         </button>
-        <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'" (click)="cancelOrder(item.ordno)"> 取消订单</button>
+        <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"
+                (click)="cancelOrder(item.ordno)"> 取消订单
+        </button>
 
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CLOSE'"
                 (click)="againBuy(item.goodsCode,item.batchNum)"> 加入购物车

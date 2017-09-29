@@ -329,8 +329,7 @@
         <dd>{{orderData.remark}}</dd>
       </dl><dl>
       <dt>支付方式：</dt>
-      <dd *ngIf="orderData.payWay=='ONLINE'">在线支付</dd>
-      <dd *ngIf="orderData.payWay=='REMIT'">银行转账</dd>
+      <dd>{{orderData.payWay | rzhState :'1017'}}</dd>
     </dl>
       <dl>
         <dt>运费：</dt>
@@ -610,8 +609,7 @@
       <td class="bb">{{item.batchNum}}</td>
       <td class="bl" *ngIf="i==0" [attr.rowspan]="orderData.agentOrdItemList.length">
         <span class="main-red font14">￥{{item.batchPrice*item.batchNum | number:'1.2-2'}}</span><br>
-        <span class="font-gray" *ngIf="orderData.payWay=='ONLINE'">在线支付</span>
-        <span class="font-gray" *ngIf="orderData.payWay=='REMIT'">银行汇款</span>
+        <span class="font-gray">{{orderData.payWay | rzhState :'1017'}}</span>
       </td>
       <td class="bl" *ngIf="i==0" [attr.rowspan]="orderData.agentOrdItemList.length">
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"
