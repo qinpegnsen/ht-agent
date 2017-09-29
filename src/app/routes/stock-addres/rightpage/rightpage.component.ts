@@ -102,7 +102,11 @@ export class RightpageComponent implements OnInit {
         },
         success: (res) => {
           if (res.success) {
-            _this.router.navigate(['/main/stockAddres'], {replaceUrl: true}); //路由跳转
+            if(_this.source=='cart'){
+              _this.router.navigate(['/main/stockMan/order'], {replaceUrl: false}); //路由跳转
+            }else{
+              _this.router.navigate(['/main/stockAddres'], {replaceUrl: true}); //路由跳转
+            }
             swal('新增代理商收货地址提交成功！', '','success');
             _this.StockAddresComponent.queryList();//实现局部刷新
           } else {

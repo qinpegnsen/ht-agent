@@ -23,7 +23,6 @@ export class DeliverComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['ordno'] && !isNullOrUndefined(this.ordno)) {
-      console.log("█ orderId ►►►", this.ordno);
       $('.wrapper > section').css('z-index', 200);
       this.showDeliverWindow = true;
       this.expressNo = null;      //每次出来把上次填的订单号清除，快递公司就算了，留着吧
@@ -34,7 +33,6 @@ export class DeliverComponent implements OnInit, OnDestroy, OnChanges {
     let url='/basicExpress/queryAllBasicExpress';
     let data='';
     this.expressList=this.shoppingOrderService.getBasicExpressList(url,data);
-    console.log("█  this.expressList ►►►",   this.expressList);
   }
 
   ngOnDestroy(): void {

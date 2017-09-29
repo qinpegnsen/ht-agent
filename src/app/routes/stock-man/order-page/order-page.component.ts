@@ -3,6 +3,7 @@ import {StockManService} from "../stock-man.service";
 import {NavigationEnd, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {isNullOrUndefined} from "util";
+import {AppComponent} from "../../../app.component";
 declare var $:any;
 @Component({
   selector: 'app-order-page',
@@ -71,6 +72,7 @@ export class OrderPageComponent implements OnInit {
       this.router.navigate(['/main/stockMan/agentord']);
       return;
     }else {   //正常的状态
+      console.log("█ 2 ►►►",  2);
       this.orderData=orderData.calcDTO;
       for(var i=0;i<orderData.agentAddrsList.length;i++){
         if(orderData.agentAddrsList[i].isDefault=='Y'){
@@ -79,6 +81,7 @@ export class OrderPageComponent implements OnInit {
           this.otherAddress=orderData.agentAddrsList;
         }
       }
+      console.log("█ this.defaultAddress ►►►",  this.defaultAddress);
     }
   }
 
@@ -141,6 +144,10 @@ export class OrderPageComponent implements OnInit {
       agentAddrId:agentAddrId
     }
     sessionStorage.setItem('orderData', JSON.stringify(data));
-    this.router.navigate(['/main/stockMan/pay'])
+    if(this.defaultAddress){  //如果有默认的地址才跳转
+      this.router.navigate(['/main/stockMan/pay'])
+    }else{//没有进行提示
+      AppComponent.rzhAlt("info",'请先添加收货地址');
+    }
   }
 }

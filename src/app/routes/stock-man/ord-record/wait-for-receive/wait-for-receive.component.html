@@ -61,8 +61,7 @@
           <td class="w10 bl" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length">
             <span class="main-red font14">￥{{goods.pay | number:'1.2-2'}}</span><br>
             <span class="font-gray">运费 ￥{{goods.freightPrice | number:'1.2-2'}}</span><br>
-            <span class="font-gray" *ngIf="goods.payWay=='ONLINE'">在线支付</span>
-            <span class="font-gray" *ngIf="goods.payWay=='REMIT'">银行汇款</span>
+            <span class="font-gray">{{goods.payWay | rzhState :'1017'}}</span>
           </td>
           <td class="w10 bl position-relative" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length">
             <p class="font-gray mb-sm cursor-p">{{goods.state | rzhState :'1019'}}</p>

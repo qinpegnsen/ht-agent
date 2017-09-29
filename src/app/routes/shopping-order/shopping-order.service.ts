@@ -59,4 +59,34 @@ export class ShoppingOrderService {
     return result;
   }
 
+
+  /**
+   * 根据订单编号获取订单详情
+   * @param ordno
+   * @returns {any}
+   */
+  public getOrderDetailByNO(ordno){
+    let result: any;
+    let url = '/ord/loadOrdByOrdno';
+    let data = {
+      ordno:ordno
+    }
+    this.ajax.get({
+      url: url,
+      data: data,
+      async: false,
+      success: (res) => {
+        if (res.success) {
+          result = res.data;
+        } else {
+          AppComponent.rzhAlt("error", '获取数据时' + res.info);
+        }
+      },
+      error: (res) => {
+        AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
+      }
+    });
+    return result;
+  }
+
 }

@@ -62,10 +62,9 @@ export class OrderDetailComponent implements OnInit {
   getDelivery(){
     let url = '/ord/tail/loadByDelivery';
     let data={
-      ordno:'8064321506563660332'                //目前是写死的，以后再改
+      ordno:this.ordno
     }
     this.deliveryData=this.stockManService.getShopList(url,data);
-    console.log("█ this.deliveryData ►►►",  this.deliveryData);
   }
 
   /**
@@ -121,10 +120,9 @@ export class OrderDetailComponent implements OnInit {
   showLogistics(){
     let url='/ord/tail/queryList';
     let data={
-      ordno:'8064321506563660332'                //目前是写死的，以后再改
+      ordno:this.ordno
     };
     this.logisticsData=this.stockManService.getShopList(url,data);
-    console.log("█ expr ►►►",  this.logisticsData);
     for (let item of this.logisticsData){
       if (item.state == 'SUCCESS') {
         this.atime[5] = item.acceptTime;

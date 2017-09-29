@@ -140,7 +140,6 @@ export class AllWorkOrdersComponent implements OnInit {
    * @param ordno        订单编码
    */
   deliver(woAgentId,ordno){
-    console.log("█ 123 ►►►",  123);
     this.curWoAgentId = woAgentId;
     this.curOrdno=ordno;
   }

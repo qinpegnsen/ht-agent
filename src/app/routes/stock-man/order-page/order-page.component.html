@@ -16,9 +16,9 @@
         <div class="_title clearfix">
           <b class="col-l-5 pull-left">收货人信息</b>
         </div>
-        <!--<div *ngIf="defaultAddress?.address">-->
-          <!--<span routerLink="/main/stockAddres/rightpage" [queryParams]="{number:1}" class='_myhover font14'>添加地址</span>-->
-        <!--</div>-->
+        <div *ngIf="!defaultAddress">
+          <span routerLink="/main/stockAddres/rightpage" [queryParams]="{number:1,source:'cart'}" class='_myhover font14'>添加地址</span>
+        </div>
         <div *ngIf="defaultAddress?.address">
           <div class="w100 clearfix">
             <div class="text-center col-lg-1 _line _border _selected _addrId" id="{{defaultAddress?.id}}">
