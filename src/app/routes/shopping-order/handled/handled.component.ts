@@ -5,7 +5,6 @@ import {SubmitService} from "../../../core/forms/submit.service";
 import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
 import {ShoppingOrderService} from "../shopping-order.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
-
 @Component({
   selector: 'app-handled',
   templateUrl: './handled.component.html',
@@ -16,7 +15,7 @@ export class HandledComponent implements OnInit {
   public workOrderList: Page = new Page();                    //获取列表的数据
   public wono:string='';                                      //工单号
   public ordno:string='';                                     //订单号
-  public stateEnum:string='';                                 //工单状态
+  public stateEnum:string='';                                 //工单状态搜索时候会用到
   public stateEnumList;                                       //工单状态的列表
   constructor(
     private parentComp:ShoppingOrderComponent,
@@ -58,18 +57,6 @@ export class HandledComponent implements OnInit {
       stateEnum:this.stateEnum?this.stateEnum:'DEAL',
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
-  }
-
-  /**
-   * 查看详情
-   * @param woAgengId
-   */
-  lookInfo(ordno){
-    let url = '/woAgent/updateWoAgentToReject';
-    let data = {
-      ordno:ordno
-    };
-    this.shoppingOrderService.toAcceptWork(url,data)
   }
 
   /**

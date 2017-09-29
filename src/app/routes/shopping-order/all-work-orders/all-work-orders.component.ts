@@ -5,6 +5,7 @@ import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {ShoppingOrderService} from "../shopping-order.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
+const swal = require('sweetalert');
 
 @Component({
   selector: 'app-all-work-orders',
@@ -16,7 +17,7 @@ export class AllWorkOrdersComponent implements OnInit {
   public workOrderList: Page = new Page();                    //获取列表的数据
   public wono:string='';                                      //工单号
   public ordno:string='';                                     //订单号
-  public stateEnum:string='';                                 //工单状态
+  public stateEnum:string='';                                 //工单状态搜索时候会用到
   public stateEnumList;                                       //工单状态的列表
   public curWoAgentId: string;                                //工单的id
   public curOrdno: string;                                    //订单编码
@@ -71,12 +72,53 @@ export class AllWorkOrdersComponent implements OnInit {
    * 2.设置按钮的禁用和启用
    */
   toAccept(woAgengId){
-    let url = '/woAgent/updateWoAgentToAccept';
-    let data = {
-      woAgengId:woAgengId
-    };
-    this.shoppingOrderService.toAcceptWork(url,data);
-    this.queryDatas()
+    let that=this;
+    swal({
+        title: '确认删除此信息？',
+        type: 'info',
+        confirmButtonText: '确认', //‘确认’按钮命名
+        showCancelButton: true, //显示‘取消’按钮
+        cancelButtonText: '取消', //‘取消’按钮命名
+        closeOnConfirm: false  //点击‘确认’后，执行另外一个提示框
+      },
+      function () {  //点击‘确认’时执行
+        swal.close(); //关闭弹框
+        let url = '/woAgent/updateWoAgentToAccept';
+        let data = {
+          woAgengId:woAgengId
+        };
+        that.shoppingOrderService.toAcceptWork(url,data);
+        that.queryDatas()
+      }
+    );
+  }
+
+  /**
+   * 拒单
+   * @param woAgengId 代理商工单id
+   * 1. 刷新页面
+   */
+  toReject(woAgengId){
+
+    let that=this;
+    swal({
+        title: '确认删除此信息？',
+        type: 'info',
+        confirmButtonText: '确认', //‘确认’按钮命名
+        showCancelButton: true, //显示‘取消’按钮
+        cancelButtonText: '取消', //‘取消’按钮命名
+        closeOnConfirm: false  //点击‘确认’后，执行另外一个提示框
+      },
+      function () {  //点击‘确认’时执行
+        swal.close(); //关闭弹框
+        let url = '/woAgent/updateWoAgentToReject';
+        let data = {
+          woAgengId:woAgengId
+        };
+        that.shoppingOrderService.toAcceptWork(url,data);
+        that.queryDatas();
+      }
+    );
   }
 
   /**
@@ -87,35 +129,10 @@ export class AllWorkOrdersComponent implements OnInit {
   changeState(obj,state){
     if(state!='NO'){
       obj.disabled=true;
+      obj.css('background','#fff')
     }else{
       obj.disabled=false;
     }
-  }
-
-  /**
-   * 拒单
-   * @param woAgengId 代理商工单id
-   * 1. 刷新页面
-   */
-  toReject(woAgengId){
-    let url = '/woAgent/updateWoAgentToReject';
-    let data = {
-      woAgengId:woAgengId
-    };
-    this.shoppingOrderService.toAcceptWork(url,data);
-    this.queryDatas();
-  }
-
-  /**
-   * 查看详情
-   * @param woAgengId
-   */
-  lookInfo(ordno){
-    let url = '/woAgent/updateWoAgentToReject';
-    let data = {
-      ordno:ordno
-    };
-    this.shoppingOrderService.toAcceptWork(url,data)
   }
 
   /**

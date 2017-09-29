@@ -5,7 +5,6 @@ import {SubmitService} from "../../../core/forms/submit.service";
 import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
 import {ShoppingOrderService} from "../shopping-order.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
-
 @Component({
   selector: 'app-order-receive',
   templateUrl: './order-receive.component.html',
@@ -16,7 +15,7 @@ export class OrderReceiveComponent implements OnInit {
   public workOrderList: Page = new Page();                    //获取列表的数据
   public wono:string='';                                      //工单号
   public ordno:string='';                                     //订单号
-  public stateEnum:string='';                                 //工单状态
+  public stateEnum:string='';                                 //工单状态搜索时候会用到
   public stateEnumList;                                       //工单状态的列表
   public curWoAgentId: string;                                //工单的id
   public curOrdno: string;                                    //订单编码
