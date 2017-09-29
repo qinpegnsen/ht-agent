@@ -73,6 +73,19 @@ export class AbnormalComponent implements OnInit {
   }
 
   /**
+   * 设置按钮的禁用和启用
+   * @param obj
+   * @param state
+   */
+  changeState(obj,state){
+    if(state!='NO'){
+      obj.disabled=true;
+    }else{
+      obj.disabled=false;
+    }
+  }
+
+  /**
    * 获取搜索框选择的状态值
    * @param val
    */

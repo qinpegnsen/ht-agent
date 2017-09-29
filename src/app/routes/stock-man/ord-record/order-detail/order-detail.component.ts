@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {StockManService} from "../../stock-man.service";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 import {HeaderComponent} from "../../../../layout/header/header.component";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'app-order-detail',
@@ -50,7 +51,7 @@ export class OrderDetailComponent implements OnInit {
     }
     this.orderData=this.stockManService.getShopList(url,data);
     console.log("█ this.orderData ►►►",  this.orderData);
-    if(!this.orderData){
+    if(isNullOrUndefined(this.orderData)){
       this.orderData='';//避免报错
     }
   }
@@ -64,7 +65,6 @@ export class OrderDetailComponent implements OnInit {
       ordno:'1234123451235'                //目前是写死的，以后再改
     }
     this.deliveryData=this.stockManService.getShopList(url,data);
-    console.log("█ this.deliveryData ►►►",  this.deliveryData);
   }
 
   /**

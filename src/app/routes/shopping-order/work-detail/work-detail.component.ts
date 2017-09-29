@@ -14,8 +14,9 @@ import {isNullOrUndefined} from "util";
 export class WorkDetailComponent implements OnInit {
   public orderData: any;                                  //订单的数据
   public logisticsData;                                   //获取物流的信息
-  public express;                                         //快递公司的信息
+  public deliveryData;                                    //快递公司的信息
   public ordno;                                           //订单号
+  public atime:Array<string> = new Array();             //存储状态时间的数组
   constructor(
     private parentComp:ShoppingOrderComponent,
     private routeInfo:ActivatedRoute,
@@ -34,8 +35,20 @@ export class WorkDetailComponent implements OnInit {
     this.ordno = me.routeInfo.snapshot.queryParams['ordno'];//获取进货记录未付款页面跳转过来的参数
     me.parentComp.orderType = 100;
 
-    this.getOrderData()
-    this.showLogistics()
+    this.getOrderData();
+    this.showLogistics();
+    this.getDelivery();
+  }
+
+  /**
+   * 获取快递公司的信息
+   */
+  getDelivery(){
+    let url = '/ord/tail/loadByDelivery';
+    let data={
+      ordno:'1234123451235'                //目前是写死的，以后再改
+    }
+    this.deliveryData=this.stockManService.getShopList(url,data);
   }
 
   /**
@@ -106,8 +119,20 @@ export class WorkDetailComponent implements OnInit {
       ordno:'1234123451235'                //目前是写死的，以后再改
     };
     this.logisticsData=this.stockManService.getShopList(url,data);
-    console.log("█ this.LogisticsData ►►►",  this.logisticsData);
-    this.express=this.logisticsData[1];
+    console.log("█ this.logisticsData ►►►",  this.logisticsData);
+    for (let item of this.logisticsData){
+      if (item.state == 'SUCCESS') {
+        this.atime[5] = item.acceptTime;
+      } else if (item.state == 'DELIVERY') {
+        this.atime[4] = item.acceptTime;
+      } else if (item.state == 'PREPARE') {
+        this.atime[3] = item.acceptTime;
+      } else if (item.state == 'PAID') {
+        this.atime[2] = item.acceptTime;
+      } else if (item.state == 'CR') {
+        this.atime[1] = item.acceptTime;
+      }
+    }
   }
 
 

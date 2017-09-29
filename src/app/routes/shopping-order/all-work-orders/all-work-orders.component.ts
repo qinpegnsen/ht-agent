@@ -68,6 +68,7 @@ export class AllWorkOrdersComponent implements OnInit {
    * 接单
    * @param woAgengId 代理商工单id
    * 1. 刷新页面
+   * 2.设置按钮的禁用和启用
    */
   toAccept(woAgengId){
     let url = '/woAgent/updateWoAgentToAccept';
@@ -76,6 +77,19 @@ export class AllWorkOrdersComponent implements OnInit {
     };
     this.shoppingOrderService.toAcceptWork(url,data);
     this.queryDatas()
+  }
+
+  /**
+   * 设置按钮的禁用和启用
+   * @param obj
+   * @param state
+   */
+  changeState(obj,state){
+    if(state!='NO'){
+      obj.disabled=true;
+    }else{
+      obj.disabled=false;
+    }
   }
 
   /**

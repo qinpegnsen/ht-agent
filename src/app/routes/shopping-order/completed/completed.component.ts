@@ -79,4 +79,17 @@ export class CompletedComponent implements OnInit {
   getState(val){
     this.stateEnum=val;
   }
+
+  /**
+   * 设置按钮的禁用和启用
+   * @param obj
+   * @param state
+   */
+  changeState(obj,state){
+    if(state!='NO'){
+      obj.disabled=true;
+    }else{
+      obj.disabled=false;
+    }
+  }
 }

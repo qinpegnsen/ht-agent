@@ -52,19 +52,19 @@
     <td class="w25 text-center">{{order.ord.address}}</td>
     <td class="w10 text-center">{{order.state | rzhState :'1305' }}</td>
     <td class="w20 text-center">
-      <button disabled="order.state!='NO'" class="m-sm btn btn-xs btn-outline btn-info fa fa-check _backColor"
-              (click)="toAccept(order.id)"> 接单
+      <button  class="m-sm btn btn-xs btn-outline btn-info fa fa-check _backColor"
+              (click)="toAccept(order.id)" #accept> 接单{{changeState(accept,order.state)}}
       </button>
-      <button disabled="order.state!='NO'" class="m-sm btn btn-xs btn-outline fa fa-close _backColor _refuseBg"
-              (click)="toReject(order.id)"> 拒单
+      <button  class="m-sm btn btn-xs btn-outline fa fa-close _backColor _refuseBg"
+              (click)="toReject(order.id)" #reject> 拒单{{changeState(reject,order.state)}}
       </button>
+      <button  class="m-sm btn btn-xs btn-outline btn-info fa fa-info-circle _backColor" routerLink="../work-detail"
+      [queryParams]="{ordno:order.ordno}"> 查看详情
+      </button>
+
       <button *ngIf="order.state=='ACCEPT'"  disabled="order.state!='ACCEPT'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-truck _backColor"
               (click)="deliver(order.id,order.ordno)"> 发货
       </button>
-      <button  class="m-sm btn btn-xs btn-outline btn-info fa fa-info-circle _backColor" routerLink="../work-detail"
-              [queryParams]="{ordno:order.ordno}"> 查看详情
-      </button>
-
       <ng-container *ngIf="order.state=='ACCEPT'">
         <app-deliver-goods  [woAgentId]="curWoAgentId" [ordno]="curOrdno" [page]="workOrderList.curPage"
           (deliverGoods)="getDeliverOrderData($event)"></app-deliver-goods>
