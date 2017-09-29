@@ -112,24 +112,4 @@ export class WorkDetailComponent implements OnInit {
     }
   }
 
-  /**
-   * 发货
-   * @param orderId
-   */
-  deliverOrder() {
-    this.curDeliverOrderId = this.curOrdno;
-  }
-
-  /**
-   * 发货回调函数
-   * @param data
-   */
-  getDeliverOrderData(data) {
-    this.curDeliverOrderId = null;
-    if(data.type) {
-      AppComponent.rzhAlt('success','操作成功');
-      this.getLogisticsInfo();//获取订单的物流详情及订单进度
-      this.getOrderDetail(); //获取订单详情
-    }
-  }
 }

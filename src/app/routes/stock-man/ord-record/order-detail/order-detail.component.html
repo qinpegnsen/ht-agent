@@ -297,9 +297,13 @@
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"
                 (click)="cancelOrder(item.ordno)"> 取消订单
         </button>
-
+        <button *ngIf="orderData.state=='DELIVERY'" (click)="confirmRecive(goods.ordno)" class="m-sm btn btn-xs btn-outline btn-danger fa fa-retweet">确认收货
+        </button>
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CLOSE'"
-                (click)="againBuy(item.goodsCode,item.batchNum)"> 加入购物车
+                (click)="againBuy(item.goodsCode,item.batchNum)"> 重新购买
+        </button>
+        <button *ngIf="orderData.state=='SUCCESS'" class="m-sm btn btn-xs btn-warning fa fa-shopping-cart"
+                (click)="againBuy(item.goodsCode,item.batchNum)"> 再进货
         </button>
         <br>
       </td>

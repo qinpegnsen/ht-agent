@@ -61,6 +61,21 @@ body,
   background-color: $aside-bg;
 }
 
+
+.thc{
+  &.br { border-right: 1px solid $nav-top-bg !important;}
+  &.bl { border-left: 1px solid $nav-top-bg !important;}
+  &.bt { border-top: 1px solid $nav-top-bg !important;}
+  &.bb { border-bottom: 1px solid $nav-top-bg !important;}
+  &.b, &.ba  { border: 1px solid $nav-top-bg !important; }
+  &.font {color: $brand-green !important; }
+  &.font-light {color: $brand-green-light !important; }
+  &.font-dark {color: $brand-green-dark !important; }
+  &.bg {background-color: $brand-green !important; }
+  &.bg-light {background-color: $brand-green-light !important; }
+  &.bg-dark {background-color: $brand-green-dark !important; }
+  &.ts, &.ts-bg{background-color: #c9eae2 !important;}
+}
 /* ========================================================================
    Component: top-navbar
  ========================================================================== */
@@ -86,6 +101,10 @@ body,
     &:hover, &:focus {
       color: $nav-top-item-mobile-active;
     }
+  }
+
+  .navbar-nav > li.active > a{
+    color: $nav-top-item-mobile-active;
   }
 
   // Navbar link active style
@@ -131,6 +150,10 @@ body,
       &:hover, &:focus {
         color: $nav-top-item-mobile-active;
       }
+    }
+
+    .navbar-nav > li.active > a{
+      color: $nav-top-item-mobile-active;
     }
 
   } // .topnavbar

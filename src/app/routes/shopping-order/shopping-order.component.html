@@ -2,12 +2,12 @@
   <div class="panel-body">
     <div *ngIf="orderType!=100">
       <ul class="order-guide list-unstyled clearfix bb">
-        <li class="pull-left" [class.cur-order]="orderType==1" routerLink="all-work-orders">所有工单</li>
-        <li class="pull-left" [class.cur-order]="orderType==2" routerLink="wait-for-orders">待接单</li>
-        <li class="pull-left" [class.cur-order]="orderType==3" routerLink="order-receive">已接单</li>
-        <li class="pull-left" [class.cur-order]="orderType==4" routerLink="handled">已处理</li>
-        <li class="pull-left" [class.cur-order]="orderType==5" routerLink="completed">已完成</li>
-        <li class="pull-left" [class.cur-order]="orderType==6" routerLink="abnormal">异常工单</li>
+        <li class="pull-left thc" [class.font]="orderType==1" [class.bb]="orderType==1" routerLink="all-work-orders">所有工单</li>
+        <li class="pull-left thc" [class.font]="orderType==2" [class.bb]="orderType==2" routerLink="wait-for-orders">待接单</li>
+        <li class="pull-left thc" [class.font]="orderType==3" [class.bb]="orderType==3" routerLink="order-receive">已接单</li>
+        <li class="pull-left thc" [class.font]="orderType==4" [class.bb]="orderType==4" routerLink="handled">已处理</li>
+        <li class="pull-left thc" [class.font]="orderType==5" [class.bb]="orderType==5" routerLink="completed">已完成</li>
+        <li class="pull-left thc" [class.font]="orderType==6" [class.bb]="orderType==6" routerLink="abnormal">异常工单</li>
       </ul>
     </div>
     <ul class="order-guide list-unstyled clearfix bb" *ngIf="orderType==100">

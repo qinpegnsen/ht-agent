@@ -12,9 +12,9 @@ $content-bg: #f5f7fa;
 $aside-bg: $gray-dark;
 // NAVBAR TOP
 
-$nav-top-bg: $brand-danger-dark;
+$nav-top-bg: $brand-hawthorn;
 $nav-top-bg-start: $nav-top-bg;
-$nav-top-bg-end: $brand-danger;
+$nav-top-bg-end: $brand-hawthorn-light;
 $nav-header-bg: transparent;
 
 $nav-top-item-mobile: $nav-top-bg;
@@ -28,7 +28,7 @@ $nav-top-item-desktop-active: darken($nav-top-item-desktop, 20%);
 $sidebar-bg: $aside-bg;
 
 $sidebar-item-color: #e1e2e3;
-$sidebar-item-color-active: $brand-danger;
+$sidebar-item-color-active: $brand-hawthorn-light;
 $sidebar-item-bg-active: darken($sidebar-bg, 1%);
 
 $sidebar-icon-color: inherits;
@@ -59,19 +59,18 @@ body,
   background-color: $aside-bg;
 }
 
-
 .thc{
   &.br { border-right: 1px solid $nav-top-bg !important;}
   &.bl { border-left: 1px solid $nav-top-bg !important;}
   &.bt { border-top: 1px solid $nav-top-bg !important;}
   &.bb { border-bottom: 1px solid $nav-top-bg !important;}
   &.b, &.ba  { border: 1px solid $nav-top-bg !important; }
-  &.font {color: $brand-danger !important; }
-  &.font-light {color: $brand-danger-light !important; }
-  &.font-dark {color: $brand-danger-dark !important; }
-  &.bg {background-color: $brand-danger !important; }
-  &.bg-light {background-color: $brand-danger-light !important; }
-  &.bg-dark {background-color: $brand-danger-dark !important; }
+  &.font {color: $brand-hawthorn !important; }
+  &.font-light {color: $brand-hawthorn-light !important; }
+  &.font-dark {color: $brand-hawthorn-dark !important; }
+  &.bg {background-color: $brand-hawthorn !important; }
+  &.bg-light {background-color: $brand-hawthorn-light !important; }
+  &.bg-dark {background-color: $brand-hawthorn-dark !important; }
   &.ts, &.ts-bg{background-color: #ffd9d9 !important;}
 }
 /* ========================================================================
@@ -242,4 +241,3 @@ body,
   background-color: $offsidebar-bg;
   color: $offsidebar-color;
 }
-

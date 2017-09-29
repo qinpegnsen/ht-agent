@@ -5,7 +5,7 @@ import {StockManService} from "../../stock-man.service";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 import {HeaderComponent} from "../../../../layout/header/header.component";
 import {isNullOrUndefined} from "util";
-
+const swal = require('sweetalert');
 @Component({
   selector: 'app-order-detail',
   templateUrl: './order-detail.component.html',
@@ -99,7 +99,7 @@ export class OrderDetailComponent implements OnInit {
   }
 
   /**
-   * 取消的订单再次进行购买
+   * 取消的订单或者成功的商品再次进行购买
    */
   againBuy(goodsCode, num){
     let url = '/agent/agentCart/addCustCart';
@@ -151,6 +151,30 @@ export class OrderDetailComponent implements OnInit {
     }
     this.stockManService.delAgentOrd(url,data);
     this.getOrderData();
+  }
+
+  /**
+   * 确认收货
+   */
+  confirmRecive(ordno) {
+    let that=this;
+    swal({
+        title: '您确认收到货了吗？',
+        type: 'info',
+        confirmButtonText: '确认', //‘确认’按钮命名
+        showCancelButton: true, //显示‘取消’按钮
+        cancelButtonText: '取消', //‘取消’按钮命名
+        closeOnConfirm: false  //点击‘确认’后，执行另外一个提示框
+      },
+      function () {  //点击‘确认’时执行
+        swal.close(); //关闭弹框
+        let url = '/agentOrd/updateStateToSuccess';
+        let data = {
+          ordno: ordno
+        }
+        that.stockManService.delAgentOrd(url, data);
+      }
+    );
   }
 
 }
