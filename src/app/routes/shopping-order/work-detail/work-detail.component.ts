@@ -1,19 +1,16 @@
 import {Component, OnInit} from "@angular/core";
 import {isNullOrUndefined} from "util";
-// import {OrdersService} from "../../orders/orders/orders.service";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {AppComponent} from "../../../app.component";
 import {ShoppingOrderComponent} from "../shopping-order.component";
+import {ActivatedRoute} from "@angular/router";
+import {ShoppingOrderService} from "../shopping-order.service";
 @Component({
   selector: 'app-work-detail',
   templateUrl: './work-detail.component.html',
   styleUrls: ['./work-detail.component.scss']
 })
 export class WorkDetailComponent implements OnInit {
-  constructor(private parentComp: ShoppingOrderComponent,
-              // public ordersService: OrdersService,
-              private submit: SubmitService) {
-  }
 
   public orderStep = 1;
   public curOrdno: string;
@@ -23,11 +20,17 @@ export class WorkDetailComponent implements OnInit {
   public goodsData: any;
   private atime:Array<string> = new Array();
 
+  constructor(private parentComp: ShoppingOrderComponent,
+              public shoppingOrderService: ShoppingOrderService,
+              private routeInfo:ActivatedRoute,
+              private submit: SubmitService) {
+  }
+
   ngOnInit() {
     let me = this;
     me.parentComp.orderType = 100;
-    me.curOrdno = me.submit.getParams('ordno');
-    me.getOrderDetailInfo();//获取订单的物流详情及订单进度
+    me.curOrdno = me.routeInfo.snapshot.queryParams['ordno'];
+    me.getLogisticsInfo();//获取订单的物流详情及订单进度
     me.getOrderDetail(); //获取订单详情
   }
 
@@ -36,12 +39,16 @@ export class WorkDetailComponent implements OnInit {
    */
   getOrderDetail() {
     let me = this;
-    // let result = me.ordersService.getOrderDetailByNO(me.curOrdno);
-    // if (!isNullOrUndefined(result)) {
-    //   me.orderDetailData = result;
-    //   me.goodsData = result.ordItemList;
-    //   me.getOrderStep();
-    // }
+    let url = '/ord/loadOrdByOrdno';
+    let data = {
+      ordno:me.curOrdno
+    }
+    let result = me.shoppingOrderService.getOrderDetailByNO(url,data);
+    if (!isNullOrUndefined(result)) {
+      me.orderDetailData = result;
+      me.goodsData = result.ordItemList;
+      me.getOrderStep();
+    }
   }
 
   /**
@@ -52,17 +59,26 @@ export class WorkDetailComponent implements OnInit {
     target.style.display = 'block';
   }
 
+
+  /**
+   * 隐藏订单状态的时间列表
+   * @param target
+   */
   hideTimesList(target) {
     target.style.display = 'none';
   }
 
   /**
-   * 获取订单进度
+   * 获取订单的物流详情及订单进度
    */
-  private getOrderDetailInfo() {
-    let me = this, ordno = me.submit.getParams('ordno');
-    // let orderStatesDetail = me.ordersService.getOrderState(ordno);
-    // if(!isNullOrUndefined(orderStatesDetail)) me.orderStates = orderStatesDetail;
+  private getLogisticsInfo() {
+    let me = this;
+    let url = '/ord/tail/queryList';
+    let data = {
+      ordno:me.curOrdno
+    }
+    let orderStatesDetail = me.shoppingOrderService.getBasicExpressList(url,data);
+    if(!isNullOrUndefined(orderStatesDetail)) me.orderStates = orderStatesDetail;
     for (let item of me.orderStates){
       if (item.state == 'SUCCESS') {
         me.atime[5] = item.acceptTime;
@@ -112,7 +128,7 @@ export class WorkDetailComponent implements OnInit {
     this.curDeliverOrderId = null;
     if(data.type) {
       AppComponent.rzhAlt('success','操作成功');
-      this.getOrderDetailInfo();//获取订单的物流详情及订单进度
+      this.getLogisticsInfo();//获取订单的物流详情及订单进度
       this.getOrderDetail(); //获取订单详情
     }
   }

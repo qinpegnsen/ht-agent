@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {AjaxService} from "../../core/services/ajax.service";
 import {AppComponent} from "../../app.component";
-import {isNullOrUndefined} from "util";
 @Injectable()
 export class ShoppingOrderService {
 
@@ -65,12 +64,8 @@ export class ShoppingOrderService {
    * @param ordno
    * @returns {any}
    */
-  public getOrderDetailByNO(ordno){
-    let result: any;
-    let url = '/ord/loadOrdByOrdno';
-    let data = {
-      ordno:ordno
-    }
+  public getOrderDetailByNO(url,data){
+    let result;
     this.ajax.get({
       url: url,
       data: data,
