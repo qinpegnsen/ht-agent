@@ -46,7 +46,7 @@ export class WorkDetailComponent implements OnInit {
   getDelivery(){
     let url = '/ord/tail/loadByDelivery';
     let data={
-      ordno:'1234123451235'                //目前是写死的，以后再改
+      ordno:'8064321506563660332'                //目前是写死的，以后再改
     }
     this.deliveryData=this.stockManService.getShopList(url,data);
   }
@@ -116,7 +116,7 @@ export class WorkDetailComponent implements OnInit {
   showLogistics(){
     let url='/ord/tail/queryList';
     let data={
-      ordno:'1234123451235'                //目前是写死的，以后再改
+      ordno:'8064321506563660332'                //目前是写死的，以后再改
     };
     this.logisticsData=this.stockManService.getShopList(url,data);
     console.log("█ this.logisticsData ►►►",  this.logisticsData);
