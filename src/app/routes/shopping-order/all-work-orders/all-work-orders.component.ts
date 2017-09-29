@@ -6,7 +6,7 @@ import {SubmitService} from "../../../core/forms/submit.service";
 import {ShoppingOrderService} from "../shopping-order.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
 const swal = require('sweetalert');
-
+declare var $;
 @Component({
   selector: 'app-all-work-orders',
   templateUrl: './all-work-orders.component.html',
@@ -99,7 +99,6 @@ export class AllWorkOrdersComponent implements OnInit {
    * 1. 刷新页面
    */
   toReject(woAgengId){
-
     let that=this;
     swal({
         title: '确认删除此信息？',
@@ -129,7 +128,7 @@ export class AllWorkOrdersComponent implements OnInit {
   changeState(obj,state){
     if(state!='NO'){
       obj.disabled=true;
-      obj.css('background','#fff')
+      $(obj).css('background','#98B2B7');
     }else{
       obj.disabled=false;
     }
@@ -141,6 +140,7 @@ export class AllWorkOrdersComponent implements OnInit {
    * @param ordno        订单编码
    */
   deliver(woAgentId,ordno){
+    console.log("█ 123 ►►►",  123);
     this.curWoAgentId = woAgentId;
     this.curOrdno=ordno;
   }

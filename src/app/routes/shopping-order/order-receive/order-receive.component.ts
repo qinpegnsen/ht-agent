@@ -5,6 +5,7 @@ import {SubmitService} from "../../../core/forms/submit.service";
 import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
 import {ShoppingOrderService} from "../shopping-order.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
+declare var $;
 @Component({
   selector: 'app-order-receive',
   templateUrl: './order-receive.component.html',
@@ -95,6 +96,7 @@ export class OrderReceiveComponent implements OnInit {
   changeState(obj,state){
     if(state!='NO'){
       obj.disabled=true;
+      $(obj).css('background','#98B2B7');
     }else{
       obj.disabled=false;
     }

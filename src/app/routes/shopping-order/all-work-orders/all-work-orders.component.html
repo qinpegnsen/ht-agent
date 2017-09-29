@@ -62,13 +62,9 @@
       [queryParams]="{ordno:order.ordno}"> 查看详情
       </button>
 
-      <button *ngIf="order.state=='ACCEPT'"  disabled="order.state!='ACCEPT'" class="m-sm btn btn-xs btn-outline btn-danger fa fa-truck _backColor"
+      <button *ngIf="order.state=='ACCEPT'"  class="m-sm btn btn-xs btn-outline  fa fa-truck _backColor"
               (click)="deliver(order.id,order.ordno)"> 发货
       </button>
-      <ng-container *ngIf="order.state=='ACCEPT'">
-        <app-deliver-goods  [woAgentId]="curWoAgentId" [ordno]="curOrdno" [page]="workOrderList.curPage"
-          (deliverGoods)="getDeliverOrderData($event)"></app-deliver-goods>
-      </ng-container>
 
     </td>
   </tr>
@@ -92,4 +88,6 @@
 </table>
 <!--列表结束-->
 
+  <app-deliver-goods  [woAgentId]="curWoAgentId" [ordno]="curOrdno" [page]="workOrderList.curPage"
+                      (deliverGoods)="getDeliverOrderData($event)"></app-deliver-goods>
 
