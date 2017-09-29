@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {StockManService} from "../stock-man.service";
 import {NavigationEnd, Router} from "@angular/router";
 import {Location} from "@angular/common";
+import {isNullOrUndefined} from "util";
 declare var $:any;
 @Component({
   selector: 'app-order-page',
@@ -63,11 +64,13 @@ export class OrderPageComponent implements OnInit {
     }
     let orderData=this.stockManService.getShopListOne(url, data);
     console.log("█ orderData ►►►",  orderData);
-    if(orderData=='购买商品不可批发商品'||orderData=='购买商品包含已下架商品法'){//如果商品的状态不合法，在跳转到购物车的页面，然后刷新就有遮罩
+    if(orderData=='购买商品不可批发商品'||orderData=='购买商品包含已下架商品法'){//商品的状态不合法，跳转到购物车的页面，然后刷新就有遮罩
       this.location.back();
       return;
-    }
-    if(orderData&&orderData!='购买商品不可批发商品'||orderData!='购买商品包含已下架商品'){   //不进行判断有时候会报错
+    }else if(isNullOrUndefined(orderData)){//处理到了下个路由返回来的bug，直接因为这时候购物车的id已经没有了,直接让其跳转到home页面
+      this.router.navigate(['/main/stockMan/agentord']);
+      return;
+    }else {   //正常的状态
       this.orderData=orderData.calcDTO;
       for(var i=0;i<orderData.agentAddrsList.length;i++){
         if(orderData.agentAddrsList[i].isDefault=='Y'){
@@ -76,9 +79,6 @@ export class OrderPageComponent implements OnInit {
           this.otherAddress=orderData.agentAddrsList;
         }
       }
-    }else {
-      this.router.navigate(['/main/home'])
-      return;
     }
   }
 

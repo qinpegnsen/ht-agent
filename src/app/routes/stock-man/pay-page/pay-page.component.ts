@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {StockManService} from "../stock-man.service";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {HeaderComponent} from "app/layout/header/header.component";
-import {isNullOrUndefined, isUndefined} from "util";
+import {isNullOrUndefined} from "util";
 import {Location} from "@angular/common";
 import {AppComponent} from "../../../app.component";
 declare var $:any;
@@ -34,20 +34,20 @@ export class PayPageComponent implements OnInit {
    * 4.生成订单会刷新购物会减少，在执行刷新购物车的方法
    */
   ngOnInit() {
-    let ordno = this.routeInfo.snapshot.queryParams['ordno'];//获取进货记录未付款跳转过来的参数
+    let ordno = this.routeInfo.snapshot.queryParams['ordno'];           //获取进货记录未付款跳转过来的参数
     let transPayWay = this.routeInfo.snapshot.queryParams['payWay'];    //获取当前的订单号
 
     this.orderData=JSON.parse(sessionStorage.getItem('orderData'));
 
-    if(transPayWay){   //如果有地址栏传递过来的就用地址传递过来的
-      this.payWay=transPayWay;
+    if(transPayWay){                                                     //如果有地址栏传递过来的就用地址传递过来的
+      this.payWay=transPayWay;                                           //支付的方式，用来显示不同的页面
     }else if(this.orderData){
       this.payWay=this.orderData.payWay;
     }
     let url = '/agentOrd/addAgentOrd';
     let payData=this.stockManService.bornOrder(url,this.orderData);
     console.log("█ payData ►►►",  payData);
-    if(isNullOrUndefined(payData)){  //在用户刷新，或者下个页面返回的时候会用到
+    if(isNullOrUndefined(payData)||payData=='服务器异常'){               //在用户刷新，或者下个页面返回的时候会用到
       let url = '/agentOrd/loadByOrdno';
       let data={
         ordno:ordno?ordno:sessionStorage.getItem('ordno')
@@ -56,11 +56,12 @@ export class PayPageComponent implements OnInit {
       console.log("█ payData ►►►",  payData);
       this.ordno=payData.ordno;
       this.pay=payData.pay;
-    }if(payData=='购买商品不可批发商品'||payData=='购买商品包含已下架商品'){
+    }else if(payData=='购买商品不可批发商品'||payData=='购买商品包含已下架商品'){//处理商品失效的bug
       AppComponent.rzhAlt("error",payData);
       this.location.back();
       return;
-    }else{
+    }else{                                                                //正常
+      console.log("█ 'zhengchang ' ►►►",  'zhengchang ');
       sessionStorage.setItem('ordno',payData.ordno);//把订单编码存起来，在用户刷新，或者下个页面返回的时候会用到
       this.ordno=payData.ordno;
       this.pay=payData.pay;
