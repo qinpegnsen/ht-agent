@@ -2,9 +2,9 @@
   <div class="content-heading mb-lg">
     订单页面
   </div>
-  <div class="panel h80 prompting">
-    <span> 温馨提示：</span><span>请确认相关商品信息后提交订单。</span>
-  </div>
+  <!--<div class="panel h80 prompting">-->
+    <!--<span> 温馨提示：</span><span>请确认相关商品信息后提交订单。</span>-->
+  <!--</div>-->
   <div class="w100 clearfix">
     <div class="_title">
       <h4>填写并核对订单信息</h4>
@@ -145,31 +145,31 @@
       </div>
     </div>
     <!--价格信息-->
-    <table class="col-lg-12 _table">
+    <table class="w100 _table">
       <tr>
         <td class="w80 text-right _line">{{orderData?.goodsNum}}件商品</td>
         <td class="w20 _line clearfix">
-          <span class="w60 pull-right  text-center">&yen;{{orderData?.total  | number:'1.2-2'}}</span>
+          <span class="w60 pull-right  text-center _myPrice">&yen;{{orderData?.total  | number:'1.2-2'}}</span>
           <span class="w30 pull-right text-right">总商品金额：</span>
         </td>
       </tr>
       <tr>
         <td class="w80 text-right _line"></td>
         <td class="w20 _line">
-          <span class="w60 pull-right  text-center">&yen;{{orderData?.expressPrice  | number:'1.2-2'}}</span>
+          <span class="w60 pull-right  text-center _myPrice">&yen;{{orderData?.expressPrice  | number:'1.2-2'}}</span>
           <span class="w30 pull-right text-right">运费：</span>
         </td>
       </tr>
       <tr>
         <td class="w80 text-right _line"></td>
         <td class="w20 _line">
-          <span class="w60 pull-right  text-center">&yen;{{orderData?.payment  | number:'1.2-2'}}</span>
+          <span class="w60 pull-right  text-center _myPrice">&yen;{{orderData?.payment  | number:'1.2-2'}}</span>
           <span class="w30 pull-right text-right">应付总额：</span>
         </td>
       </tr>
     </table>
     <!--提交订单-->
-    <div class="_paddinglr">
+    <div class="clearfix">
       <button class="btn btn-danger pull-right _myhover _button" (click)="goPay()">提交订单</button>
     </div>
   </div>

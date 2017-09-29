@@ -1,16 +1,16 @@
 <div class="content-heading mb-lg">
   购物车列表
 </div>
-<div class="panel h80 prompting">
-  <span> 温馨提示：</span><span>总价格大于2000免运费哦</span>
-</div>
+<!--<div class="panel h80 prompting">-->
+  <!--<span> 温馨提示：</span><span>总价格大于2000免运费哦</span>-->
+<!--</div>-->
 <div class="panel panel-default _padingBtm">
   <!--头部-->
   <div class="panel-body _headBg">
     <ul class=" clearfix _list">
       <li class="w10 pull-left text-left _myALL _list">
         <div class="checkbox c-checkbox m0">
-          <label>
+          <label class="unselectable">
             <input type="checkbox" class="_all" (change)="allEle($event.target)"/>
             <span class="fa fa-check"></span>全选
           </label>
@@ -41,7 +41,7 @@
         <div class="clearfix">
           <div class="w50 text-left marLeft  pull-left">
             <div class="checkbox c-checkbox">
-              <label>
+              <label class="unselectable">
                 <input type="checkbox" class="_store" (click)="storeEle($event.target)"/>
                 <span class="fa fa-check"></span> {{store.storeName}}
               </label>
@@ -99,30 +99,30 @@
     <!--价格信息-->
     <table class="col-lg-12 _table">
       <tr>
-        <td class="w80 text-right _line">{{shopTotalNumber}}种商品</td>
+        <td class="w80 text-right _line">{{shopTotalNumber}} 种商品</td>
         <td class="w20 _line clearfix">
-          <span class="w60 pull-right  text-center">&yen;{{priceList.total  | number:'1.2-2'}}</span>
+          <span class="w60 pull-right  text-center _myPrice">&yen;{{priceList.total  | number:'1.2-2'}}</span>
           <span class="w30 pull-right text-right">总商品金额：</span>
         </td>
       </tr>
       <tr>
         <td class="w80 text-right _line"></td>
         <td class="w20 _line">
-          <span class="w60 pull-right  text-center">&yen;{{priceList.expressPrice  | number:'1.2-2'}}</span>
+          <span class="w60 pull-right  text-center _myPrice">&yen;{{priceList.expressPrice  | number:'1.2-2'}}</span>
           <span class="w30 pull-right text-right">运费：</span>
         </td>
       </tr>
       <tr>
         <td class="w80 text-right _line"></td>
         <td class="w20 _line">
-          <span class="w60 pull-right  text-center">&yen;{{priceList.payment  | number:'1.2-2'}}</span>
+          <span class="w60 pull-right  text-center _myPrice">&yen;{{priceList.payment  | number:'1.2-2'}}</span>
           <span class="w30 pull-right text-right">应付总额：</span>
         </td>
       </tr>
     </table>
   </div>
   <!--提交订单-->
-  <div class="_paddinglr">
+  <div class="clearfix">
     <button class="btn btn-danger pull-right _myhover _button" (click)="linkOrderPage()">去结算</button>
   </div>
 </div>
