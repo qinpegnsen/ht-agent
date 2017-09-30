@@ -62,6 +62,7 @@ export class AllWorkOrdersComponent implements OnInit {
       stateEnum:this.stateEnum,
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
+    console.log("█ _this.workOrderList ►►►",  _this.workOrderList);
   }
 
 
