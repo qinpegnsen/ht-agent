@@ -74,7 +74,7 @@ export class AllWorkOrdersComponent implements OnInit {
   toAccept(woAgengId){
     let that=this;
     swal({
-        title: '确认删除此信息？',
+        title: '确认接单吗？',
         type: 'info',
         confirmButtonText: '确认', //‘确认’按钮命名
         showCancelButton: true, //显示‘取消’按钮
@@ -101,7 +101,7 @@ export class AllWorkOrdersComponent implements OnInit {
   toReject(woAgengId){
     let that=this;
     swal({
-        title: '确认删除此信息？',
+        title: '确认拒单吗？',
         type: 'info',
         confirmButtonText: '确认', //‘确认’按钮命名
         showCancelButton: true, //显示‘取消’按钮
@@ -118,20 +118,6 @@ export class AllWorkOrdersComponent implements OnInit {
         that.queryDatas();
       }
     );
-  }
-
-  /**
-   * 设置按钮的禁用和启用
-   * @param obj
-   * @param state
-   */
-  changeState(obj,state){
-    if(state!='NO'){
-      obj.disabled=true;
-      $(obj).css('background','#98B2B7');
-    }else{
-      obj.disabled=false;
-    }
   }
 
   /**

@@ -20,7 +20,6 @@ export class HandledComponent implements OnInit {
   constructor(
     private parentComp:ShoppingOrderComponent,
     private submit: SubmitService,
-    private shoppingOrderService: ShoppingOrderService,
     private rzhtoolsService: RzhtoolsService
   ) { }
 
@@ -67,16 +66,4 @@ export class HandledComponent implements OnInit {
     this.stateEnum=val;
   }
 
-  /**
-   * 设置按钮的禁用和启用
-   * @param obj
-   * @param state
-   */
-  changeState(obj,state){
-    if(state!='NO'){
-      obj.disabled=true;
-    }else{
-      obj.disabled=false;
-    }
-  }
 }

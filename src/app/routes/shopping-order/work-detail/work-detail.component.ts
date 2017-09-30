@@ -16,14 +16,14 @@ export class WorkDetailComponent implements OnInit {
   public curOrdno: string;
   public orderStates: any;
   public orderDetailData: any;
-  public curDeliverOrderId: string;
   public goodsData: any;
   private atime:Array<string> = new Array();
 
-  constructor(private parentComp: ShoppingOrderComponent,
+  constructor(
+    private parentComp: ShoppingOrderComponent,
               public shoppingOrderService: ShoppingOrderService,
-              private routeInfo:ActivatedRoute,
-              private submit: SubmitService) {
+              private routeInfo:ActivatedRoute
+              ) {
   }
 
   ngOnInit() {

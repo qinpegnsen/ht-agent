@@ -88,18 +88,4 @@ export class OrderReceiveComponent implements OnInit {
     if(data.type) this.queryDatas(data.page)
   }
 
-  /**
-   * 设置按钮的禁用和启用
-   * @param obj
-   * @param state
-   */
-  changeState(obj,state){
-    if(state!='NO'){
-      obj.disabled=true;
-      $(obj).css('background','#98B2B7');
-    }else{
-      obj.disabled=false;
-    }
-  }
-
 }

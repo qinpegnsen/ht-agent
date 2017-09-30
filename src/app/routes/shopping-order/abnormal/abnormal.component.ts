@@ -20,7 +20,6 @@ export class AbnormalComponent implements OnInit {
   constructor(
     private parentComp:ShoppingOrderComponent,
     private submit: SubmitService,
-    private shoppingOrderService: ShoppingOrderService,
     private rzhtoolsService: RzhtoolsService
   ) { }
 
@@ -57,19 +56,6 @@ export class AbnormalComponent implements OnInit {
       stateEnum:this.stateEnum?this.stateEnum:'END',
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
-  }
-
-  /**
-   * 设置按钮的禁用和启用
-   * @param obj
-   * @param state
-   */
-  changeState(obj,state){
-    if(state!='NO'){
-      obj.disabled=true;
-    }else{
-      obj.disabled=false;
-    }
   }
 
   /**
