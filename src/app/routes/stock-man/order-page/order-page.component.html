@@ -21,7 +21,7 @@
         </div>
         <div *ngIf="defaultAddress?.address">
           <div class="w100 clearfix">
-            <div class="text-center col-lg-1 _line _border _selected _addrId" id="{{defaultAddress?.id}}">
+            <div class="text-center col-lg-1 _line _border _selected _addrId  overflowH" id="{{defaultAddress?.id}}">
               {{defaultAddress?.receiverName}}
             </div>
             <div class="col-lg-8 _line">
@@ -111,7 +111,7 @@
                       <img src="{{good.goodsImage}}" alt="" class='_img'
                            onerror="javascript:this.src='../../../assets/img/dummy.png';">
                     </div>
-                    <div class="col-xs-11">
+                    <div class="col-xs-11 positionA">
                       <div class="extra _line"><span>商品名字：{{good.goodsName}}</span></div>
                       <div class='_line' *ngFor="let standard of good.goodsSavSetList">
                         {{standard.attrName}}：{{standard.value}}
@@ -170,7 +170,7 @@
     </table>
     <!--提交订单-->
     <div class="clearfix">
-      <button class="btn btn-danger pull-right _myhover _button" (click)="goPay()">提交订单</button>
+      <button class="btn btn-danger pull-right _myhover _button m15" (click)="goPay()">提交订单</button>
     </div>
   </div>
 </div>

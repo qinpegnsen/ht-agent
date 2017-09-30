@@ -72,6 +72,8 @@ body,
   &.font-light {color: $brand-danger-light !important; }
   &.font-dark {color: $brand-danger-dark !important; }
   &.bg {background-color: $brand-danger !important; }
+  &.bgIcon {background-color: #fff !important; }
+  &.colorIcon {color: $brand-danger !important; }
   &.bg-light {background-color: $brand-danger-light !important; }
   &.bg-dark {background-color: $brand-danger-dark !important; }
   &.ts, &.ts-bg{background-color: #ffd9d9 !important;}

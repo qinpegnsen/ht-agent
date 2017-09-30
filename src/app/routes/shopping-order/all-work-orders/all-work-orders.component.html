@@ -2,12 +2,12 @@
 <div class="row clearfix p text-right">
   <div class="place-time clearfix mb col-lg-3">
     <div class="pl0 pr0 pull-left w100">
-      <input type="text" class="form-control border-b-grey" minlength="128" [(ngModel)]="wono" placeholder="请输入要查询的工单号">
+      <input type="text" class="form-control border-b-grey" maxlength="128" [(ngModel)]="wono" placeholder="请输入要查询的工单号">
     </div>
   </div>
   <div class="place-time clearfix mb col-lg-3">
     <div class="pl0 pr0 pull-left w100">
-      <input type="text" class="form-control border-b-grey" minlength="128" [(ngModel)]="ordno" placeholder="请输入要查询的订单号">
+      <input type="text" class="form-control border-b-grey" maxlength="128" [(ngModel)]="ordno" placeholder="请输入要查询的订单号">
     </div>
   </div>
   <div class="search-term clearfix ml mb col-lg-3">
@@ -58,13 +58,13 @@
       <button  *ngIf="order.state=='NO'" class="m-sm btn btn-xs btn-outline fa fa-close _backColor _refuseBg"
               (click)="toReject(order.id)" #reject> 拒单
       </button>
+      <button *ngIf="order.state=='ACCEPT'"  class="m-sm btn btn-xs btn-outline  fa fa-truck _backColor"
+              (click)="deliver(order.id,order.ordno)"> 发货
+      </button>
       <button  class="m-sm btn btn-xs btn-outline btn-info fa fa-info-circle _backColor" routerLink="../work-detail"
       [queryParams]="{ordno:order.ordno}"> 查看详情
       </button>
 
-      <button *ngIf="order.state=='ACCEPT'"  class="m-sm btn btn-xs btn-outline  fa fa-truck _backColor"
-              (click)="deliver(order.id,order.ordno)"> 发货
-      </button>
 
     </td>
   </tr>

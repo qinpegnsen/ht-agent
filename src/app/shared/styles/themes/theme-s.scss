@@ -66,6 +66,8 @@ body,
   &.bb { border-bottom: 1px solid $nav-top-bg !important;}
   &.b, &.ba  { border: 1px solid $nav-top-bg !important; }
   &.font {color: $brand-hawthorn !important; }
+  &.bgIcon {background-color: #fff !important; }
+  &.colorIcon {color: $brand-danger !important; }
   &.font-light {color: $brand-hawthorn-light !important; }
   &.font-dark {color: $brand-hawthorn-dark !important; }
   &.bg {background-color: $brand-hawthorn !important; }

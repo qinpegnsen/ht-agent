@@ -130,6 +130,10 @@ $largeImg: 80px;      // 商品列表图片的宽，较大的图
   vertical-align:middle !important;
 }
 
+.overflowH{
+  overflow: hidden;
+}
+
 ._backColor{
   background: #40C0E8;
   color:white !important;
