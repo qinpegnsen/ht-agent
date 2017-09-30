@@ -126,6 +126,10 @@ $largeImg: 80px;      // 商品列表图片的宽，较大的图
   position: relative;
 }
 
+.vertical{
+  vertical-align:middle !important;
+}
+
 ._backColor{
   background: #40C0E8;
   color:white !important;
