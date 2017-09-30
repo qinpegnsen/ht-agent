@@ -52,16 +52,16 @@
     <td class="w25 text-center">{{order.ord?.address}}</td>
     <td class="w10 text-center">{{order.state | rzhState :'1305' }}</td>
     <td class="w20 text-center">
-      <button *ngIf="order.state=='NO'" class="m-sm btn btn-xs btn-outline btn-info fa fa-check _backColor"
+      <button *ngIf="order.state=='NO'" class="m-sm btn btn-xs btn-outline btn-info fa fa-check _backColor thc bg _myWhiteColor"
               (click)="toAccept(order.id)" #accept> 接单
       </button>
-      <button  *ngIf="order.state=='NO'" class="m-sm btn btn-xs btn-outline fa fa-close _backColor _refuseBg"
+      <button  *ngIf="order.state=='NO'" class="m-sm btn btn-xs btn-outline fa fa-close _backColor _refuseBg _myWhiteBg thc font"
               (click)="toReject(order.id)" #reject> 拒单
       </button>
-      <button *ngIf="order.state=='ACCEPT'"  class="m-sm btn btn-xs btn-outline  fa fa-truck _backColor"
+      <button *ngIf="order.state=='ACCEPT'"  class="m-sm btn btn-xs btn-outline thc bg fa fa-truck _myWhiteColor"
               (click)="deliver(order.id,order.ordno)"> 发货
       </button>
-      <button  class="m-sm btn btn-xs btn-outline btn-info fa fa-info-circle _backColor" routerLink="../work-detail"
+      <button  class="m-sm btn btn-xs btn-outline btn-info fa fa-info-circle _myWhiteBg thc font" routerLink="../work-detail"
       [queryParams]="{ordno:order.ordno}"> 查看详情
       </button>
 
