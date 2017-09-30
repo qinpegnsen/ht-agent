@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { Routes, RouterModule } from '@angular/router';
 import {SharedModule} from "../../shared/shared.module";
 import {AngularEchartsModule} from 'ngx-echarts';
+
 const routes: Routes = [
     { path: '', component: HomeComponent },
 ];
