@@ -100,6 +100,10 @@ $largeImg: 80px;      // 商品列表图片的宽，较大的图
 .mt20{margin-top: 20px;}
 .cursor-p{cursor: pointer}
 
+._myWhiteColor{
+  color:#fff!important;
+}
+
 .goods-lg-info{
   position: absolute;
   left: $largeImg+20;
