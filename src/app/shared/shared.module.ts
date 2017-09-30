@@ -44,6 +44,7 @@ import {RzhButtonsModule} from "../routes/buttons/rzh-buttons.module";
 import {StatePipe} from "./pipe/state.pipe";
 import {RzhtoolsService} from "../core/services/rzhtools.service";
 import {GetWeekPipe} from "./pipe/get-week.pipe";
+import {AngularEchartsModule} from "ngx-echarts";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -72,7 +73,8 @@ import {GetWeekPipe} from "./pipe/get-week.pipe";
     ToasterModule,
     DataTableModule,
     SelectAreaModule,
-    FoueAreasModule
+    FoueAreasModule,
+    AngularEchartsModule
   ],
   providers: [
     ColorsService,StockManService,HeaderComponent,AccordionComponent,RzhtoolsService
@@ -130,7 +132,8 @@ import {GetWeekPipe} from "./pipe/get-week.pipe";
     FoueAreasModule,
     SelectAreaModule,
     StatePipe,
-    GetWeekPipe
+    GetWeekPipe,
+    AngularEchartsModule
   ]
 })
 
