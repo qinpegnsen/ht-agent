@@ -54,7 +54,7 @@ export class AgreedComponent implements OnInit {
       curPage: activePage,
       pageSize: 10,
       ordType:'SELL_AFTER',
-      stateEnum:'ACCEPT'
+      stateEnum:'DONE'
     };
     _this.woList = new Page(_this.submit.getData(requestUrl, requestData));
   }

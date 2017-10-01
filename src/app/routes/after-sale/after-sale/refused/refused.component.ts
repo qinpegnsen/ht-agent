@@ -59,7 +59,7 @@ export class RefusedComponent implements OnInit {
       curPage: activePage,
       pageSize: 10,
       ordType:'SELL_AFTER',
-      stateEnum:'REJECT'
+      stateEnum:'END'
     };
     _this.woList = new Page(_this.submit.getData(requestUrl, requestData));
   }

@@ -39,14 +39,14 @@
     <th class="w10 text-center">工单编号</th>
     <th class="w10 text-center">售后单号</th>
     <th class="w9 text-center">商品名称</th>
-    <th class="w9 text-center">申请数量</th>
-    <th class="w9 text-center">申请金额</th>
+    <th class="w7 text-center">申请数量</th>
+    <th class="w7 text-center">申请金额</th>
     <th class="w9 text-center">服务类型</th>
     <th class="w10 text-center">原因</th>
     <th class="w9 text-center">联系人</th>
     <th class="w9 text-center">电话</th>
-    <th class="w8 text-center">状态</th>
-    <th class="w10 text-center">操作</th>
+    <th class="w7 text-center">状态</th>
+    <th class="w15 text-center">操作</th>
   </tr>
   </thead>
   <tbody>
@@ -54,14 +54,19 @@
     <tr class="text-center">
       <td>{{sale.wono}}</td>
       <td>{{sale.ordno}}</td>
-      <td>{{sale.optMan}}</td>
-      <td>{{sale.moblie}}</td>
-      <td>{{sale.state}}</td>
+      <td>{{sale.afterGoodsReq.goodsName}}</td>
+      <td>{{sale.afterGoodsReq.num}}</td>
+      <td>{{sale.afterGoodsReq.reqMoney}}</td>
+      <td>{{sale.afterGoodsReq.returnType | rzhState :'1601'}}</td>
+      <td>{{sale.afterGoodsReq.reason}}</td>
+      <td>{{sale.afterGoodsReq.custName}}</td>
+      <td>{{sale.afterGoodsReq.custPhone}}</td>
+      <td *ngIf="sale.state=='DONE'">已同意</td>
+      <td *ngIf="sale.state=='DEAL'">待处理</td>
+      <td *ngIf="sale.state=='END'">已拒绝</td>
       <td>
-        <span>
-          <button class="btn btn-purple btn-sm fa fa-hand-o-right" title="指派"></button>
-          <button class="btn btn-info btn-sm icon-paper-clip" title="接单"></button>
-        </span>
+        <button  class="m-sm btn btn-xs btn-outline btn-info fa fa-info-circle _backColor"> 查看详情</button>
+        <button  class="m-sm btn btn-xs btn-outline btn-info fa fa-truck _backColor"> 查看物流</button>
       </td>
     </tr>
   </ng-container>
@@ -82,4 +87,3 @@
   </tr>
   </tfoot>
 </table>
-

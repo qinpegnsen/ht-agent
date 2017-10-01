@@ -55,7 +55,7 @@ export class ProcessedComponent implements OnInit {
       curPage: activePage,
       pageSize: 10,
       ordType:'SELL_AFTER',
-      stateEnum:'NO'
+      stateEnum:'DEAL'
     };
     _this.woList = new Page(_this.submit.getData(requestUrl, requestData));
     console.log("█ _this.woList ►►►",  _this.woList);
