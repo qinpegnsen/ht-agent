@@ -7,21 +7,21 @@ const PROXY_CONFIG = [
       "/agent",
       "/nativeWXPay"
     ],
-    target: "http://192.168.10.109:8088",   //拦截 context配置路径，经过此地址
+    target: "http://192.168.10.112:8085",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
     context: [
       "/goodsQuery"
     ],
-    target: "http://192.168.10.109:8088",   //拦截 context配置路径，经过此地址
+    target: "http://192.168.10.112:8085",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
     context: [
       "/ord"
     ],
-    target: "http://192.168.10.182:8080",   //拦截 context配置路径，经过此地址
+    target: "http://192.168.10.112:8085",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
@@ -36,14 +36,14 @@ const PROXY_CONFIG = [
       "/login",
       "/admin",
     ],
-    target: "http://192.168.10.109:8088",   //拦截 context配置路径，经过此地址
+    target: "http://192.168.10.112:8085",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
     context: [
       "/res"
     ],
-    target: "http://192.168.10.109:8082",   //拦截 context配置路径，经过此地址
+    target: "http://192.168.10.112:8082",   //拦截 context配置路径，经过此地址
     secure: false
   }
 ];

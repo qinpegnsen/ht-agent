@@ -1,0 +1,30 @@
+<div class="cancel-order fadeIn"  *ngIf="showCancelWindow">
+  <div class="mask" (click)="hideWindow()"></div>
+  <div class="popup animated fadeIn">
+    <div class="pop popup-hd">
+      <span class="f-bold">同意退款</span>
+      <div class="popup-colse unselectable" (click)="hideWindow()">×</div>
+    </div>
+    <div class="pop cancel-con font12 w100">
+      <dl class="bb m0 clearfix">
+        <dt class="col-xs-3">售后单号：</dt>
+        <dd class="col-xs-5">
+          <input class="form-control"  name="ordno" [(ngModel)]="ordno"
+                 #expressNo="ngModel" type="text"/>
+        </dd>
+      </dl>
+      <dl class="bb m0 clearfix">
+        <dt class="col-xs-3">售后说明：</dt>
+        <dd class="col-xs-5">
+          <input class="form-control" required name="opinion" [(ngModel)]="opinion"
+                 #expressNo="ngModel" type="text"/>
+        </dd>
+      </dl>
+    </div>
+    <div class="panel-footer text-right">
+      <button class="btn btn-default" (click)="hideWindow()">放弃操作</button>
+      <button class="btn btn-info" type="submit" (click)="canceslOrder()">确认提交</button>
+    </div>
+  </div>
+</div>
+

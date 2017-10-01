@@ -16,6 +16,7 @@ export class AllSaleComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
   private agentTime;
   public woList: Page = new Page();
+  public curCancelOrderId: string;
 
 
   constructor(private AfterSaleComponent:AfterSaleComponent, private submit: SubmitService,private RzhtoolsService:RzhtoolsService) {
@@ -30,6 +31,21 @@ export class AllSaleComponent implements OnInit {
     let _this = this;
     _this.AfterSaleComponent.orderType = 1;
     _this.queryDatas(1);
+  }
+
+  /**
+   * 隐藏买家信息
+   * @param i
+   */
+  cancelOrder(orderId) {
+    this.curCancelOrderId = orderId;
+  }
+  /**
+   * 取消订单回调函数
+   * @param data
+   */
+  getCancelOrderData(data) {
+    this.curCancelOrderId = null;
   }
 
   /**
