@@ -45,6 +45,13 @@ const PROXY_CONFIG = [
     ],
     target: "http://192.168.10.112:8082",   //拦截 context配置路径，经过此地址
     secure: false
+  },
+  {
+    context: [
+      "/statistical"
+    ],
+    target: "http://192.168.10.178:8096",   //拦截 context配置路径，经过此地址
+    secure: false
   }
 ];
 module.exports = PROXY_CONFIG;
