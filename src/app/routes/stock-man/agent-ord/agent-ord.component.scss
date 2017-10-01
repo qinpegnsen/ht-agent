@@ -22,6 +22,29 @@
 }
 .shopCar{
   padding-left: 16px;
+  animation:myfirst 0.5s;
+}
+@keyframes myfirst
+{
+  from {transform:rotate(0deg);transform-origin:10%;}
+  to {transform:rotate(360deg);transform-origin:10%}
+}
+@-moz-keyframes myfirst /* Firefox */
+{
+  from {transform:rotate(0deg);transform-origin:10%;}
+  to {transform:rotate(360deg);transform-origin:10%}
+}
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+  from {transform:rotate(0deg);transform-origin:10%;}
+  to {transform:rotate(360deg);transform-origin:10%}
+}
+
+@-o-keyframes myfirst /* Opera */
+{
+  from {transform:rotate(0deg);transform-origin:10%;}
+  to {transform:rotate(360deg);transform-origin:10%}
 }
 .trBg{
   background: #E0F5FA;
