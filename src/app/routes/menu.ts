@@ -11,6 +11,7 @@ const headingMain = {
 const stockMan = {
   text: '进货管理',
   icon: 'fa fa-cubes',
+  alert: '▼',
   submenu: [
     {
       text: '我要进货',

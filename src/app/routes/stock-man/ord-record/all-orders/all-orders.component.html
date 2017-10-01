@@ -66,7 +66,8 @@
             <p class="font-gray mb-sm cursor-p">{{goods.state | rzhState :'1019'}}</p>
             <p class="cursor-p mb-sm" myHoverColor [myHover]="'#CC1635'" routerLink="../order-detail"
                [queryParams]="{ordno:goods.ordno}">查看详情</p>
-            <p *ngIf="goods.state=='DELIVERY'" class="cursor-p mb-sm" myHoverColor [myHover]="'orange'" (mouseenter)="showLogistics(Logistics)"
+            <p *ngIf="goods.state=='DELIVERY'" class="cursor-p mb-sm" myHoverColor [myHover]="'orange'"
+               (mouseenter)="showLogistics(Logistics)"
                (mouseleave)="hideLogistics(Logistics)">
               查看物流
             </p>
@@ -77,7 +78,7 @@
                   <span class="fa fa-truck pull-left _line-height"></span>
                   <span class="pull-left">物流信息</span>
                   <a class="pull-right _myhover" routerLink="../order-detail"
-                        [queryParams]="{ordno:goods.ordno}">查看更多</a>
+                     [queryParams]="{ordno:goods.ordno}">查看更多</a>
                 </p>
                 <div class="_logistics">
                   <ul class="timeline-alt p0">
@@ -113,7 +114,8 @@
                     (click)="cancelOrder(goods.ordno)">
               取消订单
             </button>
-            <button *ngIf="goods.state=='DELIVERY'" (click)="confirmRecive(goods.ordno)" class="m-sm btn btn-xs btn-outline fa fa-retweet thc bg _myWhiteColor"> 确认收货
+            <button *ngIf="goods.state=='DELIVERY'" (click)="confirmRecive(goods.ordno)"
+                    class="m-sm btn btn-xs btn-outline fa fa-retweet thc bg _myWhiteColor"> 确认收货
             </button>
             <button *ngIf="goods.state=='SUCCESS'" class="m-sm btn btn-xs btn-warning fa fa-shopping-cart thc font"
                     (click)="againBuy(item.goodsCode,item.batchNum)"> 再进货
