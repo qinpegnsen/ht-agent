@@ -17,6 +17,7 @@ export class AllSaleComponent implements OnInit {
   private agentTime;
   public woList: Page = new Page();
   public curCancelOrderId: string;
+  public curCancelOrderId1: string;
 
 
   constructor(private AfterSaleComponent:AfterSaleComponent, private submit: SubmitService,private RzhtoolsService:RzhtoolsService) {
@@ -41,11 +42,25 @@ export class AllSaleComponent implements OnInit {
     this.curCancelOrderId = orderId;
   }
   /**
+   * 隐藏买家信息
+   * @param i
+   */
+  cancelOrder1(orderId) {
+    this.curCancelOrderId = orderId;
+  }
+  /**
    * 取消订单回调函数
    * @param data
    */
   getCancelOrderData(data) {
     this.curCancelOrderId = null;
+  }
+  /**
+   * 取消订单回调函数
+   * @param data
+   */
+  getCancelOrderData1(data) {
+    this.curCancelOrderId1 = null;
   }
 
   /**
@@ -74,7 +89,6 @@ export class AllSaleComponent implements OnInit {
       // dateStr: dateStr,
     };
     _this.woList = new Page(_this.submit.getData(requestUrl, requestData));
-    console.log("█ _this.woList ►►►",  _this.woList);
 
   }
 

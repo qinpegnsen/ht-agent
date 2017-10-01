@@ -8,18 +8,19 @@ const swal = require('sweetalert');
 import {Page} from "../../../../core/page/page";
 import {AllSaleComponent} from "../all-sale/all-sale.component";
 import {AgreedComponent} from "../agreed/agreed.component";
+import {RefusedComponent} from "../refused/refused.component";
+
 
 @Component({
-  selector: 'app-logistics',
-  templateUrl: './logistics.component.html',
-  styleUrls: ['./logistics.component.scss']
+  selector: 'app-refused-agent',
+  templateUrl: './refused-agent.component.html',
+  styleUrls: ['./refused-agent.component.scss']
 })
-export class LogisticsComponent implements OnInit,OnChanges {
+export class RefusedAgentComponent implements OnInit,OnChanges {
   public showCancelWindow:boolean = false;
   public goodsList: Page = new Page();
   public ordno:string;
   private opinion;
-
 
   @Input('orderId') orderId: string;
   @Output() cancelOrder = new EventEmitter();
@@ -30,7 +31,8 @@ export class LogisticsComponent implements OnInit,OnChanges {
     }
   }
 
-  constructor(private ajax:AjaxService, private submit: SubmitService,private routeInfo:ActivatedRoute,private AllSaleComponent:AllSaleComponent,private AgreedComponent:AgreedComponent) { }
+
+  constructor(private ajax:AjaxService, private submit: SubmitService,private routeInfo:ActivatedRoute,private AllSaleComponent:AllSaleComponent,private RefusedComponent:RefusedComponent) { }
 
   ngOnInit() {
     let _this = this;
@@ -44,30 +46,31 @@ export class LogisticsComponent implements OnInit,OnChanges {
   }
 
   /***
-   * 代理商售后工单（同意退货）
+   * 代理商售后工单（不同意退货）
    */
   canceslOrder(){
     let _this = this;
     _this.ajax.put({
-      url: '/woAgent/checkPassRefundGoods',
+      url: '/woAgent/checkUnPassRefundGoods',
       data: {
         'ordno':_this.orderId,
         'opinion':_this.opinion
       },
       success: (res) => {
         if (res.success) {
-          swal('已同意退货', '', 'success');
+          swal('拒绝退货', '', 'success');
           _this.hideWindow();
           _this.AllSaleComponent.queryDatas(1);
-          _this.AgreedComponent.queryDatas(1);
+          _this.RefusedComponent.queryDatas(1);
         } else {
           swal(res.info);
         }
       },
       error: (data) => {
-        swal('申请退货提交失败！', 'error');
+        swal('拒绝提交失败！', 'error');
       }
     })
   }
+
 
 }

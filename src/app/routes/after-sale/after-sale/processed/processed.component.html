@@ -65,8 +65,8 @@
       <td *ngIf="sale.state=='DEAL'">待处理</td>
       <td *ngIf="sale.state=='END'">已拒绝</td>
       <td>
-        <button  class="m-sm btn btn-xs btn-outline btn-info fa fa-check _backColor" title="同意退款"></button>
-        <button  class="m-sm btn btn-xs btn-outline fa fa-close _backColor _refuseBg" title="拒绝退款"></button>
+        <button  class="m-sm btn btn-xs btn-outline btn-info fa fa-check _backColor" *ngIf="sale.afterGoodsReq.state =='DELIVERY'" (click)="cancelOrder(sale.ordno)" title="同意退款"></button>
+        <button (click)="cancelOrder1(sale.ordno)"  class="m-sm btn btn-xs btn-outline fa fa-close _backColor _refuseBg" *ngIf="sale.afterGoodsReq.state =='DELIVERY'"  title="拒绝退款"></button>
         <button  class="m-sm btn btn-xs btn-outline btn-info fa fa-info-circle _backColor"> 查看详情</button>
       </td>
     </tr>
@@ -88,3 +88,5 @@
   </tr>
   </tfoot>
 </table>
+<app-logistics [orderId]="curCancelOrderId" (cancelOrder)="getCancelOrderData($event)"></app-logistics>
+<app-refused-agent [orderId]="curCancelOrderId1" (cancelOrder)="getCancelOrderData1($event)"></app-refused-agent>

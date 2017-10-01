@@ -16,6 +16,8 @@ export class ProcessedComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
   private agentTime;
   public woList: Page = new Page();
+  public curCancelOrderId: string;
+  public curCancelOrderId1: string;
 
 
   constructor(private AfterSaleComponent:AfterSaleComponent,private submit: SubmitService) {
@@ -30,6 +32,34 @@ export class ProcessedComponent implements OnInit {
     let _this = this;
     _this.AfterSaleComponent.orderType = 2;
     _this.queryDatas(1);
+  }
+  /**
+   * 隐藏买家信息
+   * @param i
+   */
+  cancelOrder(orderId) {
+    this.curCancelOrderId = orderId;
+  }
+  /**
+   * 隐藏买家信息
+   * @param i
+   */
+  cancelOrder1(orderId) {
+    this.curCancelOrderId = orderId;
+  }
+  /**
+   * 取消订单回调函数
+   * @param data
+   */
+  getCancelOrderData(data) {
+    this.curCancelOrderId = null;
+  }
+  /**
+   * 取消订单回调函数
+   * @param data
+   */
+  getCancelOrderData1(data) {
+    this.curCancelOrderId1 = null;
   }
 
   /**
@@ -58,7 +88,6 @@ export class ProcessedComponent implements OnInit {
       stateEnum:'DEAL'
     };
     _this.woList = new Page(_this.submit.getData(requestUrl, requestData));
-    console.log("█ _this.woList ►►►",  _this.woList);
 
   }
 }
