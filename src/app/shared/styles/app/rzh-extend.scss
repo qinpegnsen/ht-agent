@@ -17,6 +17,13 @@ $largeImg: 80px;      // 商品列表图片的宽，较大的图
   left: 230px;
 }
 
+.position-absolute{
+  position: absolute;
+}
+.position-relative{
+  position: relative
+}
+
 //禁止文本选中
 .unselectable{
   -webkit-touch-callout: none;
@@ -98,6 +105,12 @@ $largeImg: 80px;      // 商品列表图片的宽，较大的图
 .ml160{margin-left:160px;}
 .ml10{margin-left:10px;}
 .mt20{margin-top: 20px;}
+.top47{top: 47%}
+.top53{top: 53%}
+.top28{top: 28%}
+.left99{left: 99%}
+.left50{left: 50%}
+
 .cursor-p{cursor: pointer}
 
 ._myWhiteColor{
