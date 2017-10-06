@@ -1,3 +1,12 @@
+const bb = 'http://192.168.10.178:';  //伯白
+const br = 'http://192.168.10.110:';  //伯融
+const sz = 'http://192.168.10.112:';  //尚泽
+const sg = 'http://192.168.10.111:';  //善谷
+const zyg = 'http://192.168.10.167:'; //张阳光
+const gh = 'http://192.168.10.109:';  //高辉
+const wp = 'http://192.168.10.182:';  //万鹏
+
+
 /**
  * Created by qinpengsen on 2017/9/4.
  */
@@ -12,7 +21,7 @@ const PROXY_CONFIG = [
       "/ord",
       "/woAgent"
     ],
-    target: "http://192.168.10.112:8085",   //拦截 context配置路径，经过此地址
+    target: gh + "8088",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
@@ -20,14 +29,14 @@ const PROXY_CONFIG = [
       "/basicExpress",
       "/res"
     ],
-    target: "http://192.168.10.110:8068",   //拦截 context配置路径，经过此地址
+    target: br + "8068",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
     context: [
       "/statistical"
     ],
-    target: "http://192.168.10.178:8096",   //拦截 context配置路径，经过此地址
+    target: bb +  "8096",   //拦截 context配置路径，经过此地址
     secure: false
   }
 ];
