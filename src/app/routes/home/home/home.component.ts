@@ -51,11 +51,15 @@ export class HomeComponent implements OnInit {
     console.log("█ .prev ►►►", _this.prev);
     _this.optionPrev = {
       title: {
-        text: '新增会员统计'
+        text: '新增会员统计',
+        left:"46%"
       },
       legend: {
         data: ['今天', '昨天'],
-        align: 'left'
+        align: 'left',
+        left:"46%",
+        top:"10%",
+        bottom:"10%"
       },
       color: ['#3398DB', '#42DBB1'],
       tooltip: {
@@ -66,6 +70,7 @@ export class HomeComponent implements OnInit {
       },
       toolbox: {
         show: true,
+        right:"3%",
         feature: {
           dataView: {show: true, readOnly: false},
           magicType: {show: true, type: ['line', 'bar']},
@@ -122,6 +127,7 @@ export class HomeComponent implements OnInit {
     me.now = me.data.todaySale;
     me.prev = me.data.yesterdaySale;
     me.optionPrevInfo();
+    console.log("█ result ►►►",  result);
     console.log("█ me.now ►►►", me.now.keys);
     console.log("█ me.prev ►►►", me.prev.yaxis);
 
