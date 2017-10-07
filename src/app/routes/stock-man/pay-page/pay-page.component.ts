@@ -64,7 +64,7 @@ export class PayPageComponent implements OnInit {
       console.log("█ 'zhengchang ' ►►►",  'zhengchang ');
       sessionStorage.setItem('ordno',payData.ordno);//把订单编码存起来，在用户刷新，或者下个页面返回的时候会用到
       this.ordno=payData.ordno;
-      this.pay=payData.pay;
+      this.pay=payData.pay.toFixed(2);
     }
 
     /**
