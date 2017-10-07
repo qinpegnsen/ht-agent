@@ -27,8 +27,8 @@ export class ShoppingOrderService {
           AppComponent.rzhAlt("error",info);
         }
       },
-      error: () => {
-        AppComponent.rzhAlt("error",'连接数据库失败');
+      error: (res) => {
+        AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
       }
     });
     return result;
@@ -51,8 +51,8 @@ export class ShoppingOrderService {
           AppComponent.rzhAlt("error",info);
         }
       },
-      error: () => {
-        AppComponent.rzhAlt("error",'连接数据库失败');
+      error: (res) => {
+        AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
       }
     });
     return result;
