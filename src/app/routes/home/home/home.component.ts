@@ -3,6 +3,7 @@ import {SubmitService} from "../../../core/forms/submit.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
 import {BsDatepickerConfig} from "ngx-bootstrap/datepicker";
 import {SettingsService} from "../../../core/settings/settings.service";
+import {isNullOrUndefined} from "util";
 
 
 @Component({
@@ -118,12 +119,16 @@ export class HomeComponent implements OnInit {
     }
     let result = this.submit.getData(url, data);
     me.data = result;
-    console.log("█ me.data ►►►",  me.data);
-    me.now = me.data.todaySale;
-    me.prev = me.data.yesterdaySale;
-    me.optionPrevInfo();
-    console.log("█ me.now ►►►",me.now.keys);
-    console.log("█ me.prev ►►►",me.prev.yaxis );
+    if(isNullOrUndefined(me.data)){
+      return;
+    }else{
+      me.now = me.data.todaySale;
+      me.prev = me.data.yesterdaySale;
+      me.optionPrevInfo();
+      console.log("█ me.now ►►►",me.now.keys);
+      console.log("█ me.prev ►►►",me.prev.yaxis );
+    }
+
 
   }
 }
