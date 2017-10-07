@@ -73,6 +73,7 @@ export class LoginComponent implements OnInit {
         end = new Date().getTime();
         let info = result.data;
         if (result.success) {
+          console.log("█ expr ►►►",  result);
           let user = result.data;
           AppComponent.rzhAlt("success", result.info);
           // me.myMenu.addMenu(result.data.menuVOList);

@@ -13,7 +13,8 @@ export const routes = [
       {path: 'shopOrder', loadChildren: './shopping-order/shopping-order.module#ShoppingOrderModule'},
       {path: 'stockAddres', loadChildren: './stock-addres/stock-addres.module#StockAddresModule'},
       {path: 'edit-pw', loadChildren: './edit-pw/edit-pw.module#EditPwModule'},
-      {path: 'afterSale', loadChildren: './after-sale/after-sale.module#AfterSaleModule'}
+      {path: 'afterSale', loadChildren: './after-sale/after-sale.module#AfterSaleModule'},
+      {path: 'agent-information', loadChildren: './agent-information/agent-information.module#AgentInformationModule'},
     ]
   },
   {
