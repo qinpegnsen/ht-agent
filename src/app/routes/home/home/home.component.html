@@ -7,33 +7,33 @@
         <p>新版页面正在筹备，尽请期待</p>
       </div>
       <div class="bg-gray" style="height: 40px;line-height: 40px;padding-left: 40px">发布商品数量
-        <div class="label label-danger thc bgIcon colorIcon">{{data.allGoods}}</div>
+        <div class="label label-danger thc bgIcon colorIcon">{{data?.allGoods}}</div>
       </div>
       <div style="height: 70px">
         <button class="mb-sm btn btn-green btn-outline" style="    margin: 20px 40px;">出售中的商品
           <div class="label label-danger thc bgIcon colorIcon">
-            {{data.NORMAL}}
+            {{data?.NORMAL}}
           </div>
 
         </button>
         <button class="mb-sm btn btn-green btn-outline" style="    margin: 20px 40px;">发布待平台审核
           <div class="label label-danger thc bgIcon colorIcon">
-            {{data.AUDIT}}
+            {{data?.AUDIT}}
           </div>
         </button>
         <button class="mb-sm btn btn-green btn-outline" style="    margin: 20px 40px;">平台审核失败
           <div class="label label-danger thc bgIcon colorIcon">
-          {{data.UNPASS}}
+          {{data?.UNPASS}}
           </div>
         </button>
         <button class="mb-sm btn btn-green btn-outline" style="    margin: 20px 40px;">仓库中已审核
           <div class="label label-danger thc bgIcon colorIcon">
-            {{data.PASS}}
+            {{data?.PASS}}
           </div>
         </button>
         <button class="mb-sm btn btn-green btn-outline" style="    margin: 20px 20px;">被禁售的商品
           <div class="label label-danger thc bgIcon colorIcon">
-            {{data.STOP}}
+            {{data?.STOP}}
           </div>
 
         </button>
@@ -43,17 +43,17 @@
       <div style="height: 70px">
       <button class="mb-sm btn btn-green btn-outline" style="margin: 20px 40px;">代收货订单
         <div class="label label-danger thc bgIcon colorIcon">
-          {{data.CR}}
+          {{data?.CR}}
         </div>
       </button>
       <button class="mb-sm btn btn-green btn-outline" style="margin: 20px 40px;">代发货订单
         <div class="label label-danger thc bgIcon colorIcon">
-          {{data.PREPARE}}
+          {{data?.PREPARE}}
         </div>
       </button>
       <button class="mb-sm btn btn-green btn-outline" style="margin: 20px 40px;">退款中
         <div class="label label-danger thc bgIcon colorIcon">
-          {{data.refundIng}}
+          {{data?.refundIng}}
         </div>
       </button>
       </div>
@@ -97,7 +97,7 @@
       <div class="panel-heading">
         <div class="panel-title">单品销售排行</div>
         <p>掌握三十日内最热销的商品吉首补充货源</p>
-        <p>{{data.goodsRanking}}</p>
+        <p>{{data?.goodsRanking}}</p>
       </div>
     </div>
   </div>

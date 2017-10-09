@@ -26,6 +26,10 @@ export class WorkDetailComponent implements OnInit {
               ) {
   }
 
+  /**
+   * 1.调用物流的接口信息
+   * 2.获取订单详情的信息
+   */
   ngOnInit() {
     let me = this;
     me.parentComp.orderType = 100;
@@ -69,7 +73,7 @@ export class WorkDetailComponent implements OnInit {
   }
 
   /**
-   * 获取订单的物流详情及订单进度
+   * 获取订单的物流详情及把各个状态时间添加到数组里面
    */
   private getLogisticsInfo() {
     let me = this;
@@ -78,8 +82,9 @@ export class WorkDetailComponent implements OnInit {
       ordno:me.curOrdno
     }
     let orderStatesDetail = me.shoppingOrderService.getBasicExpressList(url,data);
+    console.log("█ let orderStatesDetail ►►►",orderStatesDetail);
     if(!isNullOrUndefined(orderStatesDetail)) me.orderStates = orderStatesDetail;
-    for (let item of me.orderStates){
+    for (let item of me.orderStates){//把所有的时间放到一个数组里面
       if (item.state == 'SUCCESS') {
         me.atime[5] = item.acceptTime;
       } else if (item.state == 'DELIVERY') {
@@ -95,10 +100,10 @@ export class WorkDetailComponent implements OnInit {
   }
 
   /**
-   * 获取订单当前进度
+   * 获取订单当前进度，通过不同的阶段来判断进度条的长度
    */
   private getOrderStep() {
-    let me = this, temp = [];
+    let me = this;
     if (me.orderDetailData.state == 'SUCCESS') {
       me.orderStep = 5;
     } else if (me.orderDetailData.state == 'DELIVERY') {

@@ -123,14 +123,12 @@ export class HomeComponent implements OnInit {
     let data = {
     }
     let result = this.submit.getData(url, data);
-    me.data = result;
-    me.now = me.data.todaySale;
-    me.prev = me.data.yesterdaySale;
-    me.optionPrevInfo();
     console.log("█ result ►►►",  result);
-    console.log("█ me.now ►►►", me.now.keys);
-    console.log("█ me.prev ►►►", me.prev.yaxis);
-
-
+    if(result){
+      me.data = result;
+      me.now = me.data.todaySale;
+      me.prev = me.data.yesterdaySale;
+      me.optionPrevInfo();
+    }
   }
 }
