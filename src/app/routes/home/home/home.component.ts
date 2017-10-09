@@ -123,7 +123,6 @@ export class HomeComponent implements OnInit {
     let data = {
     }
     let result = this.submit.getData(url, data);
-    console.log("█ result ►►►",  result);
     if(result){
       me.data = result;
       me.now = me.data.todaySale;
