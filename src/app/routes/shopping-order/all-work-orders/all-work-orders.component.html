@@ -56,13 +56,13 @@
       <button *ngIf="order.state=='NO'" class="m-sm btn btn-xs btn-outline fa fa-check _backColor thc bg _myWhiteColor"
               (click)="toAccept(order.id)" #accept> 接单
       </button>
-      <button  *ngIf="order.state=='NO'" class="m-sm btn btn-xs btn-outline btn-info fa fa-close _myWhiteBg thc font"
+      <button  *ngIf="order.state=='NO'" class="m-sm btn btn-xs btn-outline fa fa-close _myWhiteBg thc font b"
               (click)="toReject(order.id)" #reject> 拒单
       </button>
       <button *ngIf="order.state=='ACCEPT'"  class="m-sm btn btn-xs btn-outline thc bg fa fa-truck _myWhiteColor"
               (click)="deliver(order.id,order.ordno)"> 发货
       </button>
-      <button  class="m-sm btn btn-xs btn-outline btn-info fa fa-info-circle _myWhiteBg thc font" routerLink="../work-detail"
+      <button  class="m-sm btn btn-xs btn-outline fa fa-info-circle _myWhiteBg thc font b" routerLink="../work-detail"
       [queryParams]="{ordno:order.ordno}"> 查看详情
       </button>
 

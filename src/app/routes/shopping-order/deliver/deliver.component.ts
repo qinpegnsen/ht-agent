@@ -29,12 +29,18 @@ export class DeliverComponent implements OnInit, OnDestroy, OnChanges {
     }
   }
 
+  /**
+   * 1.获取快递公司的信息
+   */
   ngOnInit() {
     let url='/basicExpress/queryAllBasicExpress';
     let data='';
     this.expressList=this.shoppingOrderService.getBasicExpressList(url,data);
   }
 
+  /**
+   * 组件摧毁的时候把层级降下来，隐藏组件
+   */
   ngOnDestroy(): void {
     $('.wrapper > section').css('z-index', 114);
   }
