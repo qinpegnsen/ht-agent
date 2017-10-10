@@ -52,7 +52,7 @@
     <td class="w25 text-center">{{order.ord?.areaFullName}}{{order.ord?.address}}</td>
     <td class="w10 text-center">{{order.state | rzhState :'1305' }}</td>
     <td class="w20 text-center">
-      <button class="m-sm btn btn-xs btn-outline fa fa-truck _backColor"
+      <button class="m-sm btn btn-xs btn-outline fa fa-truck _backColor thc bg"
               (click)="deliver(order.id,order.ordno)"> 发货
       </button>
       <button  class="m-sm btn btn-xs btn-outline fa fa-info-circle  thc font b" routerLink="../work-detail"
