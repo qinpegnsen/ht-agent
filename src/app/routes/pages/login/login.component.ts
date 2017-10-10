@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
           AppComponent.rzhAlt("success", result.info);
           // me.myMenu.addMenu(result.data.menuVOList);
           sessionStorage.setItem('loginInfo', JSON.stringify(user)); //用户信息存入session
-          me.setting.user.name = user.staffName; //修改user变量
+          me.setting.user.name = user.agentName; //修改user变量
           me.router.navigate(['/main/home'], {replaceUrl: true}); //路由跳转
         }
         else {

@@ -12,7 +12,6 @@ export class UserblockComponent implements OnInit {
     user: any;
   constructor(public userblockService: UserblockService, private setting: SettingsService) {
     this.user = setting.user;
-    console.log("█ this.user ►►►",  this.user);
   }
     ngOnInit() {
     }
