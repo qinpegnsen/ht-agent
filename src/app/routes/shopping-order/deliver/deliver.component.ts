@@ -30,10 +30,10 @@ export class DeliverComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   /**
-   * 1.获取快递公司的信息
+   * 1.获取已经开启的快递公司的信息
    */
   ngOnInit() {
-    let url='/basicExpress/queryAllBasicExpress';
+    let url='/basicExpress/queryBasicExpressIsUseList';
     let data='';
     this.expressList=this.shoppingOrderService.getBasicExpressList(url,data);
   }

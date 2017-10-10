@@ -72,7 +72,7 @@
           <td class="w10 bl" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length">
             <button class="m-sm btn btn-xs btn-outline thc bg fa fa-retweet _backColor" (click)="goPay(goods.ordno,goods.payWay)"> 去付款</button>
             <br>
-            <button  class="m-sm btn btn-xs btn-outline btn-warning fa fa-ban"
+            <button *ngIf="goods.state=='CR'" class="m-sm btn btn-xs btn-outline fa fa-ban thc font b"
                     (click)="cancelOrder(goods.ordno)">
               取消订单
             </button>

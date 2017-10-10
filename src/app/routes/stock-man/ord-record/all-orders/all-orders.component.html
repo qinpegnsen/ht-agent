@@ -110,17 +110,17 @@
                     (click)="goPay(goods.ordno,goods.payWay)"> 去付款
             </button>
             <br>
-            <button *ngIf="goods.state=='CR'" class="m-sm btn btn-xs btn-outline btn-warning fa fa-ban thc font"
+            <button *ngIf="goods.state=='CR'" class="m-sm btn btn-xs btn-outline fa fa-ban thc font b"
                     (click)="cancelOrder(goods.ordno)">
               取消订单
             </button>
             <button *ngIf="goods.state=='DELIVERY'" (click)="confirmRecive(goods.ordno)"
                     class="m-sm btn btn-xs btn-outline fa fa-retweet thc bg _myWhiteColor"> 确认收货
             </button>
-            <button *ngIf="goods.state=='SUCCESS'" class="m-sm btn btn-xs btn-warning fa fa-shopping-cart thc font"
+            <button *ngIf="goods.state=='SUCCESS'" class="m-sm btn btn-xs  fa fa-shopping-cart thc bg _backColor"
                     (click)="againBuy(item.goodsCode,item.batchNum)"> 再进货
             </button>
-            <button *ngIf="goods.state=='CLOSE'" class="m-sm btn btn-xs btn-warning fa fa-shopping-cart thc font"
+            <button *ngIf="goods.state=='CLOSE'" class="m-sm btn btn-xs _myWhiteBg fa fa-shopping-cart thc font b"
                     (click)="againBuy(item.goodsCode,item.batchNum)"> 重新购买
             </button>
           </td>
