@@ -28,6 +28,7 @@ export class AgentInformationComponent implements OnInit {
   private staff:any = {};
   private aa = false;
   private placeSearch: any;
+  private code: any;
 
   constructor(public settings:SettingsService, private ajax:AjaxService, private router:Router, private routeInfo:ActivatedRoute,private patterns: PatternService) {
     this.settings.showRightPage("30%"); // 此方法必须调用！页面右侧显示，带滑动效果,可以自定义宽度：..%  或者 ..px
@@ -95,6 +96,10 @@ export class AgentInformationComponent implements OnInit {
     me.linkType = this.routeInfo.snapshot.queryParams['linkType'];//获取地址栏的参数
     me.agentCode = this.routeInfo.snapshot.queryParams['agentCode'];//获取代理商的编码
 
+    let collection=JSON.parse(sessionStorage.getItem('loginInfo'));
+    this.code=collection.agentCode;
+    console.log("█ aaa ►►►",  this.code);
+
 
 
     /**
@@ -105,8 +110,6 @@ export class AgentInformationComponent implements OnInit {
         async: false, //同步请求
         data: {agentCode: this.agentCode},
         success: (res) => {
-          console.log("█ res ►►►",  res);
-
           this.staff = res.data;
           if(isNullOrUndefined(this.staff)) this.staff = {}
         },
@@ -155,7 +158,7 @@ export class AgentInformationComponent implements OnInit {
       _this.ajax.put({
         url: '/agent/updateAgentBasic',
         data: {
-          'agentCode':_this.agentCode,
+          'agentCode':_this.code,
           'agentName': value.agentName,
           'agentLevel': value.agentLevel,
           'agentAcct': value.agentAcct,
@@ -175,14 +178,14 @@ export class AgentInformationComponent implements OnInit {
         success: (res) => {
           console.log(res)
           if (res.success) {
-            _this.router.navigate(['/main/agent/agentperson'], {replaceUrl: true});   //路由跳转
-            swal('修改区域信息成功！', '', 'success');
+            _this.router.navigate(['/main/agent-information'], {replaceUrl: true});   //路由跳转
+            swal('修改信息成功！', '', 'success');
           } else {
             swal(res.info, '','error');
           }
         },
         error: (data) => {
-          swal('修改区域信息失败！', '', 'error');
+          swal('修改信息失败！', '', 'error');
         }
       });
     }

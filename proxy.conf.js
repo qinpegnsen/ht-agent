@@ -14,7 +14,6 @@ const PROXY_CONFIG = [
   {
     context: [
       "/goodsQuery",
-      "/login",
       "/admin",
       "/agent",
       "/nativeWXPay",
@@ -37,6 +36,13 @@ const PROXY_CONFIG = [
       "/statistical"
     ],
     target: bb +  "8096",   //拦截 context配置路径，经过此地址
+    secure: false
+  },
+  {
+    context: [
+      "/login"
+    ],
+    target: gh +  "8085",   //拦截 context配置路径，经过此地址
     secure: false
   }
 ];

@@ -4,7 +4,7 @@
     <div class="panel-default">
       <div class="panel-default">
         <div class="panel-body">
-          <input class="form-control"  [(ngModel)]="agentCode" name="agentCode" type="hidden">
+          <input class="form-control"  [(ngModel)]="code" name="agentCode" type="hidden">
           <input class="form-control" required [(ngModel)]="staff.areaCode" name="areaCode" type="hidden">
           <fieldset class="b0">
             <legend>修改信息</legend>
@@ -101,9 +101,14 @@
               <div class="col-sm-2">
                 <input class="form-control col-sm-1 position-relative" type="text" required name="coordinateLat" ngModel [(ngModel)]="staff.coordinateLat"/>
               </div>
+              <label class="col-sm-2 control-label"> <i>*</i> 头像</label>
+              <div class="col-sm-4">
+                <img style="width: 100px;" src="../../../../../assets/img/bg1.jpg"/>
+              </div>
             </div>
-            <button class="btn btn-info position-absolute left50" style="top:37%" *ngIf="!flag" type="button" (click)="isShowMap(staff)">标注经纬度</button>
-            <button class="btn btn-info position-absolute left50" style="top:37%" *ngIf="flag" type="button" (click)="isShowMap(staff)">修改经纬度</button>
+            <button class="btn btn-info position-absolute left50" style="top:44%" *ngIf="!flag" type="button" (click)="isShowMap(staff)">标注经纬度</button>
+            <button class="btn btn-info position-absolute left50" style="top:44%" *ngIf="flag" type="button" (click)="isShowMap(staff)">修改经纬度</button>
+            <button class="mb-sm btn btn-info position-absolute icon-cloud-upload" style="top:44%; left:77%" type="file"> 修改头像</button>
           </fieldset>
           <fieldset>
             <div class="form-group">
