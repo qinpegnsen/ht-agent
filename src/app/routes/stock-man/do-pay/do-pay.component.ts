@@ -16,11 +16,11 @@ export class DoPayComponent implements OnInit {
   url: any;                               //内容生成的二维码图片
   ordno: any;                             //订单的编码
   price: number;                          //订单的价格
-  public payCon: String = '';               //二维码的内容
+  public payCon: String = '';             //二维码的内容
   public time: any;                       //二维码的内容
   public curWay: any;                     //当前支付的方式
-  public timeAdd: number = 0;               //累计的时间
-  public flag: boolean = true;              //累计的时间
+  public timeAdd: number =60000 ;         //累计的时间
+  public flag: boolean = true;            //累计的时间
 
   constructor(private routeInfo: ActivatedRoute, public stockManService: StockManService, private router: Router) {
   }
@@ -68,7 +68,6 @@ export class DoPayComponent implements OnInit {
 
     }
 
-
     QRCode.toDataURL(_this.payCon, function (err, url) {           //获取支付的二维码的内容生成二维码
       _this.url = url;
     })
@@ -80,7 +79,7 @@ export class DoPayComponent implements OnInit {
     var timer = setInterval(function () {
       _this.isSuccess(timer);
       console.log("█ 22 ►►►",  22);
-      _this.timeAdd += 5000;
+      _this.timeAdd -= 5000;
     }, 5000)
 
   }
@@ -101,7 +100,7 @@ export class DoPayComponent implements OnInit {
       this.router.navigate(['/main/stockMan/do/callBack'], {queryParams: {ordno: this.ordno, price: this.price}})
     } else {//一分钟结束还没支付
       console.log("█ this.timeAdd ►►►", this.timeAdd);
-      if (this.timeAdd == 60000) {
+      if (this.timeAdd == 0) {
         clearInterval(timer);
         AppComponent.rzhAlt("errer", "支付已超时");
       }
