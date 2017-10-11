@@ -16,11 +16,6 @@ export class RzhtoolsService {
   }
 
 
-
-
-
-
-
   /**
    * 身份证信息识别
    * @param idCard

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import {RouterModule, Routes} from "@angular/router";
 import {ShoppingOrderComponent} from "./shopping-order.component";
 import {SharedModule} from "../../shared/shared.module";
-import { AllWorkOrdersComponent } from './all-work-orders/all-work-orders.component';
+import {AllWorkOrdersComponent} from './all-work-orders/all-work-orders.component';
 import { WaitForOrdersComponent } from './wait-for-orders/wait-for-orders.component';
 import { OrderReceiveComponent } from './order-receive/order-receive.component';
 import { HandledComponent } from './handled/handled.component';
@@ -13,6 +13,8 @@ import {ShoppingOrderService} from "./shopping-order.service";
 import {RzhtoolsService} from "../../core/services/rzhtools.service";
 import {DeliverComponent} from "./deliver/deliver.component";
 import { WorkDetailComponent } from './work-detail/work-detail.component';
+import {BsModalService, ModalModule} from 'ngx-bootstrap';
+import {ModalContentComponent} from "./modal-content/modal-content.component";
 
 const shoppingOrderChildren: Routes = [
   {path: '', redirectTo: 'all-work-orders'},
@@ -33,9 +35,11 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    ModalModule.forRoot(),
     SharedModule
   ],
-  declarations: [ShoppingOrderComponent, AllWorkOrdersComponent, WaitForOrdersComponent, OrderReceiveComponent, HandledComponent, CompletedComponent, AbnormalComponent,DeliverComponent, WorkDetailComponent],
-  providers: [ShoppingOrderService,RzhtoolsService]
+  declarations: [ShoppingOrderComponent, AllWorkOrdersComponent, WaitForOrdersComponent, OrderReceiveComponent, HandledComponent, CompletedComponent, AbnormalComponent,DeliverComponent, WorkDetailComponent,ModalContentComponent],
+  providers: [ShoppingOrderService,RzhtoolsService,BsModalService],
+  entryComponents:[ModalContentComponent]
 })
 export class ShoppingOrderModule { }

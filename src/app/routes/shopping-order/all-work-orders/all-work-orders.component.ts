@@ -5,6 +5,8 @@ import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {ShoppingOrderService} from "../shopping-order.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
+import {BsModalRef, BsModalService} from "ngx-bootstrap";
+import {ModalContentComponent} from "../modal-content/modal-content.component";
 const swal = require('sweetalert');
 declare var $;
 @Component({
@@ -21,11 +23,14 @@ export class AllWorkOrdersComponent implements OnInit {
   public stateEnumList;                                       //工单状态的列表
   public curWoAgentId: string;                                //工单的id
   public curOrdno: string;                                    //订单编码
+  public other: string;                                       //拒单的原因
+  bsModalRef: BsModalRef;
   constructor(
     private parentComp:ShoppingOrderComponent,
     private submit: SubmitService,
     private shoppingOrderService: ShoppingOrderService,
-    private rzhtoolsService: RzhtoolsService
+    private rzhtoolsService: RzhtoolsService,
+    private modalService: BsModalService
   ) { }
 
   /**
@@ -39,6 +44,20 @@ export class AllWorkOrdersComponent implements OnInit {
     me.queryDatas()
     this.stateEnumList=this.rzhtoolsService.getEnumDataList(1305);
   }
+
+  /**
+   * 拒单的模态弹框
+   */
+  public toReject(woAgengId) {
+    let list =  this.rzhtoolsService.getEnumDataList('1304');//获取异常工单也就是拒单的枚举
+    this.bsModalRef = this.modalService.show(ModalContentComponent);
+    this.bsModalRef.content.title = '请输入拒单的原因';
+    this.bsModalRef.content.list = list;
+    this.bsModalRef.content.other = this.other;
+    this.bsModalRef.content.woAgengId = woAgengId;
+    $(".modal").css({'top':'30%'})
+  }
+
 
   /**
    * 查询列表
@@ -94,32 +113,6 @@ export class AllWorkOrdersComponent implements OnInit {
     );
   }
 
-  /**
-   * 拒单
-   * @param woAgengId 代理商工单id
-   * 1. 刷新页面
-   */
-  toReject(woAgengId){
-    let that=this;
-    swal({
-        title: '确认拒单吗？',
-        type: 'info',
-        confirmButtonText: '确认', //‘确认’按钮命名
-        showCancelButton: true, //显示‘取消’按钮
-        cancelButtonText: '取消', //‘取消’按钮命名
-        closeOnConfirm: false  //点击‘确认’后，执行另外一个提示框
-      },
-      function () {  //点击‘确认’时执行
-        swal.close(); //关闭弹框
-        let url = '/woAgent/updateWoAgentToReject';
-        let data = {
-          woAgengId:woAgengId
-        };
-        that.shoppingOrderService.toAcceptWork(url,data);
-        that.queryDatas();
-      }
-    );
-  }
 
   /**
    * 发货
@@ -148,3 +141,5 @@ export class AllWorkOrdersComponent implements OnInit {
     if(data.type) this.queryDatas(data.page)
   }
 }
+
+
