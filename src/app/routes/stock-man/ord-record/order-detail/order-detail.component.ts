@@ -173,6 +173,7 @@ export class OrderDetailComponent implements OnInit {
           ordno: ordno
         }
         that.stockManService.delAgentOrd(url, data);
+        that.ngOnInit();
       }
     );
   }
