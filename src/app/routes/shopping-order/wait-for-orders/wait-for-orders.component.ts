@@ -5,7 +5,10 @@ import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {ShoppingOrderService} from "../shopping-order.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
+import {ModalContentComponent} from "../modal-content/modal-content.component";
+import {BsModalRef, BsModalService} from "ngx-bootstrap";
 const swal = require('sweetalert');
+declare var $;
 @Component({
   selector: 'app-wait-for-orders',
   templateUrl: './wait-for-orders.component.html',
@@ -18,11 +21,14 @@ export class WaitForOrdersComponent implements OnInit {
   public ordno:string='';                                     //订单号
   public stateEnum:string='';                                 //工单状态搜索时候会用到
   public stateEnumList;                                       //工单状态的列表
+  bsModalRef: BsModalRef;
+  public other: string;                                       //拒单的原因
   constructor(
     private parentComp:ShoppingOrderComponent,
     private submit: SubmitService,
     private shoppingOrderService: ShoppingOrderService,
-    private rzhtoolsService: RzhtoolsService
+    private rzhtoolsService: RzhtoolsService,
+    private modalService: BsModalService
   ) { }
 
   /**
@@ -90,31 +96,16 @@ export class WaitForOrdersComponent implements OnInit {
   }
 
   /**
-   * 拒单
-   * @param woAgengId 代理商工单id
-   * 1. 刷新页面
+   * 拒单的模态弹框
    */
-  toReject(woAgengId){
-
-    let that=this;
-    swal({
-        title: '确认删除此信息？',
-        type: 'info',
-        confirmButtonText: '确认', //‘确认’按钮命名
-        showCancelButton: true, //显示‘取消’按钮
-        cancelButtonText: '取消', //‘取消’按钮命名
-        closeOnConfirm: false  //点击‘确认’后，执行另外一个提示框
-      },
-      function () {  //点击‘确认’时执行
-        swal.close(); //关闭弹框
-        let url = '/woAgent/updateWoAgentToReject';
-        let data = {
-          woAgengId:woAgengId
-        };
-        that.shoppingOrderService.toAcceptWork(url,data);
-        that.queryDatas();
-      }
-    );
+  public toReject(woAgengId) {
+    let list =  this.rzhtoolsService.getEnumDataList('1304');//获取异常工单也就是拒单的枚举
+    this.bsModalRef = this.modalService.show(ModalContentComponent);
+    this.bsModalRef.content.title = '请输入拒单的原因';
+    this.bsModalRef.content.list = list;
+    this.bsModalRef.content.other = this.other;
+    this.bsModalRef.content.woAgengId = woAgengId;
+    $(".modal").css({'top':'30%'})
   }
 
 

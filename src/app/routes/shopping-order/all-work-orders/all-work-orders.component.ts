@@ -46,20 +46,6 @@ export class AllWorkOrdersComponent implements OnInit {
   }
 
   /**
-   * 拒单的模态弹框
-   */
-  public toReject(woAgengId) {
-    let list =  this.rzhtoolsService.getEnumDataList('1304');//获取异常工单也就是拒单的枚举
-    this.bsModalRef = this.modalService.show(ModalContentComponent);
-    this.bsModalRef.content.title = '请输入拒单的原因';
-    this.bsModalRef.content.list = list;
-    this.bsModalRef.content.other = this.other;
-    this.bsModalRef.content.woAgengId = woAgengId;
-    $(".modal").css({'top':'30%'})
-  }
-
-
-  /**
    * 查询列表
    * @param event
    * @param curPage
@@ -113,6 +99,18 @@ export class AllWorkOrdersComponent implements OnInit {
     );
   }
 
+  /**
+   * 拒单的模态弹框
+   */
+  public toReject(woAgengId) {
+    let list =  this.rzhtoolsService.getEnumDataList('1304');//获取异常工单也就是拒单的枚举
+    this.bsModalRef = this.modalService.show(ModalContentComponent);
+    this.bsModalRef.content.title = '请输入拒单的原因';
+    this.bsModalRef.content.list = list;
+    this.bsModalRef.content.other = this.other;
+    this.bsModalRef.content.woAgengId = woAgengId;
+    $(".modal").css({'top':'30%'})
+  }
 
   /**
    * 发货
