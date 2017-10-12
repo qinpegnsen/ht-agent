@@ -96,7 +96,6 @@ export class AllOrdersComponent implements OnInit {
       ordno:'8064321506563660332'                //目前是写死的，以后再改
     };
     this.LogisticsData=this.stockManService.getShopList(url,data);
-    console.log("█ this.LogisticsData ►►►",  this.LogisticsData);
   }
 
   /**

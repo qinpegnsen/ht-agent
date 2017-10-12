@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
 import {ShoppingOrderComponent} from "../shopping-order.component";
 import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {ShoppingOrderService} from "../shopping-order.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
-import {BsModalRef, BsModalService} from "ngx-bootstrap";
-import {ModalContentComponent} from "../modal-content/modal-content.component";
 const swal = require('sweetalert');
 declare var $;
 @Component({
@@ -17,21 +15,20 @@ declare var $;
 export class AllWorkOrdersComponent implements OnInit {
 
   public workOrderList: Page = new Page();                    //获取列表的数据
-  public wono:string='';                                      //工单号
-  public ordno:string='';                                     //订单号
-  public stateEnum:string='';                                 //工单状态搜索时候会用到
+  public wono: string = '';                                   //工单号
+  public ordno: string = '';                                  //订单号
+  public stateEnum: string = '';                              //工单状态搜索时候会用到
   public stateEnumList;                                       //工单状态的列表
   public curWoAgentId: string;                                //工单的id
   public curOrdno: string;                                    //订单编码
-  public other: string;                                       //拒单的原因
-  bsModalRef: BsModalRef;
-  constructor(
-    private parentComp:ShoppingOrderComponent,
-    private submit: SubmitService,
-    private shoppingOrderService: ShoppingOrderService,
-    private rzhtoolsService: RzhtoolsService,
-    private modalService: BsModalService
-  ) { }
+  private showReasonWindow:boolean = false;                  //弹窗的开关
+  private woAgengId:any;                                      //代理商工单id
+
+  constructor(private parentComp: ShoppingOrderComponent,
+              private submit: SubmitService,
+              private shoppingOrderService: ShoppingOrderService,
+              private rzhtoolsService: RzhtoolsService,) {
+  }
 
   /**
    * 1.设置当前点击的颜色
@@ -42,7 +39,7 @@ export class AllWorkOrdersComponent implements OnInit {
     let me = this;
     me.parentComp.orderType = 1;
     me.queryDatas()
-    this.stateEnumList=this.rzhtoolsService.getEnumDataList(1305);
+    this.stateEnumList = this.rzhtoolsService.getEnumDataList(1305);
   }
 
   /**
@@ -57,17 +54,16 @@ export class AllWorkOrdersComponent implements OnInit {
     }
     let requestUrl = '/woAgent/query';
     let requestData = {
-      sortColumns:'',
+      sortColumns: '',
       curPage: activePage,
       pageSize: 15,
-      agentCode:'',
-      wono:this.wono,
-      ordno:this.ordno,
-      ordType:'ORD',//工单类型 购物订单
-      stateEnum:this.stateEnum,
+      agentCode: '',
+      wono: this.wono,
+      ordno: this.ordno,
+      ordType: 'ORD',//工单类型 购物订单
+      stateEnum: this.stateEnum,
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
-    console.log("█ _this.workOrderList  ►►►",  _this.workOrderList );
   }
 
 
@@ -77,8 +73,8 @@ export class AllWorkOrdersComponent implements OnInit {
    * 1. 刷新页面
    * 2.设置按钮的禁用和启用
    */
-  toAccept(woAgengId){
-    let that=this;
+  toAccept(woAgengId) {
+    let that = this;
     swal({
         title: '确认接单吗？',
         type: 'info',
@@ -91,25 +87,20 @@ export class AllWorkOrdersComponent implements OnInit {
         swal.close(); //关闭弹框
         let url = '/woAgent/updateWoAgentToAccept';
         let data = {
-          woAgengId:woAgengId
+          woAgengId: woAgengId
         };
-        that.shoppingOrderService.toAcceptWork(url,data);
+        that.shoppingOrderService.toAcceptWork(url, data);
         that.queryDatas()
       }
     );
   }
 
   /**
-   * 拒单的模态弹框
+   * 拒单
    */
-  public toReject(woAgengId) {
-    let list =  this.rzhtoolsService.getEnumDataList('1304');//获取异常工单也就是拒单的枚举
-    this.bsModalRef = this.modalService.show(ModalContentComponent);
-    this.bsModalRef.content.title = '请输入拒单的原因';
-    this.bsModalRef.content.list = list;
-    this.bsModalRef.content.other = this.other;
-    this.bsModalRef.content.woAgengId = woAgengId;
-    $(".modal").css({'top':'30%'})
+  toReject(woAgengId) {
+    this.woAgengId = woAgengId;
+    this.showReasonWindow = true;
   }
 
   /**
@@ -117,17 +108,17 @@ export class AllWorkOrdersComponent implements OnInit {
    * @param woAgentId    代理商工单id
    * @param ordno        订单编码
    */
-  deliver(woAgentId,ordno){
+  deliver(woAgentId, ordno) {
     this.curWoAgentId = woAgentId;
-    this.curOrdno=ordno;
+    this.curOrdno = ordno;
   }
 
   /**
    * 获取搜索框选择的状态值
    * @param val
    */
-  getState(val){
-    this.stateEnum=val;
+  getState(val) {
+    this.stateEnum = val;
   }
 
   /**
@@ -136,7 +127,7 @@ export class AllWorkOrdersComponent implements OnInit {
    */
   getDeliverOrderData(data) {
     this.curOrdno = null;//输入属性发生变化的时候，弹窗才会打开，所以每次后来都清空，造成变化的迹象
-    if(data.type) this.queryDatas(data.page)
+    if (data.type) this.queryDatas(data.page)
   }
 }
 

@@ -5,8 +5,6 @@ import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {ShoppingOrderService} from "../shopping-order.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
-import {ModalContentComponent} from "../modal-content/modal-content.component";
-import {BsModalRef, BsModalService} from "ngx-bootstrap";
 const swal = require('sweetalert');
 declare var $;
 @Component({
@@ -21,14 +19,13 @@ export class WaitForOrdersComponent implements OnInit {
   public ordno:string='';                                     //订单号
   public stateEnum:string='';                                 //工单状态搜索时候会用到
   public stateEnumList;                                       //工单状态的列表
-  bsModalRef: BsModalRef;
-  public other: string;                                       //拒单的原因
+  private showReasonWindow:boolean = false;                  //弹窗的开关
+  private woAgengId:any;                                      //代理商工单id
   constructor(
     private parentComp:ShoppingOrderComponent,
     private submit: SubmitService,
     private shoppingOrderService: ShoppingOrderService,
-    private rzhtoolsService: RzhtoolsService,
-    private modalService: BsModalService
+    private rzhtoolsService: RzhtoolsService
   ) { }
 
   /**
@@ -95,19 +92,14 @@ export class WaitForOrdersComponent implements OnInit {
     );
   }
 
-  /**
-   * 拒单的模态弹框
-   */
-  public toReject(woAgengId) {
-    let list =  this.rzhtoolsService.getEnumDataList('1304');//获取异常工单也就是拒单的枚举
-    this.bsModalRef = this.modalService.show(ModalContentComponent);
-    this.bsModalRef.content.title = '请输入拒单的原因';
-    this.bsModalRef.content.list = list;
-    this.bsModalRef.content.other = this.other;
-    this.bsModalRef.content.woAgengId = woAgengId;
-    $(".modal").css({'top':'30%'})
-  }
 
+  /**
+   * 拒单
+   */
+  toReject(woAgengId) {
+    this.woAgengId = woAgengId;
+    this.showReasonWindow = true;
+  }
 
   /**
    * 获取搜索框选择的状态值
@@ -116,18 +108,4 @@ export class WaitForOrdersComponent implements OnInit {
   getState(val){
     this.stateEnum=val;
   }
-
-  /**
-   * 设置按钮的禁用和启用
-   * @param obj
-   * @param state
-   */
-  changeState(obj,state){
-    if(state!='NO'){
-      obj.disabled=true;
-    }else{
-      obj.disabled=false;
-    }
-  }
-
 }

@@ -1,6 +1,6 @@
 <div class="deliver-order fadeIn" *ngIf="showDeliverWindow">
   <div class="mask"></div>
-  <form class="_popup animated fadeIn">
+  <form class="_popup animated fadeIn" #deliverytpl="ngForm">
     <div class="pop popup-hd">
       <span class="f-bold">发货</span>
       <div class="popup-colse unselectable" (click)="hideWindow()">×</div>
@@ -18,7 +18,7 @@
       <dl class="bb m0 clearfix">
         <dt class="col-xs-3">快递公司：</dt>
         <dd class="col-xs-5 font14">
-          <select name="expressCode" class="form-control input-sm" [(ngModel)]="expressCode">
+          <select name="expressCode" class="form-control input-sm" required  [(ngModel)]="expressCode">
             <option [value]="item.expressCode" *ngFor="let item of expressList">{{item.expressName}}</option>
           </select>
         </dd>
@@ -26,7 +26,7 @@
       <dl class="bb m0 clearfix">
         <dt class="col-xs-3">快递单号：</dt>
         <dd class="col-xs-5 font14">
-          <input type="text" name="expressNo" class="form-control input-sm" [(ngModel)]="expressNo">
+          <input type="text" name="expressNo" class="form-control required input-sm" [(ngModel)]="expressNo">
         </dd>
       </dl>
       <!--<dl class="bb m0 clearfix">-->
@@ -39,7 +39,7 @@
     </div>
     <div class="panel-footer text-right">
       <button class="btn btn-default" type="button" (click)="hideWindow()">放弃操作</button>
-      <button class="btn btn-info" type="button" (click)="delivery()">确认提交</button>
+      <button class="btn btn-info" type="button" (click)="delivery()" [disabled]="deliverytpl.invalid">确认提交</button>
     </div>
   </form>
 </div>

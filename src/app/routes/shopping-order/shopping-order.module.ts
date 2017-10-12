@@ -14,7 +14,8 @@ import {RzhtoolsService} from "../../core/services/rzhtools.service";
 import {DeliverComponent} from "./deliver/deliver.component";
 import { WorkDetailComponent } from './work-detail/work-detail.component';
 import {BsModalService, ModalModule} from 'ngx-bootstrap';
-import {ModalContentComponent} from "./modal-content/modal-content.component";
+import {ReasonRejecComponent} from "./modal-content/reason-rejec.component";
+
 
 const shoppingOrderChildren: Routes = [
   {path: '', redirectTo: 'all-work-orders'},
@@ -38,8 +39,7 @@ const routes: Routes = [
     ModalModule.forRoot(),
     SharedModule
   ],
-  declarations: [ShoppingOrderComponent, AllWorkOrdersComponent, WaitForOrdersComponent, OrderReceiveComponent, HandledComponent, CompletedComponent, AbnormalComponent,DeliverComponent, WorkDetailComponent,ModalContentComponent],
-  providers: [ShoppingOrderService,RzhtoolsService,BsModalService],
-  entryComponents:[ModalContentComponent]
+  declarations: [ShoppingOrderComponent, AllWorkOrdersComponent, WaitForOrdersComponent, OrderReceiveComponent, HandledComponent, CompletedComponent, AbnormalComponent,DeliverComponent, WorkDetailComponent,ReasonRejecComponent],
+  providers: [ShoppingOrderService,RzhtoolsService,AllWorkOrdersComponent,ShoppingOrderComponent,WaitForOrdersComponent],
 })
 export class ShoppingOrderModule { }
