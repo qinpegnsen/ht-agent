@@ -4,7 +4,7 @@
 <div class="panel mb p w100 thc bg-light _myWhiteColor">
   <p class="font18">温馨提示</p>
   <ul>
-    <li>总价格大于2000免运费哦</li>
+    <li>总价格大于{{freeNum}}免运费哦</li>
   </ul>
 </div>
 <div class="panel panel-default _padingBtm mb0">
@@ -104,21 +104,21 @@
       <tr>
         <td class="w75 text-right _line">{{shopTotalNumber}} 种商品</td>
         <td class="w25 _line clearfix">
-          <span class="w60 pull-right  text-center _myPrice">&yen;{{priceList.total  | number:'1.2-2'}}</span>
+          <span class="w60 pull-right  text-center _myPrice">&yen; {{priceList.total  | number:'1.2-2'}}</span>
           <span class="w40 pull-right text-right">总商品金额：</span>
         </td>
       </tr>
       <tr>
         <td class="w75 text-right _line"></td>
         <td class="w25 _line">
-          <span class="w60 pull-right  text-center _myPrice">&yen;{{priceList.expressPrice  | number:'1.2-2'}}</span>
+          <span class="w60 pull-right  text-center _myPrice">&yen; {{priceList.expressPrice  | number:'1.2-2'}}</span>
           <span class="w40 pull-right text-right">运费：</span>
         </td>
       </tr>
       <tr>
         <td class="w75 text-right _line"></td>
         <td class="w25 _line">
-          <span class="w60 pull-right  text-center _myPrice">&yen;{{priceList.payment  | number:'1.2-2'}}</span>
+          <span class="w60 pull-right  text-center _myPrice">&yen; {{priceList.payment  | number:'1.2-2'}}</span>
           <span class="w40 pull-right text-right">应付总额：</span>
         </td>
       </tr>

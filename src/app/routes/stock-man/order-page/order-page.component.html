@@ -119,13 +119,13 @@
                     </div>
                   </div>
                   <div class="w10 pull-left text-center">
-                    &yen;{{good.batchPrice | number:'1.2-2'}}
+                    &yen; {{good.batchPrice | number:'1.2-2'}}
                   </div>
                   <div class="w10 pull-left text-center _orderTotalNum">
-                    x{{good.batchNum}}
+                    x {{good.batchNum}}
                   </div>
                   <div class="w10 pull-left text-center _orderTotalNum">
-                    &yen;{{good.batchPrice*good.batchNum | number:'1.2-2'}}
+                    &yen; {{good.batchPrice*good.batchNum | number:'1.2-2'}}
                   </div>
                 </li>
               </ul>
@@ -149,21 +149,21 @@
       <tr>
         <td class="w75 text-right _line">{{orderData?.goodsNum}}件商品</td>
         <td class="w25 _line clearfix">
-          <span class="w60 pull-right  text-center _myPrice">&yen;{{orderData?.total  | number:'1.2-2'}}</span>
+          <span class="w60 pull-right  text-center _myPrice">&yen; {{orderData?.total  | number:'1.2-2'}}</span>
           <span class="w40 pull-right text-right">总商品金额：</span>
         </td>
       </tr>
       <tr>
         <td class="w75 text-right _line"></td>
         <td class="w25 _line">
-          <span class="w60 pull-right  text-center _myPrice">&yen;{{orderData?.expressPrice  | number:'1.2-2'}}</span>
+          <span class="w60 pull-right  text-center _myPrice">&yen; {{orderData?.expressPrice  | number:'1.2-2'}}</span>
           <span class="w40 pull-right text-right">运费：</span>
         </td>
       </tr>
       <tr>
         <td class="w75 text-right _line"></td>
         <td class="w25 _line">
-          <span class="w60 pull-right  text-center _myPrice">&yen;{{orderData?.payment  | number:'1.2-2'}}</span>
+          <span class="w60 pull-right  text-center _myPrice">&yen; {{orderData?.payment  | number:'1.2-2'}}</span>
           <span class="w40 pull-right text-right">应付总额：</span>
         </td>
       </tr>

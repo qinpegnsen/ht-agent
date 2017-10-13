@@ -57,7 +57,7 @@ export class DoPayComponent implements OnInit {
 
     _this.curWay = _this.routeInfo.snapshot.queryParams['curWay'];   //获取当前支付的方式
     _this.ordno = _this.routeInfo.snapshot.queryParams['ordno'];     //获取当前的订单号
-    _this.price = _this.routeInfo.snapshot.queryParams['price'];     //获取价格
+    _this.price = Number(sessionStorage.getItem('pay'));    //获取价格
 
     if (this.curWay == '_wxPay') {                                         //微信时执行，获取到支付的二维码的内容
       let url = '/nativeWXPay/getPrePayId';
@@ -121,16 +121,11 @@ export class DoPayComponent implements OnInit {
       ordno: this.ordno
     }
     let result = this.stockManService.isTrue(url, data);
+    console.log("█ result ►►►",  result);
     if (result) {//支付成功的收
       clearInterval(timer);
       AppComponent.rzhAlt("success", "支付成功");
       this.router.navigate(['/main/stockMan/do/callBack'], {queryParams: {ordno: this.ordno, price: this.price}})
-    } else {//一分钟结束还没支付
-      console.log("█ this.timeAdd ►►►", this.timeAdd);
-      if (this.timeAdd == 0) {
-        clearInterval(timer);
-        AppComponent.rzhAlt("errer", "支付已超时");
-      }
     }
   }
 }

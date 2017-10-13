@@ -46,28 +46,7 @@ export class PayPageComponent implements OnInit {
     }else if(this.orderData){
       this.payWay=this.orderData.payWay;
     }
-    let url = '/agentOrd/addAgentOrd';
-    let payData=this.stockManService.bornOrder(url,this.orderData);
-    console.log("█ payData ►►►",  payData);
-    if(isNullOrUndefined(payData)||payData=='服务器异常'){               //在用户刷新，或者下个页面返回的时候会用到
-      let url = '/agentOrd/loadByOrdno';
-      let data={
-        ordno:ordno?ordno:sessionStorage.getItem('ordno')
-      }
-      let payData=this.stockManService.getShopList(url,data);
-      console.log("█ payData ►►►",  payData);
-      this.ordno=payData.ordno;
-      this.pay=payData.pay;
-    }else if(payData=='购买商品不可批发商品'||payData=='购买商品包含已下架商品'){//处理商品失效的bug
-      AppComponent.rzhAlt("error",payData);
-      this.location.back();
-      return;
-    }else{                                                                //正常
-      console.log("█ 'zhengchang ' ►►►",  'zhengchang ');
-      sessionStorage.setItem('ordno',payData.ordno);//把订单编码存起来，在用户刷新，或者下个页面返回的时候会用到
-      this.ordno=payData.ordno;
-      this.pay=payData.pay.toFixed(2);
-    }
+    this.bornOrder(ordno);
 
     /**
      * 路由事件用来监听地址栏的变化
@@ -81,15 +60,36 @@ export class PayPageComponent implements OnInit {
           if(event.url.indexOf('do')>0){
             this.flag=false;
           }else if(event.url.indexOf('pay')>0){
-            console.log("█ event.url ►►►",  event.url);
-            console.log("█ this.flag ►►►",  this.flag);
             this.flag=true;
           }
         }
       });
+    this.headerComponent.getShopTotal();//刷新购物车商品数量
+  }
 
-
-    this.headerComponent.getShopTotal()
+  /**
+   * 生成订单
+   */
+  bornOrder(ordno){
+    let url = '/agentOrd/addAgentOrd';
+    let payData=this.stockManService.bornOrder(url,this.orderData);
+    if(isNullOrUndefined(payData)||payData=='服务器异常'){               //在用户刷新，或者下个页面返回的时候会用到
+      let url = '/agentOrd/loadByOrdno';
+      let data={
+        ordno:ordno?ordno:sessionStorage.getItem('ordno')
+      }
+      let payData=this.stockManService.getShopList(url,data);
+      this.ordno=payData.ordno;
+      this.pay=payData.pay;
+    }else if(payData=='购买商品不可批发商品'||payData=='购买商品包含已下架商品'){//处理商品失效的bug
+      AppComponent.rzhAlt("error",payData);
+      this.location.back();
+      return;
+    }else{                                                                //正常
+      sessionStorage.setItem('ordno',payData.ordno);//把订单编码存起来，在用户刷新，或者下个页面返回的时候会用到
+      this.ordno=payData.ordno;
+      this.pay=payData.pay.toFixed(2);
+    }
   }
 
   /**
@@ -116,7 +116,8 @@ export class PayPageComponent implements OnInit {
       this.curWay='_wxPay'; //微信支付
     } else{
       this.curWay='_aliPay';//支付宝支付
-    }
-    this.router.navigate(['/main/stockMan/do'],{ queryParams: { curWay: this.curWay,ordno:this.ordno,price:this.pay } })
+    };
+    sessionStorage.setItem('pay',this.pay);//把价钱存到内存里面，防止在地址栏篡改
+    this.router.navigate(['/main/stockMan/do'],{ queryParams: { curWay: this.curWay,ordno:this.ordno} })
   }
 }

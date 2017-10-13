@@ -18,6 +18,7 @@ export class CarPageComponent implements OnInit {
 
   private storeListData: any;              //储存购物车商品列表数据
   private strDataTemp: string;             //储存购物车id,在订单页的时候使用
+  private freeNum: string;                 //达到这个数量快递免运费
   private deletebutton;//删除按钮
   public shopTotalNumber: number = 0;     //购买的商品总数
   public priceList: object = {
@@ -37,7 +38,8 @@ export class CarPageComponent implements OnInit {
    * 2.给删除按钮赋值
    */
   ngOnInit() {
-    this.getCarList()
+    this.getCarList();
+    this.getFreeNum();
     this.deletebutton = {
       title: "删除",
       type: "delete"
@@ -60,6 +62,17 @@ export class CarPageComponent implements OnInit {
       sortColumns: '',
     }
     this.storeListData = this.stockManService.getShopList(url, data)
+  }
+
+  /**
+   * 获取快递免费的界限
+   */
+  getFreeNum() {
+    let url = '/datadict/loadInfoByCode';
+    let data = {
+      code:'agent_ord_express_free_price'
+    }
+    this.freeNum = this.stockManService.getShopList(url, data)
   }
 
   /**
