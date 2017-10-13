@@ -3,14 +3,16 @@ import {ShoppingOrderComponent} from "../shopping-order.component";
 import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
-import {ShoppingOrderService} from "../shopping-order.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
+
 declare var $;
+
 @Component({
   selector: 'app-order-receive',
   templateUrl: './order-receive.component.html',
   styleUrls: ['./order-receive.component.scss']
 })
+
 export class OrderReceiveComponent implements OnInit {
 
   public workOrderList: Page = new Page();                    //获取列表的数据
@@ -20,6 +22,7 @@ export class OrderReceiveComponent implements OnInit {
   public stateEnumList;                                       //工单状态的列表
   public curWoAgentId: string;                                //工单的id
   public curOrdno: string;                                    //订单编码
+
   constructor(
     private parentComp:ShoppingOrderComponent,
     private submit: SubmitService,
@@ -87,5 +90,4 @@ export class OrderReceiveComponent implements OnInit {
     this.curOrdno = null;//输入属性发生变化的时候，弹窗才会打开，所以每次后来都清空，造成变化的迹象
     if(data.type) this.queryDatas(data.page)
   }
-
 }

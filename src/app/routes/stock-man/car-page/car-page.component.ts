@@ -4,13 +4,16 @@ import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
 import {HeaderComponent} from "../../../layout/header/header.component";
 import {Router} from "@angular/router";
 import {AppComponent} from "../../../app.component";
+
 const swal = require('sweetalert');
 declare var $: any;
+
 @Component({
   selector: 'app-car-page',
   templateUrl: './car-page.component.html',
   styleUrls: ['./car-page.component.scss']
 })
+
 export class CarPageComponent implements OnInit {
 
   private storeListData: any;              //储存购物车商品列表数据
@@ -22,6 +25,7 @@ export class CarPageComponent implements OnInit {
     payment: 0,                              //带运费的总费用
     total: 0,                                //不带运费的总费用
   };                                         //价格列表，默认是0
+
   constructor(
     public stockManService: StockManService,
     public headerComponent: HeaderComponent,
@@ -181,7 +185,6 @@ export class CarPageComponent implements OnInit {
     this.getShopTotalNum();
   }
 
-
   /**
    * 减购物车的数量
    * 1.把值渲染到input框里面
@@ -195,19 +198,16 @@ export class CarPageComponent implements OnInit {
     $(obj).parents("._myPaddingBody").css('background', '#FFF4E8')   //点击的时候样式的变化
     $(obj).parents('._myPaddingBody').find("._good").prop("checked", true) //单选框被选中
     $(obj).parents('._myPaddingBody').find("._good").attr("checked", "checked") //单选框被选中,节点效果，计数用
-
     let num = $(obj).parents('.updateNum').find('input').val();//因为有可能点击到span或者是i所以找父级
     num--;
     if (num < 2) num = 1;
     $(obj).parents('.updateNum').find('input:first').val(num)
-
     let url = '/agent/agentCart/updateOneAgentCart'; //加减修改数据
     let data = {
       id: id,
       num: -1
     }
     this.stockManService.putData(url, data)
-
     this.getPriceList(obj);
     this.inputSelect(obj, '');
     this.getShopTotalNum();
@@ -228,9 +228,7 @@ export class CarPageComponent implements OnInit {
     $(obj).parents("._myPaddingBody").css('background', '#FFF4E8')               //点击的时候样式的变化
     $(obj).parents('._myPaddingBody').find("._good").prop("checked", true)
     $(obj).parents('._myPaddingBody').find("._good").attr("checked", "checked") //增加节点，计数用
-
     let goodNum = $(obj).parents('.updateNum').find('input').val();                //因为有可能点击到span或者是i所以找父级
-
     goodNum++;
     let url = '/agent/agentCart/updateOneAgentCart'; //加减修改数据
     let data = {
@@ -279,7 +277,6 @@ export class CarPageComponent implements OnInit {
     let price = $(obj).parents("._myPaddingBody").find('._batchPrice').text().slice(1);
     let num = $(obj).parents("._myPaddingBody").find('._num').val();
     let totalPrice = price * num;
-
     var trueNum=totalPrice.toFixed(2);
     $(obj).parents("._myPaddingBody").find('._goodTotalPrice').text(trueNum);
   }
@@ -347,7 +344,6 @@ export class CarPageComponent implements OnInit {
     }
   }
 
-
   /**
    * keyUp  的时候检查输入的值
    */
@@ -358,5 +354,4 @@ export class CarPageComponent implements OnInit {
       obj.value=Math.floor(obj.value);   //如果是小数，取整数
     }
   }
-
 }

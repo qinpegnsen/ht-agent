@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Page} from "../../../../core/page/page";
 import {PageEvent} from "angular2-datatable";
 import {SubmitService} from "../../../../core/forms/submit.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {OrdRecordComponent} from "../ord-record.component";
 import {StockManService} from "../../stock-man.service";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
@@ -12,6 +12,7 @@ import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
   templateUrl: './wait-for-pay.component.html',
   styleUrls: ['./wait-for-pay.component.scss']
 })
+
 export class WaitForPayComponent implements OnInit {
   public goodsList: Page = new Page();
   constructor(

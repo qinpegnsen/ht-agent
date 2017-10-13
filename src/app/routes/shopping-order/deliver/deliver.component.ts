@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {isNullOrUndefined, isUndefined} from "util";
 import {ShoppingOrderService} from "../shopping-order.service";
+
 declare var $: any;
 
 @Component({
@@ -8,7 +9,9 @@ declare var $: any;
   templateUrl: './deliver.component.html',
   styleUrls: ['./deliver.component.scss']
 })
+
 export class DeliverComponent implements OnInit, OnDestroy, OnChanges {
+
   public showDeliverWindow: boolean = false;
   public expressList: any;   //物流公司列表
   public expressNo: any;     //快递公司快递号

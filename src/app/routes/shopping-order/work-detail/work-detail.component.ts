@@ -1,15 +1,15 @@
 import {Component, OnInit} from "@angular/core";
 import {isNullOrUndefined} from "util";
-import {SubmitService} from "../../../core/forms/submit.service";
-import {AppComponent} from "../../../app.component";
 import {ShoppingOrderComponent} from "../shopping-order.component";
 import {ActivatedRoute} from "@angular/router";
 import {ShoppingOrderService} from "../shopping-order.service";
+
 @Component({
   selector: 'app-work-detail',
   templateUrl: './work-detail.component.html',
   styleUrls: ['./work-detail.component.scss']
 })
+
 export class WorkDetailComponent implements OnInit {
 
   public orderStep = 1;
@@ -20,10 +20,9 @@ export class WorkDetailComponent implements OnInit {
   private atime:Array<string> = new Array();
 
   constructor(
-    private parentComp: ShoppingOrderComponent,
+              private parentComp: ShoppingOrderComponent,
               public shoppingOrderService: ShoppingOrderService,
-              private routeInfo:ActivatedRoute
-              ) {
+              private routeInfo:ActivatedRoute) {
   }
 
   /**
@@ -63,7 +62,6 @@ export class WorkDetailComponent implements OnInit {
     target.style.display = 'block';
   }
 
-
   /**
    * 隐藏订单状态的时间列表
    * @param target
@@ -82,7 +80,6 @@ export class WorkDetailComponent implements OnInit {
       ordno:me.curOrdno
     }
     let orderStatesDetail = me.shoppingOrderService.getBasicExpressList(url,data);
-    console.log("█ let orderStatesDetail ►►►",orderStatesDetail);
     if(!isNullOrUndefined(orderStatesDetail)) me.orderStates = orderStatesDetail;
     for (let item of me.orderStates){//把所有的时间放到一个数组里面
       if (item.state == 'SUCCESS') {
@@ -116,5 +113,4 @@ export class WorkDetailComponent implements OnInit {
       me.orderStep = 1;
     }
   }
-
 }

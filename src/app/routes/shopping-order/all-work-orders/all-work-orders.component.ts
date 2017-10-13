@@ -5,13 +5,16 @@ import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {ShoppingOrderService} from "../shopping-order.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
+
 const swal = require('sweetalert');
 declare var $;
+
 @Component({
   selector: 'app-all-work-orders',
   templateUrl: './all-work-orders.component.html',
   styleUrls: ['./all-work-orders.component.scss']
 })
+
 export class AllWorkOrdersComponent implements OnInit {
 
   public workOrderList: Page = new Page();                    //获取列表的数据
@@ -65,7 +68,6 @@ export class AllWorkOrdersComponent implements OnInit {
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
   }
-
 
   /**
    * 接单

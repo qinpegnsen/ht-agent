@@ -4,13 +4,17 @@ import {NavigationEnd, Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {isNullOrUndefined} from "util";
 import {AppComponent} from "../../../app.component";
+
 declare var $:any;
+
 @Component({
   selector: 'app-order-page',
   templateUrl: './order-page.component.html',
   styleUrls: ['./order-page.component.scss']
 })
+
 export class OrderPageComponent implements OnInit {
+
   private orderData:any;                      //储存订单的数据
   private defaultAddress:any;                 //默认的地址
   private otherAddress:any;                   //默认的其他的地址
@@ -18,6 +22,7 @@ export class OrderPageComponent implements OnInit {
   private currentId:number;                   //默认的修改按钮
   private strData:any;                        //商品的编码和数量
   public flag:boolean=true;                   //定义boolean值用来控制内容组件是否显示
+
   constructor(
     public stockManService: StockManService,
     private router:Router,
@@ -129,7 +134,6 @@ export class OrderPageComponent implements OnInit {
   goPay(){
     let note=$("._message").val();
     let payWay=$("._payWay ._selected").text();
-    console.log("█ payWay ►►►",  payWay);
     if(payWay=='在线支付'){
       payWay='ONLINE'
     }else{

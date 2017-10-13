@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {AjaxService} from "../../core/services/ajax.service";
 import {AppComponent} from "../../app.component";
 
-
 @Injectable()
 export class StockManService {
 
@@ -219,13 +218,11 @@ export class StockManService {
     return result;
   }
 
-
   /**
    *删除代理商订单 成功返回 put
    * @param url
    * @param data
    */
-
   delAgentOrd(url,data){
     let result;
     this.ajax.put({
@@ -247,6 +244,4 @@ export class StockManService {
     });
     return result;
   }
-
-
 }

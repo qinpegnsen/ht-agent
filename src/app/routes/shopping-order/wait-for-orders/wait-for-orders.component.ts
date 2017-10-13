@@ -5,13 +5,16 @@ import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {ShoppingOrderService} from "../shopping-order.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
+
 const swal = require('sweetalert');
 declare var $;
+
 @Component({
   selector: 'app-wait-for-orders',
   templateUrl: './wait-for-orders.component.html',
   styleUrls: ['./wait-for-orders.component.scss']
 })
+
 export class WaitForOrdersComponent implements OnInit {
 
   public workOrderList: Page = new Page();                    //获取列表的数据
@@ -21,6 +24,7 @@ export class WaitForOrdersComponent implements OnInit {
   public stateEnumList;                                       //工单状态的列表
   private showReasonWindow:boolean = false;                  //弹窗的开关
   private woAgengId:any;                                      //代理商工单id
+
   constructor(
     private parentComp:ShoppingOrderComponent,
     private submit: SubmitService,
@@ -63,7 +67,6 @@ export class WaitForOrdersComponent implements OnInit {
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
   }
 
-
   /**
    * 接单
    * @param woAgengId 代理商工单id
@@ -91,7 +94,6 @@ export class WaitForOrdersComponent implements OnInit {
       }
     );
   }
-
 
   /**
    * 拒单

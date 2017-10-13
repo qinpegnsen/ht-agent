@@ -5,12 +5,15 @@ import {StockManService} from "../../stock-man.service";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 import {HeaderComponent} from "../../../../layout/header/header.component";
 import {isNullOrUndefined} from "util";
+
 const swal = require('sweetalert');
+
 @Component({
   selector: 'app-order-detail',
   templateUrl: './order-detail.component.html',
   styleUrls: ['./order-detail.component.scss']
 })
+
 export class OrderDetailComponent implements OnInit {
 
   public orderData: any;                                  //订单的数据
@@ -18,6 +21,7 @@ export class OrderDetailComponent implements OnInit {
   public deliveryData;                                    //快递公司的信息
   public ordno;                                           //订单号
   public atime:Array<string> = new Array();             //存储状态时间的数组
+
   constructor(
     private parentComp:OrdRecordComponent,
     private routeInfo:ActivatedRoute,
@@ -35,7 +39,6 @@ export class OrderDetailComponent implements OnInit {
     let me = this;
     this.ordno = me.routeInfo.snapshot.queryParams['ordno'];//获取进货记录未付款页面跳转过来的参数
     me.parentComp.orderType = 100;
-
     this.getOrderData();
     this.showLogistics();
     this.getDelivery();
@@ -110,9 +113,6 @@ export class OrderDetailComponent implements OnInit {
     this.headerComponent.getShopTotal()
   }
 
-
-
-
   /**
    *显示物流信息
    * @param orderId
@@ -137,7 +137,6 @@ export class OrderDetailComponent implements OnInit {
       }
     }
   }
-
 
   /**
    *  取消订单
@@ -177,7 +176,6 @@ export class OrderDetailComponent implements OnInit {
       }
     );
   }
-
 }
 
 

@@ -3,13 +3,14 @@ import {ShoppingOrderComponent} from "../shopping-order.component";
 import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
-import {ShoppingOrderService} from "../shopping-order.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
+
 @Component({
   selector: 'app-completed',
   templateUrl: './completed.component.html',
   styleUrls: ['./completed.component.scss']
 })
+
 export class CompletedComponent implements OnInit {
 
   public workOrderList: Page = new Page();                    //获取列表的数据
@@ -17,6 +18,7 @@ export class CompletedComponent implements OnInit {
   public ordno:string='';                                     //订单号
   public stateEnum:string='';                                 //工单状态搜索时候会用到
   public stateEnumList;                                       //工单状态的列表
+
   constructor(
     private parentComp:ShoppingOrderComponent,
     private submit: SubmitService,

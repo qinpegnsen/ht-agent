@@ -5,6 +5,7 @@ import {SubmitService} from "../../../../core/forms/submit.service";
 import {OrdRecordComponent} from "../ord-record.component";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 import {StockManService} from "../../stock-man.service";
+
 const swal = require('sweetalert');
 
 @Component({
@@ -12,11 +13,12 @@ const swal = require('sweetalert');
   templateUrl: './wait-for-receive.component.html',
   styleUrls: ['./wait-for-receive.component.scss']
 })
+
 export class WaitForReceiveComponent implements OnInit {
 
   public LogisticsData;                                   //获取物流的信息
-
   public goodsList: Page = new Page();
+
   constructor(
     private submit: SubmitService,
     private parentComp:OrdRecordComponent,
@@ -75,14 +77,12 @@ export class WaitForReceiveComponent implements OnInit {
    * @param orderId
    */
   showLogistics(Logistics){
-    console.log("█ 1 ►►►",  1);
     Logistics.style.display = 'block';
     let url='/ord/tail/queryDeliveryList';
     let data={
       ordno:'8064321506563660332'                //目前是写死的，以后再改
     };
     this.LogisticsData=this.stockManService.getShopList(url,data);
-    console.log("█ this.LogisticsData ►►►",  this.LogisticsData);
   }
 
   /**
@@ -125,5 +125,4 @@ export class WaitForReceiveComponent implements OnInit {
       }
     );
   }
-
 }

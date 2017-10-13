@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AjaxService} from "../../core/services/ajax.service";
 import {AppComponent} from "../../app.component";
+
 @Injectable()
 export class ShoppingOrderService {
 
@@ -58,7 +59,6 @@ export class ShoppingOrderService {
     return result;
   }
 
-
   /**
    * 根据订单编号获取订单详情
    * @param ordno
@@ -83,5 +83,4 @@ export class ShoppingOrderService {
     });
     return result;
   }
-
 }

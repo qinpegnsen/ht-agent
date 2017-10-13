@@ -2,15 +2,16 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {StockManService} from "../stock-man.service";
 import {AppComponent} from "../../../app.component";
+
 declare var $: any;
 var QRCode = require('qrcode');
-
 
 @Component({
   selector: 'app-do-pay',
   templateUrl: './do-pay.component.html',
   styleUrls: ['./do-pay.component.scss']
 })
+
 export class DoPayComponent implements OnInit {
 
   url: any;                               //内容生成的二维码图片
@@ -32,8 +33,6 @@ export class DoPayComponent implements OnInit {
    */
   ngOnInit() {
     let _this = this;
-
-
     /**
      * 路由事件用来监听地址栏的变化
      * 1.当新增文章出现的时候，内容组件隐藏
@@ -106,5 +105,4 @@ export class DoPayComponent implements OnInit {
       }
     }
   }
-
 }

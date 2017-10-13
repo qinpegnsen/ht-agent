@@ -12,10 +12,12 @@ import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
   templateUrl: './canceled.component.html',
   styleUrls: ['./canceled.component.scss']
 })
+
 export class CanceledComponent implements OnInit {
 
   public lookLogisticsOrderId:string;
   public goodsList: Page = new Page();
+
   constructor(
     private submit: SubmitService,
     private parentComp:OrdRecordComponent,

@@ -12,10 +12,12 @@ import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
   templateUrl: './finished.component.html',
   styleUrls: ['./finished.component.scss']
 })
+
 export class FinishedComponent implements OnInit {
 
   public lookLogisticsOrderId:string;
   public goodsList: Page = new Page();
+
   constructor(
     private submit: SubmitService,
     private parentComp:OrdRecordComponent,
@@ -96,6 +98,4 @@ export class FinishedComponent implements OnInit {
   lookLogistics(orderId){
     this.lookLogisticsOrderId = orderId;
   }
-
-
 }

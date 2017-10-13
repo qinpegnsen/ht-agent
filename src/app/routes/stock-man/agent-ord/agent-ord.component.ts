@@ -2,11 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {StockManService} from "../stock-man.service";
 import {Page} from "../../../core/page/page";
 import {PageEvent} from "angular2-datatable";
-import {AppComponent} from "../../../app.component";
 import {HeaderComponent} from "../../../layout/header/header.component";
-import {PatternService} from "../../../core/forms/pattern.service";
-const swal = require('sweetalert');
 
+const swal = require('sweetalert');
 declare var $: any;
 
 @Component({
@@ -14,15 +12,16 @@ declare var $: any;
   templateUrl: './agent-ord.component.html',
   styleUrls: ['./agent-ord.component.scss']
 })
+
 export class AgentOrdComponent implements OnInit {
 
   public shopListdata;                    //存储商品列表的数据
   public carNum: number = 1;              //存储商品的数量
   private showCar: boolean = false;      //当全选被选中的时候出现全部加入购物车的按钮
+
   constructor(
     public stockManService: StockManService,
-    public headerComponent: HeaderComponent
-  ) {
+    public headerComponent: HeaderComponent) {
   }
 
   /**
@@ -111,7 +110,6 @@ export class AgentOrdComponent implements OnInit {
     $(obj).parents('tr').find('._good').attr('checked', true)
   }
 
-
   /**
    * input 输入框修改的时候把值保存下来
    * @param obj
@@ -126,7 +124,6 @@ export class AgentOrdComponent implements OnInit {
    * 点击前面的勾选按钮，然后才加入到购物车
    * @param goodsCode
    */
-
   goodSelect(obj) {
     let me = this;
     if ($(obj).prop("checked")) {
@@ -176,8 +173,6 @@ export class AgentOrdComponent implements OnInit {
     }
     this.stockManService.sendCar(url, data);
     this.headerComponent.getShopTotal()
-
-
   }
 
   /**
@@ -205,13 +200,10 @@ export class AgentOrdComponent implements OnInit {
    * keyUp  的时候检查输入的值
    */
   checkVal(obj){
-
     if(obj.value==''){
       obj.value=1;
     }else{
       obj.value=Math.floor(obj.value);   //如果是小数，取整数
     }
   }
-
-
 }

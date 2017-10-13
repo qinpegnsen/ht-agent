@@ -10,10 +10,13 @@ import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
   templateUrl: './wait-for-send.component.html',
   styleUrls: ['./wait-for-send.component.scss']
 })
+
 export class WaitForSendComponent implements OnInit {
+
   public curCancelOrderId:string;
   public lookLogisticsOrderId:string;
   public goodsList: Page = new Page();
+
   constructor(private submit: SubmitService,private parentComp:OrdRecordComponent) { }
 
   /**

@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 import {StockManService} from "../../stock-man.service";
 import {HeaderComponent} from "../../../../layout/header/header.component";
+
 const swal = require('sweetalert');
 
 @Component({
@@ -14,9 +15,12 @@ const swal = require('sweetalert');
   templateUrl: './all-orders.component.html',
   styleUrls: ['./all-orders.component.scss']
 })
+
 export class AllOrdersComponent implements OnInit {
+
   public goodsList: Page = new Page();                    //获取列表的数据
   public LogisticsData;                                   //获取物流的信息
+
   constructor(
     private submit: SubmitService,
     private parentComp:OrdRecordComponent,
@@ -121,7 +125,6 @@ export class AllOrdersComponent implements OnInit {
     return RzhtoolsService.jsonToObject(val);
   }
 
-
   /**
    * 再次进行购买
    */
@@ -133,7 +136,6 @@ export class AllOrdersComponent implements OnInit {
     this.stockManService.sendCar(url, data)
     this.headerComponent.getShopTotal()
   }
-
 
   /**
    * 确认收货

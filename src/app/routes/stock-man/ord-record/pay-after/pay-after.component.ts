@@ -10,11 +10,13 @@ import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
   templateUrl: './pay-after.component.html',
   styleUrls: ['./pay-after.component.scss']
 })
+
 export class PayAfterComponent implements OnInit {
 
   public curCancelOrderId:string;
   public lookLogisticsOrderId:string;
   public goodsList: Page = new Page();
+
   constructor(private submit: SubmitService,private parentComp:OrdRecordComponent) { }
 
   ngOnInit() {
@@ -82,5 +84,4 @@ export class PayAfterComponent implements OnInit {
   lookLogistics(orderId){
     this.lookLogisticsOrderId = orderId;
   }
-
 }

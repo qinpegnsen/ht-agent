@@ -3,15 +3,15 @@ import {ShoppingOrderComponent} from "../shopping-order.component";
 import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
-import {ShoppingOrderService} from "../shopping-order.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
+
 @Component({
   selector: 'app-abnormal',
   templateUrl: './abnormal.component.html',
   styleUrls: ['./abnormal.component.scss']
 })
-export class AbnormalComponent implements OnInit {
 
+export class AbnormalComponent implements OnInit {
   public workOrderList: Page = new Page();                    //获取列表的数据
   public wono:string='';                                      //工单号
   public ordno:string='';                                     //订单号

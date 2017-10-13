@@ -4,22 +4,22 @@ import {ShoppingOrderService} from "../shopping-order.service";
 import {AllWorkOrdersComponent} from "../all-work-orders/all-work-orders.component";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
 import {WaitForOrdersComponent} from "../wait-for-orders/wait-for-orders.component";
+
 declare var $: any;
+
 @Component({
   selector: 'app-reason-rejec',
   templateUrl: './reason-rejec.component.html',
   styleUrls: ['./reason-rejec.component.scss'],
 })
+
 export class ReasonRejecComponent implements OnInit , OnDestroy{
 
   public other: string;
   public stateEnum: string='OTHER';
   public list;
-
-
   @Input('woAgengId') woAgengId: string;
   @Input('showReasonWindow') showReasonWindow: boolean;
-
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['showReasonWindow'] && changes['woAgengId']) {
@@ -42,7 +42,6 @@ export class ReasonRejecComponent implements OnInit , OnDestroy{
 
   ngOnInit() {
   }
-
 
   /**
    * 关闭组件

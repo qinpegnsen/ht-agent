@@ -5,12 +5,15 @@ import {HeaderComponent} from "app/layout/header/header.component";
 import {isNullOrUndefined} from "util";
 import {Location} from "@angular/common";
 import {AppComponent} from "../../../app.component";
+
 declare var $:any;
+
 @Component({
   selector: 'app-pay-page',
   templateUrl: './pay-page.component.html',
   styleUrls: ['./pay-page.component.scss']
 })
+
 export class PayPageComponent implements OnInit {
 
   public orderData:any;                  //订单的数据
@@ -19,6 +22,7 @@ export class PayPageComponent implements OnInit {
   public ordno:any;                      //订单号
   public pay:any;                        //支付的价格
   public flag:boolean=true;             //图片的地址
+
   constructor(
     public stockManService: StockManService,
     private router: Router,
@@ -36,9 +40,7 @@ export class PayPageComponent implements OnInit {
   ngOnInit() {
     let ordno = this.routeInfo.snapshot.queryParams['ordno'];           //获取进货记录未付款跳转过来的参数
     let transPayWay = this.routeInfo.snapshot.queryParams['payWay'];    //获取当前的订单号
-
     this.orderData=JSON.parse(sessionStorage.getItem('orderData'));
-
     if(transPayWay){                                                     //如果有地址栏传递过来的就用地址传递过来的
       this.payWay=transPayWay;                                           //支付的方式，用来显示不同的页面
     }else if(this.orderData){
