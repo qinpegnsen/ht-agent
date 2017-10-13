@@ -124,166 +124,38 @@
     </div>
   </div>
 </div>
-
-
-<!--其他的状态-->
-<div class="rate-of-progress mt-xl mb-xl w100" *ngIf="orderDetailData.state!='CLOSE'">
+<div class="rate-of-progress mt-xl mb-xl w100">
   <div class="szh-progress-bar w90">
-    <div *ngIf="orderDetailData.state=='CR'" class="already-progress _w0"></div>
-    <div *ngIf="orderDetailData.state=='PAID'" class="already-progress w25"></div>
-    <div *ngIf="orderDetailData.state=='PREPARE'" class="already-progress w50"></div>
-    <div *ngIf="orderDetailData.state=='DELIVERY'" class="already-progress w75"></div>
-    <div *ngIf="orderDetailData.state=='SUCCESS'" class="already-progress w100"></div>
+    <div class="already-progress" [class.w1]="orderStep==1" [class.w25]="orderStep==2" [class.w50]="orderStep==3"
+         [class.w75]="orderStep==4" [class.w100]="orderStep==5"></div>
   </div>
-  <ng-container *ngIf="orderDetailData.state=='CR'">
-    <dl class="cur">
-      <dt>提交订单</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[1]}}</dd>
-    </dl>
-    <dl>
-      <dt>已支付</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd></dd>
-    </dl>
-    <dl>
-      <dt>已配货</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd></dd>
-    </dl>
-    <dl>
-      <dt>已发货</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd></dd>
-    </dl>
-    <dl>
-      <dt>订单完成</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd></dd>
-    </dl>
-  </ng-container>
-  <ng-container *ngIf="orderDetailData.state=='PAID'">
-    <dl class="cur">
-      <dt>提交订单</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[1]}}</dd>
-    </dl>
-    <dl class="cur">
-      <dt>已支付</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[2]}}</dd>
-    </dl>
-    <dl>
-      <dt>已配货</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd></dd>
-    </dl>
-    <dl>
-      <dt>已发货</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd></dd>
-    </dl>
-    <dl>
-      <dt>订单完成</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd></dd>
-    </dl>
-  </ng-container>
-  <ng-container *ngIf="orderDetailData.state=='PREPARE'">
-    <dl class="cur">
-      <dt>提交订单</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[1]}}</dd>
-    </dl>
-    <dl class="cur">
-      <dt>已支付</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[2]}}</dd>
-    </dl>
-    <dl class="cur">
-      <dt>已配货</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[3]}}</dd>
-    </dl>
-    <dl>
-      <dt>已发货</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd></dd>
-    </dl>
-    <dl>
-      <dt>订单完成</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd></dd>
-    </dl>
-  </ng-container>
-  <ng-container *ngIf="orderDetailData.state=='DELIVERY'">
-    <dl class="cur">
-      <dt>提交订单</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[1]}}</dd>
-    </dl>
-    <dl class="cur">
-      <dt>已支付</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[2]}}</dd>
-    </dl>
-    <dl class="cur">
-      <dt>已配货</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[3]}}</dd>
-    </dl>
-    <dl class="cur">
-      <dt>已发货</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[4]}}</dd>
-    </dl>
-    <dl>
-      <dt>订单完成</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd></dd>
-    </dl>
-  </ng-container>
-  <ng-container *ngIf="orderDetailData.state=='SUCCESS'">
-    <dl class="cur">
-      <dt>提交订单</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[1]}}</dd>
-    </dl>
-    <dl class="cur">
-      <dt>已支付</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[2]}}</dd>
-    </dl>
-    <dl class="cur">
-      <dt>已配货</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[3]}}</dd>
-    </dl>
-    <dl class="cur">
-      <dt>已发货</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[4]}}</dd>
-    </dl>
-    <dl class="cur">
-      <dt>订单完成</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[5]}}</dd>
-    </dl>
-  </ng-container>
+  <dl class="cur">
+    <dt>提交订单</dt>
+    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+    <dd>{{atime[1]}}</dd>
+  </dl>
+  <dl [class.cur]="orderStep==2 || orderStep==3 || orderStep==4 || orderStep==5">
+    <dt>已支付</dt>
+    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+    <dd><span *ngIf="orderStep==2 || orderStep==3 || orderStep==4 || orderStep==5">{{atime[2]}}</span>
+    </dd>
+  </dl>
+  <dl [class.cur]="orderStep==3 || orderStep==4 || orderStep==5">
+    <dt>已配货</dt>
+    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+    <dd><span *ngIf="orderStep==3 || orderStep==4 || orderStep==5">{{atime[3]}}</span></dd>
+  </dl>
+  <dl [class.cur]="orderStep==4 || orderStep==5">
+    <dt>已发货</dt>
+    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+    <dd><span *ngIf="orderStep==4 || orderStep==5">{{atime[4]}}</span></dd>
+  </dl>
+  <dl [class.cur]="orderStep==5">
+    <dt>订单完成</dt>
+    <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+    <dd><span *ngIf="orderStep==5">{{atime[5]}}</span></dd>
+  </dl>
 </div>
-
-<!--订单关闭的状态-->
-<div class="rate-of-progress mt-xl mb-xl w100" *ngIf="orderDetailData.state=='CLOSE'">
-  <div *ngIf="orderDetailData.state=='CLOSE'" class="already-progress _w0"></div>
-  <ng-container *ngIf="orderDetailData.state=='CLOSE'">
-    <dl class="cur">
-      <dt>订单关闭</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{orderDetailData.createTime}}</dd>
-    </dl>
-  </ng-container>
-</div>
-
 <div class="w100">
   <table class="w100 b">
     <thead class="w100">
