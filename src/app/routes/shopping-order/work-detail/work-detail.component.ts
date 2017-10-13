@@ -110,7 +110,7 @@ export class WorkDetailComponent implements OnInit {
       me.orderStep = 3;
     } else if (me.orderDetailData.state == 'PAID') {
       me.orderStep = 2;
-    } else if (me.orderDetailData.state == 'CR') {
+    } else if (me.orderDetailData.state == 'NO') {
       me.orderStep = 1;
     }
   }
