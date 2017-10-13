@@ -71,6 +71,7 @@ export class OrderPageComponent implements OnInit {
     let orderData=this.stockManService.getShopListOne(url, data);
     console.log("█ orderData ►►►",  orderData);
     if(orderData=='购买商品不可批发商品'||orderData=='购买商品包含已下架商品法'){//商品的状态不合法，跳转到购物车的页面，然后刷新就有遮罩
+      AppComponent.rzhAlt("info",orderData);
       this.location.back();
       return;
     }else if(isNullOrUndefined(orderData)){//处理到了下个路由返回来的bug，直接因为这时候购物车的id已经没有了,直接让其跳转到home页面
