@@ -64,13 +64,12 @@ export class DoPayComponent implements OnInit {
       let data = {
         ordno: _this.ordno
       };
-      _this.payCon += _this.stockManService.goPay(url, data);
+      _this.payCon = _this.stockManService.goPay(url, data);
     } else if (this.curWay == '_aliPay') {                                   //支付宝时执行，获取到支付的二维码的内容
     }
 
     QRCode.toDataURL(_this.payCon, function (err, url) {           //获取支付的二维码的内容生成二维码
       _this.url = url;
-      console.log("█ url ►►►",  url);
     })
 
     /**
@@ -122,7 +121,6 @@ export class DoPayComponent implements OnInit {
       ordno: this.ordno
     }
     let result = this.stockManService.isTrue(url, data);
-    console.log("█ result ►►►",  result);
     if (result) {//支付成功的收
       clearInterval(timer);
       AppComponent.rzhAlt("success", "支付成功");
