@@ -3,8 +3,8 @@
     在线支付
   </div>
   <div class="_line w100 clearfix">
-    <span class="col-lg-6 pull-left">订单提交成功，订单号：{{ordno}}，距离失效还有{{timeAdd}}s，请尽快付款！</span>
-    <span class="col-lg-2 pull-right _price">
+    <span class="col-lg-8 pull-left font16">订单提交成功，订单号：{{ordno}}，距离失效还有<span class="_time">{{minute}}</span>分<span class="_time">{{second}}</span>秒，请尽快付款！</span>
+    <span class="col-lg-4 pull-right _price">
     应付金额
     <span >￥{{price | number:'1.2-2'}}</span>
   </span>
