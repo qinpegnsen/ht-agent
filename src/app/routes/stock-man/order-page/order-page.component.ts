@@ -78,7 +78,6 @@ export class OrderPageComponent implements OnInit {
       this.router.navigate(['/main/stockMan/agentord']);
       return;
     }else {   //正常的状态
-      console.log("█ 2 ►►►",  2);
       this.orderData=orderData.calcDTO;
       for(var i=0;i<orderData.agentAddrsList.length;i++){
         if(orderData.agentAddrsList[i].isDefault=='Y'){
