@@ -163,9 +163,9 @@
     <thead class="w100">
     <tr class="w100 order-head">
       <th class="w50 p text-center">商品</th>
-      <th class="w10 p text-center">单价(元)</th>
+      <th class="w10 p text-center">单价</th>
       <th class="w10 p text-center">数量</th>
-      <th class="w10 p text-center">订单金额(元)</th>
+      <th class="w10 p text-center">订单金额</th>
       <th class="w10 p text-center">交易操作</th>
     </tr>
     </thead>
@@ -185,13 +185,12 @@
           </p>
         </div>
       </td>
-      <td class="bb">{{goods.price | number:'1.2-2'}}</td>
-      <td class="bb">{{goods.num}}</td>
+      <td class="bb">￥ {{goods.price | number:'1.2-2'}}</td>
+      <td class="bb">{{goods.num}}件</td>
       <ng-container *ngIf="i == 0">
         <td class="bl" [attr.rowspan]="goodsData.length">
-          <span class="main-red font14">¥{{goodsData.pay | number:'1.2-2'}}</span><br>
-          <span class="font-gray">（免运费）</span><br>
-          <span class="font-gray">{{goodsData.payWay | rzhState:'1017'}}</span>
+          <span class="main-red font14">¥ {{goods.price*goods.num}}</span><br>
+          <span class="font-gray">{{goods.payWay | rzhState:'1017'}}</span>
         </td>
         <td class="bl" [attr.rowspan]="goodsData.length">
           <p class="font-gray mb-sm cursor-p">{{goodsData.state | rzhState:'1019'}}</p>
@@ -210,7 +209,7 @@
           <dd>
             <span class="font12 ml mr" *ngIf="!orderDetailData.freight || orderDetailData.freight == 0">(免运费)</span>
             <ng-container *ngIf="orderDetailData.freight != 0">
-              <span class="font18 ml mr">{{orderDetailData.freight | number:'1.2-2'}}</span>元
+              <span class="font18 ml mr">￥ {{orderDetailData.freight | number:'1.2-2'}}</span>
             </ng-container>
           </dd>
         </dl>
@@ -220,11 +219,11 @@
         </dl>
         <dl class="text-right mb0">
           <dt>重消币抵扣金额：</dt>
-          <dd><span class="font18 ml mr">{{orderDetailData.coinPay | number:'1.2-2'}}</span>元</dd>
+          <dd><span class="font18 ml mr">￥ {{orderDetailData.coinPay | number:'1.2-2'}}</span></dd>
         </dl>
         <dl class="text-right mb0">
           <dt class="font14">最终支付金额：</dt>
-          <dd><span class="main-red ml font22 mr">{{orderDetailData.total | number:'1.2-2'}}</span>元</dd>
+          <dd><span class="main-red ml font22 mr">￥ {{orderDetailData.pay | number:'1.2-2'}}</span></dd>
         </dl>
       </td>
     </tr>

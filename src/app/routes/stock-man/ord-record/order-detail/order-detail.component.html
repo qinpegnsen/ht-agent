@@ -285,7 +285,7 @@
         </div>
       </td>
       <td class="bb">￥{{item.batchPrice| number:'1.2-2'}}</td>
-      <td class="bb">{{item.batchNum}}</td>
+      <td class="bb">{{item.batchNum}}件</td>
       <td class="bl" *ngIf="i==0" [attr.rowspan]="orderData.agentOrdItemList.length">
         <span class="main-red font14">￥{{item.batchPrice*item.batchNum | number:'1.2-2'}}</span><br>
         <span class="font-gray">{{orderData.payWay | rzhState :'1017'}}</span>
@@ -313,12 +313,12 @@
     <tr>
       <td colspan="10" class="gray-bg order-footer p-sm pr-xl font12">
         <dl class="text-right mb0">
-          <dt class="w8">运费：</dt>
-          <dd class="w8"><span class="main-red font20">￥{{orderData.freightPrice | number:'1.2-2'}}</span></dd>
+          <dt class="w16">运费：</dt>
+          <dd class="w12"><span class="main-red font20">￥{{orderData.freightPrice | number:'1.2-2'}}</span></dd>
         </dl>
         <dl class="text-right mb0">
-          <dt class="w8">订单应付金额：</dt>
-          <dd class="w8"><span class="main-red font20">￥{{orderData.pay | number:'1.2-2'}}</span></dd>
+          <dt class="w16">订单应付金额：</dt>
+          <dd class="w12"><span class="main-red font20">￥{{orderData.pay | number:'1.2-2'}}</span></dd>
         </dl>
       </td>
     </tr>

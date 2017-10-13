@@ -50,6 +50,7 @@ export class WorkDetailComponent implements OnInit {
     if (!isNullOrUndefined(result)) {
       me.orderDetailData = result;
       me.goodsData = result.ordItemList;
+      console.log("█  me.goodsData ►►►",   me.goodsData);
       me.getOrderStep();
     }
   }
