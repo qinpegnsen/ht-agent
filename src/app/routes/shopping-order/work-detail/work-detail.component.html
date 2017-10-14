@@ -93,7 +93,7 @@
   <div class="szh-order-condition bl">
     <div class="order-head p bb text-info"><i class="fa fa-truck"></i> 物流信息</div>
     <!--订单跟踪-->
-    <div class="order-track">
+    <div class="order-track" *ngIf="orderDetailData.state!='CR'">
       <ul class="timeline-alt pb0 mb0">
         <li class="mb0" *ngFor="let item of orderStates;let s = index">
           <div class="timeline-badge gray-bg thc" [class.bg]="s==0"></div>
