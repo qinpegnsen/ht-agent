@@ -23,7 +23,7 @@ export class ReasonRejecComponent implements OnInit , OnDestroy{
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['showReasonWindow'] && changes['woAgengId']) {
-      this.list =  this.rzhtoolsService.getEnumDataList('1304');
+      this.list =  this.rzhtoolsService.getEnumDataList('1306');
       if(this.showReasonWindow && this.woAgengId && !isNullOrUndefined(this.woAgengId)) $('.wrapper > section').css('z-index', 200);
       else $('.wrapper > section').css('z-index', 114);
     }
