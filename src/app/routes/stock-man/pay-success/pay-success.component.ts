@@ -15,7 +15,6 @@ export class PaySuccessComponent implements OnInit {
 
   ngOnInit() {
     this.ordno = this.routeInfo.snapshot.queryParams['ordno'];    //获取当前的订单号
-    this.price= this.routeInfo.snapshot.queryParams['price'];     //获取价格
+    this.price= Number(sessionStorage.getItem('pay'));            //获取价格
   }
-
 }
