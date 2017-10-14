@@ -36,24 +36,6 @@ export class DoPayComponent implements OnInit {
    */
   ngOnInit() {
     let _this = this;
-    /**
-     * 路由事件用来监听地址栏的变化
-     * 1.当新增文章出现的时候，内容组件隐藏
-     * 2.路由变化的时候，刷新页面
-     */
-
-    _this.router.events
-      .subscribe((event) => {
-        if (event instanceof NavigationEnd) { // 当导航成功结束时执行
-          if (event.url.indexOf('callBack') > 0) {
-            _this.flag = false;
-          } else if (event.url.indexOf('do') > 0) {
-            _this.flag = true;
-          }else if(event.url.indexOf('do') ==-1){
-            clearInterval(timer);
-          }
-        }
-      });
 
     _this.curWay = _this.routeInfo.snapshot.queryParams['curWay'];   //获取当前支付的方式
     _this.ordno = _this.routeInfo.snapshot.queryParams['ordno'];     //获取当前的订单号
@@ -73,7 +55,7 @@ export class DoPayComponent implements OnInit {
     })
 
     /**
-     * 每隔1s种调一次，看是否支付成功，倒计时1分钟
+     * 每隔1s种调一次，看是否支付成功
      */
     var totalminSeconds=_this.timeAdd*60*1000;//总共的毫秒数
     var timer = setInterval(function () {
@@ -121,11 +103,10 @@ export class DoPayComponent implements OnInit {
       ordno: this.ordno
     }
     let result = this.stockManService.isTrue(url, data);
-    console.log("█ result ►►►",  result);
-    if (1) {//支付成功的收
+    if (result) {//支付成功的收
       clearInterval(timer);
       AppComponent.rzhAlt("success", "支付成功");
-      this.router.navigate(['/main/stockMan/do/callBack'], {queryParams: {ordno: this.ordno}})
+      this.router.navigate(['/main/stockMan/callBack'],{replaceUrl: false})
     }
   }
 }

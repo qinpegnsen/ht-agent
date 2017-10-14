@@ -35,10 +35,6 @@ const orderRecordChildren: Routes = [
     {path: 'order-detail', component: OrderDetailComponent}
 ]
 
-const doChildren: Routes = [
-  {path: 'callBack', component:PaySuccessComponent}
-];
-
 const routes: Routes = [
   {path: '', component:HomeComponent},
   {path: 'agentord', component: AgentOrdComponent},
@@ -46,7 +42,8 @@ const routes: Routes = [
   {path: 'cart', component: CarPageComponent},
   {path: 'order', component: OrderPageComponent},
   {path: 'pay', component:PayPageComponent},
-  {path: 'do', component:DoPayComponent,children:doChildren}
+  {path: 'do', component:DoPayComponent},
+  {path: 'callBack', component:PaySuccessComponent}
 ];
 @NgModule({
   imports: [
