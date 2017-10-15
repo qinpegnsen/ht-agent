@@ -79,29 +79,51 @@ export class CarPageComponent implements OnInit {
    * 点击删除的时候执行,然后刷新页面,刷新购物车的总数
    * @param id
    */
-  doDelete(id) {
+  doDelete(id,obj) {
     let that = this;
-    swal({
-      title: "您确定要删除吗？",
-      text: "我很好,把我留下吧？",
-      type: "warning",
-      showCancelButton: true,
-      closeOnConfirm: false,
-      confirmButtonText: "确认",
-      cancelButtonText: '取消',
-      confirmButtonColor: "#ec6c62"
-    }, function (isConfirm) {
-      if (isConfirm) {
-        swal.close(); //关闭弹框
-        let url = '/agent/agentCart/deleteAgentCartById';
-        let data = {
-          id: id
-        }
-        that.stockManService.deleteData(url, data)
-        that.getCarList()
-        that.headerComponent.getShopTotal()
-      }
-    });
+    if($(obj).parents('._myPaddingBody').find("._good").prop("checked")){
+      AppComponent.rzhAlt("error",'请先删除商品在进行选择');//解决全选后，删除某个商品出现的问题
+    }else{
+      swal({
+        title: "您确定要删除吗？",
+        text: "我很好,把我留下吧！",
+        type: "warning",
+        showCancelButton: true,
+        closeOnConfirm: false,
+        confirmButtonText: "确认",
+        cancelButtonText: '取消',
+        confirmButtonColor: "#ec6c62"
+      }, function (isConfirm) {
+        if (isConfirm) {
+          swal.close(); //关闭弹框
+          let url = '/agent/agentCart/deleteAgentCartById';
+          let data = {
+            id: id
+          }
+          that.stockManService.deleteData(url, data)
+          that.getCarList();
+          that.headerComponent.getShopTotal();
+        };
+      });
+    };
+  }
+
+  /**
+   * 批量的删除
+   */
+  doMoreDelete(){
+    let url = '/agent/agentCart/deleteAgentCartList';
+    let goodList = $("._good[checked='checked']").parents("._myPaddingBody");
+    let strData: string = '';
+    for (var i = 0; i < goodList.length; i++) {
+      strData += $(goodList[i]).find("._agentCartId").val() + "," ;
+    };
+    let data = {
+      strData: strData
+    };
+    this.stockManService.deleteData(url, data);
+    this.getCarList();
+    this.headerComponent.getShopTotal();
   }
 
   /**
