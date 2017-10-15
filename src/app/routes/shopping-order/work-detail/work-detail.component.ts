@@ -47,6 +47,7 @@ export class WorkDetailComponent implements OnInit {
       ordno:me.curOrdno
     }
     let result = me.shoppingOrderService.getOrderDetailByNO(url,data);
+    console.log("█ result ►►►",  result);
     if (!isNullOrUndefined(result)) {
       me.orderDetailData = result;
       me.goodsData = result.ordItemList;
@@ -81,6 +82,7 @@ export class WorkDetailComponent implements OnInit {
       ordno:me.curOrdno
     }
     let orderStatesDetail = me.shoppingOrderService.getBasicExpressList(url,data);
+    console.log("█ orderStatesDetail ►►►",  orderStatesDetail);
     if(!isNullOrUndefined(orderStatesDetail)) me.orderStates = orderStatesDetail;
     for (let item of me.orderStates){//把所有的时间放到一个数组里面
       if (item.state == 'SUCCESS') {
@@ -95,6 +97,7 @@ export class WorkDetailComponent implements OnInit {
         me.atime[1] = item.acceptTime;
       }
     }
+    console.log("█ me.atime ►►►",  me.atime);
   }
 
   /**

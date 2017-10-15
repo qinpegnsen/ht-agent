@@ -66,41 +66,34 @@
     <div class="order-head _position"><i class="fa fa-truck mr"></i><span>包裹信息</span></div>
     <!--物流信息-->
     <div class="_logistics order-track" *ngIf="orderData.state!='CR'||orderData.state!='CLOSE'">
-        <ul class="timeline-alt pb0 mb0">
-         <li>
-           <div class="timeline-panel">11</div>
-         </li>
-          <li>
-            <div class="timeline-panel">122</div>
+      <ul class="timeline-alt pb0 mb0">
+        <ng-container *ngFor="let item of logisticsData;let s=index;">
+          <li class="mb0">
+            <div class="timeline-badge gray-bg thc" [class.bg]="s==0"></div>
+            <div class="timeline-panel">
+              <div class="right">
+                <div>
+                  <p class="every-line">
+                  <span class="mr logis-time" *ngIf="s==0">
+                      <b class="mr-lg">{{item.day}}</b>
+                      <b class="mr-lg">{{item.day | getWeek}}</b>
+                      {{item.time}}
+                  </span>
+                    <ng-container *ngIf="s>0">
+                      <span class="mr logis-time" *ngIf="item.day==logisticsData[s-1].day">{{item.time}}</span>
+                      <span class="mr logis-time" *ngIf="item.day!=logisticsData[s-1].day">
+                      <b class="mr-lg">{{item.day}}</b>
+                      <b class="mr-lg">{{item.day | getWeek}}</b>
+                      {{item.time}}
+                    </span>
+                    </ng-container>
+                    <span class="every-info">{{item.acceptStation}}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
           </li>
-
-        <!--<ng-container *ngFor="let item of logisticsData;let s=index;">-->
-          <!--<li class="mb0">-->
-            <!--<div class="timeline-badge gray-bg thc" [class.bg]="s==0"></div>-->
-            <!--<div class="timeline-panel">-->
-              <!--<div class="right">-->
-                <!--<div>-->
-                  <!--<p class="every-line">-->
-                  <!--<span class="mr logis-time" *ngIf="s==0">-->
-                      <!--<b class="mr-lg">{{item.day}}</b>-->
-                      <!--<b class="mr-lg">{{item.day | getWeek}}</b>-->
-                      <!--{{item.time}}-->
-                  <!--</span>-->
-                    <!--<ng-container *ngIf="s>0">-->
-                      <!--<span class="mr logis-time" *ngIf="item.day==logisticsData[s-1].day">{{item.time}}</span>-->
-                      <!--<span class="mr logis-time" *ngIf="item.day!=logisticsData[s-1].day">-->
-                      <!--<b class="mr-lg">{{item.day}}</b>-->
-                      <!--<b class="mr-lg">{{item.day | getWeek}}</b>-->
-                      <!--{{item.time}}-->
-                    <!--</span>-->
-                    <!--</ng-container>-->
-                    <!--<span class="every-info">{{item.acceptStation}}</span>-->
-                  <!--</p>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</li>-->
-        <!--</ng-container>-->
+        </ng-container>
       </ul>
     </div>
   </div>
@@ -304,7 +297,8 @@
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"
                 (click)="cancelOrder(item.ordno)"> 取消订单
         </button>
-        <button *ngIf="orderData.state=='DELIVERY'" (click)="confirmRecive(item.ordno)" class="m-sm btn btn-xs btn-outline btn-danger fa fa-retweet"> 确认收货
+        <button *ngIf="orderData.state=='DELIVERY'" (click)="confirmRecive(item.ordno)"
+                class="m-sm btn btn-xs btn-outline btn-danger fa fa-retweet"> 确认收货
         </button>
         <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CLOSE'"
                 (click)="againBuy(item.goodsCode,item.batchNum)"> 重新购买
