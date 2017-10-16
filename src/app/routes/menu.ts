@@ -4,10 +4,6 @@ const Home = {
     link: '/main/home',
     icon: 'icon-home'
 };
-const headingMain = {
-  text: 'Main Navigation',
-  heading: true
-};
 const stockMan = {
   text: '进货管理',
   icon: 'fa fa-cubes',
@@ -44,7 +40,6 @@ const stockAddres = {
   icon: 'icon-location-pin'
 };
 export const menu = [
-    headingMain,
     Home,
     stockMan,
     shopOrder,
