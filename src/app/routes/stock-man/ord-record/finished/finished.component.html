@@ -1,11 +1,11 @@
 <ul class="clearfix order-table-head list-unstyled mb0 p b">
-  <li class="w40 pull-left text-center">商品</li>
-  <li class="w10 pull-left text-center">单价</li>
-  <li class="w10 pull-left text-center">数量</li>
-  <li class="w10 pull-left text-center">收货人</li>
-  <li class="w10 pull-left text-center">订单金额</li>
-  <li class="w10 pull-left text-center">交易状态</li>
-  <li class="w10 pull-left text-center">操作</li>
+  <li class="w40 pull-left text-center thc font">商品</li>
+  <li class="w10 pull-left text-center thc font">单价</li>
+  <li class="w10 pull-left text-center thc font">数量</li>
+  <li class="w10 pull-left text-center thc font">收货人</li>
+  <li class="w10 pull-left text-center thc font">订单金额</li>
+  <li class="w10 pull-left text-center thc font">交易状态</li>
+  <li class="w10 pull-left text-center thc font">操作</li>
 </ul>
 <table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="goodsList"
        (pageChange)="queryDatas($event)">
