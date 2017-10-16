@@ -22,7 +22,7 @@ export class SettingsService {
      * 用户信息（当前登录用户）
      * 获取用户cookie信息并展示
      */
-    let loginInfo: any = this._cookieService.getObject('loginInfo'), name = '游客', job = '无';
+    let loginInfo: any = JSON.parse(localStorage.getItem('loginInfo')), name = '游客', job = '无';
     if (!isNullOrUndefined(loginInfo)) name = loginInfo.agentName, job = loginInfo.storeName;
     this.user = {
       name: name,
