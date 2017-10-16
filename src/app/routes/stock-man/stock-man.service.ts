@@ -59,6 +59,7 @@ export class StockManService {
         AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
       }
     });
+
     return result;
   }
 

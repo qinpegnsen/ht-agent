@@ -59,7 +59,7 @@
             <div class="w10 pull-left text-left">
               <div class="checkbox c-checkbox _special">
                 <label *ngIf="!(good.isBatch=='N'||good.isBuy=='N')" >
-                  <input type="checkbox" class="_good" (click)="goodEle($event.target,good)" />
+                  <input type="checkbox" class="_good" (click)="goodEle($event.target,good)" [checked]="" />
                   <span class="fa fa-check"></span>
                 </label>
                 <ng-container *ngIf="good.isBatch=='N'">禁止批发</ng-container>
@@ -109,15 +109,15 @@
               <span class="fa fa-check"></span>全选
             </label>
           </div>
-          <!--<div class="displayInline ml-lg font16">-->
-            <!--<a (click)="doMoreDelete()" title="批量删除" class="addCar">-->
-              <!--<em class="fa fa-shopping-cart"></em>-->
-            <!--</a>-->
-            <!--<a (click)="doMoreDelete()" class="_myhover _addCar" title="批量删除">批量删除</a>-->
-          <!--</div>-->
+          <div class="displayInline ml-lg font16">
+            <a (click)="doMoreDelete()" title="批量删除" class="addCar">
+              <em class="fa fa-shopping-cart"></em>
+            </a>
+            <a (click)="doMoreDelete()" class="_myhover _addCar" title="批量删除">批量删除</a>
+          </div>
         </td>
-        <td class="w45 text-right _line">{{shopTotalNumber}} 种商品</td>
-        <td class="w15 _line clearfix _line">
+        <td class="w40 text-right _line">{{shopTotalNumber}} 种商品</td>
+        <td class="w20 _line clearfix _line">
           <span class="w50 pull-right text-center _myPrice ">&yen; {{priceList.total  | number:'1.2-2'}}</span>
           <span class="w50 pull-right text-right">商品总金额：</span>
         </td>

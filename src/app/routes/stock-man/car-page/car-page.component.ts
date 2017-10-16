@@ -27,11 +27,10 @@ export class CarPageComponent implements OnInit {
     total: 0,                                //不带运费的总费用
   };                                         //价格列表，默认是0
 
-  constructor(
-    public stockManService: StockManService,
-    public headerComponent: HeaderComponent,
-    private router: Router
-  ) {}
+  constructor(public stockManService: StockManService,
+              public headerComponent: HeaderComponent,
+              private router: Router) {
+  }
 
   /**
    * 1.初始化的时候查询列表
@@ -61,7 +60,8 @@ export class CarPageComponent implements OnInit {
       pageSize: 2,
       sortColumns: '',
     }
-    this.storeListData = this.stockManService.getShopList(url, data)
+    this.storeListData = this.stockManService.getShopList(url, data);
+    console.log("█ this.storeListData ►►►", this.storeListData);
   }
 
   /**
@@ -70,7 +70,7 @@ export class CarPageComponent implements OnInit {
   getFreeNum() {
     let url = '/datadict/loadInfoByCode';
     let data = {
-      code:'agent_ord_express_free_price'
+      code: 'agent_ord_express_free_price'
     }
     this.freeNum = this.stockManService.getShopList(url, data)
   }
@@ -79,51 +79,59 @@ export class CarPageComponent implements OnInit {
    * 点击删除的时候执行,然后刷新页面,刷新购物车的总数
    * @param id
    */
-  doDelete(id,obj) {
+  doDelete(id, obj) {
     let that = this;
-    if($(obj).parents('._myPaddingBody').find("._good").prop("checked")){
-      AppComponent.rzhAlt("error",'请先删除商品在进行选择');//解决全选后，删除某个商品出现的问题
-    }else{
-      swal({
-        title: "您确定要删除吗？",
-        text: "我很好,把我留下吧！",
-        type: "warning",
-        showCancelButton: true,
-        closeOnConfirm: false,
-        confirmButtonText: "确认",
-        cancelButtonText: '取消',
-        confirmButtonColor: "#ec6c62"
-      }, function (isConfirm) {
-        if (isConfirm) {
-          swal.close(); //关闭弹框
-          let url = '/agent/agentCart/deleteAgentCartById';
-          let data = {
-            id: id
-          }
-          that.stockManService.deleteData(url, data)
-          that.getCarList();
-          that.headerComponent.getShopTotal();
-        };
-      });
-    };
+    swal({
+      title: "您确定要删除吗？",
+      text: "",
+      type: "warning",
+      showCancelButton: true,
+      closeOnConfirm: false,
+      confirmButtonText: "确认",
+      cancelButtonText: '取消',
+      confirmButtonColor: "#ec6c62"
+    }, function (isConfirm) {
+      if (isConfirm) {
+        swal.close(); //关闭弹框
+        let url = '/agent/agentCart/deleteAgentCartById';
+        let data = {
+          id: id
+        }
+        that.stockManService.deleteData(url, data);
+        $(obj).parents('._myPaddingBody').remove();//点击删除的时候把这个li隐藏掉，1，少请求2，全选后删除重新选择的bug
+        that.headerComponent.getShopTotal();//刷新顶部购物车的总数量
+        that.getPriceList(obj);//刷新价格的列表
+        that.getShopTotalNum();//刷新选中的数量
+      };
+    });
   }
 
   /**
    * 批量的删除
    */
-  doMoreDelete(){
+  doMoreDelete() {
     let url = '/agent/agentCart/deleteAgentCartList';
     let goodList = $("._good[checked='checked']").parents("._myPaddingBody");
     let strData: string = '';
     for (var i = 0; i < goodList.length; i++) {
-      strData += $(goodList[i]).find("._agentCartId").val() + "," ;
+      strData += $(goodList[i]).find("._agentCartId").val() + ",";
     };
     let data = {
       strData: strData
     };
     this.stockManService.deleteData(url, data);
-    this.getCarList();
-    this.headerComponent.getShopTotal();
+    this.getCarList();//刷新购物车列表
+    this.headerComponent.getShopTotal();//刷新顶部购物车的总数量
+    this.getShopTotalNum();//刷新选中的数量
+    this.priceList = {
+      expressPrice: 0, //运费
+      payment: 0,//带运费的总费用
+      total: 0,//不带运费的总费用
+    };
+    if($('._all').prop('checked')){
+      $('._all').prop('checked',false);
+      $('._all').attr('checked',false);
+    }
   }
 
   /**
@@ -163,7 +171,7 @@ export class CarPageComponent implements OnInit {
    * @param obj  当前选择的元素
    *
    */
-  goodEle(obj,target) {
+  goodEle(obj, target) {
     if ($(obj).prop("checked")) {
       $(obj).attr("checked", true)
       $(obj).parents("._myPaddingBody").css('background', '#FFF4E8')   //点击的时候样式的变化
@@ -174,7 +182,7 @@ export class CarPageComponent implements OnInit {
       $(obj).parents("._myStore").find("._store").prop("checked", false);
     }
     this.inputSelect(obj, '');
-    this.getPriceList(obj,target);
+    this.getPriceList(obj, target);
     this.getShopTotalNum();
   }
 
@@ -312,7 +320,7 @@ export class CarPageComponent implements OnInit {
     let price = $(obj).parents("._myPaddingBody").find('._batchPrice').text().slice(1);
     let num = $(obj).parents("._myPaddingBody").find('._num').val();
     let totalPrice = price * num;
-    var trueNum=totalPrice.toFixed(2);
+    var trueNum = totalPrice.toFixed(2);
     $(obj).parents("._myPaddingBody").find('._goodTotalPrice').text(trueNum);
   }
 
@@ -322,30 +330,30 @@ export class CarPageComponent implements OnInit {
    * @param shopNum
    * @param obj  用来判断是否加遮罩
    */
-  getPriceList(obj,target?) {
+  getPriceList(obj, target?) {
     let goodList = $("._good[checked='checked']").parents("._myPaddingBody");
     let strData: string = '';
     for (var i = 0; i < goodList.length; i++) {
-      strData += $(goodList[i]).find("._agentCartId").val() + "," ;
+      strData += $(goodList[i]).find("._agentCartId").val() + ",";
     }
     let url = '/agent/agentCart/valuationAgentCart';
-    let lastIndex=strData.lastIndexOf(',');
-    let finalStrData=strData.slice(0,lastIndex);//把最后的，去掉
-    this.strDataTemp=finalStrData;
+    let lastIndex = strData.lastIndexOf(',');
+    let finalStrData = strData.slice(0, lastIndex);//把最后的，去掉
+    this.strDataTemp = finalStrData;
     let data = {
       strData: finalStrData
     }
     if (data.strData) {  //只有有选中的商品才会执行
-      let priceData=this.stockManService.putData(url, data);
-      if(!priceData){//如果返回的是false，说明商品的状态不合法，这时候要刷新页面
+      let priceData = this.stockManService.putData(url, data);
+      if (!priceData) {//如果返回的是false，说明商品的状态不合法，这时候要刷新页面
         this.ngOnInit();//ngngOnInit  还是只是刷新的数据列表 总的按钮并没有取消掉
-        $("._all").prop('checked',false);//手动取消掉
-        $("._all").attr('checked',false);
-      }else{
-        this.priceList =priceData;//如果是真的话才进行赋值
+        $("._all").prop('checked', false);//手动取消掉
+        $("._all").attr('checked', false);
+      } else {
+        this.priceList = priceData;//如果是真的话才进行赋值
       }
     } else {  //没有选中默认为0
-      this.goodTotalPrice(obj)
+      this.goodTotalPrice(obj);
       this.priceList = {
         expressPrice: 0, //运费
         payment: 0,//带运费的总费用
@@ -361,19 +369,20 @@ export class CarPageComponent implements OnInit {
    * 等页面渲染完成之后再做
    */
   getShopTotalNum() {
-    setTimeout(()=>{
+    setTimeout(() => {
       let numArr = $("._good:checked");
       this.shopTotalNumber = numArr.length;
-    },0)
+      console.log("█ this.shopTotalNumber ►►►",  this.shopTotalNumber);
+    }, 0)
   }
 
   /**
    * 点击结算的时候跳转的页面
    */
   linkOrderPage() {
-    if(!this.strDataTemp){
-      AppComponent.rzhAlt("info","请至少选择一种商品");
-    }else{
+    if (!this.strDataTemp) {
+      AppComponent.rzhAlt("info", "请至少选择一种商品");
+    } else {
       sessionStorage.setItem('cartId', this.strDataTemp);
       this.router.navigate(['/main/stockMan/order']);
     }
@@ -382,11 +391,11 @@ export class CarPageComponent implements OnInit {
   /**
    * keyUp  的时候检查输入的值
    */
-  checkVal(obj){
-    if(obj.value==''||obj.value==0){
-      obj.value=1;
-    }else{
-      obj.value=Math.floor(obj.value);   //如果是小数，取整数
+  checkVal(obj) {
+    if (obj.value == '' || obj.value == 0) {
+      obj.value = 1;
+    } else {
+      obj.value = Math.floor(obj.value);   //如果是小数，取整数
     }
   }
 }
