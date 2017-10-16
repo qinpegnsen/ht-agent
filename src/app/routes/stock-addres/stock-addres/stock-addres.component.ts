@@ -125,8 +125,6 @@ export class StockAddresComponent implements OnInit {
       success: () => {
         if (data.isDefault == "Y") {
           swal('成功设为默认地址', '', 'success');
-        } else if (data.isDefault == "N") {
-          swal('已将默认地址取消', '', 'success');
         }
         this.queryList()
       },

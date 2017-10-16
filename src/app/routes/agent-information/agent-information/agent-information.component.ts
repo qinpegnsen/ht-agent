@@ -29,6 +29,7 @@ export class AgentInformationComponent implements OnInit {
   private aa = false;
   private placeSearch: any;
   private code: any;
+  private selectArea;
 
   constructor(public settings:SettingsService, private ajax:AjaxService, private router:Router, private routeInfo:ActivatedRoute,private patterns: PatternService) {
     this.settings.showRightPage("30%"); // 此方法必须调用！页面右侧显示，带滑动效果,可以自定义宽度：..%  或者 ..px
@@ -37,26 +38,44 @@ export class AgentInformationComponent implements OnInit {
   ngOnInit() {
     let me = this;
     //页面完成后加载地图
+
     setTimeout(() => {
       //实例化地图
+
       let map = new AMap.Map("container", {
         resizeEnable: true,
         zoom: 13,//地图显示的缩放级别
-        center: [116.397428, 39.90923],
         keyboardEnable: false
       });
 
       AMap.service('AMap.PlaceSearch',function(){//回调函数
         //实例化PlaceSearch
         me.placeSearch= new AMap.PlaceSearch();
-        //TODO: 使用placeSearch对象调用关键字搜索的功能
-        me.placeSearch.search('郑州金水区', function(status, result) {
+        //TODO: 使用pla ceSearch对象调用关键字搜索的功能
+        me.placeSearch.search(me.selectArea, function(status, result) {
           let lat = result.poiList.pois[0].location.lat;
           let lng = result.poiList.pois[0].location.lng;
           map.setCenter(new AMap.LngLat(lng, lat));
         });
       })
 
+      //设置监听，获取地图经纬度
+      var clickEventListener = map.on('click', function (e) {
+        me.staff.coordinateLng = e.lnglat.getLng();//经度
+        me.staff.coordinateLat = e.lnglat.getLat();//纬度
+      });
+
+      var marker = new AMap.Marker({
+        map:map,
+        bubble:true
+      })
+
+      /**
+       * 点击出来标注点
+       */
+      map.on('click',function(e){
+        marker.setPosition(e.lnglat);
+      })
       AMap.plugin('AMap.Geocoder',function(){
         var drving = new AMap.Geocoder({
           map:map
@@ -85,16 +104,10 @@ export class AgentInformationComponent implements OnInit {
         });
       })
 
-      //设置监听，获取地图经纬度
-      var clickEventListener = map.on('click', function (e) {
-        me.staff.coordinateLng = e.lnglat.getLng();//经度
-        me.staff.coordinateLat = e.lnglat.getLat();//纬度
-      });
-
     }, 1);
 
-    me.linkType = this.routeInfo.snapshot.queryParams['linkType'];//获取地址栏的参数
-    me.agentCode = this.routeInfo.snapshot.queryParams['agentCode'];//获取代理商的编码
+    this.linkType = this.routeInfo.snapshot.queryParams['linkType'];//获取地址栏的参数
+    this.agentCode = this.routeInfo.snapshot.queryParams['agentCode'];//获取代理商的编码
 
     let collection=JSON.parse(sessionStorage.getItem('loginInfo'));
     this.code=collection.agentCode;
@@ -151,6 +164,8 @@ export class AgentInformationComponent implements OnInit {
   private getAreaData(area){
     let me = this;
     me.staff['areaCode'] = area.areaCode;
+    me.selectArea = area.adr;
+    me.ngOnInit()
   }
 
   addLimitList(value) {
