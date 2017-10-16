@@ -1,6 +1,10 @@
+
 <div class="szh-order-info position-relative clearfix">
   <div class="szh-order-details">
-    <div class="order-head p bl bt bb"><span class="fa fa-info-circle mr _orderInfo"></span><span>订单信息</span></div>
+    <div class="order-head p bl bt bb">
+      <span class="fa fa-info-circle mr _orderInfo thc font"></span>
+      <span class="thc font">订单信息</span>
+    </div>
     <div class="content p-lg bl bt bb bt0">
       <dl>
         <dt>买家留言：</dt>
@@ -38,7 +42,10 @@
     </div>
   </div>
   <div class="szh-order-details">
-    <div class="order-head p b"><span class="fa fa-user mr _orderInfo"></span><span>收货信息</span></div>
+    <div class="order-head p b">
+      <span class="fa fa-user mr _orderInfo thc font"></span>
+      <span class="thc font">收货信息</span>
+    </div>
     <div class="content p-lg b bt0">
       <dl>
         <dt>收货人：</dt>
@@ -63,7 +70,10 @@
     </div>
   </div>
   <div class="szh-order-condition bt br bb">
-    <div class="order-head _position"><i class="fa fa-truck mr"></i><span>包裹信息</span></div>
+    <div class="order-head _position">
+      <i class="fa fa-truck mr thc font"></i>
+      <span class="thc font">包裹信息</span>
+    </div>
     <!--物流信息-->
     <div class="_logistics order-track" *ngIf="orderData.state!='CR'||orderData.state!='CLOSE'">
       <ul class="timeline-alt pb0 mb0">
@@ -98,19 +108,20 @@
     </div>
   </div>
 </div>
+
 <!--其他的状态-->
 <div class="rate-of-progress mt-xl mb-xl w100" *ngIf="orderData.state!='CLOSE'">
   <div class="szh-progress-bar w90">
-    <div *ngIf="orderData.state=='CR'" class="already-progress _w0"></div>
-    <div *ngIf="orderData.state=='PAID'" class="already-progress w25"></div>
-    <div *ngIf="orderData.state=='PREPARE'" class="already-progress w50"></div>
-    <div *ngIf="orderData.state=='DELIVERY'" class="already-progress w75"></div>
-    <div *ngIf="orderData.state=='SUCCESS'" class="already-progress w100"></div>
+    <div *ngIf="orderData.state=='CR'" class="already-progress _w0 thc bg"></div>
+    <div *ngIf="orderData.state=='PAID'" class="already-progress w25 thc bg"></div>
+    <div *ngIf="orderData.state=='PREPARE'" class="already-progress w50 thc bg"></div>
+    <div *ngIf="orderData.state=='DELIVERY'" class="already-progress w75 thc bg"></div>
+    <div *ngIf="orderData.state=='SUCCESS'" class="already-progress w100 thc bg"></div>
   </div>
   <ng-container *ngIf="orderData.state=='CR'">
     <dl class="cur">
-      <dt>提交订单</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dt class="thc font">提交订单</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg thc bg"></dd>
       <dd>{{atime[1]}}</dd>
     </dl>
     <dl>
@@ -136,13 +147,13 @@
   </ng-container>
   <ng-container *ngIf="orderData.state=='PAID'">
     <dl class="cur">
-      <dt>提交订单</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dt class="thc font">提交订单</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg thc bg"></dd>
       <dd>{{atime[1]}}</dd>
     </dl>
     <dl class="cur">
-      <dt>已支付</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
+      <dt class="thc font">已支付</dt>
+      <dd class="szh-progress-point fa fa-check mt mb-lg thc bg"></dd>
       <dd>{{atime[2]}}</dd>
     </dl>
     <dl>
@@ -164,18 +175,18 @@
   <ng-container *ngIf="orderData.state=='PREPARE'">
     <dl class="cur">
       <dt>提交订单</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[1]}}</dd>
+      <dd class="szh-progress-point fa fa-check mt mb-lg thc bg"></dd>
+      <dd class="thc font">{{atime[1]}}</dd>
     </dl>
     <dl class="cur">
       <dt>已支付</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[2]}}</dd>
+      <dd class="szh-progress-point fa fa-check mt mb-lg thc bg"></dd>
+      <dd class="thc font">{{atime[2]}}</dd>
     </dl>
     <dl class="cur">
       <dt>已配货</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[3]}}</dd>
+      <dd class="szh-progress-point fa fa-check mt mb-lg thc bg"></dd>
+      <dd class="thc font">{{atime[3]}}</dd>
     </dl>
     <dl>
       <dt>已发货</dt>
@@ -191,23 +202,23 @@
   <ng-container *ngIf="orderData.state=='DELIVERY'">
     <dl class="cur">
       <dt>提交订单</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[1]}}</dd>
+      <dd class="szh-progress-point fa fa-check mt mb-lg thc bg"></dd>
+      <dd class="thc font">{{atime[1]}}</dd>
     </dl>
     <dl class="cur">
       <dt>已支付</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[2]}}</dd>
+      <dd class="szh-progress-point fa fa-check mt mb-lg thc bg"></dd>
+      <dd class="thc font">{{atime[2]}}</dd>
     </dl>
     <dl class="cur">
       <dt>已配货</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[3]}}</dd>
+      <dd class="szh-progress-point fa fa-check mt mb-lg thc bg"></dd>
+      <dd class="thc font">{{atime[3]}}</dd>
     </dl>
     <dl class="cur">
       <dt>已发货</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[4]}}</dd>
+      <dd class="szh-progress-point fa fa-check mt mb-lg thc bg"></dd>
+      <dd class="thc font">{{atime[4]}}</dd>
     </dl>
     <dl>
       <dt>订单完成</dt>
@@ -218,28 +229,28 @@
   <ng-container *ngIf="orderData.state=='SUCCESS'">
     <dl class="cur">
       <dt>提交订单</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[1]}}</dd>
+      <dd class="szh-progress-point fa fa-check mt mb-lg thc bg"></dd>
+      <dd class="thc font">{{atime[1]}}</dd>
     </dl>
     <dl class="cur">
       <dt>已支付</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[2]}}</dd>
+      <dd class="szh-progress-point fa fa-check mt mb-lg thc bg"></dd>
+      <dd class="thc font">{{atime[2]}}</dd>
     </dl>
     <dl class="cur">
       <dt>已配货</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[3]}}</dd>
+      <dd class="szh-progress-point fa fa-check mt mb-lg thc bg"></dd>
+      <dd class="thc font">{{atime[3]}}</dd>
     </dl>
     <dl class="cur">
       <dt>已发货</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[4]}}</dd>
+      <dd class="szh-progress-point fa fa-check mt mb-lg thc bg"></dd>
+      <dd class="thc font">{{atime[4]}}</dd>
     </dl>
     <dl class="cur">
       <dt>订单完成</dt>
-      <dd class="szh-progress-point fa fa-check mt mb-lg"></dd>
-      <dd>{{atime[5]}}</dd>
+      <dd class="szh-progress-point fa fa-check mt mb-lg thc bg"></dd>
+      <dd class="thc font">{{atime[5]}}</dd>
     </dl>
   </ng-container>
 </div>
