@@ -302,10 +302,10 @@
         <span class="font-gray">{{orderData.payWay | rzhState :'1017'}}</span>
       </td>
       <td class="bl" *ngIf="i==0" [attr.rowspan]="orderData.agentOrdItemList.length">
-        <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"
+        <button class="m-sm btn btn-xs btn-warning fa fa-ban thc bg" *ngIf="orderData.state=='CR'"
                 (click)="goPay(orderData.ordno)"> 去支付
         </button>
-        <button class="m-sm btn btn-xs btn-warning fa fa-ban" *ngIf="orderData.state=='CR'"
+        <button class="m-sm btn btn-xs btn-warning fa fa-ban thc font b _myWhiteBg" *ngIf="orderData.state=='CR'"
                 (click)="cancelOrder(item.ordno)"> 取消订单
         </button>
         <button *ngIf="orderData.state=='DELIVERY'" (click)="confirmRecive(item.ordno)"
