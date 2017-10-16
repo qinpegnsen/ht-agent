@@ -101,6 +101,7 @@ export class AllWorkOrdersComponent implements OnInit {
    * 拒单
    */
   toReject(woAgengId) {
+    console.log("█ 1 ►►►",  1);
     this.woAgengId = woAgengId;
     this.showReasonWindow = true;
   }
@@ -130,6 +131,13 @@ export class AllWorkOrdersComponent implements OnInit {
   getDeliverOrderData(data) {
     this.curOrdno = null;//输入属性发生变化的时候，弹窗才会打开，所以每次后来都清空，造成变化的迹象
     if (data.type) this.queryDatas(data.page)
+  }
+
+  /**
+   * 拒单的回调函数，产生输入属性的变化
+   */
+  closeRejecWin(bol){
+    this.showReasonWindow=bol;
   }
 }
 

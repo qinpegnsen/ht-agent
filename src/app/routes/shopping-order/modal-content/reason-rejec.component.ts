@@ -20,7 +20,7 @@ export class ReasonRejecComponent implements OnInit , OnDestroy{
   public list;
   @Input('woAgengId') woAgengId: string;
   @Input('showReasonWindow') showReasonWindow: boolean;
-
+  @Output() closeRejec = new EventEmitter();
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['showReasonWindow'] && changes['woAgengId']) {
       this.list =  this.rzhtoolsService.getEnumDataList('1306');
@@ -52,6 +52,9 @@ export class ReasonRejecComponent implements OnInit , OnDestroy{
     $('.wrapper > section').css('z-index', 114);
     this.showReasonWindow = false;
     if (isUndefined(type)) type = 'cancel';
+    this.closeRejec.emit(
+      false
+    )// 向外传值
   }
 
   /**

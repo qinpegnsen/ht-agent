@@ -47,11 +47,9 @@ export class WorkDetailComponent implements OnInit {
       ordno:me.curOrdno
     }
     let result = me.shoppingOrderService.getOrderDetailByNO(url,data);
-    console.log("█ result ►►►",  result);
     if (!isNullOrUndefined(result)) {
       me.orderDetailData = result;
       me.goodsData = result.ordItemList;
-      console.log("█  me.goodsData ►►►",   me.goodsData);
       me.getOrderStep();
     }
   }
@@ -82,7 +80,6 @@ export class WorkDetailComponent implements OnInit {
       ordno:me.curOrdno
     }
     let orderStatesDetail = me.shoppingOrderService.getBasicExpressList(url,data);
-    console.log("█ orderStatesDetail ►►►",  orderStatesDetail);
     if(!isNullOrUndefined(orderStatesDetail)) me.orderStates = orderStatesDetail;
     for (let item of me.orderStates){//把所有的时间放到一个数组里面
       if (item.state == 'SUCCESS') {
@@ -91,13 +88,12 @@ export class WorkDetailComponent implements OnInit {
         me.atime[4] = item.acceptTime;
       } else if (item.state == 'PREPARE') {
         me.atime[3] = item.acceptTime;
-      } else if (item.state == 'PAID') {
+      } else if (item.state == 'PAID'||item.state == 'ASSIGNED') {
         me.atime[2] = item.acceptTime;
       } else if (item.state == 'CR') {
         me.atime[1] = item.acceptTime;
       }
     }
-    console.log("█ me.atime ►►►",  me.atime);
   }
 
   /**
@@ -111,7 +107,7 @@ export class WorkDetailComponent implements OnInit {
       me.orderStep = 4;
     } else if (me.orderDetailData.state == 'PREPARE') {
       me.orderStep = 3;
-    } else if (me.orderDetailData.state == 'PAID') {
+    } else if (me.orderDetailData.state == 'PAID'||me.orderDetailData.state == 'ASSIGNED') {
       me.orderStep = 2;
     } else if (me.orderDetailData.state == 'NO') {
       me.orderStep = 1;
