@@ -32,15 +32,15 @@
         <th class="w10 text-center thc font">操作</th>
       </tr>
       <tr>
-        <th  class="text-left">
+        <th class="text-left">
           <div class="checkbox c-checkbox">
             <label class="unselectable">
               <input type="checkbox" (click)="allSelect($event.target)" class="_all"/>
-              <span class="fa fa-check"></span>全选
+              <span class="fa fa-check" ></span>全选
             </label>
           </div>
         </th>
-        <th  class="shopCar" *ngIf="showCar">
+        <th class="shopCar" *ngIf="showCar">
           <a (click)="addAllCart()" title="加入购物车" class="addCar">
             <em class="fa fa-shopping-cart"></em>
           </a>
@@ -57,6 +57,9 @@
                 <input type="checkbox" (click)="goodSelect($event.target)" class="_good"/>
                 <span class="fa fa-check"></span>
               </label>
+              <!--<a (click)="showDetail(shop)" title="查看详情" class="noneBb">-->
+                <!--<i class="icon icon-arrow-down" (click)="showDetail(shop)"></i>-->
+              <!--</a>-->
             </div>
           </td>
           <td class="text-left goods-info-box">
@@ -72,16 +75,17 @@
           <td class="text-center">{{shop.brandName}}</td>
           <td class="text-center">{{shop.kindName}}</td>
           <td class="text-center">
-            <div  *ngFor="let standard of shop.goodsSavSetList">
+            <div *ngFor="let standard of shop.goodsSavSetList">
               {{standard.attrName}}：{{standard.value}}
             </div>
           </td>
           <td class="text-center">{{shop.unit}}</td>
-          <td class="text-center">￥{{shop.goodsPrice.batchPrice  | number:'1.2-2'}}</td>
+          <td class="text-center">￥{{shop.goodsPrice.batchPrice | number:'1.2-2'}}</td>
           <td class="_myNmu">
             <div class="input-group input-group-sm width120 text-center">
               <span class="input-group-addon" (click)="minusNum($event.target)"><i class="fa fa-minus"></i></span>
-              <input class="form-control _num num  text-center" #input  type="number"  value="1" (change)="changeNum($event.target)" (keyup)="checkVal(input)" required/>
+              <input class="form-control _num num  text-center" #input type="number" value="1"
+                     (change)="changeNum($event.target)" (keyup)="checkVal(input)" required/>
               <input type="hidden" value="{{shop.goodsCode}}">
               <span class="input-group-addon" (click)="addNum(i,$event.target)"><i class="fa fa-plus"></i></span>
             </div>

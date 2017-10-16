@@ -39,11 +39,17 @@ const stockAddres = {
   link: '/main/stockAddres',
   icon: 'icon-location-pin'
 };
+const messageInform = {
+  text: '消息通知模板',
+  link: '/main/message-inform',
+  icon: 'icon-bell'
+};
 export const menu = [
     Home,
     stockMan,
     shopOrder,
     afterSale,
     statistics,
-    stockAddres
+    stockAddres,
+    messageInform
 ];

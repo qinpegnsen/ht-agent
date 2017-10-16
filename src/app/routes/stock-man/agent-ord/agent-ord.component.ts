@@ -76,6 +76,8 @@ export class AgentOrdComponent implements OnInit {
    * 当点击tr的时候，让隐藏的tr出来
    */
   showDetail(shop: any) {
+    console.log("█ 11 ►►►",  11);
+    console.log("█ shop.isShow ►►►",  shop.isShow);
     shop.isShow = !shop.isShow;
   }
 
