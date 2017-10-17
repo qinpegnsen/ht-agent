@@ -59,4 +59,32 @@ export class MessageInformService {
     });
   }
 
+  /**
+   * put 请求  成功有提示
+   * @param submitUrl
+   * @param submitData
+   * @param back:true(返回上一级)
+   */
+  updateproblem(requestUrl, requestDate, back?: boolean) {
+    let result,me = this;
+    this.ajax.put({
+      url: requestUrl,
+      data: requestDate,
+      async: false,
+      success: (res) => {
+        if (res.success) {
+          AppComponent.rzhAlt("success", res.info);
+          result = res.info;
+        } else {
+          result = res.info;
+          AppComponent.rzhAlt("error", res.info);
+        }
+      },
+      error: (res) => {
+        AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
+      }
+    })
+    return result;
+  }
+
 }

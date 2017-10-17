@@ -1,69 +1,87 @@
-<div class="content-heading mb-lg">
-  <span class="thc font">代理商消息模板</span>
-  <app-buttons class="pull-right" [config]="addbutton" (click)="addTpl()"></app-buttons>
-</div>
-<div class="panel mb panel-default">
-  <div class="panel-body">
-    <table class="table table-striped" #agentTplList="rzhDataTable" [rzhData]="agentTplData"
-           (pageChange)="queryExpressList($event)">
-      <thead>
-      <tr>
-        <th class="w10 thc font">
-          模板编码
-        </th>
-        <th class="w15 thc font">
-          模板名称
-        </th>
-        <th class="w10 thc font">
-          消息图标
-        </th>
-        <th class="w15 thc font">
-          模板
-        </th>
-        <th class="w15 thc font">
-          菜单URL
-        </th>
-        <th class="w15 thc font">
-          备注
-        </th>
-        <th class="w20 thc font">操作</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let agentTpl of agentTplList.data;let i = index">
-        <td>{{agentTpl.tplCode}}</td>
-        <td>{{agentTpl.tplName}}</td>
-        <td>{{agentTpl.icon}}</td>
-        <td>{{agentTpl.tpl}}</td>
-        <td>{{agentTpl.url}}</td>
-        <td>{{agentTpl.remark}}</td>
-        <td>
-          <app-buttons [config]="deletebutton" (click)="deleteTpl(agentTpl.id)"></app-buttons>
-          <app-buttons [config]="updatebutton" (click)="updateTpl(agentTpl.tplCode)"></app-buttons>
-      </tr>
-      </tbody>
-      <tfoot>
-      <tr class="text-center">
-        <td colspan="12">
-          <div class="col-md-5">
-            <div class="text-muted pull-left"><strong>第 {{agentTplData.genStartRow()}} 至
-              {{agentTplData.genEndRow()}} 条，共 {{agentTplData.totalRow}}
-              条</strong></div>
-          </div>
-          <div class="col-md-7">
-            <div class="pull-right">
-              <rzhBootstrapPaginator></rzhBootstrapPaginator>
-            </div>
-          </div>
-        </td>
-      </tr>
-      </tfoot>
-    </table>
-  </div>
-</div>
+<table class="table bt bb">
+  <thead>
+  <tr>
+    <td class="w5 text-left thc font">
+      全选
+    </td>
+    <td class="w65 text-center thc font">
+      消息内容
+    </td>
+    <td class="w20 text-center thc font">
+      发送时间
+    </td>
+    <td class="w10 text-center thc font">
+      操作
+    </td>
+  </tr>
+  </thead>
+</table>
 
-<!--路由嵌套 begin-->
-<router-outlet></router-outlet>
-<!--路由嵌套 end-->
-<!--<app-edit-tpl  [type]="curType" [tplCode]="curTplCode"  [page]="agentTplData.curPage"-->
-               <!--(emitTplData)="getTplData($event)"></app-edit-tpl>-->
+<table class="table" #dataTable="rzhDataTable" [rzhData]="platformInfoData"
+       (pageChange)="queryDatas($event)">
+  <thead>
+  <tr>
+    <th class="w5 text-center">
+      <div class="checkbox c-checkbox m0">
+        <label class="unselectable">
+          <input type="checkbox" class="_all" (change)="getAllId()"/>
+          <span class="fa fa-check"></span>
+        </label>
+      </div>
+    </th>
+    <th class="w65">
+      <button class="btn btn-xs btn-outline btn-warning fa fa-trash thc font qpsMl"
+              (click)="delMoreInfo()">
+        删除
+      </button>
+      <button class="m-sm btn btn-xs btn-outline btn-warning fa fa-flag-o thc font"
+              (click)="updateMoreIsRead()">
+        标记已读
+      </button>
+    </th>
+    <th class="w20"></th>
+    <th class="w10"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr  *ngFor="let platformInfo of platformInfoData.voList;let i = index" [class.trBg]="platformInfo.isRead=='N'" >
+    <td class="text-center">
+      <div class="checkbox c-checkbox m0">
+        <label class="unselectable">
+          <input type="checkbox" class="_every" value="{{platformInfo.id}}" #every (change)="getId(every)"/>
+          <span class="fa fa-check"></span>
+        </label>
+      </div>
+    </td>
+    <td>
+      <a href="javascript:;" *ngIf="platformInfo.isRead=='N'" class="myCircle" title="标记已读" (click)="updateIsRead(platformInfo.id,$event.target)"></a>
+      <a class="qpssMl">{{platformInfo.msg}}</a>
+    </td>
+    <td class="text-center">{{platformInfo.createTime}}</td>
+    <td class="text-center">
+      <app-buttons [config]="deletebutton" (click)="deleteTpl(platformInfo.id)"></app-buttons>
+
+    </td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="10" class="bt0">
+      <div class="col-sm-5">
+        <div class="text-muted"><strong>第 {{platformInfoData.genStartRow()}} 至 {{platformInfoData.genEndRow()}} 条，共
+          {{platformInfoData.totalRow}}
+          条</strong></div>
+      </div>
+      <div class="col-sm-7">
+        <div class="pull-right">
+          <rzhBootstrapPaginator></rzhBootstrapPaginator>
+        </div>
+      </div>
+    </td>
+  </tr>
+  </tfoot>
+</table>
+<!--<ng-container *ngIf="ordState == 'DELIVERY' || ordState == ''">-->
+<!--<app-deliver-goods [orderId]="curDeliverOrderId" [page]="goodsList.curPage"-->
+<!--(deliverGoods)="getDeliverOrderData($event)"></app-deliver-goods>-->
+<!--</ng-container>-->
