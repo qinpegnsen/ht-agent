@@ -147,7 +147,7 @@ export class MessageInformComponent implements OnInit {
         swal.close(); //关闭弹框
         let url='/notifyAgent/deleteByIds';
         let data={
-          id:delSortId
+          ids:delSortId
         }
         that.messageInformService.delRequest(url,data);
         that.queryAdminNotify();
@@ -180,7 +180,7 @@ export class MessageInformComponent implements OnInit {
         }
         let idStr= that.idArr.join(',');
         let data={
-          idStr:idStr
+          ids:idStr
         }
         that.messageInformService.delRequest(url,data)
         that.queryAdminNotify();

@@ -40,7 +40,7 @@ const stockAddres = {
   icon: 'icon-location-pin'
 };
 const messageInform = {
-  text: '消息通知模板',
+  text: '系统消息',
   link: '/main/message-inform',
   icon: 'icon-bell'
 };
