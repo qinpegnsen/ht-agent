@@ -104,6 +104,13 @@ export class WaitForOrdersComponent implements OnInit {
   }
 
   /**
+   * 拒单的回调函数，产生输入属性的变化
+   */
+  closeRejecWin(bol){
+    this.showReasonWindow=bol;
+  }
+
+  /**
    * 获取搜索框选择的状态值
    * @param val
    */

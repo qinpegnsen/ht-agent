@@ -1,6 +1,6 @@
 <div class="deliver-order fadeIn" *ngIf="showReasonWindow">
   <div class="mask"></div>
-  <form class="_popup animated fadeIn" #updata="ngForm">
+  <form class="_popup animated fadeIn" #update="ngForm">
     <div class="pop popup-hd">
       <span class="f-bold">编辑拒单原因</span>
       <div class="popup-colse unselectable" (click)="hideWindow()">×</div>
@@ -14,14 +14,14 @@
           <select class="form-control pl-sm pr-sm w80 myAbsolute" name="state" [(ngModel)]="stateEnum">
             <option value="{{item.key}}" *ngFor="let item of list">{{item.val}}</option>
           </select>
-          <input *ngIf="stateEnum=='OTHER'" class="form-control mt w80 myAbsolute" type="text" name="other" maxlength="128"
-                 [(ngModel)]="other" placeholder='请输入拒单的原因'/>
+          <input *ngIf="stateEnum=='OTHER'" required class="form-control mt w80 myAbsolute" type="text" name="other" maxlength="128"
+                 [(ngModel)]="other" placeholder='请输入拒单的原因'/>{{stateEnum}}
         </dd>
       </dl>
     </div>
     <div class="panel-footer text-right">
       <button class="btn btn-default" type="button" (click)="hideWindow()">放弃操作</button>
-      <button class="btn btn-info" type="button" (click)="delivery(updata.value)">确认提交</button>
+      <button class="btn btn-info" type="button" (click)="delivery(update.value)" [disabled]="update.invalid">确认提交</button>
     </div>
   </form>
 </div>

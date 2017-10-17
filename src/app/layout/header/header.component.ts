@@ -7,6 +7,8 @@ import {AjaxService} from "../../core/services/ajax.service";
 import {CookieService} from "angular2-cookie/core";
 import {isNullOrUndefined} from "util";
 import {AppComponent} from "../../app.component";
+import {Page} from "../../core/page/page";
+import {SubmitService} from "../../core/forms/submit.service";
 const screenfull = require('screenfull');
 const browser = require('jquery.browser');
 declare var $: any;
@@ -18,13 +20,14 @@ declare var $: any;
 })
 export class HeaderComponent implements OnInit, OnChanges{
 
+  private platformInfoData:any;                           //代理商系统消息的数据
   @Input() private curPath;
   @ViewChild('fsbutton') fsbutton;
   navCollapsed = true;
   menuItems = [];
   isNavSearchVisible: boolean;
 
-  constructor(public menu: MenuService, public userblockService: UserblockService, public settings: SettingsService,
+  constructor(private submitService:SubmitService,public menu: MenuService, public userblockService: UserblockService, public settings: SettingsService,
               private ajax: AjaxService, private router: Router, private cookieService: CookieService) {
     // 只显示指定的
     if (typeof menu.getMenu() !== 'undefined') this.menuItems = menu.getMenu();
@@ -44,6 +47,7 @@ export class HeaderComponent implements OnInit, OnChanges{
    */
   ngOnInit() {
     this.getShopTotal();
+    this.queryNotify()
     this.isNavSearchVisible = false;
     if (browser.msie) { // 不支持ie
       this.fsbutton.nativeElement.style.display = 'none';
@@ -58,6 +62,19 @@ export class HeaderComponent implements OnInit, OnChanges{
       me.onRouterChange(path);
       me.getSubmenus(path);
     })
+  }
+
+  /**
+   * 获取通知的消息列表，默认只展示第一页的内容
+   */
+  queryNotify(){
+    let url='/notifyAgent/queryNotifyAgent';
+    let data={
+      curPage:1,
+      pageSize:3,
+      sortColumns:''
+    };
+    this.platformInfoData=new Page(this.submitService.getData(url,data));
   }
 
   /**

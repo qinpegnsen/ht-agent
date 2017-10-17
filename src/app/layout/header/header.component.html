@@ -65,71 +65,36 @@
                 </a>
             </li>
             <!-- START Alert menu-->
-
-             <!--to do-->
-            <!--<li class="dropdown dropdown-list" dropdown>-->
-                <!--<a dropdownToggle>-->
-                    <!--<em class="icon-bell"></em>-->
-                    <!--<div class="label label-danger thc bgIcon colorIcon">11</div>-->
-                <!--</a>-->
-                <!--&lt;!&ndash; START Dropdown menu&ndash;&gt;-->
-                <!--<ul *dropdownMenu class="dropdown-menu animated flipInX">-->
-                    <!--<li>-->
-                        <!--&lt;!&ndash; START list group&ndash;&gt;-->
-                        <!--<div class="list-group">-->
-                            <!--&lt;!&ndash; list item&ndash;&gt;-->
-                            <!--<a class="list-group-item">-->
-                                <!--<div class="media-box">-->
-                                    <!--<div class="pull-left">-->
-                                        <!--<em class="fa fa-twitter fa-2x text-info"></em>-->
-                                    <!--</div>-->
-                                    <!--<div class="media-box-body clearfix">-->
-                                        <!--<p class="m0">New followers</p>-->
-                                        <!--<p class="m0 text-muted">-->
-                                            <!--<small>1 new follower</small>-->
-                                        <!--</p>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</a>-->
-                            <!--&lt;!&ndash; list item&ndash;&gt;-->
-                            <!--<a class="list-group-item">-->
-                                <!--<div class="media-box">-->
-                                    <!--<div class="pull-left">-->
-                                        <!--<em class="fa fa-envelope fa-2x text-warning"></em>-->
-                                    <!--</div>-->
-                                    <!--<div class="media-box-body clearfix">-->
-                                        <!--<p class="m0">New e-mails</p>-->
-                                        <!--<p class="m0 text-muted">-->
-                                            <!--<small>You have 10 new emails</small>-->
-                                        <!--</p>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</a>-->
-                            <!--&lt;!&ndash; list item&ndash;&gt;-->
-                            <!--<a class="list-group-item">-->
-                                <!--<div class="media-box">-->
-                                    <!--<div class="pull-left">-->
-                                        <!--<em class="fa fa-tasks fa-2x text-success"></em>-->
-                                    <!--</div>-->
-                                    <!--<div class="media-box-body clearfix">-->
-                                        <!--<p class="m0">Pending Tasks</p>-->
-                                        <!--<p class="m0 text-muted">-->
-                                            <!--<small>11 pending task</small>-->
-                                        <!--</p>-->
-                                    <!--</div>-->
-                                <!--</div>-->
-                            <!--</a>-->
-                            <!--&lt;!&ndash; last list item&ndash;&gt;-->
-                            <!--<a class="list-group-item">-->
-                                <!--<small translate="topbar.notification.MORE">More notifications</small>-->
-                                <!--<span class="label label-danger pull-right">14</span>-->
-                            <!--</a>-->
-                        <!--</div>-->
-                        <!--&lt;!&ndash; END list group&ndash;&gt;-->
-                    <!--</li>-->
-                <!--</ul>-->
-                <!--&lt;!&ndash; END Dropdown menu&ndash;&gt;-->
-            <!--</li>-->
+          <!-- 弹出菜单 begin-->
+          <li class="dropdown dropdown-list" dropdown>
+            <a dropdownToggle title="新消息">
+              <i class="icon-bell"></i>
+              <div class="label label-danger thc bgIcon colorIcon font">{{platformInfoData.totalRow}}</div>
+            </a>
+            <ul *dropdownMenu class="dropdown-menu animated flipInX">
+              <li>
+                <div class="list-group">
+                  <a class="list-group-item qpsHeight" *ngFor="let platformInfo of platformInfoData.voList;let i = index"  routerLink="/main/operation/sys-message/message-list">
+                    <div class="media-box _qpsStyle">
+                      <div class="pull-left">
+                        <i class="{{platformInfo.icon}}"></i>
+                      </div>
+                      <div class="media-box-body clearfix ">
+                        <p class="m0 qpsP">{{platformInfo.msg}}</p>
+                        <p class="m0 text-muted">
+                          <small>{{platformInfo.createTime}}111</small>
+                        </p>
+                      </div>
+                    </div>
+                  </a>
+                  <div class="text-center">
+                    <a class="qpsMore thc font" routerLink="/main/operation/sys-message/message-list">查看更多</a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!--弹出菜单 end-->
             <!-- END Alert menu-->
             <!-- START Offsidebar button-->
             <li>

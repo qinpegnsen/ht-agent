@@ -80,4 +80,6 @@
   </tr>
   </tfoot>
 </table>
-<app-reason-rejec [showReasonWindow]="showReasonWindow" [woAgengId]="woAgengId"></app-reason-rejec>
+<!--拒单组件开始-->
+<app-reason-rejec [showReasonWindow]="showReasonWindow" [woAgengId]="woAgengId" (closeRejec)="closeRejecWin(obj)"></app-reason-rejec>
+<!--拒单组件结束-->

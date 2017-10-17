@@ -42,7 +42,7 @@ export class MessageInformComponent implements OnInit {
       curPage:activePage,
       pageSize:10,
       sortColumns:''
-    };
+    }
     this.platformInfoData=new Page(this.messageInformService.linkGoods(url,data));
   }
 

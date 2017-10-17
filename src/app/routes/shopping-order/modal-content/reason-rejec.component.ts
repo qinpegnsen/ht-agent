@@ -15,7 +15,7 @@ declare var $: any;
 
 export class ReasonRejecComponent implements OnInit , OnDestroy{
 
-  public other: string;
+  public other: string='';
   public stateEnum: string='OTHER';
   public list;
   @Input('woAgengId') woAgengId: string;
@@ -24,6 +24,8 @@ export class ReasonRejecComponent implements OnInit , OnDestroy{
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['showReasonWindow'] && changes['woAgengId']) {
       this.list =  this.rzhtoolsService.getEnumDataList('1306');
+      this.stateEnum='OTHER';//每次输入属性进来的时候，让stateEnum恢复原状
+      this.other='';//每次输入属性进来的时候，让原因恢复原状
       if(this.showReasonWindow && this.woAgengId && !isNullOrUndefined(this.woAgengId)) $('.wrapper > section').css('z-index', 200);
       else $('.wrapper > section').css('z-index', 114);
     }
