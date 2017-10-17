@@ -58,7 +58,6 @@ export class SubmitService {
       data: requestDate,
       async: false,
       success: (res) => {
-        console.log("█ res ►►►", res);
         if (res.success) {
           if (back) this.settings.closeRightPageAndRouteBack()//关闭右侧页面并返回上级路由
           AppComponent.rzhAlt("success", res.info);
@@ -89,7 +88,6 @@ export class SubmitService {
       data: requestDate,
       async: false,
       success: (res) => {
-        console.log("█ res ►►►", res);
         if (res.success) {
           if (back) this.settings.closeRightPageAndRouteBack()//关闭右侧页面并返回上级路由
           swal({
@@ -152,5 +150,4 @@ export class SubmitService {
     });
     return result;
   }
-
 }

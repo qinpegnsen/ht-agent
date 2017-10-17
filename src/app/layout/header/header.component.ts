@@ -18,7 +18,7 @@ declare var $: any;
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnChanges{
+export class HeaderComponent implements OnInit, OnChanges,DoCheck{
 
   private platformInfoData:any;                           //代理商系统消息的数据
   @Input() private curPath;
@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit, OnChanges{
    */
   ngOnInit() {
     this.getShopTotal();
-    this.queryNotify()
+    this.queryNotify();
     this.isNavSearchVisible = false;
     if (browser.msie) { // 不支持ie
       this.fsbutton.nativeElement.style.display = 'none';
@@ -75,6 +75,10 @@ export class HeaderComponent implements OnInit, OnChanges{
       sortColumns:''
     };
     this.platformInfoData=new Page(this.submitService.getData(url,data));
+  }
+
+  ngDoCheck(){
+    this.queryNotify();
   }
 
   /**
