@@ -90,7 +90,7 @@
               </div>
             </div>
             <div class="w10 pull-left text-center _goodTotalPrice">
-              ￥{{good.goodsSubtotal | number:'1.2-2'}}
+              ￥<span>{{good.goodsSubtotal | number:'1.2-2'}}</span>
             </div>
             <div class="w20 pull-left text-center _delMask">
               <app-buttons [config]="deletebutton" (click)="doDelete(good.agentCartId,$event.target)"></app-buttons>
