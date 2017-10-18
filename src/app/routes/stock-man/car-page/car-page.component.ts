@@ -61,8 +61,7 @@ export class CarPageComponent implements OnInit {
       sortColumns: '',
     }
     this.storeListData = this.stockManService.getShopList(url, data);
-    console.log("█ this.storeListData ►►►", this.storeListData);
-  }
+  };
 
   /**
    * 获取快递免费的界限
@@ -93,9 +92,9 @@ export class CarPageComponent implements OnInit {
     }, function (isConfirm) {
       if (isConfirm) {
         swal.close(); //关闭弹框
-        let url = '/agent/agentCart/deleteAgentCartById';
+        let url = '/agent/agentCart/deleteAgentCartList';
         let data = {
-          id: id
+          strData: id
         }
         that.stockManService.deleteData(url, data);
         $(obj).parents('._myPaddingBody').remove();//点击删除的时候把这个li隐藏掉，1，少请求2，全选后删除重新选择的bug

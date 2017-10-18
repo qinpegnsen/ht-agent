@@ -42,7 +42,7 @@ const stockAddres = {
 const messageInform = {
   text: '系统消息',
   link: '/main/message-inform',
-  icon: 'icon-bell'
+  icon: 'icon-book-open'
 };
 export const menu = [
     Home,

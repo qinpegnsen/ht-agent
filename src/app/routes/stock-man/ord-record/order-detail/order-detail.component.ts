@@ -122,7 +122,6 @@ export class OrderDetailComponent implements OnInit {
       ordno:this.ordno
     };
     this.logisticsData=this.stockManService.getShopList(url,data);
-    console.log("█ this.logisticsData ►►►",  this.logisticsData);
     for (let item of this.logisticsData){
       if (item.state == 'SUCCESS') {
         this.atime[5] = item.acceptTime;
