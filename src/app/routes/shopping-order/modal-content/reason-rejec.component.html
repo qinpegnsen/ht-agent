@@ -15,7 +15,7 @@
             <option value="{{item.key}}" *ngFor="let item of list">{{item.val}}</option>
           </select>
           <input *ngIf="stateEnum=='OTHER'" required class="form-control mt w80 myAbsolute" type="text" name="other" maxlength="128"
-                 [(ngModel)]="other" placeholder='请输入拒单的原因'/>{{stateEnum}}
+                 [(ngModel)]="other" placeholder='请输入拒单的原因'/>
         </dd>
       </dl>
     </div>
