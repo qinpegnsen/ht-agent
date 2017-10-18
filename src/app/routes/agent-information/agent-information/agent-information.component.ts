@@ -106,10 +106,10 @@ export class AgentInformationComponent implements OnInit {
 
     }, 1);
 
-    this.linkType = this.routeInfo.snapshot.queryParams['linkType'];//获取地址栏的参数
-    this.agentCode = this.routeInfo.snapshot.queryParams['agentCode'];//获取代理商的编码
 
-    let collection=JSON.parse(sessionStorage.getItem('loginInfo'));
+    let collection=JSON.parse(localStorage.getItem('loginInfo'));
+    console.log("█ collection ►►►",  collection);
+
     this.code=collection.agentCode;
     console.log("█ aaa ►►►",  this.code);
 
