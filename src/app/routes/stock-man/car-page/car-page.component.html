@@ -110,32 +110,41 @@
             </label>
           </div>
           <div class="displayInline ml-lg font16">
-            <a (click)="doMoreDelete()" title="批量删除" class="addCar">
+            <a (click)="doMoreDelete()" title="批量删除" class="addCar main-red textDeco">
               <em class="fa fa-shopping-cart"></em>
             </a>
-            <a (click)="doMoreDelete()" class="_myhover _addCar" title="批量删除">批量删除</a>
+            <a (click)="doMoreDelete()" class="_myhover _addCar main-red textDeco" title="批量删除">批量删除</a>
+          </div>
+          <div class="displayInline _line ml-lg">
+            <span class="main-red font22">{{shopTotalNumber}} </span>种商品
           </div>
         </td>
-        <td class="w40 text-right _line">{{shopTotalNumber}} 种商品</td>
-        <td class="w20 _line clearfix _line">
-          <span class="w50 pull-right text-center _myPrice ">&yen; {{priceList.total  | number:'1.2-2'}}</span>
-          <span class="w50 pull-right text-right">商品总金额：</span>
+        <td class="w40 text-right _line"></td>
+        <td class="w20 _line clearfix">
+          <dl class="mb0">
+            <dt class="w40 displayInline text-right _line fontNormal">商品总金额：</dt>
+            <dd class="w50 text-left ml4 displayInline _line"><span class="main-red font20 _myPrice">&yen; {{priceList.total  | number:'1.2-2'}}</span></dd>
+          </dl>
         </td>
       </tr>
       <tr>
         <td class="w40"></td>
         <td class="w40 text-right _line"></td>
         <td class="w20 _line">
-          <span class="w50 pull-right  text-center _myPrice">&yen; {{priceList.expressPrice  | number:'1.2-2'}}</span>
-          <span class="w50 pull-right text-right">运费：</span>
-        </td>
+          <dl class="mb0">
+            <dt class="w40 displayInline text-right _line fontNormal">运费：</dt>
+            <dd class="w50 text-left ml4 displayInline _line"><span class="main-red font20 _myPrice">&yen; {{priceList.expressPrice  | number:'1.2-2'}}</span></dd>
+          </dl>
+       </td>
       </tr>
       <tr>
         <td class="w40"></td>
         <td class="w40 text-right _line"></td>
         <td class="w20 _line">
-          <span class="w50 pull-right  text-center _myPrice">&yen; {{priceList.payment  | number:'1.2-2'}}</span>
-          <span class="w50 pull-right text-right">应付总额：</span>
+          <dl class="mb0">
+            <dt class="w40 displayInline text-right _line fontNormal">应付总额：</dt>
+            <dd class="w50 text-left ml4 displayInline _line"><span class="main-red font20 _myPrice">&yen; {{priceList.payment  | number:'1.2-2'}}</span></dd>
+          </dl>
         </td>
       </tr>
     </table>

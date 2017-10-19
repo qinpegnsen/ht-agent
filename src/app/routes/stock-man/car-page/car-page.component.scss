@@ -23,7 +23,7 @@
   padding-bottom: 20px;
 }
 ._myPrice{
-  color:#E64346;
+  color:#CC1635;
   font-size: 25px;
 }
 ._select{
@@ -100,4 +100,13 @@
 }
 .displayInline{
   display: inline-block;
+}
+.fontNormal{
+  font-weight: normal!important;
+}
+.textDeco{
+  text-decoration: none;
+}
+.textDeco:hover{
+  color:#CC1635;
 }
