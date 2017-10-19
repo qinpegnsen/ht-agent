@@ -19,9 +19,10 @@ const PROXY_CONFIG = [
       "/nativeWXPay",
       "/ord",
       "/woAgent",
-      "/login"
+      "/login",
+      "/notifyAgent"
     ],
-    target: zyg + "8901",   //拦截 context配置路径，经过此地址
+    target: gh + "8088",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
@@ -29,7 +30,7 @@ const PROXY_CONFIG = [
       "/basicExpress",
       "/res"
     ],
-    target: zyg + "8900",   //拦截 context配置路径，经过此地址
+    target: gh + "8082",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
@@ -38,6 +39,6 @@ const PROXY_CONFIG = [
     ],
     target: bb +  "8096",   //拦截 context配置路径，经过此地址
     secure: false
-  },
+  }
 ];
 module.exports = PROXY_CONFIG;
