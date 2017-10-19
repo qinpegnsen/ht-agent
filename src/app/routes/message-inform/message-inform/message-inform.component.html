@@ -1,3 +1,6 @@
+<div class="content-heading mb-lg">
+  <span class="thc font">系统消息</span>
+</div>
 <table class="table bt bb">
   <thead>
   <tr>
@@ -16,7 +19,6 @@
   </tr>
   </thead>
 </table>
-
 <table class="table" #dataTable="rzhDataTable" [rzhData]="platformInfoData"
        (pageChange)="queryDatas($event)">
   <thead>
