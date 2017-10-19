@@ -21,7 +21,7 @@ export class DoPayComponent implements OnInit {
   public payCon: String = '';             //二维码的内容
   public time: any;                       //二维码的内容
   public curWay: any;                     //当前支付的方式
-  public timeAdd: number =30 ;            //累计的时间(分钟)
+  public timeAdd: number =0.3 ;            //累计的时间(分钟)
   public minute: number;                  //分钟
   public second: number;                  //秒
   public flag: boolean = true;           //累计的时间
@@ -37,6 +37,22 @@ export class DoPayComponent implements OnInit {
   ngOnInit() {
     let _this = this;
 
+    /**
+     * 路由事件用来监听地址栏的变化
+     * 1.当新增文章出现的时候，内容组件隐藏
+     * 2.路由变化的时候，刷新页面
+     */
+
+    _this.router.events
+      .subscribe((event) => {
+        if (event instanceof NavigationEnd) { // 当导航成功结束时执行
+          console.log("█ event.url ►►►",  event.url);
+          if(event.url.indexOf('do')==-1){//如果未支付完跳转了页面这时候清除时间函数
+            clearInterval(timer);
+          }
+        }
+      });
+
     _this.curWay = _this.routeInfo.snapshot.queryParams['curWay'];   //获取当前支付的方式
     _this.ordno = _this.routeInfo.snapshot.queryParams['ordno'];     //获取当前的订单号
     _this.price = Number(sessionStorage.getItem('pay'));             //获取价格
@@ -47,6 +63,7 @@ export class DoPayComponent implements OnInit {
         ordno: _this.ordno
       };
       _this.payCon = _this.stockManService.goPay(url, data);
+      console.log("█ _this.payCon ►►►",  _this.payCon);
     } else if (this.curWay == '_aliPay') {                                   //支付宝时执行，获取到支付的二维码的内容
     }
 
@@ -77,7 +94,7 @@ export class DoPayComponent implements OnInit {
     let that=this;
     swal({
       title: "付款时间已到",
-      text: "二维码已经失效，请选择？",
+      text: "二维码已经失效，请选择",
       type: "warning",
       showCancelButton: true,
       cancelButtonText: '订单列表',
@@ -103,6 +120,7 @@ export class DoPayComponent implements OnInit {
       ordno: this.ordno
     }
     let result = this.stockManService.isTrue(url, data);
+    console.log("█ result ►►►",  result);
     if (result) {//支付成功的收
       clearInterval(timer);
       AppComponent.rzhAlt("success", "支付成功");
