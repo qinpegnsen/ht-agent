@@ -1,5 +1,5 @@
 <!--查询 start-->
-<div class="row clearfix p text-right">
+<!--<div class="row clearfix p text-right">
   <div class="place-time clearfix mb">
     <span class="_title">下单时间：</span>
     <div class="_picker">
@@ -31,22 +31,22 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
 <!--查询 end-->
 <table class="wo table table-striped" #dataTable="rzhDataTable" [rzhData]="woList" (pageChange)="queryDatas(1,$event)">
   <thead>
   <tr>
-    <th class="w10 text-center">工单编号</th>
-    <th class="w10 text-center">售后单号</th>
-    <th class="w9 text-center">商品名称</th>
-    <th class="w7 text-center">申请数量</th>
-    <th class="w7 text-center">申请金额</th>
-    <th class="w9 text-center">服务类型</th>
-    <th class="w10 text-center">原因</th>
-    <th class="w9 text-center">联系人</th>
-    <th class="w9 text-center">电话</th>
-    <th class="w7 text-center">状态</th>
-    <th class="w15 text-center">操作</th>
+    <th class="w10 text-center thc font">工单编号</th>
+    <th class="w10 text-center thc font">售后单号</th>
+    <th class="w9 text-center thc font">商品名称</th>
+    <th class="w7 text-center thc font">申请数量</th>
+    <th class="w7 text-center thc font">申请金额</th>
+    <th class="w9 text-center thc font">服务类型</th>
+    <th class="w10 text-center thc font">原因</th>
+    <th class="w9 text-center thc font">联系人</th>
+    <th class="w9 text-center thc font">电话</th>
+    <th class="w7 text-center thc font">状态</th>
+    <th class="w15 text-center thc font">操作</th>
   </tr>
   </thead>
   <tbody>
@@ -65,8 +65,8 @@
       <td *ngIf="sale.state=='DEAL'">待处理</td>
       <td *ngIf="sale.state=='END'">已拒绝</td>
       <td>
-        <button  class="m-sm btn btn-xs btn-outline btn-info fa fa-info-circle _backColor"> 查看详情</button>
-        <button  class="m-sm btn btn-xs btn-outline btn-info fa fa-truck _backColor"> 查看物流</button>
+        <button  class="m-sm btn btn-xs btn-outline fa fa-info-circle _myWhiteBg thc font b"> 查看详情</button>
+        <!--<button  class="m-sm btn btn-xs btn-outline btn-info fa fa-truck _backColor"> 查看物流</button>-->
       </td>
     </tr>
   </ng-container>
