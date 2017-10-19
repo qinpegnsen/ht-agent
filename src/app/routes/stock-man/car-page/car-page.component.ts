@@ -371,7 +371,6 @@ export class CarPageComponent implements OnInit {
     setTimeout(() => {
       let numArr = $("._good:checked");
       this.shopTotalNumber = numArr.length;
-      console.log("█ this.shopTotalNumber ►►►",  this.shopTotalNumber);
     }, 0)
   }
 

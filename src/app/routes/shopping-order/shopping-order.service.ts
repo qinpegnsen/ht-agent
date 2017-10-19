@@ -8,7 +8,7 @@ export class ShoppingOrderService {
   constructor(private ajax: AjaxService) { }
 
   /**
-   *接单拒单 成功返回 put
+   *接单 成功返回 put
    * @param url
    * @param data
    */
@@ -22,7 +22,37 @@ export class ShoppingOrderService {
       success: (res) => {
         let info=res.info;
         if(res.success){
+          console.log("█ res ►►►",  res);
           result=res.data;
+          AppComponent.rzhAlt("success",info);
+        }else{
+          AppComponent.rzhAlt("error",info);
+        }
+      },
+      error: (res) => {
+        AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
+      }
+    });
+    return result;
+  }
+
+  /**
+   *拒单 成功返回 info
+   * @param url
+   * @param data
+   */
+
+  toRefuseWork(url,data){
+    let result;
+    this.ajax.put({
+      url: url,
+      data: data,
+      async:false,
+      success: (res) => {
+        let info=res.info;
+        console.log("█ info ►►►",  info);
+        if(res.success){
+          result=res.info;
           AppComponent.rzhAlt("success",info);
         }else{
           AppComponent.rzhAlt("error",info);

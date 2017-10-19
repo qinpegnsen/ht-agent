@@ -62,7 +62,7 @@
       <button *ngIf="order.state=='ACCEPT'"  class="m-sm btn btn-xs btn-outline thc bg fa fa-truck _myWhiteColor"
               (click)="deliver(order.id,order.ordno)"> 发货
       </button>
-      <button  class="m-sm btn btn-xs btn-outline fa fa-info-circle _myWhiteBg thc font b" routerLink="../work-detail"
+      <button *ngIf="order.state!='REJECT'" class="m-sm btn btn-xs btn-outline fa fa-info-circle _myWhiteBg thc font b" routerLink="../work-detail"
       [queryParams]="{ordno:order.ordno}"> 查看详情
       </button>
     </td>
