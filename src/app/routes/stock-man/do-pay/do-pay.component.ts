@@ -21,7 +21,7 @@ export class DoPayComponent implements OnInit {
   public payCon: String = '';             //二维码的内容
   public time: any;                       //二维码的内容
   public curWay: any;                     //当前支付的方式
-  public timeAdd: number =0.3 ;            //累计的时间(分钟)
+  public timeAdd: number =30 ;            //支付的时间(分钟)
   public minute: number;                  //分钟
   public second: number;                  //秒
   public flag: boolean = true;           //累计的时间
@@ -46,7 +46,6 @@ export class DoPayComponent implements OnInit {
     _this.router.events
       .subscribe((event) => {
         if (event instanceof NavigationEnd) { // 当导航成功结束时执行
-          console.log("█ event.url ►►►",  event.url);
           if(event.url.indexOf('do')==-1){//如果未支付完跳转了页面这时候清除时间函数
             clearInterval(timer);
           }
