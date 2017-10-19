@@ -57,7 +57,7 @@ export class WaitForOrdersComponent implements OnInit {
     let requestData = {
       sortColumns:'',
       curPage: activePage,
-      pageSize: 15,
+      pageSize: 10,
       agentCode:'',
       wono:this.wono,
       ordno:this.ordno,

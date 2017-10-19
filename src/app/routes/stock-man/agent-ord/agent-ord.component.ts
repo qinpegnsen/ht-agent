@@ -45,7 +45,7 @@ export class AgentOrdComponent implements OnInit {
     let url = '/goodsQuery/query';
     let data = {
       curPage: activePage,
-      pageSize: 8,
+      pageSize: 10,
       kindId: '',
       goodsName: '',
       sortColumn: ''
@@ -76,7 +76,6 @@ export class AgentOrdComponent implements OnInit {
    * 当点击tr的时候，让隐藏的tr出来
    */
   showDetail(shop: any) {
-    console.log("█ 11 ►►►",  11);
     console.log("█ shop.isShow ►►►",  shop.isShow);
     shop.isShow = !shop.isShow;
   }

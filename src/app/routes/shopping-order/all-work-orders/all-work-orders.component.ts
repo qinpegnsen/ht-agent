@@ -59,7 +59,7 @@ export class AllWorkOrdersComponent implements OnInit {
     let requestData = {
       sortColumns: '',
       curPage: activePage,
-      pageSize: 15,
+      pageSize: 10,
       agentCode: '',
       wono: this.wono,
       ordno: this.ordno,
@@ -101,7 +101,6 @@ export class AllWorkOrdersComponent implements OnInit {
    * 拒单
    */
   toReject(woAgengId) {
-    console.log("█ 1 ►►►",  1);
     this.woAgengId = woAgengId;
     this.showReasonWindow = true;
   }
