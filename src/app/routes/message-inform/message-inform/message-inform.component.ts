@@ -3,6 +3,7 @@ import {MessageInformService} from "../message-inform.service";
 import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
 import {Page} from "../../../core/page/page";
 import {HeaderComponent} from "../../../layout/header/header.component";
+import {Router} from "@angular/router";
 
 const swal = require('sweetalert');
 declare var $: any;
@@ -17,7 +18,7 @@ export class MessageInformComponent implements OnInit {
   private platformInfoData:any;                           //平台消息的数据
   private deletebutton:Object;                            //删除按钮
   private idArr=[]                                        //存放id的数组
-  constructor(public messageInformService:MessageInformService,public headerComponent:HeaderComponent) { }
+  constructor(public messageInformService:MessageInformService,public headerComponent:HeaderComponent,public router:Router) { }
 
   /**
    * 1.对按钮进行赋值
@@ -50,13 +51,16 @@ export class MessageInformComponent implements OnInit {
    * 单个的修改消息是否已读,如果需要刷新页面把注释打开仿照的没有刷新
    *1.让已读的去掉背景色
    */
-  updateIsRead(id){
+  updateIsRead(id,bol?,detailUrl?){
     let url='/notifyAgent/updateIsRead';
     let data={
       ids:id
     };
     this.platformInfoData=this.messageInformService.updateproblem(url,data);
     this.queryAdminNotify();
+    if(bol){
+      this.router.navigateByUrl(detailUrl);
+    }
   }
 
   /**
