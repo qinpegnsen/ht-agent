@@ -38,7 +38,7 @@
     <td class="w10 text-center vertical">订单号</td>
     <td class="w10 text-center vertical">收货人</td>
     <td class="w10 text-center vertical">手机</td>
-    <td class="w25 text-center vertical">地址</td>
+    <td class="w25 vertical text-left">地址</td>
     <td class="w10 text-center vertical">状态</td>
     <td class="w20 text-center vertical">操作</td>
   </tr>
@@ -50,7 +50,7 @@
     <td class="w10 text-center">{{order.ordno}}</td>
     <td class="w10 text-center">{{order.ord?.linkman}}</td>
     <td class="w10 text-center">{{order.ord?.phone}}</td>
-    <td class="w25 text-center">{{order.ord?.areaFullName}}{{order.ord?.address}}</td>
+    <td class="w25 text-left">{{order.ord?.areaFullName}}{{order.ord?.address}}</td>
     <td class="w10 text-center">{{order.state | rzhState :'1305' }}</td>
     <td class="w20 text-center">
       <button *ngIf="order.state=='NO'" class="m-sm btn btn-xs btn-outline fa fa-check _backColor thc bg _myWhiteColor"
