@@ -1,0 +1,76 @@
+<div class="content-heading mb-lg">
+  <span class="thc font">提现申请</span>
+</div>
+  <form class="form-validate form-horizontal" style="height: 100%" #addLimitForm="ngForm">
+    <!-- START panel-->
+    <div class="panel-default">
+      <div class="panel-body">
+        <input class="form-control"  [(ngModel)]="agentcode" name="agentCode" type="hidden">
+        <fieldset>
+          <div class="form-group">
+            <label class="col-sm-4 control-label"> <i>*</i> 收款人账号</label>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" required #acctTpl="ngModel" name="acct" [(ngModel)]="controlData.acct" />
+              <div [hidden]="acctTpl.valid || acctTpl.untouched"
+                   class="alert alert-danger">
+                收款人账号是必填项，请填写收款人账号
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+        <div class="form-group">
+          <label class="col-sm-4 control-label"><i>*</i>收款人姓名</label>
+          <div class="col-sm-3">
+            <input class="form-control" type="text" #bacctNameTpl="ngModel" required name="bacctName" [(ngModel)]="controlData.bacctName"/>
+            <div [hidden]="bacctNameTpl.valid || bacctNameTpl.untouched"
+                 class="alert alert-danger">
+              收款人姓名是必填项，请填写收款人姓名
+            </div>
+          </div>
+        </div>
+      </fieldset>
+        <fieldset>
+          <div class="form-group">
+            <label class="col-sm-4 control-label"><i>*</i>账户余额</label>
+            <div class="col-sm-3">
+              <input class="form-control" required type="text" #balanceTpl="ngModel" name="balance" [(ngModel)]="controlData.balance" readonly/>
+              <div [hidden]="balanceTpl.valid || balanceTpl.untouched"
+                   class="alert alert-danger">
+                账户余额是必填项，请填写账户余额
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <fieldset>
+          <div class="form-group">
+            <label class="col-sm-4 control-label"><i>*</i>申请提现金额</label>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" required #drawMoneyTpl="ngModel" name="drawMoney" [(ngModel)]="drawMoney"/>
+              <div [hidden]="drawMoneyTpl.valid || drawMoneyTpl.untouched"
+                   class="alert alert-danger">
+                申请提现金额是必填项，请填写申请提现金额
+              </div>
+            </div>
+          </div>
+        </fieldset>
+        <!--<input class="form-control" required [(ngModel)]="remark" name="reasonCode" type="hidden"/>-->
+        <fieldset>
+          <div class="form-group">
+            <label class="col-sm-4 control-label"> <i>*</i> 收款账号开户行</label>
+            <div class="col-sm-3">
+              <select class="form-control" name="selectBanks" [(ngModel)]="remark" (change)="seletAllByTypeCode()">
+                <option *ngFor="let item of selectBank" [value]="item.remark">{{item.remark}} </option>
+              </select>
+            </div>
+          </div>
+        </fieldset>
+      <fieldset>
+        <div class="form-group special specialGroup" >
+          <button class="ml btn btn-info pull-left" type="button" [disabled]="!addLimitForm.form.valid" (click)="addLimitList(addLimitForm.value)">提交信息</button>
+        </div>
+      </fieldset>
+      </div>
+    </div>
+    <!-- END panel-->
+  </form>

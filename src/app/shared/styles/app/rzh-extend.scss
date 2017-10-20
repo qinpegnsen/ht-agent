@@ -162,6 +162,10 @@ $largeImg: 80px;      // 商品列表图片的宽，较大的图
 ._refuseBg{
   background: red;
 }
+//鼠标悬停时出现小手
+.cursor-pointer{
+  cursor: pointer
+}
 
 //loading 样式
 @keyframes loading {

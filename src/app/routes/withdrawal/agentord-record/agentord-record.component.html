@@ -1,0 +1,71 @@
+<div class="content-heading mb-lg">
+  <span class="thc font">提现记录</span>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="controlData" (pageChange)="controlDatas($event)">
+      <thead>
+      <tr>
+        <th class="unselectable text-center w5 thc font">
+        </th>
+        <th class="col-md-1 unselectable text-center thc font">
+          收款人姓名
+        </th>
+        <th class="col-md-2 unselectable text-center thc font">
+          收款人账号
+        </th>
+        <th class="col-md-2 unselectable text-center thc font">
+          提现金额
+        </th>
+        <th class="col-md-3 unselectable text-center thc font">
+          收款开户行
+        </th>
+        <th class="col-md-1 unselectable text-center thc font">
+          状态
+        </th>
+        <th class="col-md-3 unselectable text-center thc font">
+          时间
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngFor="let file of dataTable.data;let i = index">
+        <tr  class="text-center">
+          <td class="cursor-pointer" (click)="showDetail(file)">
+            <i class="icon icon-arrow-down"></i>
+          </td>
+          <td>{{file.bacctName}}</td>
+          <td>{{file.acct}}</td>
+          <td>&yen;&nbsp;{{file.drawMoney}}</td>
+          <td>{{file.bank}}</td>
+          <td>{{file.state | rzhState :'1802'}}</td>
+          <td>{{file.createTime}}</td>
+        </tr>
+        <tr *ngIf="file.isShow">
+          <td class="p0" colspan="12">
+            <div class="time" *ngIf="file.createTime">
+              <ng-container>
+                <span>申请时间：</span><span>{{file.createTime}}</span>
+              </ng-container>
+            </div>
+            <div class="time" *ngIf="file.dealTime">
+              <ng-container>
+                <span>处理时间：</span><span>{{file.dealTime}}</span>
+              </ng-container>
+            </div>
+            <div class="time" *ngIf="file.doneTime">
+              <ng-container>
+                <span>完成时间：</span><span>{{file.doneTime}}</span>
+              </ng-container>
+            </div>
+
+
+          </td>
+        </tr>
+      </ng-container>
+
+      </tbody>
+    </table>
+  </div>
+</div>

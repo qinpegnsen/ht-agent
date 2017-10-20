@@ -39,6 +39,21 @@ const stockAddres = {
   link: '/main/stockAddres',
   icon: 'icon-location-pin'
 };
+const withdrawal = {
+  text: '提现管理',
+  icon: 'fa fa-money',
+  alert: '▼',
+  submenu: [
+    {
+      text: '提现记录',
+      link: '/main/withdrawal/agentord-record'
+    },
+    {
+      text: '我要提现',
+      link: '/main/withdrawal/agentord-apply'
+    }
+  ]
+};
 const messageInform = {
   text: '系统消息',
   link: '/main/message-inform',
@@ -51,5 +66,7 @@ export const menu = [
     afterSale,
     statistics,
     stockAddres,
+    withdrawal,
     messageInform
+
 ];

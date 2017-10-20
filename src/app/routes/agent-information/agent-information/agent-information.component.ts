@@ -53,8 +53,11 @@ export class AgentInformationComponent implements OnInit {
         me.placeSearch= new AMap.PlaceSearch();
         //TODO: 使用pla ceSearch对象调用关键字搜索的功能
         me.placeSearch.search(me.selectArea, function(status, result) {
-          let lat = result.poiList.pois[0].location.lat;
-          let lng = result.poiList.pois[0].location.lng;
+          let lng,lat;
+          lng = me.staff.coordinateLng;
+          lat = me.staff.coordinateLat;
+         /* lat = result.poiList.pois[0].location.lat;
+          lng = result.poiList.pois[0].location.lng;*/
           map.setCenter(new AMap.LngLat(lng, lat));
         });
       })
