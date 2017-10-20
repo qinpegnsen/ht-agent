@@ -22,7 +22,7 @@ const PROXY_CONFIG = [
       "/login",
       "/statistical"
     ],
-    target: sz + "8085",   //拦截 context配置路径，经过此地址
+    target: gh + "8088",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
@@ -30,7 +30,7 @@ const PROXY_CONFIG = [
       "/basicExpress",
       "/res"
     ],
-    target: sz + "8082",   //拦截 context配置路径，经过此地址
+    target: gh + "8082",   //拦截 context配置路径，经过此地址
     secure: false
   },
 ];
