@@ -3,7 +3,7 @@
     订单页面
   </div>
   <!--<div class="panel h80 prompting">-->
-    <!--<span> 温馨提示：</span><span>请确认相关商品信息后提交订单。</span>-->
+  <!--<span> 温馨提示：</span><span>请确认相关商品信息后提交订单。</span>-->
   <!--</div>-->
   <div class="w100 clearfix">
     <div class="_title">
@@ -17,7 +17,8 @@
           <b class="col-l-5 pull-left">收货人信息</b>
         </div>
         <div *ngIf="!defaultAddress">
-          <span routerLink="/main/stockAddres/rightpage" [queryParams]="{number:1,source:'cart'}" class='_myhover font14'>添加地址</span>
+          <span routerLink="/main/stockAddres/rightpage" [queryParams]="{number:1,source:'cart'}"
+                class='_myhover font14'>添加地址</span>
         </div>
         <div *ngIf="defaultAddress?.address">
           <div class="w100 clearfix">
@@ -63,7 +64,9 @@
         </div>
         <div>
           <div class="w100 clearfix _payWay">
-            <div class="text-center col-lg-1 _line _border _marginR _selected _myhover p0" (click)="changeStyle($event.target)">在线支付</div>
+            <div class="text-center col-lg-1 _line _border _marginR _selected _myhover p0"
+                 (click)="changeStyle($event.target)">在线支付
+            </div>
             <div class="text-center col-lg-1 _line _myhover p0" (click)="changeStyle($event.target)">银行汇款</div>
           </div>
         </div>
@@ -92,7 +95,7 @@
           </div>
           <ul class="clearfix  _storeBt _myStoreTotal _list">
             <!--店铺列表-->
-            <li class="w100 pull-left text-center _list" *ngFor="let good of orderData?.agentOrdItems;let i = index">
+            <li class="w100 pull-left text-center _list _kind" *ngFor="let good of orderData?.agentOrdItems;let i = index">
               <!--<div class="clearfix">-->
               <!--<div class="w5 text-left marLeft  pull-left">-->
               <!--<div class="checkbox c-checkbox">-->
@@ -147,24 +150,36 @@
     <!--价格信息-->
     <table class="w100 _table">
       <tr>
-        <td class="w75 text-right _line">{{orderData?.goodsNum}}件商品</td>
+        <td class="w75 text-right _line"></td>
         <td class="w25 _line clearfix">
-          <span class="w60 pull-right  text-center _myPrice">&yen; {{orderData?.total  | number:'1.2-2'}}</span>
-          <span class="w40 pull-right text-right">总商品金额：</span>
+          <dl class="mb0">
+            <dt class="w50 displayInline text-right _line fontNormal fontNormal displayInline">
+              <span class="mr5">{{goodLength}} 种商品</span>
+              <span>商品总金额：</span>
+            </dt>
+            <dd class="w40 text-left ml4 displayInline _line displayInline"><span class="main-red font20 _myPrice">&yen; {{orderData?.total  | number:'1.2-2'}}</span>
+            </dd>
+          </dl>
         </td>
       </tr>
       <tr>
         <td class="w75 text-right _line"></td>
         <td class="w25 _line">
-          <span class="w60 pull-right  text-center _myPrice">&yen; {{orderData?.expressPrice  | number:'1.2-2'}}</span>
-          <span class="w40 pull-right text-right">运费：</span>
+          <dl class="mb0">
+            <dt class="w50 displayInline text-right _line fontNormal fontNormal displayInline">运费：</dt>
+            <dd class="w40 text-left ml4 displayInline _line displayInline"><span class="main-red font20 _myPrice">&yen; {{orderData?.expressPrice  | number:'1.2-2'}}</span>
+            </dd>
+          </dl>
         </td>
       </tr>
       <tr>
         <td class="w75 text-right _line"></td>
         <td class="w25 _line">
-          <span class="w60 pull-right  text-center _myPrice">&yen; {{orderData?.payment  | number:'1.2-2'}}</span>
-          <span class="w40 pull-right text-right">应付总额：</span>
+          <dl class="mb0">
+            <dt class="w50 displayInline text-right _line fontNormal fontNormal displayInline">应付总额：</dt>
+            <dd class="w40 text-left ml4 displayInline _line displayInline"><span class="main-red font20 _myPrice">&yen; {{orderData?.payment  | number:'1.2-2'}}</span>
+            </dd>
+          </dl>
         </td>
       </tr>
     </table>

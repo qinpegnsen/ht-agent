@@ -21,6 +21,7 @@ const PROXY_CONFIG = [
       "/woAgent",
       "/login",
       "/statistical",
+      "/datadict",
       "/notifyAgent"
     ],
     target: gh + "8088",   //拦截 context配置路径，经过此地址
