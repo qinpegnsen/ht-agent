@@ -68,7 +68,6 @@ export class LoginComponent implements OnInit {
         'pwd': me.password
       },
       success: (result) => {
-     console.log("█ result ►►►",  result);
         MaskService.hideMask();
         end = new Date().getTime();
         let info = result.data;

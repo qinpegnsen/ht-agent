@@ -144,9 +144,10 @@ export class SubmitService {
           });
         }
       },
-      error: (res) => {
-        console.log('get data error', res);
-      }
+    error: (res) => {
+      console.log('get data error', res);
+    }
+
     });
     return result;
   }

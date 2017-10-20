@@ -22,12 +22,12 @@ export class SettingsService {
      * 用户信息（当前登录用户）
      * 获取用户cookie信息并展示
      */
-    let loginInfo: any = JSON.parse(localStorage.getItem('loginInfo')), name = '游客', job = '无';
-    if (!isNullOrUndefined(loginInfo)) name = loginInfo.agentName, job = loginInfo.storeName;
+    let loginInfo: any = JSON.parse(localStorage.getItem('loginInfo')), name = '游客', job = '无',picture='';
+    if (!isNullOrUndefined(loginInfo)) name = loginInfo.agentName, job = loginInfo.storeName,picture=loginInfo.avatar;
     this.user = {
       name: name,
       job: job,
-      picture: 'assets/img/user/01.jpg'
+      picture:picture
     };
 
     // App Settings

@@ -1,105 +1,104 @@
 <div class="row">
-  <div class="col-lg-8 col-md-6" style="height: 360px;margin-bottom: 30px">
-    <!-- Team Panel-->
-    <div class="panel panel-default"  style="height: 360px">
-      <div class="panel-heading">
-        <div class="panel-title">店铺及商品提示</div>
-        <p>新版页面正在筹备，尽请期待</p>
-      </div>
-      <div class="bg-gray" style="height: 40px;line-height: 40px;padding-left: 40px">发布商品数量
-        <div class="label label-danger thc bgIcon colorIcon">{{data?.allGoods}}</div>
-      </div>
-      <div style="height: 70px">
-        <button class="mb-sm btn btn-green btn-outline" style="    margin: 20px 40px;">出售中的商品
-          <div class="label label-danger thc bgIcon colorIcon">
-            {{data?.NORMAL}}
-          </div>
-
-        </button>
-        <button class="mb-sm btn btn-green btn-outline" style="    margin: 20px 40px;">发布待平台审核
-          <div class="label label-danger thc bgIcon colorIcon">
-            {{data?.AUDIT}}
-          </div>
-        </button>
-        <button class="mb-sm btn btn-green btn-outline" style="    margin: 20px 40px;">平台审核失败
-          <div class="label label-danger thc bgIcon colorIcon">
-          {{data?.UNPASS}}
-          </div>
-        </button>
-        <button class="mb-sm btn btn-green btn-outline" style="    margin: 20px 40px;">仓库中已审核
-          <div class="label label-danger thc bgIcon colorIcon">
-            {{data?.PASS}}
-          </div>
-        </button>
-        <button class="mb-sm btn btn-green btn-outline" style="    margin: 20px 20px;">被禁售的商品
-          <div class="label label-danger thc bgIcon colorIcon">
-            {{data?.STOP}}
-          </div>
-
-        </button>
-      </div>
-
-    <div class="bg-gray" style="height: 40px;line-height: 40px;padding-left: 40px">近期售出：交易中的订单</div>
-      <div style="height: 70px">
-      <button class="mb-sm btn btn-green btn-outline" style="margin: 20px 40px;">代收货订单
-        <div class="label label-danger thc bgIcon colorIcon">
-          {{data?.CR}}
+  <div style="min-width: 1137px;" class="">
+    <div class="col-lg-8 col-md-6 shop">
+      <!-- Team Panel-->
+      <div class="panel panel-default" style="height: 328px">
+        <div class="panel-heading">
+          <div class="panel-title font16">店铺及商品提示</div>
+          <p>新版页面正在筹备，尽请期待</p>
         </div>
-      </button>
-      <button class="mb-sm btn btn-green btn-outline" style="margin: 20px 40px;">代发货订单
-        <div class="label label-danger thc bgIcon colorIcon">
-          {{data?.PREPARE}}
+        <div class="bg-gray release">
+          <div class="font16">代理商统计</div>
+          <div class="label label-danger thc bgIcon colorIcon">{{data?.allGoods}}</div>
         </div>
-      </button>
-      <button class="mb-sm btn btn-green btn-outline" style="margin: 20px 40px;">退款中
-        <div class="label label-danger thc bgIcon colorIcon">
-          {{data?.refundIng}}
+        <div style="">
+          <button class="mb-sm btn btn-green btn-outline m-all">进货数量
+            <div class="label label-danger thc bgIcon colorIcon">
+              {{data?.sumBatchNum}}
+            </div>
+
+          </button>
+          <button class="mb-sm btn btn-green btn-outline m-all">进货金额
+            <div class="label label-danger thc bgIcon colorIcon">
+              {{data?.sumPay}}
+            </div>
+          </button>
+          <button class="mb-sm btn btn-green btn-outline m-all">发货数量
+            <div class="label label-danger thc bgIcon colorIcon">
+              {{data?.countDelivery}}
+            </div>
+          </button>
         </div>
-      </button>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-6" style="height: 360px">
-    <!-- Team Panel-->
-    <div class="panel panel-default"  style="height: 360px">
-      <div class="panel-heading">
-        <div class="panel-title">商家公告</div>
-        <p>新版页面正在筹备，尽请期待</p>
-      </div>
+        <div style="height: 60px">
+          <button class="mb-sm btn btn-green btn-outline m-all">派单数量
+            <div class="label label-danger thc bgIcon colorIcon">
+              {{data?.agentAllOrd}}
+            </div>
+          </button>
+          <button class="mb-sm btn btn-green btn-outline m-all">接单数量
+            <div class="label label-danger thc bgIcon colorIcon">
+              {{data?.agentDealOrd}}
+            </div>
+          </button>
+          <button class="mb-sm btn btn-green btn-outline m-all" >拒单数量
+            <div class="label label-danger thc bgIcon colorIcon">
+              {{data?.agentRejectOrd}}
+            </div>
 
-      <div class="panel-heading">
-        <div class="panel-title">平台联系方式</div>
-        <p>客服电话1：0371-6565326</p>
-        <p>客服电话2：0371-6565326</p>
-        <p>联系方式：河南省郑州市高新区莲花街</p>
-      </div>
+          </button>
+        </div>
 
-    </div>
-    <!-- end Team Panel-->
-  </div>
-  <div class="col-lg-8 col-md-6" style="height: 360px;margin-bottom: 30px">
-    <!-- Team Panel-->
-    <div class="panel panel-default"  style="height: 360px">
-      <div class="panel-heading">
-        <div class="panel-title">最新时间段销售走势</div>
-        <p>分析每日热销时段及调整销售策略</p>
-      </div>
 
-      <div class="panel">
-        <div echarts [options]="optionPrev" class="demo-chart w100" style="height: 300px"></div>
+        <div style="">
+          <div class="bg-gray release font16">今日统计</div>
+          <button class="mb-sm btn btn-green btn-outline m-all">派单数量
+            <div class="label label-danger thc bgIcon colorIcon">
+              {{data?.todayAgentAllOrd}}
+            </div>
+          </button>
+          <button class="mb-sm btn btn-green btn-outline m-all">接单数量
+            <div class="label label-danger thc bgIcon colorIcon">
+              {{data?.todayAgentDealOrd}}
+            </div>
+          </button>
+          <button class="mb-sm btn btn-green btn-outline m-all" >拒单数量
+            <div class="label label-danger thc bgIcon colorIcon">
+              {{data?.todayAgentRejectOrd}}
+            </div>
+          </button>
+        </div>
       </div>
     </div>
-    <!-- end Team Panel-->
-  </div>
-  <div class="col-lg-4 col-md-6" style="height: 360px">
-    <!-- Team Panel-->
-    <div class="panel panel-default"  style="height: 360px">
-      <div class="panel-heading">
-        <div class="panel-title">单品销售排行</div>
-        <p>掌握三十日内最热销的商品及时补充货源</p>
-        <p>{{data?.goodsRanking}}</p>
+    <div class="col-lg-4 col-md-6 business">
+      <div class="panel panel-default business" style="height: 330px">
+
+        <div class="panel-heading">
+          <div class="panel-title font16">平台联系方式</div>
+          <p style="padding-top: 7px">客服电话1：{{tel.info}}</p>
+          <p>联系方式：{{address.info}}</p>
+        </div>
+
       </div>
+      <!-- end Team Panel-->
     </div>
   </div>
+
+  <div style="">
+    <div class="col-lg-12 col-md-6 shop" >
+      <!-- Team Panel-->
+      <div class="panel panel-default"  style="height: 360px">
+        <div class="panel-heading">
+          <div class="panel-title">最新平台派单走势</div>
+        </div>
+
+        <div class="panel">
+          <div echarts [options]="optionPrev" class="demo-chart w100" style="height: 300px"></div>
+        </div>
+      </div>
+      <!-- end Team Panel-->
+    </div>
+
+  </div>
+
 
 </div>

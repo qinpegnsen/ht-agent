@@ -20,9 +20,12 @@ export class HomeComponent implements OnInit {
   private queryType: any = 'DAY';//日期选择
   private queryTypes: any;//日期选择
   todaySale: any = new Date();
-  yesterdaySale: any = new Date();
+  agentAllOrdList: any = new Date();
+  agentDealOrdList: any = new Date();
 
   private data: any;
+  private tel:any;
+  private address:any
   now: any;
   prev: any;
 
@@ -41,6 +44,8 @@ export class HomeComponent implements OnInit {
       _this.queryTypes = this.tools.getEnumDataList('1401');   //时间状态枚举列表
       _this.todaySale = RzhtoolsService.dataFormat(RzhtoolsService.getAroundDateByDate(new Date(this.todaySale), 0), 'yyyy-MM-dd');
      this.qeuryAll();
+     this.infoByTypeCode();
+     this.dressByTypeCode();
     }
 
   /**
@@ -48,14 +53,13 @@ export class HomeComponent implements OnInit {
    */
   private optionPrevInfo() {
     let _this = this;
-    console.log("█ .prev ►►►", _this.prev);
     _this.optionPrev = {
       title: {
-        text: '新增会员统计',
+        text: '平台派单统计',
         left:"46%"
       },
       legend: {
-        data: ['今天', '昨天'],
+        data: ['派单', '接单'],
         align: 'left',
         left:"46%",
         top:"10%",
@@ -87,7 +91,7 @@ export class HomeComponent implements OnInit {
       xAxis: [
         {
           type: 'category',
-          data: _this.prev.keys,
+          data: _this.now.keys,
           axisTick: {
             alignWithLabel: true
           }
@@ -100,16 +104,16 @@ export class HomeComponent implements OnInit {
       ],
       series: [
         {
-          name: '今天',
-          type: 'bar',
-          barWidth: '30%',
-          data: _this.prev.yaxis
-        },
-        {
-          name:'昨天' ,
+          name: '派单',
           type: 'bar',
           barWidth: '30%',
           data: _this.now.yaxis
+        },
+        {
+          name:'接单' ,
+          type: 'bar',
+          barWidth: '30%',
+          data: _this.prev.yaxis
         }
       ]
     };
@@ -125,9 +129,28 @@ export class HomeComponent implements OnInit {
     let result = this.submit.getData(url, data);
     if(result){
       me.data = result;
-      me.now = me.data.todaySale;
-      me.prev = me.data.yesterdaySale;
+      me.now = me.data.agentAllOrdList;
+      me.prev = me.data.agentDealOrdList;
       me.optionPrevInfo();
     }
+  }
+
+  /**
+   * 获取平台信息
+   */
+
+  infoByTypeCode() {
+    let url = "/datadict/loadDatadictByCode";//电话
+    let data = {
+      code: "plat_basic_info_phone_by_agent"
+    }
+    this.tel= this.submit.getData(url, data);
+  }
+  dressByTypeCode() {
+    let url = "/datadict/loadDatadictByCode";//地址
+    let data = {
+      code: "plat_basic_info_address_by_agent"
+    }
+    this.address= this.submit.getData(url, data);
   }
 }
