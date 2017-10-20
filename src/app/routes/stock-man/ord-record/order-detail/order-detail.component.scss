@@ -181,7 +181,7 @@
 .qpsP{
   word-break: break-all;
   max-height:100px;
-  overflow: hidden;
+  overflow-y: auto;
 }
 .timeline:before, .timeline-alt:before{
   left:17px!important;
