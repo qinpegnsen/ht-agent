@@ -139,7 +139,7 @@ export class OrderPageComponent implements OnInit {
    */
   goPay(){
     let note=$("._message").val();
-    let payWay=$("._payWay ._selected").text();
+    let payWay=$.trim($("._payWay ._selected").text());//获取文本之后再把多余的空格去掉，要不然html大代码一整理就出错了
     if(payWay=='在线支付'){
       payWay='ONLINE'
     }else{
