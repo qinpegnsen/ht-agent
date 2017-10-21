@@ -4,6 +4,7 @@ import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
 import {HeaderComponent} from "../../../layout/header/header.component";
 import {Router} from "@angular/router";
 import {AppComponent} from "../../../app.component";
+import {DataDictService} from "../../../core/services/data-dict.service";
 
 const swal = require('sweetalert');
 declare var $: any;
@@ -29,6 +30,7 @@ export class CarPageComponent implements OnInit {
 
   constructor(public stockManService: StockManService,
               public headerComponent: HeaderComponent,
+              public dataDictService: DataDictService,
               private router: Router) {
   }
 
@@ -71,7 +73,7 @@ export class CarPageComponent implements OnInit {
     let data = {
       code: 'agent_ord_express_free_price'
     }
-    this.freeNum = this.stockManService.getShopList(url, data)
+    this.freeNum = this.dataDictService.getInfo(url, data);
   }
 
   /**

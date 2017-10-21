@@ -5,6 +5,7 @@ import {HeaderComponent} from "app/layout/header/header.component";
 import {isNullOrUndefined} from "util";
 import {Location} from "@angular/common";
 import {AppComponent} from "../../../app.component";
+import {DataDictService} from "../../../core/services/data-dict.service";
 
 declare var $:any;
 
@@ -22,13 +23,18 @@ export class PayPageComponent implements OnInit {
   public ordno:any;                      //订单号
   public pay:any;                        //支付的价格
   public flag:boolean=true;             //图片的地址
+  public accountData;                    //平台统一银行收款账户账号
+  public bankData;                       //平台统一银行收款账户开户行
+  public nameData;                       //平台统一银行收款账户名称
+  public phoneData;                      //平台统一银行收款联系方式
 
   constructor(
     public stockManService: StockManService,
     private router: Router,
     public headerComponent: HeaderComponent,
     private routeInfo:ActivatedRoute,
-    private location:Location
+    private location:Location,
+    public dataDictService: DataDictService,
   ) { }
 
   /**
@@ -47,6 +53,7 @@ export class PayPageComponent implements OnInit {
       this.payWay=this.orderData.payWay;
     }
     this.bornOrder(ordno);
+    this.getRemitInfo();
 
     /**
      * 路由事件用来监听地址栏的变化
@@ -65,6 +72,29 @@ export class PayPageComponent implements OnInit {
         }
       });
     this.headerComponent.getShopTotal();//刷新购物车商品数量
+  }
+
+  /**
+   * 获取汇款时的信息（从数据字典取出来）
+   */
+  getRemitInfo() {
+    let url = '/datadict/loadInfoByCode';
+    let accountData = { //平台统一银行收款账户账号
+      code: 'plat_finace_receive_account'
+    }
+    this.accountData = this.dataDictService.getInfo(url, accountData);
+    let bankData = { //平台统一银行收款账户开户行
+      code: 'plat_finace_receive_bank'
+    }
+    this.bankData = this.dataDictService.getInfo(url, bankData);
+    let nameData = { //平台统一银行收款账户名称
+      code: 'plat_finace_receive_name'
+    }
+    this.nameData = this.dataDictService.getInfo(url, nameData);
+    let phoneData = { //平台统一银行收款联系方式
+      code: 'plat_finace_receive_phone'
+    }
+    this.phoneData = this.dataDictService.getInfo(url, phoneData);
   }
 
   /**

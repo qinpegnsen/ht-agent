@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {isNullOrUndefined} from 'util';
 import {CookieService} from 'angular2-cookie/core';
 import { Location }from '@angular/common';
+import {DataDictService} from "../services/data-dict.service";
 declare var $: any;
 
 @Injectable()
@@ -16,7 +17,7 @@ export class SettingsService {
     orderState:1001
   }
 
-  constructor(private _cookieService: CookieService, private location: Location) {
+  constructor(private _cookieService: CookieService, private location: Location,private dataDictService: DataDictService) {
 
     /**
      * 用户信息（当前登录用户）
@@ -30,10 +31,17 @@ export class SettingsService {
       picture:picture
     };
 
+    /**
+     * 获取当前系统的名称
+     * @type {string}
+     */
+    let url='/datadict/loadInfoByCode';
+    let data={code:'agent_system_name'};
+    let agentName=this.dataDictService.getInfo(url,data);
     // App Settings
     // -----------------------------------
     this.app = {
-      name: '三楂红商城-代理商系统',
+      name: agentName,
       description: '三楂红商城-代理商系统',
       year: ((new Date()).getFullYear())
     };

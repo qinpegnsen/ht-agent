@@ -45,6 +45,7 @@ import {StatePipe} from "./pipe/state.pipe";
 import {RzhtoolsService} from "../core/services/rzhtools.service";
 import {GetWeekPipe} from "./pipe/get-week.pipe";
 import {AngularEchartsModule} from "ngx-echarts";
+import {DataDictService} from "../core/services/data-dict.service";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -77,7 +78,7 @@ import {AngularEchartsModule} from "ngx-echarts";
     AngularEchartsModule
   ],
   providers: [
-    ColorsService,StockManService,HeaderComponent,AccordionComponent,RzhtoolsService
+    ColorsService,StockManService,HeaderComponent,AccordionComponent,RzhtoolsService,DataDictService
   ],
   declarations: [
     FlotDirective,
