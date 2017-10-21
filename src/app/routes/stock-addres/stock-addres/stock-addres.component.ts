@@ -41,7 +41,7 @@ export class StockAddresComponent implements OnInit {
     this.queryId = this.routeInfo.snapshot.queryParams['ids'];
     //按钮配置
     this.addButton = {
-      type:"add",
+      type:"add-thc",
       text:"新增代理商收货地址",
       title:'新增代理商收货地址',
     };
