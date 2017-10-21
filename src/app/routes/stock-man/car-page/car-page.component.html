@@ -41,7 +41,8 @@
     <ul class="clearfix  _storeBt _myStoreTotal _list">
       <!--店铺列表-->
       <li class="w100 pull-left text-center _storeBt _myStore _list" *ngFor="let store of storeListData;let i = index">
-        <div class="clearfix">
+        <!--目前暂时隐藏店铺的名字，以后需要的时候在放开-->
+        <div class="clearfix" style="display: none">
           <div class="w50 text-left marLeft  pull-left">
             <div class="checkbox c-checkbox">
               <label class="unselectable">
@@ -72,7 +73,7 @@
                      onerror="javascript:this.src='../../../assets/img/dummy.png';">
               </div>
               <div class="goods-name">
-                <div class="extra"><span>商品名字：{{good.goodsName}}</span></div>
+                <div class="extra"><span>{{good.goodsName}}</span></div>
                 <div *ngFor="let standard of good.goodsSavSetList">{{standard.attrName}}：{{standard.value}}</div>
               </div>
             </div>

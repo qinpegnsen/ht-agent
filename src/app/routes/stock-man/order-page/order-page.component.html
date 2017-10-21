@@ -115,8 +115,8 @@
                            onerror="javascript:this.src='../../../assets/img/dummy.png';">
                     </div>
                     <div class="col-xs-11 positionA">
-                      <div class="extra _line"><span>商品名字：{{good.goodsName}}</span></div>
-                      <div class='_line' *ngFor="let standard of good.goodsSavSetList">
+                      <div class="extra "><span>{{good.goodsName}}</span></div>
+                      <div class='' *ngFor="let standard of good.goodsSavSetList">
                         {{standard.attrName}}：{{standard.value}}
                       </div>
                     </div>
@@ -154,7 +154,7 @@
         <td class="w25 _line clearfix">
           <dl class="mb0">
             <dt class="w50 displayInline text-right _line fontNormal fontNormal displayInline">
-              <span class="mr5">{{goodLength}} 种商品</span>
+              <span class="mr5"><span class="main-red font22">{{goodLength}} </span>种商品</span>
               <span>商品总金额：</span>
             </dt>
             <dd class="w40 text-left ml4 displayInline _line displayInline"><span class="main-red font20 _myPrice">&yen; {{orderData?.total  | number:'1.2-2'}}</span>
