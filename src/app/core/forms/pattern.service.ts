@@ -15,6 +15,7 @@ export class PatternService {
   public chinese: string; //中文
   public tel:string;//手机号和固话
   public positive:string;
+  public express:string;//快递单号，有的是数字和字母的组合 如圆通快速
   constructor() {
     this.num = '^[0-9]*$'; //数字正则
     this.letter = '^[A-Za-z]*$'; //字母正则
@@ -26,6 +27,6 @@ export class PatternService {
     this.chinese = '^[\u4e00-\u9fa5]{0,}$'; //中文正则（三网合一）
     this.tel = '(^1[0-9]{10}$)|(^((^[0-9]{3,4}-[0-9]{7,8}$)|(^[0-9]{7,8}$))$)';//手机号和固话同时验证
     this.positive = '^[1-9]+$'; // 整数
+    this.express = '^[A-Za-z0-9]+$'　　//由数字和26个英文字母组成的字符串
   }
-
 }

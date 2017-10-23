@@ -26,7 +26,11 @@
       <dl class="bb m0 clearfix">
         <dt class="col-xs-3">快递单号：</dt>
         <dd class="col-xs-5 font14">
-          <input type="text" name="expressNo" class="form-control required input-sm" required [(ngModel)]="expressNo">
+          <input type="text" name="expressNo" class="form-control required input-sm" required #expressNoTem="ngModel" [(ngModel)]="expressNo" pattern="{{pattern.express}}">
+          <div [hidden]="expressNoTem.valid||expressNoTem.untouched"
+               class="alert alert-danger">
+            请输入合法的快递单号
+          </div>
         </dd>
       </dl>
       <!--<dl class="bb m0 clearfix">-->

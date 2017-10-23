@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {isNullOrUndefined, isUndefined} from "util";
 import {ShoppingOrderService} from "../shopping-order.service";
+import {PatternService} from "../../../core/forms/pattern.service";
 
 declare var $: any;
 
@@ -21,7 +22,7 @@ export class DeliverComponent implements OnInit, OnDestroy, OnChanges {
   @Input('ordno') ordno: string;
   @Output() deliverGoods = new EventEmitter();
 
-  constructor(private shoppingOrderService: ShoppingOrderService) {
+  constructor(private shoppingOrderService: ShoppingOrderService,private pattern: PatternService) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
