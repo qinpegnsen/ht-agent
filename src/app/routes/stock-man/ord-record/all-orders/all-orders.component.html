@@ -8,7 +8,7 @@
   <li class="w10 pull-left text-center thc font">操作</li>
 </ul>
 <table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="goodsList"
-       (pageChange)="queryDatas($event)">
+       (pageChange)="queryDatas(1,$event)">
   <tbody>
   <tr class="mt" *ngFor="let goods of dataTable.data;let i = index">
     <td class="w100 p0 font12 bt0">
@@ -111,10 +111,10 @@
             </button>
             <br>
             <button *ngIf="goods.state=='CR'" class="m-sm btn btn-xs btn-outline fa fa-ban thc font b"
-                    (click)="cancelOrder(goods.ordno)">
+                    (click)="cancelOrder(goods.ordno,goodsList.curPage)">
               取消订单
             </button>
-            <button *ngIf="goods.state=='DELIVERY'" (click)="confirmRecive(goods.ordno)"
+            <button *ngIf="goods.state=='DELIVERY'" (click)="confirmRecive(goods.ordno,goodsList.curPage)"
                     class="m-sm btn btn-xs btn-outline fa fa-retweet thc bg _myWhiteColor"> 确认收货
             </button>
             <button *ngIf="goods.state=='SUCCESS'" class="m-sm btn btn-xs  fa fa-shopping-cart thc bg _backColor"

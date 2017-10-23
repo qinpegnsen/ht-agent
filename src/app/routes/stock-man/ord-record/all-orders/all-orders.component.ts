@@ -7,6 +7,7 @@ import {Router} from "@angular/router";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 import {StockManService} from "../../stock-man.service";
 import {HeaderComponent} from "../../../../layout/header/header.component";
+import {isNullOrUndefined} from "util";
 
 const swal = require('sweetalert');
 
@@ -36,7 +37,7 @@ export class AllOrdersComponent implements OnInit {
   ngOnInit() {
     let me = this;
     me.parentComp.orderType = 1;
-    me.queryDatas()
+    me.queryDatas(1);
   }
 
   /**
@@ -44,15 +45,17 @@ export class AllOrdersComponent implements OnInit {
    * @param event
    * @param curPage
    */
-  public queryDatas(event?: PageEvent) {
-    let _this = this, activePage = 1;
-    if (typeof event !== 'undefined') {
-      activePage = event.activePage;
-    }
+  public queryDatas(curPage,event?: PageEvent) {
+    let activePage = 1, _this = this;
+    if(typeof event !== "undefined") {
+      activePage =event.activePage
+    }else if(!isNullOrUndefined(curPage)){
+      activePage =curPage
+    };
     let requestUrl = ' /agentOrd/queryAgentState';
     let requestData = {
       curPage: activePage,
-      pageSize: 10,
+      pageSize: 3,
       state: '',
     };
     _this.goodsList = new Page(_this.submit.getData(requestUrl, requestData));
@@ -80,13 +83,13 @@ export class AllOrdersComponent implements OnInit {
    *  1.取消完刷新页面
    * @param orderId
    */
-  cancelOrder(ordno){
+  cancelOrder(ordno,curPage){
     let url='/agentOrd/cancelAgentOrd';
     let data={
       ordno:ordno
     }
     this.stockManService.delAgentOrd(url,data);
-    this.queryDatas();
+    this.queryDatas(curPage);
   }
 
   /**
@@ -126,21 +129,21 @@ export class AllOrdersComponent implements OnInit {
   }
 
   /**
-   * 再次进行购买
+   * 再次进行购买  加入购物车
    */
   againBuy(goodsCode, num) {
     let url = '/agent/agentCart/addCustCart';
     let data = {
       strData: `${goodsCode},${num};`
-    }
-    this.stockManService.sendCar(url, data)
-    this.headerComponent.getShopTotal()
+    };
+    this.stockManService.sendCar(url, data);
+    this.headerComponent.getShopTotal();
   }
 
   /**
    * 确认收货
    */
-  confirmRecive(ordno) {
+  confirmRecive(ordno,curPage) {
     let that=this;
     swal({
         title: '您确认收到货了吗？',
@@ -157,7 +160,7 @@ export class AllOrdersComponent implements OnInit {
           ordno: ordno
         }
         that.stockManService.delAgentOrd(url, data);
-        that.queryDatas();
+        that.queryDatas(curPage);
       }
     );
   }
