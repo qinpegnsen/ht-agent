@@ -24,8 +24,9 @@ export class HomeComponent implements OnInit {
   agentDealOrdList: any = new Date();
 
   private data: any;
-  private tel:any;
-  private address:any
+  private tel1:any;
+  private tel2:any;
+  // private address:any
   now: any;
   prev: any;
 
@@ -43,9 +44,10 @@ export class HomeComponent implements OnInit {
       let _this = this;
       _this.queryTypes = this.tools.getEnumDataList('1401');   //时间状态枚举列表
       _this.todaySale = RzhtoolsService.dataFormat(RzhtoolsService.getAroundDateByDate(new Date(this.todaySale), 0), 'yyyy-MM-dd');
-     this.qeuryAll();
-     this.infoByTypeCode();
-     this.dressByTypeCode();
+      _this.qeuryAll();
+      _this.technicalByTypeCode();//技术服务电话
+      _this.userByTypeCode();//平台服务电话
+      // _this.dressByTypeCode();
     }
 
   /**
@@ -139,18 +141,25 @@ export class HomeComponent implements OnInit {
    * 获取平台信息
    */
 
-  infoByTypeCode() {
-    let url = "/datadict/loadDatadictByCode";//电话
+  technicalByTypeCode() {
+    let url = "/datadict/loadInfoByCode";//技术服务电话
     let data = {
-      code: "plat_basic_info_phone_by_agent"
+      code: "technical_service_phone"
     }
-    this.tel= this.submit.getData(url, data);
+    this.tel1= this.submit.getData(url, data);
   }
-  dressByTypeCode() {
-    let url = "/datadict/loadDatadictByCode";//地址
+  userByTypeCode() {
+    let url = "/datadict/loadInfoByCode";//平台服务电话
     let data = {
-      code: "plat_basic_info_address_by_agent"
+      code: "agent_service_plat_phone"
     }
-    this.address= this.submit.getData(url, data);
+    this.tel2= this.submit.getData(url, data);
   }
+  // dressByTypeCode() {
+  //   let url = "/datadict/loadDatadictByCode";//地址
+  //   let data = {
+  //     code: "agent_service_plat_address"
+  //   }
+  //   this.address= this.submit.getData(url, data);
+  // }
 }

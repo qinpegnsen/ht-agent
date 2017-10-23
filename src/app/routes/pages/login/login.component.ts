@@ -80,7 +80,6 @@ export class LoginComponent implements OnInit {
           me.router.navigate(['/main/home'], {replaceUrl: true}); //路由跳转
         }
         else {
-          console.log("█ result ►►►", JSON.stringify(result));
           AppComponent.rzhAlt("error", result.info);
         }
       },
