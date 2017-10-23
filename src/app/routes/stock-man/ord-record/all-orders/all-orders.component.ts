@@ -111,11 +111,11 @@ export class AllOrdersComponent implements OnInit {
    *显示物流信息
    * @param orderId
    */
-  showLogistics(Logistics){
+  showLogistics(Logistics,ordno){
     Logistics.style.display = 'block';
-    let url='/ord/tail/queryDeliveryList';
+    let url='/ord/tail/queryList';
     let data={
-      ordno:'8064321506563660332'                //目前是写死的，以后再改
+      ordno:ordno
     };
     this.LogisticsData=this.stockManService.getShopList(url,data);
   }

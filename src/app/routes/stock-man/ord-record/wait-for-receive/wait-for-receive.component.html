@@ -71,7 +71,7 @@
             <p class="cursor-p mb-sm" *ngIf="goods.state=='DELIVERY'" myHoverColor [myHover]="'orange'" (mouseenter)="showLogistics(Logistics)"
                (mouseleave)="hideLogistics(Logistics)">
               查看物流</p>
-            <div class="szh-buyer-info text-left _logisticsP" #Logistics (mouseenter)="showLogistics(Logistics)"
+            <div class="szh-buyer-info text-left _logisticsP" #Logistics (mouseenter)="showLogistics(Logistics,goods.ordno)"
                  (mouseleave)="hideLogistics(Logistics)">
               <div class="info-con _logisticsW">
                 <p class="pl mb-sm clearfix">
