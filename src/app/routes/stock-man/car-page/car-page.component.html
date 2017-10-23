@@ -67,9 +67,11 @@
               </div>
             </div>
             <div class="w40 pull-left text-left goods-info-box">
-              <div class="goods-img">
+              <div class="goods-img" (mousemove)="showImg($event,j)" (mouseout)="hideImg(j)">
                 <img src="{{good.goodsImage}}" alt="" class='_img'
                      onerror="javascript:this.src='../../../assets/img/dummy.png';">
+                <img src="{{good.goodsImage}}" #j class="hoverBigImg" alt=""
+                     onerror="javascript:this.src='../../../assets/img/dummy.png'">
               </div>
               <div class="goods-name">
                 <div class="extra"><span>{{good.goodsName}}</span></div>

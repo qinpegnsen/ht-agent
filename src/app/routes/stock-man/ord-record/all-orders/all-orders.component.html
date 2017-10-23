@@ -20,9 +20,10 @@
       <table class="w100 b">
         <tr class="text-center" *ngFor="let item of goods.agentOrdItemList;let j = index">
           <td class="w40 p text-left position-relative bb">
-          <span class="goods-img goods-lg-img mr"><img [src]="item.goodsImage"
-                                                       onerror="javascript:this.src='../../../assets/img/dummy.png'"
-                                                       alt=""></span>
+          <span class="goods-img goods-lg-img mr">
+            <img [src]="item.goodsImage" (mousemove)="showImg($event,j)" (mouseout)="hideImg(j)"  onerror="javascript:this.src='../../../assets/img/dummy.png'"  alt=""></span>
+            <img src="{{item.goodsImage}}" #j class="hoverBigImg" alt=""
+                 onerror="javascript:this.src='../../../assets/img/dummy.png'">
             <div class="goods-lg-info">
               <p class="mb0 font13 omg2 two-row mb-sm">
                 <a class="goods-name" href="javascript:;">{{item.goodsName}}</a>

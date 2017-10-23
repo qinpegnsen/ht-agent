@@ -34,6 +34,16 @@ $largeImg: 80px;      // 商品列表图片的宽，较大的图
   user-select: none;
 }
 
+.hoverBigImg{
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 200px !important;
+  height:200px !important;
+  display: none;
+  z-index: 1000;
+}
+
 ._myPrice{
   font-size:22px;color:red;
 }
