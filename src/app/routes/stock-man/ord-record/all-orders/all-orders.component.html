@@ -21,8 +21,8 @@
         <tr class="text-center" *ngFor="let item of goods.agentOrdItemList;let j = index">
           <td class="w40 p text-left position-relative bb">
           <span class="goods-img goods-lg-img mr">
-            <img [src]="item.goodsImage" (mousemove)="showImg($event,j)" (mouseout)="hideImg(j)"  onerror="javascript:this.src='../../../assets/img/dummy.png'"  alt=""></span>
-            <img src="{{item.goodsImage}}" #j class="hoverBigImg" alt=""
+            <img [src]="item.goodsImage" (mousemove)="showImg($event,img)" (mouseout)="hideImg(img)"  onerror="javascript:this.src='../../../assets/img/dummy.png'"  alt=""></span>
+            <img src="{{item.goodsImage}}" #img class="hoverBigImg" alt=""
                  onerror="javascript:this.src='../../../assets/img/dummy.png'">
             <div class="goods-lg-info">
               <p class="mb0 font13 omg2 two-row mb-sm">
@@ -104,7 +104,6 @@
                 </div>
               </div>
             </div>
-
           </td>
           <td class="w10 bl" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length">
             <button *ngIf="goods.state=='CR'" class="m-sm btn btn-xs btn-outline  fa fa-retweet _backColor thc bg"

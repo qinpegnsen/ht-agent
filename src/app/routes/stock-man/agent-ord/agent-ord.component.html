@@ -63,10 +63,10 @@
             </div>
           </td>
           <td class="text-left goods-info-box">
-            <div class="goods-img" (mousemove)="showImg($event,j)" (mouseout)="hideImg(j)">
+            <div class="goods-img" (mousemove)="showImg($event,img)" (mouseout)="hideImg(img)">
               <img src="{{shop.goodsImage}}" alt="" class='special'
                    onerror="javascript:this.src='../../../assets/img/dummy.png';">
-              <img src="{{shop.goodsImage}}" #j class="hoverBigImg" alt=""
+              <img src="{{shop.goodsImage}}" #img class="hoverBigImg" alt=""
                    onerror="javascript:this.src='../../../assets/img/dummy.png'">
             </div>
             <div class="goods-name">

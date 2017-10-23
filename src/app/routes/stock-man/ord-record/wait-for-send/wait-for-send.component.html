@@ -21,9 +21,11 @@
       <table class="w100 b">
         <tr class="text-center" *ngFor="let item of goods.agentOrdItemList;let j = index">
           <td class="w40 p text-left position-relative bb">
-          <span class="goods-img goods-lg-img mr"><img [src]="item.goodsImage"
-                                                       onerror="javascript:this.src='../../../assets/img/dummy.png'"
-                                                       alt=""></span>
+         <span class="goods-img goods-lg-img mr" (mousemove)="showImg($event,img)" (mouseout)="hideImg(img)">
+            <img [src]="item.goodsImage" onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+            <img src="{{item.goodsImage}}" #img class="hoverBigImg" alt=""
+                 onerror="javascript:this.src='../../../assets/img/dummy.png'">
+          </span>
             <div class="goods-lg-info">
               <p class="mb0 font13 omg2 two-row mb-sm">
                 <a class="goods-name" href="javascript:;">{{item.goodsName}}</a>
@@ -65,8 +67,10 @@
           </td>
           <td class="w10 bl" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length">
             <p class="font-gray mb-sm cursor-p">{{goods.state | rzhState :'1019'}}</p>
-            <p class="cursor-p mb-sm" myHoverColor [myHover]="'#CC1635'" routerLink="../order-detail" [queryParams]="{ordno:goods.ordno}">查看详情</p>
-            <p class="cursor-p mb-sm" *ngIf="goods.state=='DELIVERY'" myHoverColor [myHover]="'orange'" (click)="lookLogistics(goods.goodsName)">
+            <p class="cursor-p mb-sm" myHoverColor [myHover]="'#CC1635'" routerLink="../order-detail"
+               [queryParams]="{ordno:goods.ordno}">查看详情</p>
+            <p class="cursor-p mb-sm" *ngIf="goods.state=='DELIVERY'" myHoverColor [myHover]="'orange'"
+               (click)="lookLogistics(goods.goodsName)">
               查看物流</p>
           </td>
           <td class="w10 bl" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length"></td>

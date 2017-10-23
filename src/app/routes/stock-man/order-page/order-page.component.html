@@ -111,10 +111,10 @@
                 <!--商品列表-->
                 <li class="_list">
                   <div class="w70 pull-left text-left">
-                    <div class="col-xs-1" (mousemove)="showImg($event,j)" (mouseout)="hideImg(j)">
+                    <div class="col-xs-1" (mousemove)="showImg($event,img)" (mouseout)="hideImg(img)">
                       <img src="{{good.goodsImage}}" alt="" class='_img'
                            onerror="javascript:this.src='../../../assets/img/dummy.png';">
-                      <img src="{{good.goodsImage}}" #j class="hoverBigImg" alt=""
+                      <img src="{{good.goodsImage}}" #img class="hoverBigImg" alt=""
                            onerror="javascript:this.src='../../../assets/img/dummy.png'">
                     </div>
                     <div class="col-xs-11 positionA">
