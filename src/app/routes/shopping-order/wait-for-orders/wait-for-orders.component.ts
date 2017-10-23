@@ -5,6 +5,7 @@ import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {ShoppingOrderService} from "../shopping-order.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
+import {isNullOrUndefined} from "util";
 
 const swal = require('sweetalert');
 declare var $;
@@ -39,7 +40,7 @@ export class WaitForOrdersComponent implements OnInit {
    */
   ngOnInit() {
     this.parentComp.orderType = 2;
-    this.queryDatas();
+    this.queryDatas(1);
     this.stateEnumList=this.rzhtoolsService.getEnumDataList(1305);
   }
 
@@ -48,11 +49,13 @@ export class WaitForOrdersComponent implements OnInit {
    * @param event
    * @param curPage
    */
-  public queryDatas(event?: PageEvent) {
-    let _this = this, activePage = 1;
-    if (typeof event !== 'undefined') {
-      activePage = event.activePage;
-    }
+  public queryDatas(curPage,event?: PageEvent) {
+    let activePage = 1;
+    if(typeof event !== "undefined") {
+      activePage =event.activePage
+    }else if(!isNullOrUndefined(curPage)){
+      activePage =curPage
+    };
     let requestUrl = '/woAgent/query';
     let requestData = {
       sortColumns:'',
@@ -64,7 +67,7 @@ export class WaitForOrdersComponent implements OnInit {
       ordType:'ORD',//工单类型 购物订单
       stateEnum:this.stateEnum?this.stateEnum:'NO',
     };
-    _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
+    this.workOrderList = new Page(this.submit.getData(requestUrl, requestData));
   }
 
   /**
@@ -73,7 +76,7 @@ export class WaitForOrdersComponent implements OnInit {
    * 1. 刷新页面
    * 2.设置按钮的禁用和启用
    */
-  toAccept(woAgengId){
+  toAccept(woAgengId,curPage){
     let that=this;
     swal({
         title: '确认接单吗？',
@@ -90,7 +93,7 @@ export class WaitForOrdersComponent implements OnInit {
           woAgengId:woAgengId
         };
         that.shoppingOrderService.toAcceptWork(url,data);
-        that.queryDatas()
+        that.queryDatas(curPage)
       }
     );
   }
@@ -106,8 +109,9 @@ export class WaitForOrdersComponent implements OnInit {
   /**
    * 拒单的回调函数，产生输入属性的变化
    */
-  closeRejecWin(bol){
+  closeRejecWin(bol,curPage){
     this.showReasonWindow=bol;
+    this.queryDatas(curPage);
   }
 
   /**

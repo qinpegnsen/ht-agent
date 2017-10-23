@@ -30,7 +30,7 @@
 <!--查询结束-->
 <!--列表开始-->
 <table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="workOrderList"
-       (pageChange)="queryDatas($event)">
+       (pageChange)="queryDatas(1,$event)">
   <thead>
   <tr class="thc font">
     <th class="w5  text-center thc font">ID</th>
@@ -54,10 +54,10 @@
     <td class="w10 text-center">{{order.state | rzhState :'1305' }}</td>
     <td class="w20 text-center">
       <button *ngIf="order.state=='NO'" class="m-sm btn btn-xs btn-outline fa fa-check _backColor thc bg _myWhiteColor"
-              (click)="toAccept(order.id)" #accept> 接单
+              (click)="toAccept(order.id,workOrderList.curPage)" #accept> 接单
       </button>
       <button  *ngIf="order.state=='NO'" class="m-sm btn btn-xs btn-outline fa fa-close _myWhiteBg thc font b"
-              (click)="toReject(order.id)" #reject> 拒单
+              (click)="toReject(order.id,workOrderList.curPage)" #reject> 拒单
       </button>
       <button *ngIf="order.state=='ACCEPT'"  class="m-sm btn btn-xs btn-outline thc bg fa fa-truck _myWhiteColor"
               (click)="deliver(order.id,order.ordno)"> 发货
@@ -91,5 +91,5 @@
                       (deliverGoods)="getDeliverOrderData($event)"></app-deliver-goods>
 <!--发货弹框组件结束-->
 <!--拒单组件开始-->
-<app-reason-rejec [showReasonWindow]="showReasonWindow" [woAgengId]="woAgengId" (closeRejec)="closeRejecWin(obj)"></app-reason-rejec>
+<app-reason-rejec [showReasonWindow]="showReasonWindow" [woAgengId]="woAgengId" (closeRejec)="closeRejecWin(obj,workOrderList.curPage)"></app-reason-rejec>
 <!--拒单组件结束-->

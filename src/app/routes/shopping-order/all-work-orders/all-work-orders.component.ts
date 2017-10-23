@@ -5,6 +5,7 @@ import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {ShoppingOrderService} from "../shopping-order.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
+import {isNullOrUndefined} from "util";
 
 const swal = require('sweetalert');
 declare var $;
@@ -41,7 +42,7 @@ export class AllWorkOrdersComponent implements OnInit {
   ngOnInit() {
     let me = this;
     me.parentComp.orderType = 1;
-    me.queryDatas()
+    me.queryDatas(1)
     this.stateEnumList = this.rzhtoolsService.getEnumDataList(1305);
   }
 
@@ -50,11 +51,13 @@ export class AllWorkOrdersComponent implements OnInit {
    * @param event
    * @param curPage
    */
-  public queryDatas(event?: PageEvent) {
-    let _this = this, activePage = 1;
-    if (typeof event !== 'undefined') {
-      activePage = event.activePage;
-    }
+  public queryDatas(curPage,event?: PageEvent) {
+    let activePage = 1, _this = this;
+    if(typeof event !== "undefined") {
+      activePage =event.activePage
+    }else if(!isNullOrUndefined(curPage)){
+      activePage =curPage
+    };
     let requestUrl = '/woAgent/query';
     let requestData = {
       sortColumns: '',
@@ -75,7 +78,7 @@ export class AllWorkOrdersComponent implements OnInit {
    * 1. 刷新页面
    * 2.设置按钮的禁用和启用
    */
-  toAccept(woAgengId) {
+  toAccept(woAgengId,curPage) {
     let that = this;
     swal({
         title: '确认接单吗？',
@@ -92,7 +95,7 @@ export class AllWorkOrdersComponent implements OnInit {
           woAgengId: woAgengId
         };
         that.shoppingOrderService.toAcceptWork(url, data);
-        that.queryDatas()
+        that.queryDatas(curPage)
       }
     );
   }
@@ -135,8 +138,9 @@ export class AllWorkOrdersComponent implements OnInit {
   /**
    * 拒单的回调函数，产生输入属性的变化
    */
-  closeRejecWin(bol){
+  closeRejecWin(bol,curPage){
     this.showReasonWindow=bol;
+    this.queryDatas(curPage)
   }
 }
 

@@ -4,6 +4,7 @@ import {Page} from "../../../core/page/page";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
+import {isNullOrUndefined} from "util";
 
 declare var $;
 
@@ -36,7 +37,7 @@ export class OrderReceiveComponent implements OnInit {
    */
   ngOnInit() {
     this.parentComp.orderType = 3;
-    this.queryDatas();
+    this.queryDatas(1);
     this.stateEnumList=this.rzhtoolsService.getEnumDataList(1305);
   }
 
@@ -45,11 +46,13 @@ export class OrderReceiveComponent implements OnInit {
    * @param event
    * @param curPage
    */
-  public queryDatas(event?: PageEvent) {
-    let _this = this, activePage = 1;
-    if (typeof event !== 'undefined') {
-      activePage = event.activePage;
-    }
+  public queryDatas(curPage,event?: PageEvent) {
+    let activePage = 1, _this = this;
+    if(typeof event !== "undefined") {
+      activePage =event.activePage
+    }else if(!isNullOrUndefined(curPage)){
+      activePage =curPage
+    };
     let requestUrl = '/woAgent/query';
     let requestData = {
       sortColumns:'',

@@ -72,8 +72,6 @@ export class ReasonRejecComponent implements OnInit , OnDestroy{
     let result=this.shoppingOrderService.toRefuseWork(url, data);
     if(result=='拒单成功'){
       this.hideWindow("success");
-      this.allWorkOrdersComponent.queryDatas();
-      this.waitForOrdersComponent.queryDatas();
     }
   }
 }

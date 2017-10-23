@@ -29,7 +29,7 @@
 <!--查询结束-->
 
 <table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="workOrderList"
-       (pageChange)="queryDatas($event)">
+       (pageChange)="queryDatas(1,$event)">
   <thead>
   <tr class="thc font">
     <th class="w5  text-center thc font">ID</th>
