@@ -69,9 +69,7 @@
             <p class="cursor-p mb-sm" *ngIf="goods.state=='DELIVERY'" myHoverColor [myHover]="'orange'" (click)="lookLogistics(goods.goodsName)">
               查看物流</p>
           </td>
-          <td class="w10 bl" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length">
-
-          </td>
+          <td class="w10 bl" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length"></td>
         </tr>
       </table>
     </td>

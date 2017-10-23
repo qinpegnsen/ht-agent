@@ -8,7 +8,7 @@
   <li class="w10 pull-left text-center thc font">操作</li>
 </ul>
 <table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="goodsList"
-       (pageChange)="queryDatas($event)">
+       (pageChange)="queryDatas(1,$event)">
   <tbody>
   <tr class="mt" *ngFor="let goods of dataTable.data;let i = index">
     <td class="w100 p0 font12 bt0">
@@ -103,7 +103,7 @@
             </div>
           </td>
           <td class="w10 bl" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length">
-            <button class="m-sm btn btn-xs btn-outline thc bg fa fa-retweet _myWhiteColor" (click)="confirmRecive(goods.ordno)">  确认收货</button>
+            <button class="m-sm btn btn-xs btn-outline thc bg fa fa-retweet _myWhiteColor" (click)="confirmRecive(goods.ordno,goodsList.curPage)">  确认收货</button>
           </td>
         </tr>
       </table>

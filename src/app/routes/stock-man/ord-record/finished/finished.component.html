@@ -73,7 +73,7 @@
           </td>
           <td class="w10 bl" *ngIf="j==0" [attr.rowspan]="goods.agentOrdItemList.length">
             <button *ngIf="goods.state=='SUCCESS'" class="m-sm btn btn-xs  fa fa-shopping-cart thc bg _backColor"
-                    (click)="againBuy(item.goodsCode,item.batchNum)"> 再进货
+                    (click)="againBuy(item.goodsCode,item.batchNum,goods.agentOrdItemList)"> 再进货
             </button>
           </td>
         </tr>

@@ -6,6 +6,7 @@ import {Router} from "@angular/router";
 import {OrdRecordComponent} from "../ord-record.component";
 import {StockManService} from "../../stock-man.service";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'app-wait-for-pay',
@@ -29,7 +30,7 @@ export class WaitForPayComponent implements OnInit {
   ngOnInit() {
     let me = this;
     me.parentComp.orderType = 2;
-    me.queryDatas()
+    me.queryDatas(1)
   }
 
   /**
@@ -37,11 +38,13 @@ export class WaitForPayComponent implements OnInit {
    * @param event
    * @param curPage
    */
-  public queryDatas(event?: PageEvent) {
-    let _this = this, activePage = 1;
-    if (typeof event !== 'undefined') {
-      activePage = event.activePage;
-    }
+  public queryDatas(curPage,event?: PageEvent) {
+    let activePage = 1, _this = this;
+    if(typeof event !== "undefined") {
+      activePage =event.activePage
+    }else if(!isNullOrUndefined(curPage)){
+      activePage =curPage
+    };
     let requestUrl = ' /agentOrd/queryAgentState';
     let requestData = {
       curPage: activePage,
@@ -72,13 +75,13 @@ export class WaitForPayComponent implements OnInit {
    *  取消订单
    * @param orderId
    */
-  cancelOrder(ordno){
+  cancelOrder(ordno,curPage){
     let url='/agentOrd/cancelAgentOrd';
     let data={
       ordno:ordno
     }
     this.stockManService.delAgentOrd(url,data);
-    this.queryDatas();
+    this.queryDatas(curPage);
   }
 
   /**

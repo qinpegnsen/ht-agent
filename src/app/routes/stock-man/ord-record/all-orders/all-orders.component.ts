@@ -27,7 +27,6 @@ export class AllOrdersComponent implements OnInit {
     private parentComp:OrdRecordComponent,
     private router: Router,
     private stockManService: StockManService,
-    public headerComponent: HeaderComponent
   ) { }
 
   /**
@@ -55,7 +54,7 @@ export class AllOrdersComponent implements OnInit {
     let requestUrl = ' /agentOrd/queryAgentState';
     let requestData = {
       curPage: activePage,
-      pageSize: 3,
+      pageSize: 10,
       state: '',
     };
     _this.goodsList = new Page(_this.submit.getData(requestUrl, requestData));
@@ -129,15 +128,17 @@ export class AllOrdersComponent implements OnInit {
   }
 
   /**
-   * 再次进行购买  加入购物车
+   * 再次进行购买
+   * 1 .加入购物车  功能改变  变成直接跳转到进货列表 而且之间做的如果是多个商品加入购物车也有问题，1 只添加第一个，2.存在已经停产的产品，需要和后台沟通
    */
   againBuy(goodsCode, num) {
-    let url = '/agent/agentCart/addCustCart';
-    let data = {
-      strData: `${goodsCode},${num};`
-    };
-    this.stockManService.sendCar(url, data);
-    this.headerComponent.getShopTotal();
+    // let url = '/agent/agentCart/addCustCart';
+    // let data = {
+    //   strData: `${goodsCode},${num};`
+    // };
+    // this.stockManService.sendCar(url, data);
+    // this.headerComponent.getShopTotal();
+    this.router.navigate(['/main/stockMan/agentord']);
   }
 
   /**

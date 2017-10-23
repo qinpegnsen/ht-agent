@@ -5,6 +5,7 @@ import {SubmitService} from "../../../../core/forms/submit.service";
 import {OrdRecordComponent} from "../ord-record.component";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 import {StockManService} from "../../stock-man.service";
+import {isNullOrUndefined} from "util";
 
 const swal = require('sweetalert');
 
@@ -32,7 +33,7 @@ export class WaitForReceiveComponent implements OnInit {
   ngOnInit() {
     let me = this;
     me.parentComp.orderType = 5;
-    me.queryDatas()
+    me.queryDatas(1)
   }
 
   /**
@@ -40,11 +41,13 @@ export class WaitForReceiveComponent implements OnInit {
    * @param event
    * @param curPage
    */
-  public queryDatas(event?: PageEvent) {
-    let _this = this, activePage = 1;
-    if (typeof event !== 'undefined') {
-      activePage = event.activePage;
-    }
+  public queryDatas(curPage,event?: PageEvent) {
+    let activePage = 1, _this = this;
+    if(typeof event !== "undefined") {
+      activePage =event.activePage
+    }else if(!isNullOrUndefined(curPage)){
+      activePage =curPage
+    };
     let requestUrl = ' /agentOrd/queryAgentState';
     let requestData = {
       curPage: activePage,
@@ -104,7 +107,7 @@ export class WaitForReceiveComponent implements OnInit {
   /**
    * 确认收货
    */
-  confirmRecive(ordno) {
+  confirmRecive(ordno,curPage) {
     let that=this;
     swal({
         title: '您确认收到货了吗？',
@@ -121,7 +124,7 @@ export class WaitForReceiveComponent implements OnInit {
           ordno: ordno
         }
         that.stockManService.delAgentOrd(url, data);
-        that.queryDatas();
+        that.queryDatas(curPage);
       }
     );
   }

@@ -8,7 +8,7 @@
   <li class="w10 pull-left text-center thc font">操作</li>
 </ul>
 <table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="goodsList"
-       (pageChange)="queryDatas($event)">
+       (pageChange)="queryDatas(1,$event)">
   <tbody>
   <tr class="mt" *ngFor="let goods of dataTable.data;let i = index">
     <td class="w100 p0 font12 bt0">
@@ -17,7 +17,6 @@
         <span class="mr-xl">订单编号：{{goods.ordno}}</span>
         <span class="mr-xl">下单时间：{{goods.createTime}}</span>
       </div>
-
       <table class="w100 b">
         <tr class="text-center" *ngFor="let item of goods.agentOrdItemList;let j = index">
           <td class="w40 p text-left position-relative bb">
@@ -73,7 +72,7 @@
             <button class="m-sm btn btn-xs btn-outline thc bg fa fa-retweet _backColor" (click)="goPay(goods.ordno,goods.payWay)"> 去付款</button>
             <br>
             <button *ngIf="goods.state=='CR'" class="m-sm btn btn-xs btn-outline fa fa-ban thc font b"
-                    (click)="cancelOrder(goods.ordno)">
+                    (click)="cancelOrder(goods.ordno,goodsList.curPage)">
               取消订单
             </button>
           </td>
