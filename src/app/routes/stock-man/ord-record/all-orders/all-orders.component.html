@@ -85,9 +85,7 @@
                   <ul class="timeline-alt p0">
                     <ng-container *ngFor="let item of LogisticsData;let i=index;">
                       <li class="mb0">
-                        <div class="timeline-badge primary">
-                          <em class="fa fa-truck"></em>
-                        </div>
+                        <div class="timeline-badge primary thc" [class.bg]="i==0"></div>
                         <div class="timeline-panel _mrl">
                           <div class="right">
                             <div>
