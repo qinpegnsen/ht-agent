@@ -52,15 +52,14 @@
             </div>
           </div>
         </div>
-
         <ul class="clearfix panel panel-default _extra _list">
           <!--商品列表-->
           <li class="_myPaddingBody clearfix _list"  *ngFor="let good of store.agentGoodsVOList;let i = index">
             <div *ngIf="good.isBatch=='N'||good.isBuy=='N'" class="wmask"></div>
             <div class="w10 pull-left text-left">
               <div class="checkbox c-checkbox _special">
-                <label *ngIf="!(good.isBatch=='N'||good.isBuy=='N')" >
-                  <input type="checkbox" class="_good" (click)="goodEle($event.target,good)" [checked]="" />
+                <label [hidden]="(good.isBatch=='N'||good.isBuy=='N')" >
+                  <input type="checkbox" class="_good" (click)="goodEle($event.target,good)"/>
                   <span class="fa fa-check"></span>
                 </label>
                 <ng-container *ngIf="good.isBatch=='N'">禁止批发</ng-container>

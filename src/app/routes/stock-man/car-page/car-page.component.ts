@@ -214,7 +214,7 @@ export class CarPageComponent implements OnInit {
       $(obj).parents("._padingBtm").find('._good').parents("._myPaddingBody").css('background', '#fff')   //点击的时候样式的变化
       $(obj).parents('._padingBtm').find("._store").prop("checked", false)
     }
-    let target = $(obj).parents('._padingBtm').find("._store");
+    let target = $(obj).parents('._padingBtm').find("._store");//目前为止店铺只有一个，如果多个这里还有改
     this.storeEle(target);
     this.getPriceList(obj);
     this.getShopTotalNum();
