@@ -4,6 +4,7 @@ import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
 import {Page} from "../../../core/page/page";
 import {HeaderComponent} from "../../../layout/header/header.component";
 import {Router} from "@angular/router";
+import {isNullOrUndefined} from "util";
 
 const swal = require('sweetalert');
 declare var $: any;
@@ -29,15 +30,19 @@ export class MessageInformComponent implements OnInit {
       title:"删除",
       type: "delete"
     };
-    this.queryAdminNotify()
+    this.queryAdminNotify(1)
   }
 
   /**
    * 获取通知的消息列表
    */
-  queryAdminNotify(event?:PageEvent){
+  queryAdminNotify(curPage,event?:PageEvent){
     let activePage = 1;
-    if(typeof event !== "undefined") {activePage =event.activePage};
+    if(typeof event !== "undefined") {
+      activePage =event.activePage
+    }else if(!isNullOrUndefined(curPage)){
+      activePage =curPage
+    };
     let url='/notifyAgent/queryNotifyAgent';
     let data={
       curPage:activePage,
@@ -51,13 +56,13 @@ export class MessageInformComponent implements OnInit {
    * 单个的修改消息是否已读,如果需要刷新页面把注释打开仿照的没有刷新
    *1.让已读的去掉背景色
    */
-  updateIsRead(id,bol?,detailUrl?){
+  updateIsRead(id,bol?,detailUrl?,curPage?){
     let url='/notifyAgent/updateIsRead';
     let data={
       ids:id
     };
     this.platformInfoData=this.messageInformService.updateproblem(url,data);
-    this.queryAdminNotify();
+    this.queryAdminNotify(curPage);
     if(bol){
       this.router.navigateByUrl(detailUrl);
     }
@@ -67,7 +72,7 @@ export class MessageInformComponent implements OnInit {
    * 批量的修改消息是否已读,如果需要刷新页面把注释打开仿照的没有刷新
    *1.首先获取到当前选择的id
    */
-  updateMoreIsRead(){
+  updateMoreIsRead(curPage){
     let url='/notifyAgent/updateIsRead';
     let obj=$("._every[checked='checked']");
     for(let i=0;i<obj.length;i++){
@@ -78,7 +83,7 @@ export class MessageInformComponent implements OnInit {
       ids	:idStr
     };
     this.platformInfoData=this.messageInformService.updateproblem(url,data);
-    this.queryAdminNotify();
+    this.queryAdminNotify(curPage);
     if($('._all').prop("checked")){//如果全选按钮被勾选了，让它没有勾选
       $('._all').prop("checked",false);
       $('._all').attr("checked",false);
@@ -135,7 +140,7 @@ export class MessageInformComponent implements OnInit {
   /**
    * 删除单个消息 首先进行确认是否删除，删除后刷新页面
    */
-  deleteTpl(delSortId){
+  deleteTpl(delSortId,curPage){
     let that=this;
     swal({
       title: "您确定要删除吗？",
@@ -154,7 +159,7 @@ export class MessageInformComponent implements OnInit {
           ids:delSortId
         }
         that.messageInformService.delRequest(url,data);
-        that.queryAdminNotify();
+        that.queryAdminNotify(curPage);
         that.headerComponent.queryNotify();
       }
     });
@@ -163,7 +168,7 @@ export class MessageInformComponent implements OnInit {
   /**
    * 批量的删除信息
    */
-  delMoreInfo(){
+  delMoreInfo(curPage){
     let that=this;
     swal({
       title: "您确定要删除吗？",
@@ -187,7 +192,7 @@ export class MessageInformComponent implements OnInit {
           ids:idStr
         }
         that.messageInformService.delRequest(url,data)
-        that.queryAdminNotify();
+        that.queryAdminNotify(curPage);
         that.headerComponent.queryNotify();
         $("._all").prop('checked',false);
         $("._all").attr('checked',false);
