@@ -48,20 +48,11 @@ export class CarPageComponent implements OnInit {
   }
 
   /**
-   * 获取购物车的商品列表
+   * 获取购物车的商品列表 没有分页
    */
-  getCarList(event?: PageEvent) {
-    let activePage = 1;
-    if (typeof event !== "undefined") {
-      activePage = event.activePage
-    }
-    ;
+  getCarList() {
     let url = '/agent/agentCart/queryAll';
-    let data = {
-      curPage: activePage,
-      pageSize: 2,
-      sortColumns: '',
-    }
+    let data = {};
     this.storeListData = this.stockManService.getShopList(url, data);
   };
 
