@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   private data: any;
   private tel1:any;
   private tel2:any;
-  // private address:any
+  private email:any
   now: any;
   prev: any;
 
@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
       _this.qeuryAll();
       _this.technicalByTypeCode();//技术服务电话
       _this.userByTypeCode();//平台服务电话
-      // _this.dressByTypeCode();
+      _this.emailByTypeCode();
     }
 
   /**
@@ -155,11 +155,11 @@ export class HomeComponent implements OnInit {
     }
     this.tel2= this.submit.getData(url, data);
   }
-  // dressByTypeCode() {
-  //   let url = "/datadict/loadDatadictByCode";//地址
-  //   let data = {
-  //     code: "agent_service_plat_address"
-  //   }
-  //   this.address= this.submit.getData(url, data);
-  // }
+ emailByTypeCode() {
+    let url = "/datadict/loadInfoByCode";//地址
+    let data = {
+      code: "agent_service_plat_email"
+    }
+    this.email= this.submit.getData(url, data);
+  }
 }
