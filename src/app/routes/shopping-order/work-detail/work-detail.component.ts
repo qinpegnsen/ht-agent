@@ -3,6 +3,7 @@ import {isNullOrUndefined} from "util";
 import {ShoppingOrderComponent} from "../shopping-order.component";
 import {ActivatedRoute} from "@angular/router";
 import {ShoppingOrderService} from "../shopping-order.service";
+const swal = require('sweetalert');
 declare var $:any;
 @Component({
   selector: 'app-work-detail',
@@ -14,12 +15,16 @@ export class WorkDetailComponent implements OnInit {
 
   public orderStep = 1;
   public curOrdno: string;
+  public transcurOrdno: string;                          //传递到发货组件的订单号
   public orderStates: any;
   public orderDetailData: any;
   public goodsData: any;
   public hasDeliverData: boolean = false;                //是否显示快递信息，当为收货或者是收货后显示
   public expressData: any;                                //快递公司信息
   private atime:Array<string> = new Array();
+  private showReasonWindow:boolean = false;              //弹窗的开关
+  private woAgengId:any;                                  //代理商工单id
+  public curWoAgentId: string;                            //工单的id
 
   constructor(
               private parentComp: ShoppingOrderComponent,
@@ -156,11 +161,64 @@ export class WorkDetailComponent implements OnInit {
     $(target).show()
   }
 
+    /**
+   * 接单
+   * @param woAgengId 代理商工单id
+   * 1. 刷新页面
+   * 2.设置按钮的禁用和启用
+   */
+  toAccept(woAgengId) {
+    let that = this;
+    swal({
+        title: '确认接单吗？',
+        type: 'info',
+        confirmButtonText: '确认', //‘确认’按钮命名
+        showCancelButton: true, //显示‘取消’按钮
+        cancelButtonText: '取消', //‘取消’按钮命名
+        closeOnConfirm: false  //点击‘确认’后，执行另外一个提示框
+      },
+      function () {  //点击‘确认’时执行
+        swal.close(); //关闭弹框
+        let url = '/woAgent/updateWoAgentToAccept';
+        let data = {
+          woAgengId: woAgengId
+        };
+        that.shoppingOrderService.toAcceptWork(url, data);
+      }
+    );
+  }
+
+  /**
+   * 拒单
+   */
+  toReject(woAgengId) {
+    this.woAgengId = woAgengId;
+    this.showReasonWindow = true;
+  }
+
+  /**
+   * 发货
+   * @param woAgentId    代理商工单id
+   * @param ordno        订单编码
+   */
+  deliver(woAgentId, ordno) {
+    this.curWoAgentId = woAgentId;
+    this.transcurOrdno = this.curOrdno;
+  }
+  /**
+   * 拒单的回调函数，产生输入属性的变化
+   */
+  closeRejecWin(bol,curPage){
+    this.showReasonWindow=bol;
+  }
+
   /**
    * 发货回调函数
    * @param data
    */
   getDeliverOrderData(data) {
     this.curOrdno = null;//输入属性发生变化的时候，弹窗才会打开，所以每次后来都清空，造成变化的迹象
+    this.ngOnInit();
   }
+
 }

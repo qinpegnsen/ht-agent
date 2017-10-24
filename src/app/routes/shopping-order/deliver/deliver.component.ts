@@ -29,6 +29,7 @@ export class DeliverComponent implements OnInit, OnDestroy, OnChanges {
     if (changes['ordno'] && !isNullOrUndefined(this.ordno)) {
       $('.wrapper > section').css('z-index', 200);
       this.ngOnInit();
+      console.log("█ 111111111 ►►►",  111111111);
       this.showDeliverWindow = true;
       this.expressNo = null;      //每次出来把上次填的订单号清除，快递公司就算了，留着吧
     }
