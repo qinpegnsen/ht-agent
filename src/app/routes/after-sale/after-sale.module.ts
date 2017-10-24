@@ -10,6 +10,8 @@ import {SharedModule} from "app/shared/shared.module";
 import {RzhtoolsService} from "../../core/services/rzhtools.service";
 import { LogisticsComponent } from './after-sale/logistics/logistics.component';
 import { RefusedAgentComponent } from './after-sale/refused-agent/refused-agent.component';
+import { SaleDetailComponent } from './after-sale/sale-detail/sale-detail.component';
+import {AfterSaleService} from "./after-sale.service";
 
 const routes: Routes = [
   {path: '', redirectTo: 'sales'},
@@ -19,7 +21,8 @@ const routes: Routes = [
     {path: 'all-sale', component: AllSaleComponent},
     {path: 'processed', component: ProcessedComponent},
     {path: 'agreed', component: AgreedComponent},
-    {path: 'refused', component: RefusedComponent}
+    {path: 'refused', component: RefusedComponent},
+    {path: 'sale-detail', component: SaleDetailComponent},
   ]
   },
 ];
@@ -34,8 +37,9 @@ const routes: Routes = [
     AgreedComponent,
     AllSaleComponent,
     AfterSaleComponent,
-    RefusedComponent
+    RefusedComponent,
+    AfterSaleService
   ],
-  declarations: [AfterSaleComponent, AllSaleComponent, ProcessedComponent, AgreedComponent, RefusedComponent, LogisticsComponent, RefusedAgentComponent]
+  declarations: [AfterSaleComponent, AllSaleComponent, ProcessedComponent, AgreedComponent, RefusedComponent, LogisticsComponent, RefusedAgentComponent, SaleDetailComponent]
 })
 export class AfterSaleModule { }

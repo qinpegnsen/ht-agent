@@ -30,6 +30,7 @@ export class AgentInformationComponent implements OnInit {
   private placeSearch: any;
   private code: any;
   private selectArea;
+  private myImg: any;
 
   constructor(public settings:SettingsService, private ajax:AjaxService, private router:Router, private routeInfo:ActivatedRoute,private patterns: PatternService) {
     this.settings.showRightPage("30%"); // 此方法必须调用！页面右侧显示，带滑动效果,可以自定义宽度：..%  或者 ..px
@@ -170,6 +171,18 @@ export class AgentInformationComponent implements OnInit {
     me.selectArea = area.adr;
     me.ngOnInit()
   }
+
+  /**
+   * 监听图片选择
+   * @param $event
+   */
+  fileChangeListener() {
+
+    // 当选择了新的图片的时候，把老图片从待上传列表中移除
+    if(this.uploader.queue.length > 1) this.uploader.queue[0].remove();
+    this.myImg = true;  //表示已经选了图片
+  }
+
 
   addLimitList(value) {
     let _this = this;
