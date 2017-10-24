@@ -22,7 +22,6 @@ export class ShoppingOrderService {
       success: (res) => {
         let info=res.info;
         if(res.success){
-          console.log("█ res ►►►",  res);
           result=res.data;
           AppComponent.rzhAlt("success",info);
         }else{
@@ -50,7 +49,6 @@ export class ShoppingOrderService {
       async:false,
       success: (res) => {
         let info=res.info;
-        console.log("█ info ►►►",  info);
         if(res.success){
           result=res.info;
           AppComponent.rzhAlt("success",info);

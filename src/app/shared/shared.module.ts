@@ -46,6 +46,8 @@ import {RzhtoolsService} from "../core/services/rzhtools.service";
 import {GetWeekPipe} from "./pipe/get-week.pipe";
 import {AngularEchartsModule} from "ngx-echarts";
 import {DataDictService} from "../core/services/data-dict.service";
+import {PopoverModule} from "ngx-bootstrap";
+import {StrJsonPipe} from "./pipe/str-json.pipe";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -71,6 +73,7 @@ import {DataDictService} from "../core/services/data-dict.service";
     TooltipModule.forRoot(),
     TypeaheadModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    PopoverModule.forRoot(),
     ToasterModule,
     DataTableModule,
     SelectAreaModule,
@@ -93,9 +96,11 @@ import {DataDictService} from "../core/services/data-dict.service";
     SubstringPipe,
     HoverDirective,
     StatePipe,
-    GetWeekPipe
+    GetWeekPipe,
+    StrJsonPipe
   ],
   exports: [
+    StrJsonPipe,
     HoverDirective,
     SubstringPipe,
     DataTableModule,
@@ -123,6 +128,7 @@ import {DataDictService} from "../core/services/data-dict.service";
     TypeaheadModule,
     ToasterModule,
     FlotDirective,
+    PopoverModule,
     SparklineDirective,
     EasypiechartDirective,
     CheckallDirective,

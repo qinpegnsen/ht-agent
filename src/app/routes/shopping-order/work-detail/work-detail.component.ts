@@ -17,6 +17,8 @@ export class WorkDetailComponent implements OnInit {
   public orderStates: any;
   public orderDetailData: any;
   public goodsData: any;
+  public hasDeliverData: boolean = false;                //是否显示快递信息，当为收货或者是收货后显示
+  public expressData: any;                                //快递公司信息
   private atime:Array<string> = new Array();
 
   constructor(
@@ -84,8 +86,10 @@ export class WorkDetailComponent implements OnInit {
     for (let item of me.orderStates){//把所有的时间放到一个数组里面
       if (item.state == 'SUCCESS') {
         me.atime[5] = item.acceptTime;
+        me.hasDeliverData = true;
       } else if (item.state == 'DELIVERY') {
         me.atime[4] = item.acceptTime;
+        me.hasDeliverData = true;
       } else if (item.state == 'PREPARE') {
         me.atime[3] = item.acceptTime;
       } else if (item.state == 'PAID'||item.state == 'ASSIGNED') {
@@ -93,6 +97,13 @@ export class WorkDetailComponent implements OnInit {
       } else if (item.state == 'CR') {
         me.atime[1] = item.acceptTime;
       }
+    }
+    if(me.hasDeliverData){
+      let url = '/ord/tail/loadByDelivery';
+      let data = {
+        ordno: me.curOrdno
+      }
+      me.expressData = me.shoppingOrderService.getBasicExpressList(url,data);
     }
   }
 
@@ -112,5 +123,36 @@ export class WorkDetailComponent implements OnInit {
     } else if (me.orderDetailData.state == 'NO') {
       me.orderStep = 1;
     }
+  }
+
+  /**
+   * 是否是当前状态
+   * @param index
+   * @returns {boolean}
+   */
+  ifCurrent(index:number){
+    let me = this;
+    switch (index){
+      case 1:
+        return true;
+      case 2:
+        if(me.orderStep==2 || me.orderStep==3 || me.orderStep==4 || me.orderStep==5) return true;
+      case 3:
+        if(me.orderStep==3 || me.orderStep==4 || me.orderStep==5) return true;
+      case 4:
+        if(me.orderStep==4 || me.orderStep==5) return true;
+      case 5:
+        if(me.orderStep==5) return true;
+      default:
+        return false;
+    }
+  }
+
+  /**
+   * 发货回调函数
+   * @param data
+   */
+  getDeliverOrderData(data) {
+    this.curOrdno = null;//输入属性发生变化的时候，弹窗才会打开，所以每次后来都清空，造成变化的迹象
   }
 }
