@@ -119,7 +119,7 @@ export class OrderDetailComponent implements OnInit {
   showLogistics(){
     let url='/ord/tail/queryList';
     let data={
-      ordno:'8064321506563660332'
+      ordno:this.ordno
     };
     this.logisticsData=this.stockManService.getShopList(url,data);
     for (let item of this.logisticsData){
