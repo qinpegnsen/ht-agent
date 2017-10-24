@@ -139,13 +139,13 @@ export class OrderPageComponent implements OnInit {
    * 2.右下角出现图片
    */
   changeStyle(obj){
-    if( $(obj)[0].className.indexOf('_border')>1){
+    if( $(obj)[0].className.indexOf('b')>1){
       return;
     }else{
-      $(obj).parents('._payWay').find('._border').removeClass("_border");
-      $(obj).parents('._payWay').children().removeClass("_selected");
-      $(obj).addClass("_border");
-      $(obj).addClass("_selected");
+      $(obj).parents('._payWay').find('.b').removeClass("b");
+      $(obj).parents('._payWay').children().removeClass("b");
+      $(obj).addClass("b");
+      $(obj).addClass("b");
     }
   }
 
@@ -155,7 +155,7 @@ export class OrderPageComponent implements OnInit {
    */
   goPay(){
     let note=$("._message").val();
-    let payWay=$.trim($("._payWay ._selected").text());//获取文本之后再把多余的空格去掉，要不然html大代码一整理就出错了
+    let payWay=$.trim($("._payWay .b").text());//获取文本之后再把多余的空格去掉，要不然html大代码一整理就出错了
     if(payWay=='在线支付'){
       payWay='ONLINE'
     }else{

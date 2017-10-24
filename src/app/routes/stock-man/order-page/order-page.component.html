@@ -22,7 +22,7 @@
         </div>
         <div *ngIf="defaultAddress?.address">
           <div class="w100 clearfix">
-            <div class="text-center col-lg-1 _line _border _selected _addrId  overflowH" id="{{defaultAddress?.id}}">
+            <div class="text-center col-lg-1 _line thc b _selected _addrId  overflowH" id="{{defaultAddress?.id}}">
               {{defaultAddress?.receiverName}}
             </div>
             <div class="col-lg-8 _line">
@@ -64,10 +64,10 @@
         </div>
         <div>
           <div class="w100 clearfix _payWay">
-            <div class="text-center col-lg-1 _line _border _marginR _selected _myhover p0"
+            <div class="text-center col-lg-1 _line thc b _marginR _selected _myhover p0"
                  (click)="changeStyle($event.target)">在线支付
             </div>
-            <div class="text-center col-lg-1 _line _myhover p0" (click)="changeStyle($event.target)">银行汇款</div>
+            <div class="text-center col-lg-1 _line _myhover p0 thc" (click)="changeStyle($event.target)">银行汇款</div>
           </div>
         </div>
       </div>
@@ -188,7 +188,7 @@
     </table>
     <!--提交订单-->
     <div class="clearfix">
-      <button class="btn btn-danger pull-right _myhover _button m15" (click)="goPay()">提交订单</button>
+      <button class="btn btn-danger pull-right _myhover _button m15 thc bg b" (click)="goPay()">提交订单</button>
     </div>
   </div>
 </div>

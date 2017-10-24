@@ -103,7 +103,7 @@ export class PayPageComponent implements OnInit {
   bornOrder(ordno){
     let url = '/agentOrd/addAgentOrd';
     let payData=this.stockManService.bornOrder(url,this.orderData);
-    if(isNullOrUndefined(payData)||payData=='服务器异常'){               //在用户刷新，或者下个页面返回的时候会用到
+    if(isNullOrUndefined(payData)||payData=='代理商购物车商品无查询数据'){               //在用户刷新，或者下个页面返回的时候会用到
       let url = '/agentOrd/loadByOrdno';
       let data={
         ordno:ordno?ordno:sessionStorage.getItem('ordno')
@@ -128,11 +128,11 @@ export class PayPageComponent implements OnInit {
    * 1.右下角出现图片
    */
   changeStyle(obj){
-    if( $(obj)[0].className.indexOf('_selected')>1){
+    if( $(obj)[0].className.indexOf('b')>1){
       return;
     }else{
-      $(obj).parents('._border').find("._selected").removeClass("_selected");
-      $(obj).addClass("_selected");
+      $(obj).parents('._border').find(".b").removeClass("b");
+      $(obj).addClass("b");
     }
   }
 
@@ -141,7 +141,7 @@ export class PayPageComponent implements OnInit {
    * @param ordno  订单号
    */
   confirmPay(){
-    let obj=$("._selected");
+    let obj=$(".b");
     if( obj.parents("._pay")[0].className.indexOf('_wxPay')>1){
       this.curWay='_wxPay'; //微信支付
     } else{

@@ -62,7 +62,6 @@ export class DoPayComponent implements OnInit {
         ordno: _this.ordno
       };
       _this.payCon = _this.stockManService.goPay(url, data);
-      console.log("█ _this.payCon ►►►",  _this.payCon);
     } else if (this.curWay == '_aliPay') {                                   //支付宝时执行，获取到支付的二维码的内容
     }
 
@@ -119,7 +118,6 @@ export class DoPayComponent implements OnInit {
       ordno: this.ordno
     }
     let result = this.stockManService.isTrue(url, data);
-    console.log("█ result ►►►",  result);
     if (result) {//支付成功的收
       clearInterval(timer);
       AppComponent.rzhAlt("success", "支付成功");
