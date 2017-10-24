@@ -99,7 +99,7 @@ export class WaitForReceiveComponent implements OnInit {
     Logistics.style.display = 'block';
     let url='/ord/tail/queryDeliveryList';
     let data={
-      ordno:ordno
+      ordno:'8064321506563660332'
     };
     this.LogisticsData=this.stockManService.getShopList(url,data);
   }
