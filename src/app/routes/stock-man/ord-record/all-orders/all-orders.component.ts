@@ -113,7 +113,7 @@ export class AllOrdersComponent implements OnInit {
    */
   showLogistics(Logistics,ordno){
     Logistics.style.display = 'block';
-    let url='/ord/tail/queryList';
+    let url='/ord/tail/queryDeliveryList';
     let data={
       ordno:ordno
     };
