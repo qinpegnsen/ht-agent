@@ -115,7 +115,7 @@ export class AllOrdersComponent implements OnInit {
     Logistics.style.display = 'block';
     let url='/ord/tail/queryDeliveryList';
     let data={
-      ordno:8064321506563660332
+      ordno:ordno
     };
     this.LogisticsData=this.stockManService.getShopList(url,data);
   }
