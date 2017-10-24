@@ -3,7 +3,7 @@ import {isNullOrUndefined} from "util";
 import {ShoppingOrderComponent} from "../shopping-order.component";
 import {ActivatedRoute} from "@angular/router";
 import {ShoppingOrderService} from "../shopping-order.service";
-
+declare var $:any;
 @Component({
   selector: 'app-work-detail',
   templateUrl: './work-detail.component.html',
@@ -146,6 +146,14 @@ export class WorkDetailComponent implements OnInit {
       default:
         return false;
     }
+  }
+
+  /**
+   * 显示备注编辑框
+   * @param target
+   */
+  dropdownToggle(target){
+    $(target).show()
   }
 
   /**
