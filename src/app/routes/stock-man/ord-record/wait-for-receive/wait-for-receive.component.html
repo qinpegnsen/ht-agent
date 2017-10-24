@@ -81,7 +81,7 @@
                      [queryParams]="{ordno:goods.ordno}">查看更多</a>
                 </p>
                 <div class="_logistics">
-                  <ul class="timeline-alt p0">
+                  <ul class="p0" [class.timeline-alt]="LogisticsData">
                     <ng-container *ngFor="let item of LogisticsData;let i=index;">
                       <li class="mb0">
                         <div class="timeline-badge primary thc" [class.bg]="i==0"></div>

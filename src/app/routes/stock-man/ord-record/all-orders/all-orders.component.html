@@ -72,7 +72,7 @@
                (mouseleave)="hideLogistics(Logistics)">
               查看物流
             </p>
-            <div class="szh-buyer-info text-left _logisticsP" #Logistics (mouseenter)="showLogistics(Logistics)"
+            <div class="szh-buyer-info text-left _logisticsP" #Logistics (mouseenter)="showLogistics(Logistics,goods.ordno)"
                  (mouseleave)="hideLogistics(Logistics)">
               <div class="info-con _logisticsW">
                 <p class="pl mb-sm clearfix">
@@ -82,7 +82,7 @@
                      [queryParams]="{ordno:goods.ordno}">查看更多</a>
                 </p>
                 <div class="_logistics">
-                  <ul class="timeline-alt p0">
+                  <ul class="p0" [class.timeline-alt]="LogisticsData">
                     <ng-container *ngFor="let item of LogisticsData;let i=index;">
                       <li class="mb0">
                         <div class="timeline-badge primary thc" [class.bg]="i==0"></div>
