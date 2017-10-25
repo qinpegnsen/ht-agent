@@ -22,11 +22,7 @@ export class StockManService {
         if(data.success){
           result=data.data;
         }else{
-          if(data.info=='代理商购物车商品无查询数据'){
-            result='';
-          }else if(data.info=='购买商品包含已下架商品法'||data.info=='购买商品不可批发商品'){
-            result=data.info;
-          }
+          result=data.info;
         }
       },
       error: (res) => {

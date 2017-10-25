@@ -1,6 +1,9 @@
 <div *ngIf="flag">
-  <div class="content-heading mb-lg">
-    在线支付
+  <div *ngIf="curWay=='_wxPay'" class="content-heading mb-lg thc font">
+    微信支付
+  </div>
+  <div *ngIf="curWay=='_aliPay'" class="content-heading mb-lg thc font">
+    支付宝支付
   </div>
   <div class="_line w100 clearfix">
     <span class="col-lg-8 pull-left font16">订单提交成功，订单号：{{ordno}}，距离失效还有<span class="_time">{{minute}}</span>分<span class="_time">{{second}}</span>秒，请尽快付款！</span>
