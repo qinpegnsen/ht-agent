@@ -4,6 +4,7 @@ import {SettingsService} from "../settings/settings.service";
 import {isNullOrUndefined} from "util";
 import {ActivatedRoute} from "@angular/router";
 import {AppComponent} from "../../app.component";
+import {MaskService} from "../services/mask.service";
 const swal = require('sweetalert');
 
 @Injectable()
@@ -104,6 +105,37 @@ export class SubmitService {
       },
       error: (res) => {
         console.log('put error', res);
+      }
+    });
+    return result;
+  }
+
+  /**
+   * put 请求
+   * @param submitUrl
+   * @param submitData
+   * @param back:true(返回上一级)
+   */
+  getRequest(requestUrl, requestDate, back?: boolean) {
+    let result, me = this;
+    me.ajax.get({
+      url: requestUrl,
+      data: requestDate,
+      async: false,
+      success: (res) => {
+        if (res.success) {
+          MaskService.hideMask();//当上传图片之后才提交数据的话，遮罩层开启是在图片上传之前，所以需要手动关闭
+          if (back) me.settings.closeRightPageAndRouteBack()//关闭右侧页面并返回上级路由
+          // AppComponent.rzhAlt("success", res.info);
+          result = res.data;
+        } else {
+          MaskService.hideMask();//当上传图片之后才提交数据的话，遮罩层开启是在图片上传之前，所以需要手动关闭
+          AppComponent.rzhAlt("error", res.info);
+        }
+      },
+      error: (res) => {
+        MaskService.hideMask();//当上传图片之后才提交数据的话，遮罩层开启是在图片上传之前，所以需要手动关闭
+        AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
       }
     });
     return result;
