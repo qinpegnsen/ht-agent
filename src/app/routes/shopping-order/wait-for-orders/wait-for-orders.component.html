@@ -58,7 +58,7 @@
                (click)="toReject(order.id,workOrderList.curPage)" #reject> 拒单
       </button>
       <button  class="m-sm btn btn-xs btn-outline fa fa-info-circle thc font b" routerLink="../work-detail"
-               [queryParams]="{ordno:order.ordno}"> 查看详情
+               [queryParams]="{ordno:order.ordno,woAgentId:order.id}"> 查看详情
       </button>
     </td>
   </tr>

@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {isNullOrUndefined} from "util";
 import {ShoppingOrderComponent} from "../shopping-order.component";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ShoppingOrderService} from "../shopping-order.service";
 const swal = require('sweetalert');
 declare var $:any;
@@ -23,12 +23,12 @@ export class WorkDetailComponent implements OnInit {
   public expressData: any;                                //快递公司信息
   private atime:Array<string> = new Array();
   private showReasonWindow:boolean = false;              //弹窗的开关
-  private woAgengId:any;                                  //代理商工单id
-  public curWoAgentId: string;                            //工单的id
+  private woAgengId:any;                                  //代理商工单id 发货的时候用,因为load没有返回来，直接从前面传过来
 
   constructor(
               private parentComp: ShoppingOrderComponent,
               public shoppingOrderService: ShoppingOrderService,
+              public router: Router,
               private routeInfo:ActivatedRoute) {
   }
 
@@ -40,6 +40,7 @@ export class WorkDetailComponent implements OnInit {
     let me = this;
     me.parentComp.orderType = 100;
     me.curOrdno = me.routeInfo.snapshot.queryParams['ordno'];
+    me.woAgengId = me.routeInfo.snapshot.queryParams['woAgentId'];
     me.getLogisticsInfo();//获取订单的物流详情及订单进度
     me.getOrderDetail(); //获取订单详情
   }
@@ -167,7 +168,7 @@ export class WorkDetailComponent implements OnInit {
    * 1. 刷新页面
    * 2.设置按钮的禁用和启用
    */
-  toAccept(woAgengId) {
+  toAccept() {
     let that = this;
     swal({
         title: '确认接单吗？',
@@ -181,9 +182,10 @@ export class WorkDetailComponent implements OnInit {
         swal.close(); //关闭弹框
         let url = '/woAgent/updateWoAgentToAccept';
         let data = {
-          woAgengId: woAgengId
+          woAgengId: that.woAgengId
         };
         that.shoppingOrderService.toAcceptWork(url, data);
+        that.ngOnInit();
       }
     );
   }
@@ -191,8 +193,7 @@ export class WorkDetailComponent implements OnInit {
   /**
    * 拒单
    */
-  toReject(woAgengId) {
-    this.woAgengId = woAgengId;
+  toReject() {
     this.showReasonWindow = true;
   }
 
@@ -201,22 +202,23 @@ export class WorkDetailComponent implements OnInit {
    * @param woAgentId    代理商工单id
    * @param ordno        订单编码
    */
-  deliver(woAgentId, ordno) {
-    this.curWoAgentId = woAgentId;
-    this.transcurOrdno = this.curOrdno;
+  deliver() {
+    console.log("█ this.woAgengId ►►►",  this.woAgengId);
+    this.transcurOrdno = this.curOrdno;//如果不这样，就会在详情页面一打开就发货组件就出来了
   }
   /**
    * 拒单的回调函数，产生输入属性的变化
    */
-  closeRejecWin(bol,curPage){
+  closeRejecWin(bol){
     this.showReasonWindow=bol;
+    this.router.navigate(['/main/shopOrder/all-work-orders'])//拒单不能查看详情页面，跳转到所有工单页面
   }
 
   /**
    * 发货回调函数
    * @param data
    */
-  getDeliverOrderData(data) {
+  getDeliverOrderData() {
     this.curOrdno = null;//输入属性发生变化的时候，弹窗才会打开，所以每次后来都清空，造成变化的迹象
     this.ngOnInit();
   }

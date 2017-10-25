@@ -1,6 +1,6 @@
 <div class="szh-order-info b clearfix position-relative">
   <div class="szh-order-details">
-    <div class="order-head p bb text-info"><span class="thc font"><i class="fa fa-file-text"></i> 订单信息</span></div>
+    <div class="order-head p bb text-info"><span class="thc font"><i class="fa fa-file-text"></i> 订单信息{{orderDetailData.state}}</span></div>
     <div class="content">
       <dl>
         <dt>买家手机号：</dt>
@@ -244,14 +244,14 @@
           <span class="font-gray">支付方式：{{orderDetailData.payWay | rzhState:'1017'}}</span>
         </td>
         <td class="bl" [attr.rowspan]="goodsData.length">
-          <button *ngIf="orderDetailData.state=='NO'" class="m-sm btn btn-xs btn-outline fa fa-check _backColor thc bg _myWhiteColor"
-                  (click)="toAccept(orderDetailData.id)" #accept> 接单
+          <button *ngIf="orderDetailData.state=='ASSIGNED'" class="m-sm btn btn-xs btn-outline fa fa-check _backColor thc bg _myWhiteColor"
+                  (click)="toAccept()" #accept> 接单
           </button>
-          <button  *ngIf="orderDetailData.state=='NO'" class="m-sm btn btn-xs btn-outline fa fa-close _myWhiteBg thc font b"
-                   (click)="toReject(orderDetailData.id)" #reject> 拒单
+          <button  *ngIf="orderDetailData.state=='ASSIGNED'" class="m-sm btn btn-xs btn-outline fa fa-close _myWhiteBg thc font b"
+                   (click)="toReject()" #reject> 拒单
           </button>
           <button class="m-sm btn btn-xs btn-green fa fa-truck thc bg" *ngIf="orderDetailData.state=='PREPARE'"
-                  (click)="deliver(orderDetailData.id)"> 发货
+                  (click)="deliver()"> 发货
           </button>
         </td>
       </ng-container>
@@ -298,10 +298,10 @@
 </div>
 <!--发货组件开始-->
 <ng-container *ngIf="orderDetailData.state=='PREPARE'">
-  <app-deliver-goods  [woAgentId]="curWoAgentId" [ordno]="transcurOrdno" [page]="1"
+  <app-deliver-goods  [woAgentId]="woAgengId" [ordno]="transcurOrdno" [page]="1"
                       (deliverGoods)="getDeliverOrderData($event)"></app-deliver-goods>
 </ng-container>
 <!--发货组件结束-->
 <!--拒单组件开始-->
-<app-reason-rejec *ngIf="orderDetailData.state=='NO'" [showReasonWindow]="showReasonWindow" [woAgengId]="woAgengId" (closeRejec)="closeRejecWin(obj,1)"></app-reason-rejec>
+<app-reason-rejec *ngIf="orderDetailData.state=='ASSIGNED'" [showReasonWindow]="showReasonWindow" [woAgengId]="woAgengId" (closeRejec)="closeRejecWin(obj,1)"></app-reason-rejec>
 <!--拒单组件结束-->
