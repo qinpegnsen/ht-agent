@@ -48,6 +48,9 @@ import {AngularEchartsModule} from "ngx-echarts";
 import {DataDictService} from "../core/services/data-dict.service";
 import {PopoverModule} from "ngx-bootstrap";
 import {StrJsonPipe} from "./pipe/str-json.pipe";
+import {FileUploadModule} from "ng2-file-upload";
+import {ImgUrlPipe} from "./pipe/img-url.pipe";
+import {GetUidService} from "../core/services/get-uid.service";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -78,12 +81,14 @@ import {StrJsonPipe} from "./pipe/str-json.pipe";
     DataTableModule,
     SelectAreaModule,
     FoueAreasModule,
-    AngularEchartsModule
+    AngularEchartsModule,
+    FileUploadModule
   ],
   providers: [
-    ColorsService,StockManService,HeaderComponent,AccordionComponent,RzhtoolsService,DataDictService
+    ColorsService,StockManService,HeaderComponent,AccordionComponent,RzhtoolsService,DataDictService,GetUidService
   ],
   declarations: [
+    ImgUrlPipe,
     FlotDirective,
     SparklineDirective,
     EasypiechartDirective,
@@ -100,6 +105,8 @@ import {StrJsonPipe} from "./pipe/str-json.pipe";
     StrJsonPipe
   ],
   exports: [
+    ImgUrlPipe,
+    FileUploadModule,
     StrJsonPipe,
     HoverDirective,
     SubstringPipe,

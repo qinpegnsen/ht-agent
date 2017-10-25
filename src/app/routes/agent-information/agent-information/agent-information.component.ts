@@ -5,6 +5,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {PatternService} from "../../../core/forms/pattern.service";
 import {AjaxService} from "../../../core/services/ajax.service";
 import {isNullOrUndefined} from "util";
+import {GetUidService} from "../../../core/services/get-uid.service";
+import {AppComponent} from "../../../app.component";
+import {SubmitService} from "../../../core/forms/submit.service";
 const swal = require('sweetalert');
 declare var $:any;
 declare var AMap:any;
@@ -31,8 +34,9 @@ export class AgentInformationComponent implements OnInit {
   private code: any;
   private selectArea;
   private myImg: any;
+  private uuid:any;                                 //存储暗码
 
-  constructor(public settings:SettingsService, private ajax:AjaxService, private router:Router, private routeInfo:ActivatedRoute,private patterns: PatternService) {
+  constructor( public GetUidService: GetUidService,public submitService: SubmitService,public settings:SettingsService, private ajax:AjaxService, private router:Router, private routeInfo:ActivatedRoute,private patterns: PatternService) {
     this.settings.showRightPage("30%"); // 此方法必须调用！页面右侧显示，带滑动效果,可以自定义宽度：..%  或者 ..px
   }
 
@@ -112,7 +116,6 @@ export class AgentInformationComponent implements OnInit {
 
 
     let collection=JSON.parse(localStorage.getItem('loginInfo'));
-    console.log("█ collection ►►►",  collection);
 
     this.code=collection.agentCode;
     console.log("█ aaa ►►►",  this.code);
@@ -183,42 +186,103 @@ export class AgentInformationComponent implements OnInit {
     this.myImg = true;  //表示已经选了图片
   }
 
+  /**
+   * 图片上传
+   */
+  uploadImg(value){
+    console.log("█ 1 ►►►",  1);
+    let me = this;
+    /**
+     * 构建form时，传入自定义参数
+     * @param item
+     */
+
+    me.uploader.onBuildItemForm = function (fileItem, form) {
+      let uuid=me.GetUidService.getUid();
+      console.log("█ uuid ►►►",  uuid);
+      form.append('uuid',uuid);
+      me.uuid=uuid;
+    };
+
+    /**
+     * 执行上传
+     */
+    me.uploader.uploadAll();
+
+    /**
+     * 上传成功处理
+     * @param item 上传列表
+     * @param response 返回信息
+     * @param status 状态
+     * @param headers 头信息
+     */
+    me.uploader.onSuccessItem = function (item, response, status, headers) {
+      let res = JSON.parse(response);
+      if (res.success) {
+        let url='/agent/updateAgentAvatar';
+        let data={
+          avatarUUID:me.uuid,
+          agentCode:me.code
+        };
+        me.submitService.getData(url,data);
+        me.upateInfo(value);
+      } else {
+        AppComponent.rzhAlt('error', '上传失败', '图片上传失败！');
+      }
+    };
+
+
+    /**
+     * 上传失败处理
+     * @param item 上传列表
+     * @param response 返回信息
+     * @param status 状态
+     * @param headers 头信息
+     */
+    me.uploader.onErrorItem = function (item, response, status, headers) {
+      AppComponent.rzhAlt('error', '上传失败', '图片上传失败！');
+    };
+  }
 
   addLimitList(value) {
-    let _this = this;
-      _this.ajax.put({
-        url: '/agent/updateAgentBasic',
-        data: {
-          'agentCode':_this.code,
-          'agentName': value.agentName,
-          'agentLevel': value.agentLevel,
-          'agentAcct': value.agentAcct,
-          'agentPwd': value.agentPwd,
-          'leader': value.leader,
-          'moblie': value.moblie,
-          'idcard': value.idcard,
-          'telephone':value.telephone,
-          /* 'idcardImage1uuid': value.idcardImage1uuid,
-           'idcardImage2uuid': value.idcardImage2uuid,*/
-          'areaCode': value.areaCode,
-          'address': value.address,
-          'coordinateLng': value.coordinateLng,
-          'coordinateLat': value.coordinateLat,
-          'description': value.description,
-        },
-        success: (res) => {
-          console.log(res)
-          if (res.success) {
-            _this.router.navigate(['/main/agent-information'], {replaceUrl: true});   //路由跳转
-            swal('修改信息成功！', '', 'success');
-          } else {
-            swal(res.info, '','error');
-          }
-        },
-        error: (data) => {
-          swal('修改信息失败！', '', 'error');
-        }
-      });
+    this.uploadImg(value);
+
     }
 
+  upateInfo(value?) {
+    let _this = this;
+    _this.ajax.put({
+      url: '/agent/updateAgentBasic',
+      data: {
+        'agentCode':_this.code,
+        'agentName': value.agentName,
+        'agentLevel': value.agentLevel,
+        'agentAcct': value.agentAcct,
+        'agentPwd': value.agentPwd,
+        'leader': value.leader,
+        'moblie': value.moblie,
+        'idcard': value.idcard,
+        'telephone':value.telephone,
+        /* 'idcardImage1uuid': value.idcardImage1uuid,
+         'idcardImage2uuid': value.idcardImage2uuid,*/
+        'areaCode': value.areaCode,
+        'address': value.address,
+        'coordinateLng': value.coordinateLng,
+        'coordinateLat': value.coordinateLat,
+        'description': value.description,
+      },
+      success: (res) => {
+        console.log(res)
+        if (res.success) {
+          _this.router.navigate(['/main/agent-information'], {replaceUrl: true});   //路由跳转
+          swal('修改信息成功！', '', 'success');
+        } else {
+          swal(res.info, '','error');
+        }
+      },
+      error: (data) => {
+        swal('修改信息失败！', '', 'error');
+      }
+    });
+  }
 }

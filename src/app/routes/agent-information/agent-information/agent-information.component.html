@@ -110,7 +110,25 @@
             </div>
             <button class="btn btn-info position-absolute left50 icon-location-pin" style="top:44%" *ngIf="!flag" type="button" (click)="isShowMap(staff)"> 标注经纬度</button>
             <button class="btn btn-info position-absolute left50 icon-location-pin" style="top:44%" *ngIf="flag" type="button" (click)="isShowMap(staff)"> 修改经纬度</button>
-            <button class="mb-sm btn btn-info position-absolute icon-cloud-upload" style="top:44%; left:77%" type="file"> 修改头像</button>
+
+            <span class="ui-state-disabled pull-left _uploadImg" *ngFor="let item of uploader.queue">
+                <span class="close" (click)="item.remove()">×</span>
+                <span class="upload-thumb">
+                  <img *ngIf="item" [src]="item._file | imgUrl"
+                       onerror="javascript:this.src='../../../assets/img/dummy.png'" [alt]="item?.file?.name"
+                       class="_img">
+                </span>
+              </span>
+
+            <label for="image-input" class="btn btn-default file-upload col-sm-3">
+              <i class="icon-cloud-upload mr"></i>{{fileName}}
+              <input type="file" name="coverImg" ngModel ng2FileSelect [uploader]="uploader"
+                     maxlength="1"/>
+            </label>
+
+
+            <!--<button class="mb-sm btn btn-info position-absolute icon-cloud-upload" style="top:44%; left:77%" type="file"> 修改头像</button>-->
+
           </fieldset>
           <fieldset>
             <div class="form-group">
