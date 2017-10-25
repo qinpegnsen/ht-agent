@@ -1,6 +1,6 @@
 <div class="szh-order-info b clearfix position-relative">
   <div class="szh-order-details">
-    <div class="order-head p bb text-info"><span class="thc font"><i class="fa fa-file-text"></i> 订单信息{{orderDetailData.state}}</span></div>
+    <div class="order-head p bb text-info"><span class="thc font"><i class="fa fa-file-text"></i> 订单信息</span></div>
     <div class="content">
       <dl>
         <dt>买家手机号：</dt>
@@ -244,13 +244,13 @@
           <span class="font-gray">支付方式：{{orderDetailData.payWay | rzhState:'1017'}}</span>
         </td>
         <td class="bl" [attr.rowspan]="goodsData.length">
-          <button *ngIf="orderDetailData.state=='ASSIGNED'" class="m-sm btn btn-xs btn-outline fa fa-check _backColor thc bg _myWhiteColor"
+          <button *ngIf="orderDetailData.state=='ASSIGNED'" class="m-sm btn btn-xs btn-outline fa fa-check _backColor thc bg _myWhiteColor b"
                   (click)="toAccept()" #accept> 接单
           </button>
           <button  *ngIf="orderDetailData.state=='ASSIGNED'" class="m-sm btn btn-xs btn-outline fa fa-close _myWhiteBg thc font b"
                    (click)="toReject()" #reject> 拒单
           </button>
-          <button class="m-sm btn btn-xs btn-green fa fa-truck thc bg" *ngIf="orderDetailData.state=='PREPARE'"
+          <button class="m-sm btn btn-xs btn-green fa fa-truck thc bg b" *ngIf="orderDetailData.state=='PREPARE'"
                   (click)="deliver()"> 发货
           </button>
         </td>
