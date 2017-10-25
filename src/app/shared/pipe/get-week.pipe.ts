@@ -11,7 +11,6 @@ export class GetWeekPipe implements PipeTransform {
     if(isNullOrUndefined(value)) return null;
     else {
       let val =  new Date(value);
-      console.log("█ Date ►►►",  val );
       return RzhtoolsService.getWeek(val,'cn');
     }
   }
