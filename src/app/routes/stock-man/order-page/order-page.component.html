@@ -6,9 +6,9 @@
   <!--<span> 温馨提示：</span><span>请确认相关商品信息后提交订单。</span>-->
   <!--</div>-->
   <div class="w100 clearfix">
-    <div class="_title">
-      <h4>填写并核对订单信息</h4>
-    </div>
+    <!--<div class="_title">-->
+      <!--<h4>填写并核对订单信息</h4>-->
+    <!--</div>-->
     <!--内容区域-->
     <div class="_content">
       <!--收货人栏-->
@@ -45,11 +45,11 @@
                   <span>{{addres.mobPhone}}</span>
                   <span class="col-xs-offset-1">{{addres.areaFullName}}{{addres.address}}</span>
                 </div>
-                <a class="col-lg-1 _line _myhover" *ngIf="addres.id==currentId" (click)="changeAddres(addres.id)">
+                <a class="col-lg-1 _line _myhover" *ngIf="addres.id==currentId" (click)="changeAddres(addres.id)" title="设置为默认地址">
                   选择地址
                 </a>
                 <a class="col-lg-1 _line _myhover" *ngIf="addres.id==currentId" routerLink="/main/stockAddres/rightpage"
-                   [queryParams]="{number:2,id:addres.id}">
+                   [queryParams]="{number:2,id:addres.id,source:'cart'}">
                   编辑
                 </a>
               </div>

@@ -24,7 +24,7 @@
           单位
         </th>
         <th class="w7 text-center thc font">
-          价格
+          单价
         </th>
         <th class="w12 text-center thc font">
           数量
@@ -82,7 +82,7 @@
             </div>
           </td>
           <td class="text-center">{{shop.unit}}</td>
-          <td class="text-center">￥{{shop.goodsPrice.batchPrice | number:'1.2-2'}}</td>
+          <td class="text-center">￥ {{shop.goodsPrice.batchPrice | number:'1.2-2'}}</td>
           <td class="_myNmu">
             <div class="input-group input-group-sm width120 text-center">
               <span class="input-group-addon" (click)="minusNum($event.target)"><i class="fa fa-minus"></i></span>
