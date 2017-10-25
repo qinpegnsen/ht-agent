@@ -291,7 +291,7 @@ export class CarPageComponent implements OnInit {
     this.inputSelect(obj, '')
     this.getPriceList(obj)
     this.getShopTotalNum();
-    this.goodTotalPrice(obj)
+    this.goodTotalPrice(obj);
   }
 
   /**
@@ -315,9 +315,10 @@ export class CarPageComponent implements OnInit {
       num: num
     }
     this.stockManService.putData(url, data);
-    this.inputSelect(obj, '')
-    this.getPriceList(obj)
+    this.inputSelect(obj, '');
+    this.getPriceList(obj);
     this.getShopTotalNum();
+    this.goodTotalPrice(obj);
   }
 
   /**
@@ -403,6 +404,6 @@ export class CarPageComponent implements OnInit {
       obj.value = 1;
     } else {
       obj.value = Math.floor(obj.value);   //如果是小数，取整数
-    }
+    };
   }
 }
