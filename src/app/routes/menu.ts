@@ -54,9 +54,9 @@ const withdrawal = {
     }
   ]
 };
-const messageInform = {
+const sysMessage = {
   text: '系统消息',
-  link: '/main/message-inform',
+  link: '/main/sys-message',
   icon: 'icon-book-open'
 };
 export const menu = [
@@ -67,6 +67,5 @@ export const menu = [
     statistics,
     stockAddres,
     withdrawal,
-    messageInform
-
+    sysMessage
 ];
