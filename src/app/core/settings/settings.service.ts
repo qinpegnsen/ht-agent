@@ -61,7 +61,7 @@ export class SettingsService {
       isCollapsedText: false,
       useFullLayout: false,
       hiddenFooter: false,
-      offsidebarOpen: false,
+      offsidebarOpen: false,//是否显示右侧主题栏
       operationpageOpen: false,  //是否显示右侧操作页面  by 立坤
       asideToggled: false,
       viewAnimation: 'ng-fadeInUp'
