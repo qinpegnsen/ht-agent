@@ -140,7 +140,6 @@ export class HomeComponent implements OnInit {
   /**
    * 获取平台信息
    */
-
   technicalByTypeCode() {
     let url = "/datadict/loadInfoByCode";//技术服务电话
     let data = {
@@ -156,7 +155,7 @@ export class HomeComponent implements OnInit {
     this.tel2= this.submit.getData(url, data);
   }
  emailByTypeCode() {
-    let url = "/datadict/loadInfoByCode";//地址
+    let url = "/datadict/loadInfoByCode";//邮箱
     let data = {
       code: "agent_service_plat_email"
     }

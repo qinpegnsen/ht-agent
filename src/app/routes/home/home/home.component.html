@@ -9,42 +9,37 @@
         </div>
         <div class="bg-gray release">
           <div class="font16">代理商统计</div>
-          <div class="label label-danger thc bgIcon colorIcon">{{data?.allGoods}}</div>
+          <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.allGoods!=0">{{data?.allGoods}}</div>
+          <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.allGoods==0">0}</div>
+
         </div>
         <div style="">
           <button class="mb-sm btn btn-green btn-outline m-all">进货数量
-            <div class="label label-danger thc bgIcon colorIcon">
-              {{data?.sumBatchNum}}
-            </div>
+            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.sumBatchNum!=0">{{data?.sumBatchNum}}</div>
+            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.sumBatchNum==0">0</div>
 
           </button>
           <button class="mb-sm btn btn-green btn-outline m-all">进货金额
-            <div class="label label-danger thc bgIcon colorIcon">
-              {{data?.sumPay}}
-            </div>
+            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.sumPay!=0">{{data?.sumPay}}</div>
+            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.sumPay==0">0</div>
           </button>
           <button class="mb-sm btn btn-green btn-outline m-all">发货数量
-            <div class="label label-danger thc bgIcon colorIcon">
-              {{data?.countDelivery}}
-            </div>
+            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.countDelivery!=0">{{data?.countDelivery}}</div>
+            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.countDelivery==0">0</div>
           </button>
         </div>
         <div style="height: 60px">
           <button class="mb-sm btn btn-green btn-outline m-all">派单数量
-            <div class="label label-danger thc bgIcon colorIcon">
-              {{data?.agentAllOrd}}
-            </div>
+            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.agentAllOrd!=0">{{data?.agentAllOrd}}</div>
+            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.agentAllOrd==0">0</div>
           </button>
           <button class="mb-sm btn btn-green btn-outline m-all">接单数量
-            <div class="label label-danger thc bgIcon colorIcon">
-              {{data?.agentDealOrd}}
-            </div>
+            <div class="label label-danger thc bgIcon colorIcon"  *ngIf="data?.agentDealOrd!=0">{{data?.agentDealOrd}}</div>
+            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.agentDealOrd==0">0</div>
           </button>
           <button class="mb-sm btn btn-green btn-outline m-all" >拒单数量
-            <div class="label label-danger thc bgIcon colorIcon">
-              {{data?.agentRejectOrd}}
-            </div>
-
+            <div class="label label-danger thc bgIcon colorIcon"  *ngIf="data?.agentRejectOrd!=0">{{data?.agentRejectOrd}}</div>
+            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.agentRejectOrd==0">0</div>
           </button>
         </div>
 
@@ -74,9 +69,9 @@
 
         <div class="panel-heading">
           <div class="panel-title font16">平台联系方式</div>
-          <p style="padding-top: 7px"><i class="icon icon-phone"></i>：{{tel2}}</p>
-          <p><i class="icon icon-phone"></i>：{{tel1}}</p>
-          <p><i class="icon icon-envelope"></i>：{{email}}</p>
+          <p style="padding-top: 7px"><i class="icon icon-phone"></i>&nbsp;平台服务电话：{{tel2}}</p>
+          <p><i class="icon icon-phone"></i>&nbsp;技术服务电话：{{tel1}}</p>
+          <p><i class="icon icon-envelope"></i>&nbsp;平台邮箱：{{email}}</p>
         </div>
 
       </div>
