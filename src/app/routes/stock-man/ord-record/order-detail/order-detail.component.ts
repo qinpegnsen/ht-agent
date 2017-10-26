@@ -104,12 +104,13 @@ export class OrderDetailComponent implements OnInit {
    * 取消的订单或者成功的商品再次进行购买
    */
   againBuy(goodsCode, num){
-    let url = '/agent/agentCart/addCustCart';
-    let data = {
-      strData: `${goodsCode},${num};`
-    }
-    this.stockManService.sendCar(url, data)
-    this.headerComponent.getShopTotal()
+    // let url = '/agent/agentCart/addCustCart';
+    // let data = {
+    //   strData: `${goodsCode},${num};`
+    // }
+    // this.stockManService.sendCar(url, data)
+    // this.headerComponent.getShopTotal()
+    this.router.navigate(['/main/stockMan/agentord']);
   }
 
   /**
