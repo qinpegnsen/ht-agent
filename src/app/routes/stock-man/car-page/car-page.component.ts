@@ -104,7 +104,7 @@ export class CarPageComponent implements OnInit {
         let url = '/agent/agentCart/deleteAgentCartList';
         let data = {
           strData: id
-        }
+        };
         that.stockManService.deleteData(url, data);
         $(obj).parents('._myPaddingBody').remove();//点击删除的时候把这个li隐藏掉，1，少请求2，全选后删除重新选择的bug
         that.headerComponent.getShopTotal();//刷新顶部购物车的总数量
@@ -405,5 +405,5 @@ export class CarPageComponent implements OnInit {
     } else {
       obj.value = Math.floor(obj.value);   //如果是小数，取整数
     };
-  }
+  };
 }

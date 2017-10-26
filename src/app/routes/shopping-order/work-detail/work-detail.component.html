@@ -247,14 +247,14 @@
         </td>
         <td class="bl" [attr.rowspan]="goodsData.length">
           <button *ngIf="orderDetailData.state=='ASSIGNED'"
-                  class="m-sm btn btn-xs btn-outline fa fa-check _backColor thc bg _myWhiteColor b"
+                  class="btn btn-xs  btn-success fa fa-check"
                   (click)="toAccept()" #accept> 接单
           </button>
           <button *ngIf="orderDetailData.state=='ASSIGNED'"
-                  class="m-sm btn btn-xs btn-outline fa fa-close _myWhiteBg thc font b"
+                  class="btn btn-xs  btn-danger fa fa-close"
                   (click)="toReject()" #reject> 拒单
           </button>
-          <button class="m-sm btn btn-xs btn-green fa fa-truck thc bg b" *ngIf="orderDetailData.state=='PREPARE'"
+          <button class="btn btn-xs  btn-success fa fa-truck" *ngIf="orderDetailData.state=='PREPARE'"
                   (click)="deliver()"> 发货
           </button>
         </td>
