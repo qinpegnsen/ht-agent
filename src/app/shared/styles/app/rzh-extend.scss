@@ -129,7 +129,9 @@ $largeImg: 80px;      // 商品列表图片的宽，较大的图
 ._myWhiteBg{
   background:#fff!important;
 }
-
+.goodNameColor{
+   color:#5d9cec;
+ }
 .goods-lg-info{
   position: absolute;
   left: $largeImg+20;

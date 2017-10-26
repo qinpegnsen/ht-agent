@@ -74,7 +74,7 @@
                      onerror="javascript:this.src='../../../assets/img/dummy.png'">
               </div>
               <div class="goods-name">
-                <div class="extra"><span>{{good.goodsName}}</span></div>
+                <div class="extra"><span class="goodNameColor">{{good.goodsName}}</span></div>
                 <div *ngFor="let standard of good.goodsSavSetList">{{standard.attrName}}：{{standard.value}}</div>
               </div>
             </div>
