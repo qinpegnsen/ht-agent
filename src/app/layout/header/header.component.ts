@@ -150,6 +150,8 @@ export class HeaderComponent implements OnInit, OnChanges{
   }
 
   toggleOffsidebar() {
+    console.log("█ 1 ►►►",  1);
+
     this.settings.layout.offsidebarOpen = !this.settings.layout.offsidebarOpen;
   }
 

@@ -2,7 +2,8 @@
     <!-- User picture-->
     <div class="user-block-picture">
         <div class="user-block-status">
-            <img class="img-thumbnail img-circle" [src]="user.avatar"  onerror="javascript:this.src='../assets/img/user/01.jpg'" alt="Avatar" routerLink="agent-information"/>
+          <!--<img src="{{avatar}}" alt="">-->
+            <img class="img-thumbnail img-circle" src="{{avatar}}"  onerror="javascript:this.src='../assets/img/user/01.jpg'" alt="Avatar" routerLink="agent-information"/>
             <div class="circle circle-success circle-lg"></div>
         </div>
     </div>

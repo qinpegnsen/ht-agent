@@ -8,6 +8,7 @@ import {isNullOrUndefined} from "util";
 import {GetUidService} from "../../../core/services/get-uid.service";
 import {AppComponent} from "../../../app.component";
 import {SubmitService} from "../../../core/forms/submit.service";
+import {UserblockComponent} from "../../../layout/sidebar/userblock/userblock.component";
 const swal = require('sweetalert');
 declare var $:any;
 declare var AMap:any;
@@ -36,7 +37,7 @@ export class AgentInformationComponent implements OnInit {
   private myImg: any;
   private uuid:any;                                 //存储暗码
 
-  constructor( public GetUidService: GetUidService,public submitService: SubmitService,public settings:SettingsService, private ajax:AjaxService, private router:Router, private routeInfo:ActivatedRoute,private patterns: PatternService) {
+  constructor( public GetUidService: GetUidService,public userblockComponent: UserblockComponent,public submitService: SubmitService,public settings:SettingsService, private ajax:AjaxService, private router:Router, private routeInfo:ActivatedRoute,private patterns: PatternService) {
     this.settings.showRightPage("30%"); // 此方法必须调用！页面右侧显示，带滑动效果,可以自定义宽度：..%  或者 ..px
   }
 
@@ -190,7 +191,6 @@ export class AgentInformationComponent implements OnInit {
    * 图片上传
    */
   uploadImg(value){
-    console.log("█ 1 ►►►",  1);
     let me = this;
     /**
      * 构建form时，传入自定义参数
@@ -224,8 +224,16 @@ export class AgentInformationComponent implements OnInit {
           avatarUUID:me.uuid,
           agentCode:me.code
         };
-        me.submitService.getData(url,data);
+        let avatar =me.submitService.getData(url,data);
+        console.log("█ avatar ►►►",  avatar);
+
+        me.settings.user.picture=avatar;
+        localStorage.avatar=avatar;
+
+        // console.log("█ avatar ►►►",  avatar);
+
         me.upateInfo(value);
+        me.userblockComponent.ngOnInit();
       } else {
         AppComponent.rzhAlt('error', '上传失败', '图片上传失败！');
       }

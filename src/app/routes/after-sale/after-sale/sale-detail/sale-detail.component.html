@@ -4,11 +4,11 @@
       <ul class="timeline">
         <li class="" >
           <div class="timeline-badge primary">
-            <em class="fa fa-edit"></em>
+            <em class="fa fa-newspaper-o"></em>
           </div>
           <div class="timeline-panel">
             <div class="popover" [ngClass]="timelineAlt ? 'right' : 'left'">
-              <h4 class="popover-title">售后订单信息</h4>
+              <h4 class="popover-title">售后工单信息</h4>
               <div class="arrow"></div>
               <div class="popover-content">
                 <ul class="list-unstyled" style="height: 250px">
@@ -37,11 +37,16 @@
                     <p class="text-info pull-right w62"><span class="text-left">{{result.afterGoodsReq.reason}}</span></p>
                   </li>
                   <li class="pb">
-                    <p class=" mr pull-left d-play w35"><span class="pull-right">状态：</span></p>
-                    <p class="text-info pull-right w62"><span class="text-left" *ngIf="result.state=='DONE'">已同意</span></p>
-                    <p class="text-info pull-right w62"><span class="text-left" *ngIf="result.state=='DEAL'">待处理</span></p>
-                    <p class="text-info pull-right w62"><span class="text-left" *ngIf="result.state=='END'">已拒绝</span></p>
+                    <p class=" mr pull-left d-play w35"><span class="pull-right">服务类型：</span></p>
+                    <p class="text-info pull-right w62"><span class="text-left">{{result.afterGoodsReq.returnType | rzhState :'1601'}}</span></p>
                   </li>
+                  <li class="pb">
+                    <p class=" mr pull-left d-play w35"><span class="pull-right">状态：</span></p>
+                    <span class="text-info pull-right w62"><span class="text-left" *ngIf="result.state=='DONE'">已同意</span></span>
+                    <span class="text-info pull-right w62"><span class="text-left" *ngIf="result.state=='DEAL'">待处理</span></span>
+                    <span class="text-info pull-right w62"><span class="text-left" *ngIf="result.state=='END'">已拒绝</span></span>
+                  </li>
+
                 </ul>
               </div>
             </div>
@@ -49,20 +54,16 @@
         </li>
         <li class="timeline-inverted">
           <div class="timeline-badge green">
-            <em class="icon icon-user-following"></em>
+            <em class="icon icon-user"></em>
           </div>
           <div class="timeline-panel">
             <div class="popover right" style="height: 200px">
-              <h4 class="popover-title">售后订单信息</h4>
+              <h4 class="popover-title">售后联系人</h4>
               <div class="arrow"></div>
               <div class="popover-content">
                 <ul class="list-unstyled">
                   <li class="pb">
-                    <p class=" mr pull-left d-play w35"><span class="pull-right">服务类型：</span></p>
-                    <p class="text-info pull-right w62"><span class="text-left">{{result.afterGoodsReq.returnType | rzhState :'1601'}}</span></p>
-                  </li>
-                  <li class="pb">
-                    <p class=" mr pull-left d-play w35"><span class="pull-right">联系人：</span></p>
+                    <p class=" mr pull-left d-play w35"><span class="pull-right">姓名：</span></p>
                     <p class="text-info pull-right w62"><span class="text-left">{{result.afterGoodsReq.custName}}</span></p>
                   </li>
                   <li class="pb">

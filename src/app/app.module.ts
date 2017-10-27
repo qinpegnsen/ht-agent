@@ -12,6 +12,7 @@ import {SharedModule} from "./shared/shared.module";
 import {RoutesModule} from "./routes/routes.module";
 import {CookieService} from "angular2-cookie/core";
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import {UserblockComponent} from "./layout/sidebar/userblock/userblock.component";
 
 // https://github.com/ocombe/ng2-translate/issues/218
 export function createTranslateLoader(http: Http) {
@@ -37,7 +38,8 @@ export function createTranslateLoader(http: Http) {
   ],
   providers: [
     CookieService,
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    UserblockComponent
   ],
   bootstrap: [AppComponent]
 
