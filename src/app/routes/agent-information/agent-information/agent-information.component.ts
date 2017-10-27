@@ -233,7 +233,6 @@ export class AgentInformationComponent implements OnInit {
         // console.log("█ avatar ►►►",  avatar);
 
         me.upateInfo(value);
-        me.userblockComponent.ngOnInit();
       } else {
         AppComponent.rzhAlt('error', '上传失败', '图片上传失败！');
       }
@@ -248,7 +247,6 @@ export class AgentInformationComponent implements OnInit {
      * @param headers 头信息
      */
     me.uploader.onErrorItem = function (item, response, status, headers) {
-      AppComponent.rzhAlt('error', '上传失败', '图片上传失败！');
     };
   }
 
@@ -284,6 +282,7 @@ export class AgentInformationComponent implements OnInit {
         if (res.success) {
           _this.router.navigate(['/main/agent-information'], {replaceUrl: true});   //路由跳转
           swal('修改信息成功！', '', 'success');
+          _this.userblockComponent.ngOnInit();
         } else {
           swal(res.info, '','error');
         }
