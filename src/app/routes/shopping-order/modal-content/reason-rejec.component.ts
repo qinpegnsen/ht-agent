@@ -22,7 +22,7 @@ export class ReasonRejecComponent implements OnInit , OnDestroy{
   @Input('showReasonWindow') showReasonWindow: boolean;
   @Output() closeRejec = new EventEmitter();
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['showReasonWindow'] && changes['woAgengId']) {
+    if ( changes['woAgengId']&&!isNullOrUndefined(this.woAgengId)) {
       this.list =  this.rzhtoolsService.getEnumDataList('1306');
       this.stateEnum='OTHER';//每次输入属性进来的时候，让stateEnum恢复原状
       this.other='';//每次输入属性进来的时候，让原因恢复原状
@@ -55,7 +55,7 @@ export class ReasonRejecComponent implements OnInit , OnDestroy{
     this.showReasonWindow = false;
     if (isUndefined(type)) type = 'cancel';
     this.closeRejec.emit(
-      false
+      type
     )// 向外传值
   }
 

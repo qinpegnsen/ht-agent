@@ -24,6 +24,7 @@ export class WorkDetailComponent implements OnInit {
   private atime:Array<string> = new Array();
   private showReasonWindow:boolean = false;              //弹窗的开关
   private woAgengId:any;                                  //代理商工单id 发货的时候用,因为load没有返回来，直接从前面传过来
+  private transWoAgengId:any;                             //代理商工单id
 
   constructor(
               private parentComp: ShoppingOrderComponent,
@@ -195,6 +196,7 @@ export class WorkDetailComponent implements OnInit {
    */
   toReject() {
     this.showReasonWindow = true;
+    this.transWoAgengId=this.woAgengId;
   }
 
   /**
@@ -203,24 +205,26 @@ export class WorkDetailComponent implements OnInit {
    * @param ordno        订单编码
    */
   deliver() {
-    console.log("█ this.woAgengId ►►►",  this.woAgengId);
     this.transcurOrdno = this.curOrdno;//如果不这样，就会在详情页面一打开就发货组件就出来了
   }
   /**
    * 拒单的回调函数，产生输入属性的变化
    */
-  closeRejecWin(bol){
-    this.showReasonWindow=bol;
-    this.router.navigate(['/main/shopOrder/all-work-orders'])//拒单不能查看详情页面，跳转到所有工单页面
+  closeRejecWin(str){
+    if(str=='success'){
+      this.router.navigate(['/main/shopOrder/all-work-orders'])//拒单不能查看详情页面，跳转到所有工单页面
+    }
+    this.transWoAgengId=null;
   }
 
   /**
    * 发货回调函数
    * @param data
    */
-  getDeliverOrderData() {
-    this.curOrdno = null;//输入属性发生变化的时候，弹窗才会打开，所以每次后来都清空，造成变化的迹象
-    this.ngOnInit();
+  getDeliverOrderData(obj) {
+    if(obj.type){
+      this.ngOnInit();//如果为真的话，说明发货成功，这时候调用方法
+    }
+    this.transcurOrdno = null;//输入属性发生变化的时候，弹窗才会打开，所以每次后来都清空，造成变化的迹象
   }
-
 }
