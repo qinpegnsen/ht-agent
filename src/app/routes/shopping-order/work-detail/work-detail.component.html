@@ -322,6 +322,6 @@
 <!--拒单组件开始-->
 <ng-container *ngIf="orderDetailData.state=='ASSIGNED'">
   <app-reason-rejec  [showReasonWindow]="showReasonWindow"
-                     [woAgengId]="woAgengId" (closeRejec)="closeRejecWin(obj)"></app-reason-rejec>
+                     [woAgengId]="transWoAgengId" (closeRejec)="closeRejecWin(obj)"></app-reason-rejec>
 </ng-container>
 <!--拒单组件结束-->
