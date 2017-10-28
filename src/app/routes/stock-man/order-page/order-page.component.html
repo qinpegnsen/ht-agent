@@ -46,7 +46,7 @@
                   <span class="col-xs-offset-1">{{addres.areaFullName}}{{addres.address}}</span>
                 </div>
                 <a class="col-lg-1 _line _myhover" *ngIf="addres.id==currentId" (click)="changeAddres(addres.id)" title="设置为默认地址">
-                  选择地址
+                  设置为默认地址
                 </a>
                 <a class="col-lg-1 _line _myhover" *ngIf="addres.id==currentId" routerLink="/main/stockAddres/rightpage"
                    [queryParams]="{number:2,id:addres.id,source:'cart'}">
