@@ -143,9 +143,9 @@ export class OrderPageComponent implements OnInit {
       return;
     }else{
       $(obj).parents('._payWay').find('.b').removeClass("b");
-      $(obj).parents('._payWay').children().removeClass("b");
-      $(obj).addClass("b");
-      $(obj).addClass("b");
+      $(obj).parents('._payWay').children().removeClass("_selected");
+      $(obj).addClass("b");//边框
+      $(obj).addClass("_selected");//背景
     }
   }
 

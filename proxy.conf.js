@@ -25,7 +25,7 @@ const PROXY_CONFIG = [
       "/finaceDraw",
       "/notifyAgent/"
     ],
-    target: gh + "8088",   //拦截 context配置路径，经过此地址
+    target: zyg + "8901",   //拦截 context配置路径，经过此地址
     secure: false
   },
   {
@@ -34,7 +34,7 @@ const PROXY_CONFIG = [
       "/res",
       "/upload"
     ],
-    target: gh + "8082",   //拦截 context配置路径，经过此地址
+    target: zyg + "8900",   //拦截 context配置路径，经过此地址
     secure: false
   }
 ];
