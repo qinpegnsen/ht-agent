@@ -321,10 +321,8 @@
 <!--发货组件结束-->
 <!--拒单组件开始-->
 <ng-container *ngIf="orderDetailData.state=='ASSIGNED'">
-  <app-reason-rejec  [showReasonWindow]="showReasonWindow" [woAgengId]="transWoAgengId" (closeRejec)="closeRejecWin(obj)"></app-reason-rejec>
+  <app-reason-rejec  [showReasonWindow]="showReasonWindow" [woAgengId]="transWoAgengId" (closeRejec)="closeRejecWin($event)"></app-reason-rejec>
 </ng-container>
 <!--拒单组件结束-->
 
-<!--拒单组件开始-->
-<app-reason-rejec [showReasonWindow]="showReasonWindow" [woAgengId]="woAgengId" (closeRejec)="closeRejecWin(obj,workOrderList.curPage)"></app-reason-rejec>
-<!--拒单组件结束-->
+

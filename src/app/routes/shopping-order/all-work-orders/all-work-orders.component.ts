@@ -140,6 +140,7 @@ export class AllWorkOrdersComponent implements OnInit {
    */
   closeRejecWin(bol,curPage){
     this.transWoAgengId=null;
+    console.log("█ bol ►►►",  bol);
     if(bol){
       this.queryDatas(curPage);
     }

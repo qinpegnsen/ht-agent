@@ -54,6 +54,7 @@ export class ReasonRejecComponent implements OnInit , OnDestroy{
     $('.wrapper > section').css('z-index', 114);
     this.showReasonWindow = false;
     if (isUndefined(type)) type = false;
+    console.log("█ type ►►►",  type);
     this.closeRejec.emit(
       type
     )// 向外传值
