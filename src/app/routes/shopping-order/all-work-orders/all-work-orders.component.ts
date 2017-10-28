@@ -27,6 +27,7 @@ export class AllWorkOrdersComponent implements OnInit {
   public curOrdno: string;                                    //订单编码
   private showReasonWindow:boolean = false;                  //弹窗的开关
   private woAgengId:any;                                      //代理商工单id
+  private transWoAgengId:any;                                 //传递到拒单组件的
 
   constructor(private parentComp: ShoppingOrderComponent,
               private submit: SubmitService,
@@ -104,8 +105,7 @@ export class AllWorkOrdersComponent implements OnInit {
    * 拒单
    */
   toReject(woAgengId) {
-    this.woAgengId = woAgengId;
-    this.showReasonWindow = true;
+    this.transWoAgengId = woAgengId;
   }
 
   /**
@@ -139,8 +139,10 @@ export class AllWorkOrdersComponent implements OnInit {
    * 拒单的回调函数，产生输入属性的变化
    */
   closeRejecWin(bol,curPage){
-    this.showReasonWindow=bol;
-    this.queryDatas(curPage)
+    this.transWoAgengId=null;
+    if(bol){
+      this.queryDatas(curPage);
+    }
   }
 }
 

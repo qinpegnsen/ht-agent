@@ -26,8 +26,8 @@ export class ReasonRejecComponent implements OnInit , OnDestroy{
       this.list =  this.rzhtoolsService.getEnumDataList('1306');
       this.stateEnum='OTHER';//每次输入属性进来的时候，让stateEnum恢复原状
       this.other='';//每次输入属性进来的时候，让原因恢复原状
-      if(this.showReasonWindow && this.woAgengId && !isNullOrUndefined(this.woAgengId)) $('.wrapper > section').css('z-index', 200);
-      else $('.wrapper > section').css('z-index', 114);
+      $('.wrapper > section').css('z-index', 200);
+      this.showReasonWindow=true;
     }
   }
 
@@ -49,11 +49,11 @@ export class ReasonRejecComponent implements OnInit , OnDestroy{
    * 关闭组件
    * @param type true:表示操作成功，false表示取消操作
    */
-  hideWindow(type?: string) {
+  hideWindow(type: boolean) {
     let me = this;
     $('.wrapper > section').css('z-index', 114);
     this.showReasonWindow = false;
-    if (isUndefined(type)) type = 'cancel';
+    if (isUndefined(type)) type = false;
     this.closeRejec.emit(
       type
     )// 向外传值
@@ -71,7 +71,7 @@ export class ReasonRejecComponent implements OnInit , OnDestroy{
     };
     let result=this.shoppingOrderService.toRefuseWork(url, data);
     if(result=='拒单成功'){
-      this.hideWindow("success");
+      this.hideWindow(true);
     }
   }
 }

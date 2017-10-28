@@ -91,5 +91,5 @@
                       (deliverGoods)="getDeliverOrderData($event)"></app-deliver-goods>
 <!--发货弹框组件结束-->
 <!--拒单组件开始-->
-<app-reason-rejec [showReasonWindow]="showReasonWindow" [woAgengId]="woAgengId" (closeRejec)="closeRejecWin(obj,workOrderList.curPage)"></app-reason-rejec>
+<app-reason-rejec [showReasonWindow]="showReasonWindow" [woAgengId]="transWoAgengId" (closeRejec)="closeRejecWin(bol,workOrderList.curPage)"></app-reason-rejec>
 <!--拒单组件结束-->

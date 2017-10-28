@@ -210,8 +210,8 @@ export class WorkDetailComponent implements OnInit {
   /**
    * 拒单的回调函数，产生输入属性的变化
    */
-  closeRejecWin(str){
-    if(str=='success'){
+  closeRejecWin(bol){
+    if(bol){
       this.router.navigate(['/main/shopOrder/all-work-orders'])//拒单不能查看详情页面，跳转到所有工单页面
     }
     this.transWoAgengId=null;
