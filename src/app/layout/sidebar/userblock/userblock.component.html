@@ -2,8 +2,10 @@
     <!-- User picture-->
     <div class="user-block-picture">
         <div class="user-block-status">
-          <!--<img src="{{avatar}}" alt="">-->
-            <img class="img-thumbnail img-circle" src="{{avatar}}"  onerror="javascript:this.src='../assets/img/user/01.jpg'" alt="Avatar" routerLink="agent-information"/>
+          <img src="{{avatar}}" alt="">
+
+            <!--<img *ngIf='!picture'class="img-thumbnail img-circle" src="{{user.picture}}"  onerror="javascript:this.src='../assets/img/user/01.jpg'" alt="Avatar" routerLink="agent-information"/>-->
+          <img class="img-thumbnail img-circle" src="{{picture}}"  onerror="javascript:this.src='../assets/img/user/01.jpg'" alt="Avatar" routerLink="agent-information"/>
             <div class="circle circle-success circle-lg"></div>
         </div>
     </div>
@@ -12,5 +14,6 @@
         <span class="user-block-name">{{ 'sidebar.WELCOME' | translate }}{{user.name}}</span>
         <span class="user-block-role"></span>
          <span routerLink="edit-pw">修改密码</span>
+      {{picture}}
     </div>
 </div>

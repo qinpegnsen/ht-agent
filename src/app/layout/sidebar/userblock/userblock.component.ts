@@ -11,27 +11,42 @@ import {SettingsService} from "../../../core/settings/settings.service";
 export class UserblockComponent implements OnInit ,DoCheck{
     user: any;
   avatar: any;
+  picture: any;
   constructor(public userblockService: UserblockService, private setting: SettingsService) {
     this.user = this.setting.user;
   }
     ngOnInit() {
 
-      let picture=localStorage.getItem('avatar')
-      // if(picture){
-      //   console.log("█ 111 ►►►",  111);
-      //
-        this.avatar=picture;
-      // }else{
+      // console.log("█ this.user ►►►",  this.user);
+
+      // console.log("█ picture ►►►",  picture);
+      // // if(picture){
+      // //   console.log("█ 111 ►►►",  111);
+      // //
+      //   this.avatar=picture;
+      // // }else{
+      let picture=localStorage.getItem('avatar');
+
+
+      if(picture){
+
+        this.picture=picture;
+        console.log("█ picture ►►►",  picture);
+      }else{
+        console.log("█ 2 ►►►",  2);
+
         this.user = this.setting.user;
-      // }
-      // console.log("█ avatar ►►►",  avatar);
-      //
-      console.log("█ this.user ►►►",  this.user);
+      }
+
+      // // }
+      // // console.log("█ avatar ►►►",  avatar);
+      // //
+      // console.log("█ this.user ►►►",  this.user);
 
     }
     ngDoCheck(){
-      let picture=localStorage.getItem('avatar')
-      this.avatar=picture;
+      let picture=localStorage.getItem('avatar');
+      this.picture=picture;
     }
 
     userBlockIsVisible() {

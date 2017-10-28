@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FileUploader} from "ng2-file-upload";
 import {SettingsService} from "../../../core/settings/settings.service";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -10,8 +10,8 @@ import {AppComponent} from "../../../app.component";
 import {SubmitService} from "../../../core/forms/submit.service";
 import {UserblockComponent} from "../../../layout/sidebar/userblock/userblock.component";
 const swal = require('sweetalert');
-declare var $:any;
-declare var AMap:any;
+declare var $: any;
+declare var AMap: any;
 const uploadUrl = "upload/basic/upload";  //图片上传路径(调取上传的接口)
 
 @Component({
@@ -20,24 +20,24 @@ const uploadUrl = "upload/basic/upload";  //图片上传路径(调取上传的�
   styleUrls: ['./agent-information.component.scss']
 })
 export class AgentInformationComponent implements OnInit {
-  public flag:boolean=false;//修改经纬度按钮的显示
-  public uploader:FileUploader = new FileUploader({
+  public flag: boolean = false;//修改经纬度按钮的显示
+  public uploader: FileUploader = new FileUploader({
     url: uploadUrl,
-    itemAlias:"limitFile",
+    itemAlias: "limitFile",
     queueLimit: 1
   }); //初始化上传方法
-  public linkType:string;
+  public linkType: string;
   private uid;//声明保存获取到的暗码
-  public agentCode:string;//获取代理商编码
-  private staff:any = {};
+  public agentCode: string;//获取代理商编码
+  private staff: any = {};
   private aa = false;
   private placeSearch: any;
   private code: any;
   private selectArea;
   private myImg: any;
-  private uuid:any;                                 //存储暗码
+  private uuid: any;//存储暗码
 
-  constructor( public GetUidService: GetUidService,public userblockComponent: UserblockComponent,public submitService: SubmitService,public settings:SettingsService, private ajax:AjaxService, private router:Router, private routeInfo:ActivatedRoute,private patterns: PatternService) {
+  constructor(public GetUidService: GetUidService, public userblockComponent: UserblockComponent, public submitService: SubmitService, public settings: SettingsService, private ajax: AjaxService, private router: Router, private routeInfo: ActivatedRoute, private patterns: PatternService) {
     this.settings.showRightPage("30%"); // 此方法必须调用！页面右侧显示，带滑动效果,可以自定义宽度：..%  或者 ..px
   }
 
@@ -54,16 +54,16 @@ export class AgentInformationComponent implements OnInit {
         keyboardEnable: false
       });
 
-      AMap.service('AMap.PlaceSearch',function(){//回调函数
+      AMap.service('AMap.PlaceSearch', function () {//回调函数
         //实例化PlaceSearch
-        me.placeSearch= new AMap.PlaceSearch();
+        me.placeSearch = new AMap.PlaceSearch();
         //TODO: 使用pla ceSearch对象调用关键字搜索的功能
-        me.placeSearch.search(me.selectArea, function(status, result) {
-          let lng,lat;
+        me.placeSearch.search(me.selectArea, function (status, result) {
+          let lng, lat;
           lng = me.staff.coordinateLng;
           lat = me.staff.coordinateLat;
-         /* lat = result.poiList.pois[0].location.lat;
-          lng = result.poiList.pois[0].location.lng;*/
+          /* lat = result.poiList.pois[0].location.lat;
+           lng = result.poiList.pois[0].location.lng;*/
           map.setCenter(new AMap.LngLat(lng, lat));
         });
       })
@@ -75,22 +75,22 @@ export class AgentInformationComponent implements OnInit {
       });
 
       var marker = new AMap.Marker({
-        map:map,
-        bubble:true
+        map: map,
+        bubble: true
       })
 
       /**
        * 点击出来标注点
        */
-      map.on('click',function(e){
+      map.on('click', function (e) {
         marker.setPosition(e.lnglat);
       })
-      AMap.plugin('AMap.Geocoder',function(){
+      AMap.plugin('AMap.Geocoder', function () {
         var drving = new AMap.Geocoder({
-          map:map
+          map: map
         })
         drving.search([
-          {keyword:'北京西站',city:'北京'}
+          {keyword: '北京西站', city: '北京'}
         ]);
       })
 
@@ -116,48 +116,48 @@ export class AgentInformationComponent implements OnInit {
     }, 1);
 
 
-    let collection=JSON.parse(localStorage.getItem('loginInfo'));
+    let collection = JSON.parse(localStorage.getItem('loginInfo'));
 
-    this.code=collection.agentCode;
-    console.log("█ aaa ►►►",  this.code);
-
+    this.code = collection.agentCode;
 
 
     /**
      * 请求代理商详细数据，并显示()
      */
-      this.ajax.get({
-        url: '/agent/loadByAgentCode',
-        async: false, //同步请求
-        data: {agentCode: this.agentCode},
-        success: (res) => {
-          this.staff = res.data;
-          if(isNullOrUndefined(this.staff)) this.staff = {}
-        },
-        error: (res) => {
-          console.log("post limit error");
-        }
-      });
-    }
+    this.ajax.get({
+      url: '/agent/loadByAgentCode',
+      async: false, //同步请求
+      data: {agentCode: this.agentCode},
+      success: (res) => {
+        this.staff = res.data;
+        if (isNullOrUndefined(this.staff)) this.staff = {}
+      },
+      error: (res) => {
+        console.log("post limit error");
+      }
+    });
+  }
 
   /**
    * 显示/隐藏地图
    * @param data
    */
-  isShowMap(data?:any) {
+  isShowMap(data?: any) {
     data.isShowMap = !data.isShowMap;
-    this.aa=!this.aa;
+    this.aa = !this.aa;
   }
-  isShowMap1(){
-    this.aa=!this.aa;
+
+  isShowMap1() {
+    this.aa = !this.aa;
   }
+
   /**
    * 显示/隐藏 修改经纬度的按钮
    * @param data
    */
-  buttonShow(data:any) {
+  buttonShow(data: any) {
     data.isShowMap = !data.isShowMap;
-    this.flag=true;
+    this.flag = true;
     console.log(this.flag)
   }
 
@@ -169,7 +169,7 @@ export class AgentInformationComponent implements OnInit {
   }
 
   //获取区域数据
-  private getAreaData(area){
+  private getAreaData(area) {
     let me = this;
     me.staff['areaCode'] = area.areaCode;
     me.selectArea = area.adr;
@@ -183,14 +183,14 @@ export class AgentInformationComponent implements OnInit {
   fileChangeListener() {
 
     // 当选择了新的图片的时候，把老图片从待上传列表中移除
-    if(this.uploader.queue.length > 1) this.uploader.queue[0].remove();
+    if (this.uploader.queue.length > 1) this.uploader.queue[0].remove();
     this.myImg = true;  //表示已经选了图片
   }
 
   /**
    * 图片上传
    */
-  uploadImg(value){
+  uploadImg(value) {
     let me = this;
     /**
      * 构建form时，传入自定义参数
@@ -198,10 +198,10 @@ export class AgentInformationComponent implements OnInit {
      */
 
     me.uploader.onBuildItemForm = function (fileItem, form) {
-      let uuid=me.GetUidService.getUid();
-      console.log("█ uuid ►►►",  uuid);
-      form.append('uuid',uuid);
-      me.uuid=uuid;
+      let uuid = me.GetUidService.getUid();
+      console.log("█ uuid ►►►", uuid);
+      form.append('uuid', uuid);
+      me.uuid = uuid;
     };
 
     /**
@@ -219,20 +219,17 @@ export class AgentInformationComponent implements OnInit {
     me.uploader.onSuccessItem = function (item, response, status, headers) {
       let res = JSON.parse(response);
       if (res.success) {
-        let url='/agent/updateAgentAvatar';
-        let data={
-          avatarUUID:me.uuid,
-          agentCode:me.code
+        let avatar=res.data;
+        me.settings.user.picture = avatar;
+        localStorage.avatar = avatar;
+        let url = '/agent/updateAgentAvatar';
+        let data = {
+          avatarUUID: me.uuid,
+          agentCode: me.code
         };
-        let avatar =me.submitService.getData(url,data);
-        console.log("█ avatar ►►►",  avatar);
-
-        me.settings.user.picture=avatar;
-        localStorage.avatar=avatar;
-
-        // console.log("█ avatar ►►►",  avatar);
-
+         me.submitService.getData(url, data);
         me.upateInfo(value);
+        me.userblockComponent.ngOnInit();
       } else {
         AppComponent.rzhAlt('error', '上传失败', '图片上传失败！');
       }
@@ -253,14 +250,14 @@ export class AgentInformationComponent implements OnInit {
   addLimitList(value) {
     this.uploadImg(value);
 
-    }
+  }
 
   upateInfo(value?) {
     let _this = this;
     _this.ajax.put({
       url: '/agent/updateAgentBasic',
       data: {
-        'agentCode':_this.code,
+        'agentCode': _this.code,
         'agentName': value.agentName,
         'agentLevel': value.agentLevel,
         'agentAcct': value.agentAcct,
@@ -268,9 +265,7 @@ export class AgentInformationComponent implements OnInit {
         'leader': value.leader,
         'moblie': value.moblie,
         'idcard': value.idcard,
-        'telephone':value.telephone,
-        /* 'idcardImage1uuid': value.idcardImage1uuid,
-         'idcardImage2uuid': value.idcardImage2uuid,*/
+        'telephone': value.telephone,
         'areaCode': value.areaCode,
         'address': value.address,
         'coordinateLng': value.coordinateLng,
@@ -284,7 +279,7 @@ export class AgentInformationComponent implements OnInit {
           swal('修改信息成功！', '', 'success');
           _this.userblockComponent.ngOnInit();
         } else {
-          swal(res.info, '','error');
+          swal(res.info, '', 'error');
         }
       },
       error: (data) => {
