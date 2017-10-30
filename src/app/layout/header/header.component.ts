@@ -81,6 +81,14 @@ export class HeaderComponent implements OnInit, OnChanges{
   }
 
   /**
+   * 消息弹框点击直接跳转到传过来的url页面
+   */
+  linkDetail(detailUrl){
+    let url=$.trim(detailUrl);
+    this.router.navigateByUrl(url);
+  }
+
+  /**
    * 获取商品类型的总数
    * 1.这里值改变了，但是页面没有刷新，可以把值保存到服务上，在绑定服务来解决
    */
@@ -150,8 +158,6 @@ export class HeaderComponent implements OnInit, OnChanges{
   }
 
   toggleOffsidebar() {
-    console.log("█ 1 ►►►",  1);
-
     this.settings.layout.offsidebarOpen = !this.settings.layout.offsidebarOpen;
   }
 

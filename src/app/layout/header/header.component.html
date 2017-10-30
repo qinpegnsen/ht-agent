@@ -74,7 +74,7 @@
             <ul *dropdownMenu class="dropdown-menu animated flipInX">
               <li>
                 <div class="list-group">
-                  <a class="list-group-item qpsHeight" *ngFor="let platformInfo of platformInfoData.voList;let i = index"  routerLink="/main/message-inform">
+                  <a class="list-group-item qpsHeight" *ngFor="let platformInfo of platformInfoData.voList;let i = index"  (click)="linkDetail(platformInfo.url)">
                     <div class="media-box _qpsStyle">
                       <div class="pull-left">
                         <i class="{{platformInfo.icon}}"></i>
@@ -88,7 +88,7 @@
                     </div>
                   </a>
                   <div class="text-center">
-                    <a class="qpsMore thc font" routerLink="/main/operation/sys-message/message-list">查看更多</a>
+                    <a class="qpsMore thc font" routerLink="/main/sys-message/sys-message/message-list">查看更多</a>
                   </div>
                 </div>
               </li>

@@ -62,12 +62,19 @@ export class DoPayComponent implements OnInit {
         ordno: _this.ordno
       };
       _this.payCon = _this.stockManService.goPay(url, data);
+      QRCode.toDataURL(_this.payCon, function (err, url) {                  //获取支付的二维码的内容生成二维码
+        _this.url = url;
+      })
     } else if (this.curWay == '_aliPay') {                                   //支付宝时执行，获取到支付的二维码的内容
+      console.log("█ 1111 ►►►",  1111);
+      let url = '/aliPay/getPrePayId';
+      let data = {
+        ordno: _this.ordno
+      };
+      _this.payCon = _this.stockManService.goPay(url, data);
     }
 
-    QRCode.toDataURL(_this.payCon, function (err, url) {           //获取支付的二维码的内容生成二维码
-      _this.url = url;
-    })
+
 
     /**
      * 每隔1s种调一次，看是否支付成功

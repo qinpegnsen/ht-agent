@@ -86,8 +86,7 @@
                 <div *ngFor="let standard of good.goodsSavSetList">{{standard.attrName}}：{{standard.value}}</div>
               </div>
             </div>
-            <div class="w10 pull-left text-center _batchPrice">￥{{good.batchPrice | number:'1.2-2'}}
-            </div>
+            <div class="w10 pull-left text-center _batchPrice">￥{{good.batchPrice | number:'1.2-2'}}</div>
             <div class="w10 pull-left text-center _myNmu clearfix">
               <div class="input-group updateNum input-group-sm  width120 clearfix">
                 <span class="input-group-addon" (click)="minusNum($event.target,good.agentCartId)"><i
