@@ -137,9 +137,9 @@
               <div>
                 <p class="every-line">
                   <span class="mr logis-time" *ngIf="s==0">
-                      <b class="mr-lg pull-left">{{item.day}}</b>
-                      <b class="mr-lg">{{item.day | getWeek}}</b>
-                      {{item.time}}
+                    <b class="mr-lg pull-left">{{item.day}}</b>
+                    <b class="mr-lg">{{item.day | getWeek}}</b>
+                    {{item.time}}
                   </span>
                   <ng-container *ngIf="s>0">
                     <span class="mr logis-time" *ngIf="item.day==orderStates[s-1].day">{{item.time}}</span>
@@ -150,21 +150,6 @@
                     </span>
                   </ng-container>
                   <span class="every-info">{{item.acceptStation}}</span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li *ngIf="orderDetailData.state=='CLOSE'">
-          <div class="timeline-badge gray-bg thc bg"></div>
-          <div class="timeline-panel">
-            <div class="right">
-              <div>
-                <p class="every-line">
-                  <span class="mr logis-time text-left">
-                      <b class="mr-lg">{{orderDetailData.closeTime}}</b>
-                  </span>
-                  <span class="every-info thc font">订单已关闭</span>
                 </p>
               </div>
             </div>
