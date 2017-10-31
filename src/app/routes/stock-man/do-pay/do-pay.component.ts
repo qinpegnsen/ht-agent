@@ -56,7 +56,7 @@ export class DoPayComponent implements OnInit {
     _this.ordno = _this.routeInfo.snapshot.queryParams['ordno'];     //获取当前的订单号
     _this.price = Number(sessionStorage.getItem('pay'));             //获取价格
 
-    if (this.curWay == '_wxPay') {                                         //微信时执行，获取到支付的二维码的内容
+    if (_this.curWay == '_wxPay') {                                         //微信时执行，获取到支付的二维码的内容
       let url = '/nativeWXPay/getPrePayId';
       let data = {
         ordno: _this.ordno
@@ -65,13 +65,18 @@ export class DoPayComponent implements OnInit {
       QRCode.toDataURL(_this.payCon, function (err, url) {                  //获取支付的二维码的内容生成二维码
         _this.url = url;
       })
-    } else if (this.curWay == '_aliPay') {                                   //支付宝时执行，获取到支付的二维码的内容
-      console.log("█ 1111 ►►►",  1111);
+    } else if (_this.curWay == '_aliPay') {                                   //支付宝时执行，获取到支付的二维码的内容
       let url = '/aliPay/getPrePayId';
       let data = {
         ordno: _this.ordno
       };
-      _this.payCon = _this.stockManService.goPay(url, data);
+      _this.payCon = _this.stockManService.goPay(url, data).replace('<script>document.forms[0].submit();<\/script>','');
+
+
+      setTimeout(()=>{
+        $('.content').append(_this.payCon);
+        $('.content form').submit();
+      },0)
     }
 
 

@@ -5,36 +5,35 @@
   <div *ngIf="curWay=='_aliPay'" class="content-heading mb-lg thc font">
     支付宝支付
   </div>
-  <ng-container *ngIf="curWay=='_wxPay'">
-    <div class="_line w100 clearfix">
-      <span class="col-lg-8 pull-left font16">订单提交成功，订单号：{{ordno}}，距离失效还有<span class="_time">{{minute}}</span>分<span class="_time">{{second}}</span>秒，请尽快付款！</span>
-      <span class="col-lg-4 pull-right _price">
+  <div class="content">
+    <ng-container *ngIf="curWay=='_wxPay'">
+      <div class="_line w100 clearfix">
+        <span class="col-lg-8 pull-left font16">订单提交成功，订单号：{{ordno}}，距离失效还有<span class="_time">{{minute}}</span>分<span class="_time">{{second}}</span>秒，请尽快付款！</span>
+        <span class="col-lg-4 pull-right _price">
     应付金额
     <span >￥{{price | number:'1.2-2'}}</span>
   </span>
-    </div>
-    <div class="panel  _padingBtm clearfix">
-      <div class="col-lg-6">
-        <div class="text-center">
-          <div>
-            <img src="{{url}}" class="_img">
-          </div>
+      </div>
+      <div class="panel  _padingBtm clearfix">
+        <div class="col-lg-6">
           <div class="text-center">
-            <span class="_text thc bg">使用微信扫一扫，扫描二维码支付</span>
+            <div>
+              <img src="{{url}}" class="_img">
+            </div>
+            <div class="text-center">
+              <span class="_text thc bg">使用微信扫一扫，扫描二维码支付</span>
+            </div>
           </div>
         </div>
+        <div class="col-lg-6">
+          <img src="../../../../assets/img/phone.jpeg" alt="" class="">
+        </div>
       </div>
-      <div class="col-lg-6">
-        <img src="../../../../assets/img/phone.jpeg" alt="" class="">
+      <div class="col-l-12">
+        <div class="_line _link thc font" routerLink="/main/stockMan/pay"> < 选择其他付款方式</div>
       </div>
+    </ng-container>
     </div>
-    <div class="col-l-12">
-      <div class="_line _link thc font" routerLink="/main/stockMan/pay"> < 选择其他付款方式</div>
-    </div>
-  </ng-container>
-  <ng-container *ngIf="curWay=='_aliPay'">
-    {{payCon}}
-  </ng-container>
 </div>
 
 

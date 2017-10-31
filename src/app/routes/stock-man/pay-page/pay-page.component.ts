@@ -103,7 +103,7 @@ export class PayPageComponent implements OnInit {
   bornOrder(ordno){
     let url = '/agentOrd/addAgentOrd';
     let payData=this.stockManService.bornOrder(url,this.orderData);
-    if(isNullOrUndefined(payData)||payData=='代理商购物车商品无查询数据'){ //在用户刷新，或者下个页面返回,未付款跳转过来的时候会用到
+    if(isNullOrUndefined(payData)||payData=='代理商购物车商品无查询数据'||payData=='订单商品编码和商品数量拼接字符串为空'){ //在用户刷新，或者下个页面返回,未付款跳转过来的时候会用到
       let url = '/agentOrd/loadByOrdno';
       let data={
         ordno:ordno?ordno:sessionStorage.getItem('ordno')

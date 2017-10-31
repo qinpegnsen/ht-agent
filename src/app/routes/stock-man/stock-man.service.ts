@@ -65,7 +65,6 @@ export class StockManService {
    * @param data
    */
   goPay(url,data){
-    console.log("█ 2222 ►►►",  2222);
     let result;
     this.ajax.get({
       url: url,
@@ -81,7 +80,8 @@ export class StockManService {
         }
       },
       error: (res) => {
-        console.log("█ data ►►►",  data);
+        result=res.responseText;
+        console.log("█ res ►►►",  res.responseText);
         AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
       }
     });
