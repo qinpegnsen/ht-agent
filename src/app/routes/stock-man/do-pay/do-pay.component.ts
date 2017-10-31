@@ -72,7 +72,6 @@ export class DoPayComponent implements OnInit {
       };
       _this.payCon = _this.stockManService.goPay(url, data).replace('<script>document.forms[0].submit();<\/script>','');
 
-
       setTimeout(()=>{
         $('.content').append(_this.payCon);
         $('.content form').submit();

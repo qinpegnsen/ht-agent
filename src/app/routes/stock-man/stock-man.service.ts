@@ -71,7 +71,6 @@ export class StockManService {
       data: data,
       async:false,
       success: (data) => {
-        console.log("█ data ►►►",  data);
         let info=data.info;
         if(data.success){
           result=data.data;
@@ -81,8 +80,7 @@ export class StockManService {
       },
       error: (res) => {
         result=res.responseText;
-        console.log("█ res ►►►",  res.responseText);
-        AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
+        // AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
       }
     });
     return result;
