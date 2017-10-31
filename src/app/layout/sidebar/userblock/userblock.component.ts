@@ -33,16 +33,8 @@ export class UserblockComponent implements OnInit ,DoCheck{
         this.picture=picture;
         console.log("█ picture ►►►",  picture);
       }else{
-        console.log("█ 2 ►►►",  2);
-
         this.user = this.setting.user;
       }
-
-      // // }
-      // // console.log("█ avatar ►►►",  avatar);
-      // //
-      // console.log("█ this.user ►►►",  this.user);
-
     }
     ngDoCheck(){
       let picture=localStorage.getItem('avatar');
