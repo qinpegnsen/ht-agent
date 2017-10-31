@@ -43,7 +43,7 @@ const routes: Routes = [
   {path: 'order', component: OrderPageComponent},
   {path: 'pay', component:PayPageComponent},
   {path: 'do', component:DoPayComponent},
-  {path: 'callBack', component:PaySuccessComponent}
+  {path: 'aliCallBacK', component:PaySuccessComponent}
 ];
 @NgModule({
   imports: [
