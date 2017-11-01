@@ -11,30 +11,36 @@
           <div class="font16">代理商统计</div>
         </div>
         <div style="">
-          <button class="mb-sm btn btn-green btn-outline m-all">进货数量
+          <button class="mb-sm btn btn-green btn-outline m-all">
+            <span title="历史进货数量">进货数量</span>
             <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.sumBatchNum!=null">{{data?.sumBatchNum}}</div>
             <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.sumBatchNum==null">0</div>
 
           </button>
-          <button class="mb-sm btn btn-green btn-outline m-all">进货金额
+          <button class="mb-sm btn btn-green btn-outline m-all">
+            <span  title="历史进货金额">进货金额</span>
             <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.sumPay!=null">{{data?.sumPay}}</div>
             <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.sumPay==null">0</div>
           </button>
-          <button class="mb-sm btn btn-green btn-outline m-all">发货数量
+          <button class="mb-sm btn btn-green btn-outline m-all">
+             <span title="历史发货数量">发货数量</span>
             <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.countDelivery!=null">{{data?.countDelivery}}</div>
             <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.countDelivery==null">0</div>
           </button>
         </div>
         <div style="height: 60px">
-          <button class="mb-sm btn btn-green btn-outline m-all">派单数量
+          <button class="mb-sm btn btn-green btn-outline m-all">
+             <span title="历史派单数量">派单数量</span>
             <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.agentAllOrd!=null">{{data?.agentAllOrd}}</div>
             <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.agentAllOrd==null">0</div>
           </button>
-          <button class="mb-sm btn btn-green btn-outline m-all">接单数量
+          <button class="mb-sm btn btn-green btn-outline m-all">
+            <span title="历史接单数量">接单数量</span>
             <div class="label label-danger thc bgIcon colorIcon"  *ngIf="data?.agentDealOrd!=null">{{data?.agentDealOrd}}</div>
             <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.agentDealOrd==null">0</div>
           </button>
-          <button class="mb-sm btn btn-green btn-outline m-all" >拒单数量
+          <button class="mb-sm btn btn-green btn-outline m-all" >
+            <span title="历史拒单数量">拒单数量</span>
             <div class="label label-danger thc bgIcon colorIcon"  *ngIf="data?.agentRejectOrd!=null">{{data?.agentRejectOrd}}</div>
             <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.agentRejectOrd==null">0</div>
           </button>
@@ -59,14 +65,26 @@
     </div>
     <div class="col-lg-4 col-md-6 business">
       <div class="panel panel-default business" style="height: 330px">
-
         <div class="panel-heading">
-          <div class="panel-title font16">平台联系方式</div>
-          <p style="padding-top: 7px"><i class="icon icon-phone"></i>&nbsp;平台服务电话：{{tel2}}</p>
-          <p><i class="icon icon-phone"></i>&nbsp;技术服务电话：{{tel1}}</p>
-          <p><i class="icon icon-envelope"></i>&nbsp;平台邮箱地址：{{email}}</p>
-        </div>
+          <div class="panel-title font20 connect">平台联系方式</div>
+          <div style="height:50px;">
+            <p class="pull-left w50">
+              <i class="fa fa-tty font80 block mb15 agent text-center"></i>
+             <span class="font14 lh ml35">平台服务电话:&nbsp;&nbsp;{{tel2}}</span>
+            </p>
+            <p class="pull-left w50">
+              <i class="fa fa-phone-square font80 block mb15 technical text-center"></i>
+             <span class="font14 lh ml35">技术服务电话:&nbsp;&nbsp;{{tel1}}</span>
+            </p>
+          </div>
+          <div class="mt50 ml85">
+            <p class="pull-left">
+              <i class="fa fa-envelope-o font80 mt10 mail"></i>
+              <span class="font14 ml15 text-center">平台邮箱地址:&nbsp;&nbsp;{{email}}</span>
+            </p>
+          </div>
 
+        </div>
       </div>
       <!-- end Team Panel-->
     </div>
