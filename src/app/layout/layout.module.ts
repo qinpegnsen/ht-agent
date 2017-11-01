@@ -16,7 +16,8 @@ import { SharedModule } from '../shared/shared.module';
         SharedModule
     ],
     providers: [
-        UserblockService
+        UserblockService,
+        UserblockComponent
     ],
     declarations: [
         LayoutComponent,

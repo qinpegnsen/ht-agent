@@ -16,12 +16,12 @@ export class UserblockComponent implements OnInit{
     this.user = this.setting.user;
   }
     ngOnInit() {
-      // let picture=localStorage.getItem('avatar');
-      // if(picture){
-      //   this.picture=picture;
-      // }else{
-      //   this.user = this.setting.user;
-      // }
+      let picture=localStorage.getItem('avatar');
+      if(picture){
+        this.user.picture=picture;
+      }else{
+        this.user = this.setting.user;
+      }
     }
     // ngDoCheck(){
     //   let picture=localStorage.getItem('avatar');
