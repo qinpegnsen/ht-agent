@@ -8,7 +8,7 @@ import {SettingsService} from "../../../core/settings/settings.service";
     templateUrl: './userblock.component.html',
     styleUrls: ['./userblock.component.scss']
 })
-export class UserblockComponent implements OnInit ,DoCheck{
+export class UserblockComponent implements OnInit{
     user: any;
   avatar: any;
   picture: any;
@@ -16,22 +16,17 @@ export class UserblockComponent implements OnInit ,DoCheck{
     this.user = this.setting.user;
   }
     ngOnInit() {
-
-
-      let picture=localStorage.getItem('avatar');
-
-
-      if(picture){
-
-        this.picture=picture;
-      }else{
-        this.user = this.setting.user;
-      }
+      // let picture=localStorage.getItem('avatar');
+      // if(picture){
+      //   this.picture=picture;
+      // }else{
+      //   this.user = this.setting.user;
+      // }
     }
-    ngDoCheck(){
-      let picture=localStorage.getItem('avatar');
-      this.picture=picture;
-    }
+    // ngDoCheck(){
+    //   let picture=localStorage.getItem('avatar');
+    //   this.picture=picture;
+    // }
 
     userBlockIsVisible() {
         return this.userblockService.getVisibility();
