@@ -65,18 +65,6 @@ export class DoPayComponent implements OnInit {
       QRCode.toDataURL(_this.payCon, function (err, url) {                  //获取支付的二维码的内容生成二维码
         _this.url = url;
       })
-    } else if (_this.curWay == '_aliPay') {                                 //支付宝时执行，返回form标签，直接追加到页面
-      let url = '/aliPay/getPrePayId';
-      let data = {
-        ordno: _this.ordno
-      };
-      //页面不是只有一个form 所以要重现获取本页面的form
-      _this.payCon = _this.stockManService.goPay(url, data).replace('<script>document.forms[0].submit();<\/script>','');
-
-      setTimeout(()=>{
-        $('.content').append(_this.payCon);
-        $('.content form').submit();
-      },0)
     }
 
     /**

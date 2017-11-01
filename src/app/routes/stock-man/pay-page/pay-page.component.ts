@@ -27,6 +27,7 @@ export class PayPageComponent implements OnInit {
   public bankData;                       //平台统一银行收款账户开户行
   public nameData;                       //平台统一银行收款账户名称
   public phoneData;                      //平台统一银行收款联系方式
+  public payCon;
 
   constructor(
     public stockManService: StockManService,
@@ -144,10 +145,23 @@ export class PayPageComponent implements OnInit {
     let obj=$(".b");
     if( obj.parents("._pay")[0].className.indexOf('_wxPay')>1){
       this.curWay='_wxPay'; //微信支付
+      sessionStorage.setItem('pay',this.pay);//把价钱存到内存里面，防止在地址栏篡改
+      this.router.navigate(['/main/stockMan/do'],{ queryParams: { curWay: this.curWay,ordno:this.ordno} })
     } else{
-      this.curWay='_aliPay';//支付宝支付
+      this.curWay='_aliPay';//支付宝支付;这里直接跳转，如果到下个页面，样式不好看
+      let url = '/aliPay/getPrePayId';
+      let data = {
+        ordno: this.ordno,
+        returnUrl:'/main/stockMan/callBack',
+      };
+      //页面不是只有一个form 所以要重现获取本页面的form
+      this.payCon = this.stockManService.goPay(url, data).replace('<script>document.forms[0].submit();<\/script>','');
+
+      setTimeout(()=>{
+        $('._border').append(this.payCon);//追加到谁后面无所谓，因为立马就跳转了
+        $('._border form').submit();
+      },0)
     };
-    sessionStorage.setItem('pay',this.pay);//把价钱存到内存里面，防止在地址栏篡改
-    this.router.navigate(['/main/stockMan/do'],{ queryParams: { curWay: this.curWay,ordno:this.ordno} })
+
   }
 }
