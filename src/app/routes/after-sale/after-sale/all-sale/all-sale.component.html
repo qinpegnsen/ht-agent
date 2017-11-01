@@ -67,7 +67,7 @@
       <td>
           <button class="btn btn-xs  btn-success fa fa-check"  *ngIf="sale.afterGoodsReq.state =='DELIVERY'" title="同意退款" (click)="cancelOrder(sale.ordno)"></button>
           <button  class="btn btn-xs  btn-danger fa fa-close" *ngIf="sale.afterGoodsReq.state =='DELIVERY'" title="拒绝退款" (click)="cancelOrder1(sale.ordno)"></button>
-        <button class=" btn btn-xs  btn-info icon-magnifier-add" title="查看详情" routerLink="../sale-detail" [queryParams]="{id:sale.id}"></button>
+        <button class=" btn btn-xs  btn-green icon-magnifier-add" title="查看详情" routerLink="../sale-detail" [queryParams]="{id:sale.id}"></button>
       </td>
     </tr>
   </ng-container>

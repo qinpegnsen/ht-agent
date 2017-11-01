@@ -62,7 +62,7 @@
       <button *ngIf="order.state=='ACCEPT'"  class="btn btn-xs  btn-success fa fa-truck"
               (click)="deliver(order.id,order.ordno)"> 发货
       </button>
-      <button *ngIf="order.state!='REJECT'" class=" btn btn-xs  btn-info icon-magnifier-add" routerLink="../work-detail"
+      <button *ngIf="order.state!='REJECT'" class=" btn btn-xs  btn-green icon-magnifier-add" routerLink="../work-detail"
       [queryParams]="{ordno:order.ordno,woAgentId:order.id}" title="详情">
       </button>
     </td>

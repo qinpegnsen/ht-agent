@@ -65,7 +65,8 @@
       <td *ngIf="sale.state=='DEAL'">待处理</td>
       <td *ngIf="sale.state=='END'">已拒绝</td>
       <td>
-        <button class=" btn btn-xs  btn-info icon-magnifier-add" title="查看详情" routerLink="../sale-detail" [queryParams]="{id:sale.id}"></button>
+        <button class=" btn btn-xs  btn-green icon-magnifier-add" title="查看详情" routerLink="../sale-detail"
+                [queryParams]="{id:sale.id}"></button>
       </td>
     </tr>
   </ng-container>
