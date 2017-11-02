@@ -326,7 +326,7 @@ export class CarPageComponent implements OnInit {
    * @param obj
    */
   goodTotalPrice(obj) {
-    let price = $(obj).parents("._myPaddingBody").find('._batchPrice').text().slice(1);
+    let price = $(obj).parents("._myPaddingBody").find('._batchPrice').text().slice(1).split(',').join('');
     let num = $(obj).parents("._myPaddingBody").find('._num').val();
     let totalPrice = price * num;//上面的价格和数量并不需要剔除空格和转化为数值进行计算，因为*是隐士转换
     var trueNum = totalPrice.toFixed(2);
