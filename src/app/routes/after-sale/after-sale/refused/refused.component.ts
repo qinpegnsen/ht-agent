@@ -20,6 +20,9 @@ export class RefusedComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
   private agentTime;
   public woList: Page = new Page();
+  private ordnos;
+  private wonos;
+  private custPhone;
 
 
   constructor(private AfterSaleComponent:AfterSaleComponent,private submit: SubmitService,) {
@@ -59,7 +62,10 @@ export class RefusedComponent implements OnInit {
       curPage: activePage,
       pageSize: 10,
       ordType:'SELL_AFTER',
-      stateEnum:'END'
+      stateEnum:'END',
+      ordnos: _this.ordnos,
+      wonos: _this.wonos,
+      custPhone: _this.custPhone
     };
     _this.woList = new Page(_this.submit.getData(requestUrl, requestData));
   }

@@ -1,11 +1,11 @@
 <!--查询 start-->
-<!--<div class="row clearfix p text-right">
-  <div class="place-time clearfix mb">
-    <span class="_title">下单时间：</span>
-    <div class="_picker">
-      <div class="input-group">
-        <input class="form-control" bsDaterangepicker [bsConfig]="bsConfig" #dpr="bsDaterangepicker" >
-        <span class="btn input-group-addon fa fa-calendar" (click)="dpr.show()"></span>
+<div class="row clearfix p text-right">
+  <div class="search-term clearfix ml mb">
+    <div class="w100 pl-sm pr0 pull-left">
+      <div class="form-group mb0 pr0">
+        <div class="w100 pl0 pr0 pull-left">
+          <input type="text" class="form-control border-b-grey" [(ngModel)]="ordnos" placeholder="请填写退单单号"/>
+        </div>
       </div>
     </div>
   </div>
@@ -13,7 +13,7 @@
     <div class="w100 pl-sm pr0 pull-left">
       <div class="form-group mb0 pr0">
         <div class="w100 pl0 pr0 pull-left">
-          <input type="text" class="form-control border-b-grey"  placeholder="请填写代理商账号"/>
+          <input type="text" class="form-control border-b-grey" [(ngModel)]="wonos"  placeholder="请填写工单编号"/>
         </div>
       </div>
     </div>
@@ -22,62 +22,82 @@
     <div class="w100 pl-sm pr0 pull-left">
       <div class="form-group mb0 pr0">
         <div class="w70 pl0 pr0 pull-left">
-          <input type="text" class="form-control border-b-grey"  placeholder="请填写订单编号"/>
+          <input type="text" class="form-control border-b-grey" [(ngModel)]="custPhone"  placeholder="请填写买家手机号"/>
         </div>
         <button type="button" title="搜索"
-                class="btn btn-primary bar-h3-btn mr0 ng-scope"  >
+                class="btn thc btn-thc bar-h3-btn mr0 ng-scope"  (click)="queryDatas()">
           <em class="icon-magnifier fa-fw"></em>
         </button>
       </div>
     </div>
   </div>
-</div>-->
+</div>
 <!--查询 end-->
+
+<ul class="clearfix order-table-head list-unstyled mb0 p b">
+  <li class="w40 pull-left text-center">商品</li>
+  <li class="w10 pull-left text-center">数量</li>
+  <li class="w10 pull-left text-center">申请金额</li>
+  <li class="w10 pull-left text-center">买家手机号</li>
+  <li class="w10 pull-left text-center">实际退回</li>
+  <li class="w10 pull-left text-center">审核状态</li>
+  <li class="w10 pull-left text-center">操作</li>
+</ul>
 <table class="wo table table-striped" #dataTable="rzhDataTable" [rzhData]="woList" (pageChange)="queryDatas(1,$event)">
-  <thead>
-  <tr>
-    <th class="w10 text-center thc font">退单单号</th>
-    <th class="w10 text-center thc font">订单号</th>
-    <th class="w9 text-center thc font">商品名称</th>
-    <th class="w7 text-center thc font">申请数量</th>
-    <th class="w7 text-center thc font">申请金额</th>
-    <th class="w9 text-center thc font">服务类型</th>
-    <th class="w10 text-center thc font">原因</th>
-    <th class="w9 text-center thc font">联系人</th>
-    <th class="w9 text-center thc font">电话</th>
-    <th class="w7 text-center thc font">状态</th>
-    <th class="w15 text-center thc font">操作</th>
-  </tr>
-  </thead>
   <tbody>
-  <ng-container *ngFor="let sale of dataTable.data; let i = index">
-    <tr class="text-center">
-      <td>{{sale.wono}}</td>
-      <td>{{sale.afterGoodsReq.ordno}}</td>
-      <td>{{sale.afterGoodsReq.goodsName}}</td>
-      <td>{{sale.afterGoodsReq.num}}</td>
-      <td>{{sale.afterGoodsReq.reqMoney}}</td>
-      <td>{{sale.afterGoodsReq.returnType | rzhState :'1601'}}</td>
-      <td>{{sale.afterGoodsReq.reason}}</td>
-      <td>{{sale.afterGoodsReq.custName}}</td>
-      <td>{{sale.afterGoodsReq.custPhone}}</td>
-      <td *ngIf="sale.state=='DONE'">已同意</td>
-      <td *ngIf="sale.state=='DEAL'">待处理</td>
-      <td *ngIf="sale.state=='END'">已拒绝</td>
-      <td>
-          <button class="btn btn-xs  btn-success fa fa-check"  *ngIf="sale.afterGoodsReq.state =='DELIVERY'" title="同意退款" (click)="cancelOrder(sale.ordno)"></button>
-          <button  class="btn btn-xs  btn-danger fa fa-close" *ngIf="sale.afterGoodsReq.state =='DELIVERY'" title="拒绝退款" (click)="cancelOrder1(sale.ordno)"></button>
-        <button class=" btn btn-xs  btn-green icon-magnifier-add" title="查看详情" routerLink="../sale-detail" [queryParams]="{id:sale.id}"></button>
-      </td>
-    </tr>
-  </ng-container>
+  <tr class="mt" *ngFor="let sale of dataTable.data;let i = index">
+    <td class="w100 p0 font12 bt0">
+      <div class="order-space"></div>
+      <div class="order-head p b bb0">
+        <span class="mr-xl">退单单号：{{sale.ordno}}</span>
+        <span class="mr-xl">工单编号：{{sale.wono}}</span>
+        <span class="mr-xl">申请时间：{{sale.afterGoodsReq.createTime}}</span>
+        <span class="mr-xl pull-right">审核时间：{{sale.afterGoodsReq.updateTime}}</span>
+      </div>
+      <table class="w100 b">
+        <tr class="text-center">
+          <td class="w40 p text-left position-relative bb">
+          <span class="goods-img goods-lg-img mr"><img [src]="sale.afterGoodsReq.goodsImage"
+                                                       onerror="javascript:this.src='../../../assets/img/dummy.png'" alt=""></span>
+            <div class="goods-lg-info">
+              <p class="mb0 font13 omg2 two-row mb-sm">
+                <a class="goods-name" href="javascript:;">{{sale.afterGoodsReq.goodsName}}</a>
+              </p>
+              <!--<p class="mb0 one-row omg" *ngFor="let attr of name.goodsSavSet | strToJson">-->
+              <!--<span class="inline">{{attr.attrName}}：</span>-->
+              <!--<span class="inline">{{attr.value}}</span>-->
+              <!--</p>-->
+            </div>
+          </td>
+          <td class="w10 bb">{{sale.afterGoodsReq.num}}</td>
+          <td class="w10 bl">&yen;{{sale.afterGoodsReq.reqMoney}}</td>
+          <td class="w10 bb">{{sale.afterGoodsReq.custPhone}}</td>
+          <td class="w10 bl">
+            <span class="main-red font14">￥ {{sale.afterGoodsReq.returnCoin | number:'1.2-2'}}</span><br>
+            <span class="font-gray">重消币{{sale.afterGoodsReq.returnMoney | number:'1.2-2'}}</span><br>
+          </td>
+          <td class="w10 bl  position-relative">
+            <p class="font-gray mb-sm cursor-p" *ngIf="sale.state=='DONE'">已同意</p>
+            <p class="font-gray mb-sm cursor-p" *ngIf="sale.state=='DEAL'">待处理</p>
+            <p class="font-gray mb-sm cursor-p" *ngIf="sale.state=='END'">已拒绝</p>
+            <p class="cursor-p mb-sm" myHoverColor [myHover]="'#CC1635'"  routerLink="../sale-detail" [queryParams]="{id:sale.id}">查看详情</p>
+          </td>
+          <td class="w10 bl">
+            <button class="btn btn-xs  btn-success fa fa-check"  *ngIf="sale.afterGoodsReq.state =='DELIVERY'" title="同意退货" (click)="cancelOrder(sale.ordno)"></button>
+            <button  class="btn btn-xs  btn-danger fa fa-close" *ngIf="sale.afterGoodsReq.state =='DELIVERY'" title="拒绝退货" (click)="cancelOrder1(sale.ordno)"></button>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
   </tbody>
   <tfoot>
   <tr>
-    <td colspan="20">
+    <td colspan="10" class="bt0">
       <div class="col-sm-5">
-        <div class="text-muted"><strong>第 {{woList.genStartRow()}} 至 {{woList.genEndRow()}} 条，共 {{woList.totalRow}} 条</strong>
-        </div>
+        <div class="text-muted"><strong>第 {{woList.genStartRow()}} 至 {{woList.genEndRow()}} 条，共
+          {{woList.totalRow}}
+          条</strong></div>
       </div>
       <div class="col-sm-7">
         <div class="pull-right">
@@ -88,6 +108,7 @@
   </tr>
   </tfoot>
 </table>
+
 <app-logistics [orderId]="curCancelOrderId" (cancelOrder)="getCancelOrderData($event)"></app-logistics>
 <app-refused-agent [orderId]="curCancelOrderId1" (cancelOrder)="getCancelOrderData1($event)"></app-refused-agent>
 

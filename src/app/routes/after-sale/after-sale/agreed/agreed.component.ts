@@ -16,6 +16,9 @@ export class AgreedComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
   private agentTime;
   public woList: Page = new Page();
+  private ordnos;
+  private wonos;
+  private custPhone;
 
   constructor(private AfterSaleComponent:AfterSaleComponent, private submit: SubmitService) {
     this.bsConfig = Object.assign({}, {
@@ -55,6 +58,9 @@ export class AgreedComponent implements OnInit {
       pageSize: 10,
       ordType:'SELL_AFTER',
       stateEnum:'DONE',
+      ordnos: _this.ordnos,
+      wonos: _this.wonos,
+      custPhone: _this.custPhone
     };
     _this.woList = new Page(_this.submit.getData(requestUrl, requestData));
   }

@@ -18,6 +18,9 @@ export class ProcessedComponent implements OnInit {
   public woList: Page = new Page();
   public curCancelOrderId: string;
   public curCancelOrderId1: string;
+  private ordnos;
+  private wonos;
+  private custPhone;
 
 
   constructor(private AfterSaleComponent:AfterSaleComponent,private submit: SubmitService) {
@@ -85,7 +88,10 @@ export class ProcessedComponent implements OnInit {
       curPage: activePage,
       pageSize: 10,
       ordType:'SELL_AFTER',
-      stateEnum:'DEAL'
+      stateEnum:'DEAL',
+      ordnos: _this.ordnos,
+      wonos: _this.wonos,
+      custPhone: _this.custPhone
     };
     _this.woList = new Page(_this.submit.getData(requestUrl, requestData));
 

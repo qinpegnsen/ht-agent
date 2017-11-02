@@ -15,6 +15,9 @@ import {SubmitService} from "../../../../core/forms/submit.service";
 export class AllSaleComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
   private agentTime;
+  private ordnos;
+  private wonos;
+  private custPhone;
   public woList: Page = new Page();
   public curCancelOrderId: string;
   public curCancelOrderId1: string;
@@ -85,7 +88,10 @@ export class AllSaleComponent implements OnInit {
     let requestData = {
       curPage: activePage,
       pageSize: 10,
-      ordType:'SELL_AFTER'
+      ordType:'SELL_AFTER',
+      ordno: _this.ordnos,
+      wono: _this.wonos,
+      custPhone: _this.custPhone
       // dateStr: dateStr,
     };
     _this.woList = new Page(_this.submit.getData(requestUrl, requestData));
