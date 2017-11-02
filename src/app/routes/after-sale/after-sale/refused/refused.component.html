@@ -4,7 +4,7 @@
     <div class="w100 pl-sm pr0 pull-left">
       <div class="form-group mb0 pr0">
         <div class="w100 pl0 pr0 pull-left">
-          <input type="text" class="form-control border-b-grey" [(ngModel)]="ordnos" placeholder="请填写商品订单号"/>
+          <input type="text" class="form-control border-b-grey" [(ngModel)]="ordnos" placeholder="请填写退单单号"/>
         </div>
       </div>
     </div>
@@ -13,7 +13,7 @@
     <div class="w100 pl-sm pr0 pull-left">
       <div class="form-group mb0 pr0">
         <div class="w100 pl0 pr0 pull-left">
-          <input type="text" class="form-control border-b-grey" [(ngModel)]="wonos"  placeholder="请填写退单单号"/>
+          <input type="text" class="form-control border-b-grey" [(ngModel)]="wonos"  placeholder="请填写工单编号"/>
         </div>
       </div>
     </div>
@@ -49,8 +49,8 @@
     <td class="w100 p0 font12 bt0">
       <div class="order-space"></div>
       <div class="order-head p b bb0">
-        <span class="mr-xl">订单号：{{sale.afterGoodsReq.ordno}}</span>
-        <span class="mr-xl">退单单号：{{sale.wono}}</span>
+        <span class="mr-xl">退单单号：{{sale.ordno}}</span>
+        <span class="mr-xl">工单编号：{{sale.wono}}</span>
         <span class="mr-xl">申请时间：{{sale.afterGoodsReq.createTime}}</span>
         <span class="mr-xl pull-right">审核时间：{{sale.afterGoodsReq.updateTime}}</span>
       </div>

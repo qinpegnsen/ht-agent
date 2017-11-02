@@ -58,8 +58,8 @@ export class AgreedComponent implements OnInit {
       pageSize: 10,
       ordType:'SELL_AFTER',
       stateEnum:'DONE',
-      ordnos: _this.ordnos,
-      wonos: _this.wonos,
+      ordno: _this.ordnos,
+      wono: _this.wonos,
       custPhone: _this.custPhone
     };
     _this.woList = new Page(_this.submit.getData(requestUrl, requestData));
