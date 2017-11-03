@@ -186,6 +186,7 @@ export class HeaderComponent implements OnInit, OnChanges{
    * 退出登录
    */
   logout() {
+    localStorage.clear(); //清空所有storage
     this.cookieService.removeAll(); //清空所有cookie
     this.ajax.get({
       url: "/login/logout",
