@@ -103,10 +103,15 @@
                 <input class="form-control col-sm-1 position-relative" type="text" required name="coordinateLat" ngModel [(ngModel)]="staff.coordinateLat" readonly/>
               </div>
               <label class="col-sm-2 control-label"> <i>*</i> 头像</label>
-              <div class="col-sm-4">
+              <label for="image-input" class="btn btn-default file-upload col-sm-1" style="left:1.1%">
+                <i class="icon-cloud-upload mr"> 上传头像</i>{{fileName}}
+                <input type="file" name="coverImg" ngModel ng2FileSelect [uploader]="uploader"
+                       maxlength="1"/>
+              </label>
+              <div>
                <span class="ui-state-disabled pull-left _uploadImg" *ngFor="let item of uploader.queue">
                 <span class="close" (click)="item.remove()">×</span>
-                <span class="upload-thumb">
+                <span class="upload-thumb" style="margin-left: 32px">
                   <img style="width: 100px; height: 100px" *ngIf="item" [src]="item._file | imgUrl"
                        onerror="javascript:this.src='../../../assets/img/dummy.png'" [alt]="item?.file?.name"
                        class="_img">
@@ -116,11 +121,6 @@
             </div>
             <button class="btn btn-info position-absolute left50 icon-location-pin" style="top:414px" *ngIf="!flag" type="button" (click)="isShowMap(staff)"> 标注经纬度</button>
             <button class="btn btn-info position-absolute left50 icon-location-pin" style="top: 414px;" *ngIf="flag" type="button" (click)="isShowMap(staff)"> 修改经纬度</button>
-            <label for="image-input" class="btn btn-default file-upload col-sm-1" style="top:-32px; left:77%">
-              <i class="icon-cloud-upload mr"> 上传头像</i>{{fileName}}
-              <input type="file" name="coverImg" ngModel ng2FileSelect [uploader]="uploader"
-                     maxlength="1"/>
-            </label>
 
           </fieldset>
           <fieldset>
