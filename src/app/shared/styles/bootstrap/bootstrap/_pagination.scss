@@ -52,7 +52,7 @@
     &,
     &:hover,
     &:focus {
-      z-index: 3;
+      z-index: 0;
       color: $pagination-active-color;
       background-color: $pagination-active-bg;
       border-color: $pagination-active-border;
