@@ -228,7 +228,7 @@ export class AgentInformationComponent implements OnInit {
           agentCode: me.code
         };
          me.submitService.getData(url, data);
-        me.upateInfo(value);
+
         me.userblockComponent.ngOnInit();
       } else {
         AppComponent.rzhAlt('error', '上传失败', '图片上传失败！');
@@ -249,7 +249,7 @@ export class AgentInformationComponent implements OnInit {
 
   addLimitList(value) {
     this.uploadImg(value);
-
+    this.upateInfo(value);
   }
 
   upateInfo(value?) {
