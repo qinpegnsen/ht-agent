@@ -12,7 +12,7 @@ import {UserblockComponent} from "../../../layout/sidebar/userblock/userblock.co
 const swal = require('sweetalert');
 declare var $: any;
 declare var AMap: any;
-const uploadUrl = "upload/basic/upload";  //图片上传路径(调取上传的接口)
+const uploadUrl = "upload/basic/uploadHttpURL";  //图片上传路径(调取上传的接口)
 
 @Component({
   selector: 'app-agent-information',
@@ -198,10 +198,10 @@ export class AgentInformationComponent implements OnInit {
      */
 
     me.uploader.onBuildItemForm = function (fileItem, form) {
-      let uuid = me.GetUidService.getUid();
-      console.log("█ uuid ►►►", uuid);
-      form.append('uuid', uuid);
-      me.uuid = uuid;
+      // let uuid = me.GetUidService.getUid();
+      // console.log("█ uuid ►►►", uuid);
+      // form.append('uuid', uuid);
+      // me.uuid = uuid;
     };
 
     /**
@@ -222,9 +222,9 @@ export class AgentInformationComponent implements OnInit {
         let avatar=res.data;
         me.settings.user.picture = avatar;
         localStorage.avatar = avatar;
-        let url = '/agent/updateAgentAvatar';
+        let url = '/agent/updateAvatar';
         let data = {
-          avatarUUID: me.uuid,
+          avatar: avatar,
           agentCode: me.code
         };
          me.submitService.getData(url, data);

@@ -105,7 +105,7 @@
               <label class="col-sm-2 control-label"> <i>*</i> 头像</label>
               <label for="image-input" class="btn btn-default file-upload col-sm-1" style="left:1.1%">
                 <i class="icon-cloud-upload mr"> 上传头像</i>{{fileName}}
-                <input type="file" name="coverImg" ngModel ng2FileSelect [uploader]="uploader"
+                <input type="file" name="coverImg" accept="image/*" ngModel ng2FileSelect [uploader]="uploader"
                        maxlength="1"/>
               </label>
               <div>
