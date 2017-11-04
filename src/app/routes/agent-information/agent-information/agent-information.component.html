@@ -103,16 +103,16 @@
                 <input class="form-control col-sm-1 position-relative" type="text" required name="coordinateLat" ngModel [(ngModel)]="staff.coordinateLat" readonly/>
               </div>
               <label class="col-sm-2 control-label"> <i>*</i> 头像</label>
-              <label for="image-input" class="btn btn-default file-upload col-sm-1" style="left:1.1%">
+              <label  class="btn btn-default file-upload col-sm-1" style="left:1.1%">
                 <i class="icon-cloud-upload mr"> 上传头像</i>{{fileName}}
                 <input type="file" name="coverImg" accept="image/*" ngModel ng2FileSelect [uploader]="uploader"
-                       maxlength="1"/>
+                       (change)="fileChangeListener()"/>
               </label>
               <div>
                <span class="ui-state-disabled pull-left _uploadImg" *ngFor="let item of uploader.queue">
                 <span class="close" (click)="item.remove()">×</span>
                 <span class="upload-thumb" style="margin-left: 32px">
-                  <img style="width: 100px; height: 100px" *ngIf="item" [src]="item._file | imgUrl"
+                  <img style="width: 100px; height: 100px" *ngIf="myImg" [src]="item._file | imgUrl"
                        onerror="javascript:this.src='../../../assets/img/dummy.png'" [alt]="item?.file?.name"
                        class="_img">
                 </span>

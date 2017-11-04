@@ -1,0 +1,89 @@
+<div class="content-heading mb-lg"><span class="thc font">账单明细</span></div>
+<!--操作提示-->
+<div class="panel mb p ts thc">
+  <p class="font18">操作提示</p>
+  <ul>
+    <li>应结款等于订单总额减去订单退款乘以结算比例</li>
+    <li>结算比例等于一减去抽成比例</li>
+  </ul>
+</div>
+<!--查询 start-->
+<div class="row clearfix p text-right">
+  <div class="place-time clearfix mb">
+    <span class="_title">下单时间：</span>
+    <div class="_picker">
+      <div class="input-group">
+        <input class="form-control" bsDaterangepicker [bsConfig]="bsConfig" #dpr="bsDaterangepicker" readonly>
+        <span class="btn input-group-addon fa fa-calendar" (click)="dpr.show()"></span>
+      </div>
+    </div>
+  </div>
+  <div class="search-term clearfix ml mb">
+    <div class="w100 pl-sm pr0 pull-left">
+      <div class="form-group mb0 pr0">
+        <div class="w70 pl0 pr0 pull-left">
+          <input type="text" class="form-control border-b-grey"  placeholder="请填写订单编号"/>
+        </div>
+        <button type="button" title="搜索"
+                class="btn thc btn-thc bar-h3-btn mr0 ng-scope"  (click)="queryDatas()">
+          <em class="icon-magnifier fa-fw"></em>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--查询 end-->
+<div class="panel p mb">
+<table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="data" (pageChange)="queryDatas($event)">
+  <thead>
+  <tr>
+    <th class="unselectable text-center sort-num thc font">
+      序号
+    </th>
+    <th class="col-lg-2  unselectable text-center">
+      <rzhDefaultSorter by="name">订单号</rzhDefaultSorter>
+    </th>
+    <th class="col-lg-1  unselectable text-center">
+      <rzhDefaultSorter by="url">订单总额</rzhDefaultSorter>
+    </th>
+    <th class="col-lg-2  unselectable text-center">
+      <rzhDefaultSorter by="menuIcon">订单退款</rzhDefaultSorter>
+    </th>
+    <th class="col-lg-2  unselectable text-center">
+      <rzhDefaultSorter by="level">结算比例</rzhDefaultSorter>
+    </th>
+    <th class="col-lg-2  unselectable text-center">
+      <rzhDefaultSorter by="note">应结款</rzhDefaultSorter>
+    </th>
+    <th class="col-lg-2  unselectable text-center">
+      <rzhDefaultSorter by="order">结算时间</rzhDefaultSorter>
+    </th>
+  </thead>
+  <tbody>
+  <tr class="text-center" *ngFor="let menu of dataTable.data;let i = index" #men id="menList{{i}}">
+    <td style="padding-left: 20px">{{i+1}}</td>
+    <td><!--<span class="btn btn-default btn-xs ml mr">点击</span>-->{{menu.menuName}}</td>
+    <td>{{menu.menuUrl}}</td>
+    <td><span  class="{{menu.menuIcon}}"></span></td>
+    <td>{{menu.level}}</td>
+    <td>{{menu.remarks}}</td>
+    <td>{{menu.ord}}</td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="10">
+      <div class="col-sm-5">
+        <div class="text-muted"><strong>第 {{data.genStartRow()}} 至 {{data.genEndRow()}} 条，共 {{data.totalRow}} 条</strong></div>
+      </div>
+      <div class="col-sm-7">
+        <div style="float: right">
+          <rzhBootstrapPaginator></rzhBootstrapPaginator>
+        </div>
+      </div>
+    </td>
+  </tr>
+  </tfoot>
+</table>
+</div>
+

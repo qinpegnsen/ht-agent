@@ -24,7 +24,7 @@ export class AgentInformationComponent implements OnInit {
   public uploader: FileUploader = new FileUploader({
     url: uploadUrl,
     itemAlias: "limitFile",
-    queueLimit: 1
+    allowedFileType:["image"]
   }); //初始化上传方法
   public linkType: string;
   private uid;//声明保存获取到的暗码
@@ -181,17 +181,20 @@ export class AgentInformationComponent implements OnInit {
    * @param $event
    */
   fileChangeListener() {
-
     // 当选择了新的图片的时候，把老图片从待上传列表中移除
     if (this.uploader.queue.length > 1) this.uploader.queue[0].remove();
+    if(this.uploader)
     this.myImg = true;  //表示已经选了图片
   }
+
 
   /**
    * 图片上传
    */
   uploadImg(value) {
     let me = this;
+    console.log("█ me.uploader ►►►",  me.uploader);
+
     /**
      * 构建form时，传入自定义参数
      * @param item
