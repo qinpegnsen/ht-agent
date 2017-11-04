@@ -24,7 +24,7 @@ export class AgentInformationComponent implements OnInit {
   public uploader: FileUploader = new FileUploader({
     url: uploadUrl,
     itemAlias: "limitFile",
-    queueLimit: 1
+    allowedFileType:["image"]
   }); //初始化上传方法
   public linkType: string;
   private uid;//声明保存获取到的暗码
