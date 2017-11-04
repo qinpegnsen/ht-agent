@@ -6,6 +6,7 @@ import {SubmitService} from "../../../core/forms/submit.service";
 import {ShoppingOrderService} from "../shopping-order.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
 import {isNullOrUndefined} from "util";
+import {StockManService} from "../../stock-man/stock-man.service";
 
 const swal = require('sweetalert');
 declare var $;
@@ -25,13 +26,16 @@ export class AllWorkOrdersComponent implements OnInit {
   public stateEnumList;                                       //工单状态的列表
   public curWoAgentId: string;                                //工单的id
   public curOrdno: string;                                    //订单编码
-  private showReasonWindow:boolean = false;                  //弹窗的开关
-  private woAgengId:any;                                      //代理商工单id
+  public showReasonWindow:boolean = false;                  //弹窗的开关
+  public woAgengId:any;                                      //代理商工单id
   private transWoAgengId:any;                                 //传递到拒单组件的
+  private LogisticsData:any;                                  //物流数据
+  private custPhone:any;                                      //买家的手机号
 
   constructor(private parentComp: ShoppingOrderComponent,
               private submit: SubmitService,
               private shoppingOrderService: ShoppingOrderService,
+              private stockManService: StockManService,
               private rzhtoolsService: RzhtoolsService,) {
   }
 
@@ -64,9 +68,9 @@ export class AllWorkOrdersComponent implements OnInit {
       sortColumns: '',
       curPage: activePage,
       pageSize: 10,
-      agentCode: '',
       wono: this.wono,
       ordno: this.ordno,
+      custPhone: this.custPhone,
       ordType: 'ORD',//工单类型 购物订单
       stateEnum: this.stateEnum,
     };
@@ -116,6 +120,68 @@ export class AllWorkOrdersComponent implements OnInit {
   deliver(woAgentId, ordno) {
     this.curWoAgentId = woAgentId;
     this.curOrdno = ordno;
+  }
+
+  /**
+   * json 转 object
+   * @param val
+   */
+  jsonToObject(val:string){
+    return RzhtoolsService.jsonToObject(val);
+  }
+
+  /**
+   * 鼠标放在图片上时大图随之移动
+   */
+  showImg(event,i){
+    i.style.display = 'block';
+    i.style.top = (event.clientY+10) + 'px';
+    i.style.left = (event.clientX+10)+ 'px';
+  }
+
+  /**
+   * 鼠标离开时大图随之隐藏
+   */
+  hideImg(i) {
+    i.style.display = 'none';
+  }
+
+  /**
+   * 显示买家信息
+   * @param event
+   * @param i
+   */
+  showUserInfo(i){
+    i.style.display = 'block';
+  }
+
+  /**
+   * 隐藏买家信息
+   * @param i
+   */
+  hideBuyerInfo(i){
+    i.style.display = 'none';
+  }
+
+  /**
+   *显示物流信息
+   * @param orderId
+   */
+  showLogistics(Logistics,ordno){
+    Logistics.style.display = 'block';
+    let url='/ord/tail/queryDeliveryList';
+    let data={
+      ordno:ordno
+    };
+    this.LogisticsData=this.stockManService.getShopList(url,data);
+  }
+
+  /**
+   *隐藏物流信息
+   * @param orderId
+   */
+  hideLogistics(Logistics){
+    Logistics.style.display = 'none';
   }
 
   /**
