@@ -57,7 +57,7 @@ export class OrderReceiveComponent implements OnInit {
     }else if(!isNullOrUndefined(curPage)){
       activePage =curPage
     };
-    let requestUrl = '/woAgent/query';
+    let requestUrl = '/woAgent/queryOrdWo';
     let requestData = {
       sortColumns: '',
       curPage: activePage,
