@@ -50,7 +50,7 @@ export class CompletedComponent implements OnInit {
     if (typeof event !== 'undefined') {
       activePage = event.activePage;
     }
-    let requestUrl = '/woAgent/query';
+    let requestUrl = '/woAgent/queryOrdWo';
     let requestData = {
       sortColumns: '',
       curPage: activePage,

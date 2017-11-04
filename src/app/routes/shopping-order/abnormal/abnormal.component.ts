@@ -49,7 +49,7 @@ export class AbnormalComponent implements OnInit {
     if (typeof event !== 'undefined') {
       activePage = event.activePage;
     }
-    let requestUrl = '/woAgent/query';
+    let requestUrl = '/woAgent/queryOrdWo';
     let requestData = {
       sortColumns: '',
       curPage: activePage,
