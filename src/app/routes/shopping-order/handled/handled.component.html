@@ -8,18 +8,18 @@
       </button>
     </div>
   </div>
-  <div class="place-time clearfix mb col-lg-2 pull-right">
-    <div class="pl0 pr0 pull-left w100">
-      <input type="text" class="form-control border-b-grey" maxlength="128" [(ngModel)]="custPhone"
-             placeholder="请输入要查询的收货人手机号">
-    </div>
-  </div>
   <div class="search-term clearfix ml mb col-lg-2 pull-right">
     <div class="pr0 pull-left w100">
       <select class="form-control pl-sm pr-sm" name="state" #stateEnum (change)="getState(stateEnum.value)">
         <option value="">全部</option>
         <option value="{{item.key}}" *ngFor="let item of stateEnumList">{{item.val}}</option>
       </select>
+    </div>
+  </div>
+  <div class="place-time clearfix mb col-lg-2 pull-right">
+    <div class="pl0 pr0 pull-left w100">
+      <input type="text" class="form-control border-b-grey" maxlength="128" [(ngModel)]="custPhone"
+             placeholder="请输入要查询的收货人手机号">
     </div>
   </div>
   <div class="place-time clearfix mb col-lg-2 pull-right">
