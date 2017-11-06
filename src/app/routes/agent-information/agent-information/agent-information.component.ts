@@ -158,7 +158,7 @@ export class AgentInformationComponent implements OnInit {
   buttonShow(data: any) {
     data.isShowMap = !data.isShowMap;
     this.flag = true;
-    console.log(this.flag)
+    // console.log(this.flag)
   }
 
   /**
@@ -183,7 +183,6 @@ export class AgentInformationComponent implements OnInit {
   fileChangeListener() {
     // 当选择了新的图片的时候，把老图片从待上传列表中移除
     if (this.uploader.queue.length > 1) this.uploader.queue[0].remove();
-    if(this.uploader)
     this.myImg = true;  //表示已经选了图片
   }
 
@@ -193,7 +192,6 @@ export class AgentInformationComponent implements OnInit {
    */
   uploadImg(value) {
     let me = this;
-    console.log("█ me.uploader ►►►",  me.uploader);
 
     /**
      * 构建form时，传入自定义参数
@@ -276,7 +274,7 @@ export class AgentInformationComponent implements OnInit {
         'description': value.description,
       },
       success: (res) => {
-        console.log(res)
+        // console.log(res)
         if (res.success) {
           _this.router.navigate(['/main/agent-information'], {replaceUrl: true});   //路由跳转
           swal('修改信息成功！', '', 'success');
