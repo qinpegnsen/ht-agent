@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {StockManService} from "../stock-man.service";
 import {NavigationEnd, Router} from "@angular/router";
 import {Location} from "@angular/common";
-import {isNullOrUndefined} from "util";
 import {AppComponent} from "../../../app.component";
 
 declare var $:any;
@@ -13,7 +12,7 @@ declare var $:any;
   styleUrls: ['./order-page.component.scss']
 })
 
-export class OrderPageComponent implements OnInit {
+export class OrderPageComponent implements OnInit,OnDestroy {
 
   private orderData:any;                      //储存订单的数据
   private goodLength:number;                  //添加到订单的商品的总数
@@ -23,6 +22,7 @@ export class OrderPageComponent implements OnInit {
   private currentId:number;                   //默认的修改按钮
   private strData:any;                        //商品的编码和数量
   public flag:boolean=true;                   //定义boolean值用来控制内容组件是否显示
+  public urlChange;                      //路由的变化，用来取消订阅
 
   constructor(
     public stockManService: StockManService,
@@ -47,7 +47,7 @@ export class OrderPageComponent implements OnInit {
      * 2.路由变化的时候，刷新页面
      */
 
-    this.router.events
+    this.urlChange=this.router.events
       .subscribe((event) => {
         if (event instanceof NavigationEnd) { // 当导航成功结束时执行
           if(event.url.indexOf('pay')>0){
@@ -62,6 +62,13 @@ export class OrderPageComponent implements OnInit {
     setTimeout(()=>{
       this.goodLength=$("._kind").length;
     },0)
+  }
+
+  /**
+   * 取消订阅
+   */
+  ngOnDestroy(){
+    this.urlChange.unsubscribe();
   }
 
   /**

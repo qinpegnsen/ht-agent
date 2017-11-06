@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {StockManService} from "../stock-man.service";
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {HeaderComponent} from "app/layout/header/header.component";
@@ -15,7 +15,7 @@ declare var $:any;
   styleUrls: ['./pay-page.component.scss']
 })
 
-export class PayPageComponent implements OnInit {
+export class PayPageComponent implements OnInit,OnDestroy {
 
   public orderData:any;                  //订单的数据
   public payWay:any;                     //支付的方式，用来显示不同的页面
@@ -28,6 +28,7 @@ export class PayPageComponent implements OnInit {
   public nameData;                       //平台统一银行收款账户名称
   public phoneData;                      //平台统一银行收款联系方式
   public payCon;
+  public urlChange;                      //路由的变化，用来取消订阅
 
   constructor(
     public stockManService: StockManService,
@@ -62,7 +63,7 @@ export class PayPageComponent implements OnInit {
      * 2.路由变化的时候，刷新页面
      */
 
-    this.router.events
+    this.urlChange=this.router.events
       .subscribe((event) => {
         if (event instanceof NavigationEnd) { // 当导航成功结束时执行
           if(event.url.indexOf('do')>0){
@@ -74,6 +75,13 @@ export class PayPageComponent implements OnInit {
       });
     this.headerComponent.getShopTotal();//刷新购物车商品数量
   };
+
+  /**
+   * 取消订阅
+   */
+  ngOnDestroy(){
+    this.urlChange.unsubscribe();
+  }
 
   /**
    * 获取汇款时的信息（从数据字典取出来）
