@@ -35,7 +35,7 @@ export class AgentInformationComponent implements OnInit {
   private code: any;
   private selectArea;
   private myImg: any;
-  private uuid: any;//存储暗码
+  public maps:string='';//修改经纬度按钮的显示
 
   constructor(public GetUidService: GetUidService, public userblockComponent: UserblockComponent, public submitService: SubmitService, public settings: SettingsService, private ajax: AjaxService, private router: Router, private routeInfo: ActivatedRoute, private patterns: PatternService) {
     this.settings.showRightPage("30%"); // 此方法必须调用！页面右侧显示，带滑动效果,可以自定义宽度：..%  或者 ..px
@@ -72,6 +72,7 @@ export class AgentInformationComponent implements OnInit {
       var clickEventListener = map.on('click', function (e) {
         me.staff.coordinateLng = e.lnglat.getLng();//经度
         me.staff.coordinateLat = e.lnglat.getLat();//纬度
+        me.maps=me.staff.coordinateLng+','+me.staff.coordinateLat;
       });
 
       var marker = new AMap.Marker({
@@ -130,6 +131,7 @@ export class AgentInformationComponent implements OnInit {
       data: {agentCode: this.agentCode},
       success: (res) => {
         this.staff = res.data;
+        this.maps=this.staff.coordinateLng + ',' + this.staff.coordinateLat;
         if (isNullOrUndefined(this.staff)) this.staff = {}
       },
       error: (res) => {
@@ -268,8 +270,7 @@ export class AgentInformationComponent implements OnInit {
         'telephone': value.telephone,
         'areaCode': value.areaCode,
         'address': value.address,
-        'coordinateLng': value.coordinateLng,
-        'coordinateLat': value.coordinateLat,
+        'coordinateLngStr': this.maps,
         'description': value.description,
       },
       success: (res) => {
