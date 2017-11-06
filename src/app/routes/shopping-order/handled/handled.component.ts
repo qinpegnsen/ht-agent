@@ -17,7 +17,7 @@ export class HandledComponent implements OnInit {
   public workOrderList: Page = new Page();                    //获取列表的数据
   public wono:string='';                                      //工单号
   public ordno:string='';                                     //订单号
-  public stateEnum:string='';                                 //工单状态搜索时候会用到
+  public stateEnum:string='DEAL';                                 //工单状态搜索时候会用到
   public stateEnumList;                                       //工单状态的列表
   private custPhone:any;                                      //买家的手机号
   private LogisticsData:any;                                  //物流数据
