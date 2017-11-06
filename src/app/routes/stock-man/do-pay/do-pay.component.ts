@@ -62,7 +62,7 @@ export class DoPayComponent implements OnInit {
         ordno: _this.ordno
       };
       _this.payCon = _this.stockManService.goPay(url, data);
-      QRCode.toDataURL(_this.payCon, function (err, url) {                  //获取支付的二维码的内容生成二维码
+      QRCode.toDataURL(_this.payCon, function (err, url) {                  //根据支付的二维码的内容生成二维码
         _this.url = url;
       })
     }

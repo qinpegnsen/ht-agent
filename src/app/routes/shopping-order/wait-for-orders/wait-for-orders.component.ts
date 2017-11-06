@@ -22,7 +22,7 @@ export class WaitForOrdersComponent implements OnInit {
   public workOrderList: Page = new Page();                    //获取列表的数据
   public wono:string='';                                      //工单号
   public ordno:string='';                                     //订单号
-  public stateEnum:string='';                                 //工单状态搜索时候会用到
+  public stateEnum:string='NO';                                 //工单状态搜索时候会用到
   public stateEnumList;                                       //工单状态的列表
   private showReasonWindow:boolean = false;                  //弹窗的开关
   private woAgengId:any;                                      //代理商工单id
