@@ -35,7 +35,7 @@ export class BillingDetailsComponent implements OnInit {
   /**
    * 清空时间
    */
-  clearDate(){
+  clearTime(){
     this.agentTime = null;
     this.queryDatas(1);// 获取数据
   }
