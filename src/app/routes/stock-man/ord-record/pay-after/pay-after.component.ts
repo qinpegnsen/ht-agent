@@ -4,6 +4,7 @@ import {PageEvent} from "angular2-datatable";
 import {SubmitService} from "../../../../core/forms/submit.service";
 import {OrdRecordComponent} from "../ord-record.component";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'app-pay-after',
@@ -16,13 +17,14 @@ export class PayAfterComponent implements OnInit {
   public curCancelOrderId:string;
   public lookLogisticsOrderId:string;
   public goodsList: Page = new Page();
+  public showList:boolean=true;                           //是否展示列表
 
   constructor(private submit: SubmitService,private parentComp:OrdRecordComponent) { }
 
   ngOnInit() {
     let me = this;
     me.parentComp.orderType = 3;
-    me.queryDatas()
+    me.queryDatas(1)
   }
 
   /**
@@ -30,11 +32,13 @@ export class PayAfterComponent implements OnInit {
    * @param event
    * @param curPage
    */
-  public queryDatas(event?: PageEvent) {
+  public queryDatas(curPage,event?: PageEvent) {
     let _this = this, activePage = 1;
-    if (typeof event !== 'undefined') {
-      activePage = event.activePage;
-    }
+    if(typeof event !== "undefined") {
+      activePage =event.activePage
+    }else if(!isNullOrUndefined(curPage)){
+      activePage =curPage
+    };
     let requestUrl = ' /agentOrd/queryAgentState';
     let requestData = {
       curPage: activePage,
@@ -99,5 +103,23 @@ export class PayAfterComponent implements OnInit {
    */
   lookLogistics(orderId){
     this.lookLogisticsOrderId = orderId;
+  }
+
+  /**
+   * 子组件加载时
+   * @param event
+   */
+  activate(event) {
+    this.showList = false;
+  }
+
+  /**
+   * 子组件注销时
+   * @param event
+   */
+  onDeactivate(event) {
+    this.showList = true;
+    this.parentComp.orderType = 3;
+    this.queryDatas(event.curPage);
   }
 }

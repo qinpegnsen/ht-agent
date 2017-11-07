@@ -21,7 +21,7 @@ export class AllOrdersComponent implements OnInit {
 
   public goodsList: Page = new Page();                    //获取列表的数据
   public LogisticsData;                                   //获取物流的信息
-  public showList:boolean=true;                                        //是否展示列表
+  public showList:boolean=true;                           //是否展示列表
   public curPage;                                          //当前的页码
 
   constructor(
@@ -184,6 +184,7 @@ export class AllOrdersComponent implements OnInit {
       }
     );
   }
+
   /**
    * 子组件加载时
    * @param event
@@ -198,6 +199,7 @@ export class AllOrdersComponent implements OnInit {
    */
   onDeactivate(event) {
     this.showList = true;
-    this.queryDatas(1,this.curPage)
+    this.parentComp.orderType = 1;
+    this.queryDatas(event.curPage);
   }
 }

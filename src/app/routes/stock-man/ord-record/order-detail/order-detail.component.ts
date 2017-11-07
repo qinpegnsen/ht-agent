@@ -20,7 +20,8 @@ export class OrderDetailComponent implements OnInit {
   public logisticsData;                                   //获取物流的信息
   public deliveryData;                                    //快递公司的信息
   public ordno;                                           //订单号
-  public atime:Array<string> = new Array();             //存储状态时间的数组
+  public curPage;                                         //列表当前的页码
+  public atime:Array<string> = new Array();              //存储状态时间的数组
 
   constructor(
     private parentComp:OrdRecordComponent,
@@ -38,6 +39,7 @@ export class OrderDetailComponent implements OnInit {
   ngOnInit() {
     let me = this;
     this.ordno = me.routeInfo.snapshot.queryParams['ordno'];//获取进货记录未付款页面跳转过来的参数
+    this.curPage = me.routeInfo.snapshot.queryParams['curPage'];//获取进货记录未付款页面跳转过来的参数
     me.parentComp.orderType = 100;
     this.getOrderData();
     this.showLogistics();

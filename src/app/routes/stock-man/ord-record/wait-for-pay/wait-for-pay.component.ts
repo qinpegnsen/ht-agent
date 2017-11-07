@@ -16,6 +16,8 @@ import {isNullOrUndefined} from "util";
 
 export class WaitForPayComponent implements OnInit {
   public goodsList: Page = new Page();
+  public showList:boolean=true;                           //是否展示列表
+
   constructor(
     private submit: SubmitService,
     private router: Router,
@@ -113,5 +115,23 @@ export class WaitForPayComponent implements OnInit {
    */
   jsonToObject(val:string){
     return RzhtoolsService.jsonToObject(val);
+  }
+
+  /**
+   * 子组件加载时
+   * @param event
+   */
+  activate(event) {
+    this.showList = false;
+  }
+
+  /**
+   * 子组件注销时
+   * @param event
+   */
+  onDeactivate(event) {
+    this.showList = true;
+    this.parentComp.orderType = 2;
+    this.queryDatas(event.curPage);
   }
 }

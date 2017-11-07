@@ -7,6 +7,7 @@ import {StockManService} from "../../stock-man.service";
 import {HeaderComponent} from "../../../../layout/header/header.component";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 import {Router} from "@angular/router";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'app-canceled',
@@ -18,6 +19,7 @@ export class CanceledComponent implements OnInit {
 
   public lookLogisticsOrderId:string;
   public goodsList: Page = new Page();
+  public showList:boolean=true;                           //是否展示列表
 
   constructor(
     private submit: SubmitService,
@@ -34,7 +36,7 @@ export class CanceledComponent implements OnInit {
   ngOnInit() {
     let me = this;
     me.parentComp.orderType = 7;
-    me.queryDatas()
+    me.queryDatas(1)
   }
 
   /**
@@ -42,11 +44,13 @@ export class CanceledComponent implements OnInit {
    * @param event
    * @param curPage
    */
-  public queryDatas(event?: PageEvent) {
+  public queryDatas(curPage,event?: PageEvent) {
     let _this = this, activePage = 1;
-    if (typeof event !== 'undefined') {
-      activePage = event.activePage;
-    }
+    if(typeof event !== "undefined") {
+      activePage =event.activePage
+    }else if(!isNullOrUndefined(curPage)){
+      activePage =curPage
+    };
     let requestUrl = ' /agentOrd/queryAgentState';
     let requestData = {
       curPage: activePage,
@@ -117,5 +121,23 @@ export class CanceledComponent implements OnInit {
    */
   lookLogistics(orderId){
     this.lookLogisticsOrderId = orderId;
+  }
+
+  /**
+   * 子组件加载时
+   * @param event
+   */
+  activate(event) {
+    this.showList = false;
+  }
+
+  /**
+   * 子组件注销时
+   * @param event
+   */
+  onDeactivate(event) {
+    this.showList = true;
+    this.parentComp.orderType = 7;
+    this.queryDatas(event.curPage);
   }
 }
