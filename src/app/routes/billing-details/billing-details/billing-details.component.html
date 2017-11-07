@@ -40,37 +40,37 @@
 <table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="woList" (pageChange)="queryDatas(1,$event)">
   <thead>
   <tr>
-    <th class="unselectable text-center sort-num thc font">
+    <th class="unselectable text-center sort-num thc font w5">
       序号
     </th>
-    <th class="col-lg-2  unselectable text-center">
+    <th class="w15  unselectable text-center">
       <rzhDefaultSorter by="ordno">订单号</rzhDefaultSorter>
     </th>
-    <th class="col-lg-1  unselectable text-center">
+    <th class="w10  unselectable text-right">
       <rzhDefaultSorter by="ordPay">订单总额</rzhDefaultSorter>
     </th>
-    <th class="col-lg-2  unselectable text-center">
+    <th class="w15 unselectable text-right">
       <rzhDefaultSorter by="ordRefundPay">订单退款</rzhDefaultSorter>
     </th>
-    <th class="col-lg-2  unselectable text-center">
+    <th class="w15  unselectable text-right">
       <rzhDefaultSorter by="settleRate">结算比例</rzhDefaultSorter>
     </th>
-    <th class="col-lg-2  unselectable text-center">
+    <th class="w15  unselectable text-right">
       <rzhDefaultSorter by="settle">应结款</rzhDefaultSorter>
     </th>
-    <th class="col-lg-2  unselectable text-center">
+    <th class="w25  unselectable text-center">
       <rzhDefaultSorter by="createTime">结算时间</rzhDefaultSorter>
     </th>
   </thead>
   <tbody>
-  <tr class="text-center" *ngFor="let menu of dataTable.data;let i = index">
-    <td>{{i+1}}</td>
-    <td>{{menu.ordno}}</td>
-    <td>&yen;&nbsp;{{menu.ordPay}}</td>
-    <td>&yen;&nbsp;{{menu.ordRefundPay}}</td>
-    <td>{{menu.settleRate}} %</td>
-    <td>&yen;&nbsp;{{menu.settle}}</td>
-    <td>{{menu.createTime}}</td>
+  <tr  *ngFor="let menu of dataTable.data;let i = index">
+    <td class="text-center">{{i+1}}</td>
+    <td class="text-center">{{menu.ordno}}</td>
+    <td class="text-right">&yen;&nbsp;{{menu.ordPay| number:'1.2-2'}}</td>
+    <td class="text-right">&yen;&nbsp;{{menu.ordRefundPay| number:'1.2-2'}}</td>
+    <td class="text-right">{{menu.settleRate}} %</td>
+    <td class="text-right">&yen;&nbsp;{{menu.settle| number:'1.2-2'}}</td>
+    <td class="text-center">{{menu.createTime}}</td>
   </tr>
   </tbody>
   <tfoot>
