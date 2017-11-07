@@ -54,6 +54,13 @@ const withdrawal = {
     }
   ]
 };
+
+const billingDetails = {
+  text: '账单明细',
+  link: '/main/billingDetails',
+  icon: 'icon-book-open'
+};
+
 const sysMessage = {
   text: '系统消息',
   link: '/main/sys-message',
@@ -67,5 +74,7 @@ export const menu = [
     statistics,
     stockAddres,
     withdrawal,
+   billingDetails,
     sysMessage
+
 ];
