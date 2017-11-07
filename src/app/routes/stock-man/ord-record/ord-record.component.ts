@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {BsDatepickerConfig} from "ngx-bootstrap/datepicker";
 import {defineLocale} from "ngx-bootstrap/bs-moment";
 import {zhCn} from "ngx-bootstrap/locale";
+import {Location} from "@angular/common";
 
 defineLocale('cn', zhCn);
 
@@ -16,7 +17,7 @@ export class OrdRecordComponent implements OnInit {
   public orderType: number = 1;
   bsConfig: Partial<BsDatepickerConfig>;
 
-  constructor() {
+  constructor(private location: Location) {
     this.bsConfig = Object.assign({}, {
       locale: 'cn',
       rangeInputFormat:"YYYY/MM/DD",
@@ -25,6 +26,10 @@ export class OrdRecordComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  routeBack() {
+    this.location.back()
   }
 
 }
