@@ -21,6 +21,8 @@ export class AllOrdersComponent implements OnInit {
 
   public goodsList: Page = new Page();                    //获取列表的数据
   public LogisticsData;                                   //获取物流的信息
+  public curPage;                                         //当前的页码
+  private showList: boolean = true; //是否显示列表组件
 
   constructor(
     private submit: SubmitService,
@@ -51,6 +53,7 @@ export class AllOrdersComponent implements OnInit {
     }else if(!isNullOrUndefined(curPage)){
       activePage =curPage
     };
+    this.curPage=activePage;
     let requestUrl = ' /agentOrd/queryAgentState';
     let requestData = {
       curPage: activePage,
@@ -181,4 +184,19 @@ export class AllOrdersComponent implements OnInit {
       }
     );
   }
-}
+  /**
+   * 子组件加载时
+   * @param event
+   */
+  activate(event) {
+    this.showList = false;
+  }
+
+  /**
+   * 子组件注销时
+   * @param event
+   */
+  onDeactivate(event) {
+    this.showList = true;
+    if(event.refresh) this.queryDatas(this.curPage)
+  }}

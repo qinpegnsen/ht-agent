@@ -22,17 +22,18 @@ import { PayAfterComponent } from './ord-record/pay-after/pay-after.component';
 import { WaitForReceiveComponent } from './ord-record/wait-for-receive/wait-for-receive.component';
 import {RzhtoolsService} from "../../core/services/rzhtools.service";
 
-
+const detailChildren: Routes = [
+  {path: 'order-detail', component: OrderDetailComponent}
+]
 const orderRecordChildren: Routes = [
     {path: '', redirectTo: 'all-orders'},
-    {path: 'all-orders', component: AllOrdersComponent},
-    {path: 'wait-for-pay', component: WaitForPayComponent},
-    {path: 'pay-after', component: PayAfterComponent},
-    {path: 'wait-for-send', component: WaitForSendComponent},
-    {path: 'wait-for-receive', component: WaitForReceiveComponent},
-    {path: 'finished', component: FinishedComponent},
-    {path: 'canceled', component: CanceledComponent},
-    {path: 'order-detail', component: OrderDetailComponent}
+    {path: 'all-orders', component: AllOrdersComponent,children:detailChildren},
+    {path: 'wait-for-pay', component: WaitForPayComponent,children:detailChildren},
+    {path: 'pay-after', component: PayAfterComponent,children:detailChildren},
+    {path: 'wait-for-send', component: WaitForSendComponent,children:detailChildren},
+    {path: 'wait-for-receive', component: WaitForReceiveComponent,children:detailChildren},
+    {path: 'finished', component: FinishedComponent,children:detailChildren},
+    {path: 'canceled', component: CanceledComponent,children:detailChildren}
 ]
 
 const routes: Routes = [
