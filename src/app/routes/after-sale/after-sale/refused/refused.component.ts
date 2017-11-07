@@ -23,6 +23,7 @@ export class RefusedComponent implements OnInit {
   private ordnos;
   private wonos;
   private custPhone;
+  private showList: boolean = true;
 
 
   constructor(private AfterSaleComponent:AfterSaleComponent,private submit: SubmitService,) {
@@ -37,6 +38,23 @@ export class RefusedComponent implements OnInit {
     let _this = this;
     _this.AfterSaleComponent.orderType = 4;
     _this.queryDatas(1);
+  }
+
+  /**
+   * 子组件加载时
+   * @param event
+   */
+  activate(event) {
+    this.showList = false;
+  }
+
+  /**
+   * 子组件注销时
+   * @param event
+   */
+  onDeactivate(event) {
+    this.showList = true;
+    this.AfterSaleComponent.orderType = 4;
   }
 
   /**

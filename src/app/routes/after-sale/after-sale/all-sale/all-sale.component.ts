@@ -21,6 +21,7 @@ export class AllSaleComponent implements OnInit {
   public woList: Page = new Page();
   public curCancelOrderId: string;
   public curCancelOrderId1: string;
+  private showList: boolean = true;
 
 
   constructor(private AfterSaleComponent:AfterSaleComponent, private submit: SubmitService,private RzhtoolsService:RzhtoolsService) {
@@ -35,6 +36,22 @@ export class AllSaleComponent implements OnInit {
     let _this = this;
     _this.AfterSaleComponent.orderType = 1;
     _this.queryDatas(1);
+  }
+
+  /**
+   * 子组件加载时
+   * @param event
+   */
+  activate(event) {
+    this.showList = false;
+  }
+
+  /**
+   * 子组件注销时
+   * @param event
+   */
+  onDeactivate(event) {
+    this.showList = true;
   }
 
   /**

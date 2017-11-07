@@ -21,7 +21,7 @@ export class ProcessedComponent implements OnInit {
   private ordnos;
   private wonos;
   private custPhone;
-
+  private showList: boolean = true;
 
   constructor(private AfterSaleComponent:AfterSaleComponent,private submit: SubmitService) {
     this.bsConfig = Object.assign({}, {
@@ -36,6 +36,24 @@ export class ProcessedComponent implements OnInit {
     _this.AfterSaleComponent.orderType = 2;
     _this.queryDatas(1);
   }
+
+  /**
+   * 子组件加载时
+   * @param event
+   */
+  activate(event) {
+    this.showList = false;
+  }
+
+  /**
+   * 子组件注销时
+   * @param event
+   */
+  onDeactivate(event) {
+    this.showList = true;
+    this.AfterSaleComponent.orderType = 2;
+  }
+
   /**
    * 隐藏买家信息
    * @param i

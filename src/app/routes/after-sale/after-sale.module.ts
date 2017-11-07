@@ -18,10 +18,18 @@ const routes: Routes = [
   {
     path: 'sales', component: AfterSaleComponent, children: [
     {path: '', redirectTo: 'all-sale'},
-    {path: 'all-sale', component: AllSaleComponent},
-    {path: 'processed', component: ProcessedComponent},
-    {path: 'agreed', component: AgreedComponent},
-    {path: 'refused', component: RefusedComponent},
+    {path: 'all-sale', component: AllSaleComponent,children: [
+      {path: 'sale-detail', component: SaleDetailComponent}
+    ]},
+    {path: 'processed', component: ProcessedComponent,children: [
+      {path: 'sale-detail', component: SaleDetailComponent}
+    ]},
+    {path: 'agreed', component: AgreedComponent,children: [
+      {path: 'sale-detail', component: SaleDetailComponent}
+    ]},
+    {path: 'refused', component: RefusedComponent,children: [
+      {path: 'sale-detail', component: SaleDetailComponent}
+    ]},
     {path: 'sale-detail', component: SaleDetailComponent},
   ]
   },
