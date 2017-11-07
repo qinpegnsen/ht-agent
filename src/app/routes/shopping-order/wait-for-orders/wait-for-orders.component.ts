@@ -28,6 +28,7 @@ export class WaitForOrdersComponent implements OnInit {
   private woAgengId:any;                                      //代理商工单id
   private custPhone:any;                                      //买家的手机号
   private LogisticsData:any;                                  //物流数据
+  private showList:boolean=true;                              //是否显示列表
 
   constructor(
     private parentComp:ShoppingOrderComponent,
@@ -186,5 +187,23 @@ export class WaitForOrdersComponent implements OnInit {
    */
   getState(val){
     this.stateEnum=val;
+  }
+
+  /**
+   * 子组件加载时
+   * @param event
+   */
+  activate(event) {
+    this.showList = false;
+  }
+
+  /**
+   * 子组件注销时
+   * @param event
+   */
+  onDeactivate(event) {
+    this.showList = true;
+    this.parentComp.orderType = 2;
+    this.queryDatas(event.curPage);
   }
 }

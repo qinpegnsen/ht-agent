@@ -16,16 +16,17 @@ import { WorkDetailComponent } from './work-detail/work-detail.component';
 import {BsModalService, ModalModule} from 'ngx-bootstrap';
 import {ReasonRejecComponent} from "./modal-content/reason-rejec.component";
 
-
+const detailChildren: Routes = [
+  {path: 'work-detail', component:WorkDetailComponent}
+];
 const shoppingOrderChildren: Routes = [
   {path: '', redirectTo: 'all-work-orders'},
-  {path: 'all-work-orders', component: AllWorkOrdersComponent},
-  {path: 'wait-for-orders', component: WaitForOrdersComponent},
-  {path: 'order-receive', component: OrderReceiveComponent},
-  {path: 'handled', component: HandledComponent},
-  {path: 'completed', component: CompletedComponent},
-  {path: 'abnormal', component: AbnormalComponent},
-  {path: 'work-detail', component:WorkDetailComponent}
+  {path: 'all-work-orders', component: AllWorkOrdersComponent,children:detailChildren},
+  {path: 'wait-for-orders', component: WaitForOrdersComponent,children:detailChildren},
+  {path: 'order-receive', component: OrderReceiveComponent,children:detailChildren},
+  {path: 'handled', component: HandledComponent,children:detailChildren},
+  {path: 'completed', component: CompletedComponent,children:detailChildren},
+  {path: 'abnormal', component: AbnormalComponent,children:detailChildren},
 ]
 
 const routes: Routes = [

@@ -26,6 +26,7 @@ export class OrderReceiveComponent implements OnInit {
   public curOrdno: string;                                    //订单编码
   private custPhone:any;                                      //买家的手机号
   private LogisticsData:any;                                  //物流数据
+  private showList:boolean=true;                              //是否显示列表
 
   constructor(
     private parentComp:ShoppingOrderComponent,
@@ -159,5 +160,23 @@ export class OrderReceiveComponent implements OnInit {
   getDeliverOrderData(data) {
     this.curOrdno = null;//输入属性发生变化的时候，弹窗才会打开，所以每次后来都清空，造成变化的迹象
     if(data.type) this.queryDatas(data.page)
+  }
+
+  /**
+   * 子组件加载时
+   * @param event
+   */
+  activate(event) {
+    this.showList = false;
+  }
+
+  /**
+   * 子组件注销时
+   * @param event
+   */
+  onDeactivate(event) {
+    this.showList = true;
+    this.parentComp.orderType = 3;
+    this.queryDatas(event.curPage);
   }
 }
