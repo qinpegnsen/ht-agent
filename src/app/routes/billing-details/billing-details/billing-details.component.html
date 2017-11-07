@@ -36,7 +36,7 @@
 </div>
 <!--查询 end-->
 <div class="panel p mb">
-<table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="woList" (pageChange)="queryDatas($event)">
+<table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="woList" (pageChange)="queryDatas(1,$event)">
   <thead>
   <tr>
     <th class="unselectable text-center sort-num thc font">

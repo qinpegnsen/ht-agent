@@ -52,7 +52,6 @@ export class BillingDetailsComponent implements OnInit {
       dateStr = RzhtoolsService.dataFormat(this.agentTime[0], 'yyyy-MM-dd');
       dateStrs = RzhtoolsService.dataFormat(this.agentTime[1], 'yyyy-MM-dd');
     }
-
     let requestData = {
       curPage: activePage,
       pageSize: 20,
