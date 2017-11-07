@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {StockManService} from "../stock-man.service";
 import {AppComponent} from "../../../app.component";
@@ -13,7 +13,7 @@ const swal = require('sweetalert');
   styleUrls: ['./do-pay.component.scss']
 })
 
-export class DoPayComponent implements OnInit {
+export class DoPayComponent implements OnInit,OnDestroy {
 
   url: any;                               //内容生成的二维码图片
   ordno: any;                             //订单的编码
@@ -25,6 +25,7 @@ export class DoPayComponent implements OnInit {
   public minute: number;                  //分钟
   public second: number;                  //秒
   public flag: boolean = true;           //累计的时间
+  public urlChange;                      //路由的变化，用来取消订阅
 
   constructor(private routeInfo: ActivatedRoute, public stockManService: StockManService, private router: Router) {
   }
@@ -43,7 +44,7 @@ export class DoPayComponent implements OnInit {
      * 2.路由变化的时候，刷新页面
      */
 
-    _this.router.events
+    _this.urlChange=_this.router.events
       .subscribe((event) => {
         if (event instanceof NavigationEnd) { // 当导航成功结束时执行
           if(event.url.indexOf('do')==-1){//如果未支付完跳转了页面这时候清除时间函数
@@ -62,7 +63,7 @@ export class DoPayComponent implements OnInit {
         ordno: _this.ordno
       };
       _this.payCon = _this.stockManService.goPay(url, data);
-      QRCode.toDataURL(_this.payCon, function (err, url) {                  //获取支付的二维码的内容生成二维码
+      QRCode.toDataURL(_this.payCon, function (err, url) {                  //根据支付的二维码的内容生成二维码
         _this.url = url;
       })
     }
@@ -81,6 +82,13 @@ export class DoPayComponent implements OnInit {
         _this.timeOverAlert();
       }
     }, 1000)
+  }
+
+  /**
+   * 取消订阅
+   */
+  ngOnDestroy(){
+    this.urlChange.unsubscribe();
   }
 
   /**

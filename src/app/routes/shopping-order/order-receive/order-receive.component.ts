@@ -5,6 +5,7 @@ import {SubmitService} from "../../../core/forms/submit.service";
 import {PageEvent} from "../../../shared/directives/ng2-datatable/DataTable";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
 import {isNullOrUndefined} from "util";
+import {StockManService} from "../../stock-man/stock-man.service";
 
 declare var $;
 
@@ -19,14 +20,18 @@ export class OrderReceiveComponent implements OnInit {
   public workOrderList: Page = new Page();                    //获取列表的数据
   public wono:string='';                                      //工单号
   public ordno:string='';                                     //订单号
-  public stateEnum:string='';                                 //工单状态搜索时候会用到
+  public stateEnum:string='ACCEPT';                                 //工单状态搜索时候会用到
   public stateEnumList;                                       //工单状态的列表
   public curWoAgentId: string;                                //工单的id
   public curOrdno: string;                                    //订单编码
+  private custPhone:any;                                      //买家的手机号
+  private LogisticsData:any;                                  //物流数据
+  private showList:boolean=true;                              //是否显示列表
 
   constructor(
     private parentComp:ShoppingOrderComponent,
     private submit: SubmitService,
+    private stockManService: StockManService,
     private rzhtoolsService: RzhtoolsService
   ) { }
 
@@ -53,19 +58,82 @@ export class OrderReceiveComponent implements OnInit {
     }else if(!isNullOrUndefined(curPage)){
       activePage =curPage
     };
-    let requestUrl = '/woAgent/query';
+    let requestUrl = '/woAgent/queryOrdWo';
     let requestData = {
-      sortColumns:'',
+      sortColumns: '',
       curPage: activePage,
       pageSize: 10,
-      agentCode:'',
-      wono:this.wono,
-      ordno:this.ordno,
-      ordType:'ORD',//工单类型 购物订单
-      stateEnum:this.stateEnum?this.stateEnum:'ACCEPT',
+      wono: this.wono,
+      ordno: this.ordno,
+      custPhone: this.custPhone,
+      ordType: 'ORD',//工单类型 购物订单
+      stateEnum: this.stateEnum,
     };
     _this.workOrderList = new Page(_this.submit.getData(requestUrl, requestData));
   }
+
+  /**
+   * json 转 object
+   * @param val
+   */
+  jsonToObject(val:string){
+    return RzhtoolsService.jsonToObject(val);
+  }
+
+  /**
+   * 鼠标放在图片上时大图随之移动
+   */
+  showImg(event,i){
+    i.style.display = 'block';
+    i.style.top = (event.clientY+10) + 'px';
+    i.style.left = (event.clientX+10)+ 'px';
+  }
+
+  /**
+   * 鼠标离开时大图随之隐藏
+   */
+  hideImg(i) {
+    i.style.display = 'none';
+  }
+
+  /**
+   * 显示买家信息
+   * @param event
+   * @param i
+   */
+  showUserInfo(i){
+    i.style.display = 'block';
+  }
+
+  /**
+   * 隐藏买家信息
+   * @param i
+   */
+  hideBuyerInfo(i){
+    i.style.display = 'none';
+  }
+
+  /**
+   *显示物流信息
+   * @param orderId
+   */
+  showLogistics(Logistics,ordno){
+    Logistics.style.display = 'block';
+    let url='/ord/tail/queryDeliveryList';
+    let data={
+      ordno:ordno
+    };
+    this.LogisticsData=this.stockManService.getShopList(url,data);
+  }
+
+  /**
+   *隐藏物流信息
+   * @param orderId
+   */
+  hideLogistics(Logistics){
+    Logistics.style.display = 'none';
+  }
+
 
   /**
    * 发货
@@ -92,5 +160,23 @@ export class OrderReceiveComponent implements OnInit {
   getDeliverOrderData(data) {
     this.curOrdno = null;//输入属性发生变化的时候，弹窗才会打开，所以每次后来都清空，造成变化的迹象
     if(data.type) this.queryDatas(data.page)
+  }
+
+  /**
+   * 子组件加载时
+   * @param event
+   */
+  activate(event) {
+    this.showList = false;
+  }
+
+  /**
+   * 子组件注销时
+   * @param event
+   */
+  onDeactivate(event) {
+    this.showList = true;
+    this.parentComp.orderType = 3;
+    this.queryDatas(event.curPage);
   }
 }

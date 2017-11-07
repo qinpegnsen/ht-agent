@@ -25,6 +25,7 @@ export class WorkDetailComponent implements OnInit {
   private showReasonWindow:boolean = false;              //弹窗的开关
   private woAgengId:any;                                  //代理商工单id 发货的时候用,因为load没有返回来，直接从前面传过来
   private transWoAgengId:any;                             //代理商工单id
+  private curPage:any;                                    //列表的当前页码
 
   constructor(
               private parentComp: ShoppingOrderComponent,
@@ -42,6 +43,7 @@ export class WorkDetailComponent implements OnInit {
     me.parentComp.orderType = 100;
     me.curOrdno = me.routeInfo.snapshot.queryParams['ordno'];
     me.woAgengId = me.routeInfo.snapshot.queryParams['woAgentId'];
+    me.curPage = me.routeInfo.snapshot.queryParams['curPage'];
     me.getLogisticsInfo();//获取订单的物流详情及订单进度
     me.getOrderDetail(); //获取订单详情
   }

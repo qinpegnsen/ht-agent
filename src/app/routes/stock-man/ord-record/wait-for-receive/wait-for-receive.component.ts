@@ -19,6 +19,7 @@ export class WaitForReceiveComponent implements OnInit {
 
   public LogisticsData;                                   //获取物流的信息
   public goodsList: Page = new Page();
+  public showList:boolean=true;                           //是否展示列表
 
   constructor(
     private submit: SubmitService,
@@ -143,5 +144,23 @@ export class WaitForReceiveComponent implements OnInit {
         that.queryDatas(curPage);
       }
     );
+  }
+
+  /**
+   * 子组件加载时
+   * @param event
+   */
+  activate(event) {
+    this.showList = false;
+  }
+
+  /**
+   * 子组件注销时
+   * @param event
+   */
+  onDeactivate(event) {
+    this.showList = true;
+    this.parentComp.orderType = 5;
+    this.queryDatas(event.curPage);
   }
 }

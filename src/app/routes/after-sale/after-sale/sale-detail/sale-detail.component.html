@@ -36,13 +36,17 @@
                     <p class=" mr pull-left d-play w35"><span class="pull-right">申请数量：</span></p>
                     <p class="text-info pull-right w62"><span class="text-left">{{result.afterGoodsReq.num}}</span></p>
                   </li>
+                  <!--<li class="pb">-->
+                    <!--<p class=" mr pull-left d-play w35"><span class="pull-right">申请金额：</span></p>-->
+                    <!--<p class="text-info pull-right w62"><span class="text-left">&yen;&nbsp;{{result.afterGoodsReq.reqMoney}}</span></p>-->
+                  <!--</li>-->
                   <li class="pb">
-                    <p class=" mr pull-left d-play w35"><span class="pull-right">申请金额：</span></p>
-                    <p class="text-info pull-right w62"><span class="text-left">&yen;&nbsp;{{result.afterGoodsReq.reqMoney}}</span></p>
+                    <p class=" mr pull-left d-play w35"><span class="pull-right">退款金额：</span></p>
+                    <p class="text-info pull-right w62"><span class="text-left">&yen;&nbsp;{{result.afterGoodsReq.returnMoney | number:'1.2-2'}}</span></p>
                   </li>
                   <li class="pb">
-                    <p class=" mr pull-left d-play w35"><span class="pull-right">重消币数量：</span></p>
-                    <p class="text-info pull-right w62"><span class="text-left">{{result.afterGoodsReq.returnMoney | number:'1.2-2'}}</span></p>
+                    <p class=" mr pull-left d-play w35"><span class="pull-right">重消币退回：</span></p>
+                    <p class="text-info pull-right w62"><span class="text-left">{{result.afterGoodsReq.returnCoin | number:'1.2-2'}}</span></p>
                   </li>
                   <li class="pb">
                     <p class=" mr pull-left d-play w35"><span class="pull-right">原因：</span></p>
