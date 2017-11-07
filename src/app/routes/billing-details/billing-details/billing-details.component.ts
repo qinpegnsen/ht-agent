@@ -33,6 +33,14 @@ export class BillingDetailsComponent implements OnInit {
   }
 
   /**
+   * 清空时间
+   */
+  clearDate(){
+    this.agentTime = null;
+    this.queryDatas(1);// 获取数据
+  }
+
+  /**
    * 查询列表
    * @param event
    * @param curPage
@@ -51,6 +59,9 @@ export class BillingDetailsComponent implements OnInit {
     if (this.agentTime) {
       dateStr = RzhtoolsService.dataFormat(this.agentTime[0], 'yyyy-MM-dd');
       dateStrs = RzhtoolsService.dataFormat(this.agentTime[1], 'yyyy-MM-dd');
+    }else{
+      dateStr = null;
+      dateStrs = null;
     }
     let requestData = {
       curPage: activePage,
@@ -62,18 +73,4 @@ export class BillingDetailsComponent implements OnInit {
     _this.woList = new Page(_this.submit.getData(requestUrl, requestData));
 
   }
-
-  /**
-   * 查询菜单列表
-   **/
-  // public queryDatas(event?:PageEvent) {
-  //   let me = this, activePage = 1;
-  //   if (typeof event !== "undefined") activePage = event.activePage;
-  //
-  //   let listInfos = this.BillingDetailsService.queryMenuList(activePage, 20);
-  //   me.data = new Page(listInfos);
-  //   console.log("█ listInfos  ►►►",  listInfos );
-  //
-  // }
-
 }
