@@ -139,6 +139,7 @@ export class AgentOrdComponent implements OnInit {
     $(obj).parents("tr").css('background', '#FFF4E8')   //点击的时候样式的变化;
     if(obj.value==''){
       obj.value=1;
+      this.carNum=1;
     }
   }
 
