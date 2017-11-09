@@ -149,6 +149,7 @@ export class AgentOrdComponent implements OnInit {
    */
   goodSelect(obj) {
     let me = this;
+    console.log("█ $(obj).prop(\"checked\") ►►►",  $(obj).prop("checked"));
     if ($(obj).prop("checked")) {
       $(obj).attr("checked", true)
       $(obj).parents("tr").css('background', '#FFF4E8')   //点击的时候样式的变化;
@@ -225,7 +226,9 @@ export class AgentOrdComponent implements OnInit {
    * keyUp  的时候检查输入的值
    */
   checkVal(obj){
-    if(obj.value.indexOf('.')!=-1){
+    if(obj.value=='0'){
+      obj.value=1
+    }else if(obj.value.indexOf('.')!=-1){
       obj.value=Math.floor(obj.value);   //如果是小数，取整数
     }
   }
