@@ -149,7 +149,6 @@ export class AgentOrdComponent implements OnInit {
    */
   goodSelect(obj) {
     let me = this;
-    console.log("█ $(obj).prop(\"checked\") ►►►",  $(obj).prop("checked"));
     if ($(obj).prop("checked")) {
       $(obj).attr("checked", true)
       $(obj).parents("tr").css('background', '#FFF4E8')   //点击的时候样式的变化;
