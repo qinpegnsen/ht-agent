@@ -13,7 +13,7 @@ const swal = require('sweetalert');
   styleUrls: ['./do-pay.component.scss']
 })
 
-export class DoPayComponent implements OnInit,OnDestroy {
+export class DoPayComponent implements OnInit{
 
   url: any;                               //内容生成的二维码图片
   ordno: any;                             //订单的编码
@@ -21,11 +21,12 @@ export class DoPayComponent implements OnInit,OnDestroy {
   public payCon: String = '';             //二维码的内容
   public time: any;                       //二维码的内容
   public curWay: any;                     //当前支付的方式
-  public timeAdd: number =30 ;            //支付的时间(分钟)
+  public timeAdd: number =0.3;            //支付的时间(分钟)
   public minute: number;                  //分钟
   public second: number;                  //秒
   public flag: boolean = true;           //累计的时间
-  public urlChange;                      //路由的变化，用来取消订阅
+  public urlChange;                       //路由的变化，用来取消订阅
+  public timer;                           //时间函数
 
   constructor(private routeInfo: ActivatedRoute, public stockManService: StockManService, private router: Router) {
   }
@@ -48,7 +49,7 @@ export class DoPayComponent implements OnInit,OnDestroy {
       .subscribe((event) => {
         if (event instanceof NavigationEnd) { // 当导航成功结束时执行
           if(event.url.indexOf('do')==-1){//如果未支付完跳转了页面这时候清除时间函数
-            clearInterval(timer);
+            clearInterval(_this.timer);//这里不能取消订阅，取消这个清楚时间函数的方法不执行
           }
         }
       });
@@ -72,23 +73,16 @@ export class DoPayComponent implements OnInit,OnDestroy {
      * 每隔1s种调一次，看是否支付成功
      */
     var totalminSeconds=_this.timeAdd*60*1000;//总共的毫秒数
-    var timer = setInterval(function () {
+    _this.timer = setInterval(function () {
       _this.minute=Math.floor(totalminSeconds/1000/60%60);
       _this.second=Math.floor(totalminSeconds/1000%60);
       totalminSeconds -= 1000;
-      _this.isSuccess(timer);
+      _this.isSuccess(_this.timer);
       if(totalminSeconds==-1000){//页面显示0s时，出弹框，清空时间函数
-        clearInterval(timer);
+        clearInterval(_this.timer);
         _this.timeOverAlert();
       }
     }, 1000)
-  }
-
-  /**
-   * 取消订阅
-   */
-  ngOnDestroy(){
-    this.urlChange.unsubscribe();
   }
 
   /**
@@ -125,7 +119,7 @@ export class DoPayComponent implements OnInit,OnDestroy {
     }
     let result = this.stockManService.isTrue(url, data);
     if (result) {//支付成功的收
-      clearInterval(timer);
+      clearInterval(timer );
       AppComponent.rzhAlt("success", "支付成功");
       this.router.navigate(['/main/stockMan/aliCallBacK'],{replaceUrl: false})
     }
