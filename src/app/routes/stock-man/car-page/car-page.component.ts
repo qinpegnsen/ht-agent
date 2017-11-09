@@ -110,6 +110,12 @@ export class CarPageComponent implements OnInit {
         that.headerComponent.getShopTotal();//刷新顶部购物车的总数量
         that.getPriceList(obj);//刷新价格的列表
         that.getShopTotalNum();//刷新选中的数量
+        if($('._good[checked]').length==0){
+          if($('._all').prop('checked')){
+            $('._all').prop('checked',false);
+            $('._all').attr('checked',false);
+          }
+        }
       };
     });
   }
@@ -308,6 +314,9 @@ export class CarPageComponent implements OnInit {
     $(obj).parents('._myPaddingBody').find("._good").attr("checked", "checked")   //增加节点。计数用
     let num = $(obj).parents('.input-group').find('input').val()
     // if (num > storageNum) num = storageNum;
+    if(num==''){
+      num=1;
+    }
     $(obj).parents('.updateNum').find('input:first').val(num)
     let url = '/agent/agentCart/updateAgentCart'; //输入框修改数据
     let data = {
@@ -400,10 +409,8 @@ export class CarPageComponent implements OnInit {
    * keyUp  的时候检查输入的值
    */
   checkVal(obj) {
-    if (obj.value == '' || obj.value == 0) {
-      obj.value = 1;
-    } else {
-      obj.value = Math.floor(obj.value);   //如果是小数，取整数
-    };
+    if(obj.value.indexOf('.')!=-1){
+      obj.value=Math.floor(obj.value);   //如果是小数，取整数
+    }
   };
 }
