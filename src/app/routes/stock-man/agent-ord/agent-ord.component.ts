@@ -133,7 +133,7 @@ export class AgentOrdComponent implements OnInit {
    * @param obj
    */
   changeNum(obj) {
-    this.carNum = obj.value;
+    this.carNum = obj.value.slice(0,6);//截取6位，这里不只是maxlength
     $(obj).parents('tr').find('input:first').prop('checked', true)
     $(obj).parents('tr').find('input:first').attr('checked', true)
     $(obj).parents("tr").css('background', '#FFF4E8')   //点击的时候样式的变化;
