@@ -126,25 +126,29 @@ export class CarPageComponent implements OnInit {
   doMoreDelete() {
     let url = '/agent/agentCart/deleteAgentCartList';
     let goodList = $("._good[checked='checked']").parents("._myPaddingBody");
-    let strData: string = '';
-    for (var i = 0; i < goodList.length; i++) {
-      strData += $(goodList[i]).find("._agentCartId").val() + ",";
-    };
-    let data = {
-      strData: strData
-    };
-    this.stockManService.deleteData(url, data);
-    this.getCarList();//刷新购物车列表
-    this.headerComponent.getShopTotal();//刷新顶部购物车的总数量
-    this.getShopTotalNum();//刷新选中的数量
-    this.priceList = {
-      expressPrice: 0, //运费
-      payment: 0,//带运费的总费用
-      total: 0,//不带运费的总费用
-    };
-    if($('._all').prop('checked')){
-      $('._all').prop('checked',false);
-      $('._all').attr('checked',false);
+    if(goodList.length==0){
+      AppComponent.rzhAlt("info",'请先选择产品');
+    }else{
+      let strData: string = '';
+      for (var i = 0; i < goodList.length; i++) {
+        strData += $(goodList[i]).find("._agentCartId").val() + ",";
+      };
+      let data = {
+        strData: strData
+      };
+      this.stockManService.deleteData(url, data);
+      this.getCarList();//刷新购物车列表
+      this.headerComponent.getShopTotal();//刷新顶部购物车的总数量
+      this.getShopTotalNum();//刷新选中的数量
+      this.priceList = {
+        expressPrice: 0, //运费
+        payment: 0,//带运费的总费用
+        total: 0,//不带运费的总费用
+      };
+      if($('._all').prop('checked')){
+        $('._all').prop('checked',false);
+        $('._all').attr('checked',false);
+      }
     }
   }
 

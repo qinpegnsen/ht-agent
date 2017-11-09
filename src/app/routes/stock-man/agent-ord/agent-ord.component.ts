@@ -137,10 +137,6 @@ export class AgentOrdComponent implements OnInit {
     $(obj).parents('tr').find('input:first').prop('checked', true)
     $(obj).parents('tr').find('input:first').attr('checked', true)
     $(obj).parents("tr").css('background', '#FFF4E8')   //点击的时候样式的变化;
-    if(obj.value==''){
-      obj.value=1;
-      this.carNum=1;
-    }
   }
 
   /**
@@ -225,7 +221,7 @@ export class AgentOrdComponent implements OnInit {
    * keyUp  的时候检查输入的值
    */
   checkVal(obj){
-    if(obj.value=='0'){
+    if(obj.value==''){
       obj.value=1
     }else if(obj.value.indexOf('.')!=-1){
       obj.value=Math.floor(obj.value);   //如果是小数，取整数
