@@ -110,6 +110,12 @@ export class CarPageComponent implements OnInit {
         that.headerComponent.getShopTotal();//刷新顶部购物车的总数量
         that.getPriceList(obj);//刷新价格的列表
         that.getShopTotalNum();//刷新选中的数量
+        if($('._good[checked]').length==0){
+          if($('._all').prop('checked')){
+            $('._all').prop('checked',false);
+            $('._all').attr('checked',false);
+          }
+        }
       };
     });
   }
