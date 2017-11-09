@@ -103,7 +103,6 @@
             <td class="w10 bl" *ngIf="j==0" [attr.rowspan]="order.ord.ordItemList.length">
               <span class="main-red font14">￥{{order.ord.total | number:'1.2-2'}}</span><br>
               <span class="font-gray">运费 ￥{{order.ord.freight | number:'1.2-2'}}</span><br>
-              <span class="font-gray">重消币抵扣金额 ￥{{order.ord.coinPay | number:'1.2-2'}}</span><br>
               <span class="font-gray">{{order.ord.payWay | rzhState :'1017'}}</span>
             </td>
             <td class="w10 bl  position-relative" *ngIf="j==0" [attr.rowspan]="order.ord.ordItemList.length">
