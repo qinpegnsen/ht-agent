@@ -64,7 +64,7 @@ const billingDetails = {
 const sysMessage = {
   text: '系统消息',
   link: '/main/sys-message',
-  icon: 'icon-book-open'
+  icon: 'fa fa-newspaper-o'
 };
 export const menu = [
     Home,
