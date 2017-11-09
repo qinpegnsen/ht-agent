@@ -465,6 +465,20 @@ export class RzhtoolsService {
     )).getTime();
   }
 
+  /**
+   * 申请提现金额时，input框的检验只能输入整数或三位小数的限制方法
+   */
+  auditInputValueForNum(target,type?:string){
+    let val = target.value, reg;
+    if(type == 'int') reg = val.match(/^[1-9]{1}[0-9]*/);
+    else reg = val.match(/\d+(\.\d{1,2})?/);
+    if (!isNull(reg)){
+      target.value = reg[0];
+    }else {
+      target.value = val.substring(0,val.length-1)
+    }
+  }
+
 
 }
 

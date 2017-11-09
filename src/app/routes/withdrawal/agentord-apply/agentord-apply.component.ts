@@ -5,6 +5,8 @@ import {AgentordApplyService} from "./agentord-apply.service";
 import {AjaxService} from "../../../core/services/ajax.service";
 import {Router} from "@angular/router";
 import {AgentordRecordComponent} from "../agentord-record/agentord-record.component";
+import {RzhtoolsService} from "../../../core/services/rzhtools.service";
+import {PatternService} from "../../../core/forms/pattern.service";
 const swal = require('sweetalert');
 
 @Component({
@@ -20,7 +22,7 @@ export class AgentordApplyComponent implements OnInit {
   private drawMoney;
 
 
-  constructor(private submit: SubmitService,private AgentordApplyService:AgentordApplyService,private ajax:AjaxService,private router:Router,private AgentordRecordComponent:AgentordRecordComponent) { }
+  constructor(private submit: SubmitService,private AgentordApplyService:AgentordApplyService,private ajax:AjaxService,private router:Router,private AgentordRecordComponent:AgentordRecordComponent,private rzhtools:RzhtoolsService,private patterns: PatternService) { }
 
   ngOnInit() {
     let collection=JSON.parse(localStorage.getItem('loginInfo')), _this = this;//获取代理商的编码
@@ -83,5 +85,14 @@ export class AgentordApplyComponent implements OnInit {
         swal('提现申请提交失败！', '', 'error');
       }
     })
+  }
+
+  /**
+   * 输入两位小数
+   * @param target
+   * @param type
+   */
+  twoNum(target,type?){
+    this.rzhtools.auditInputValueForNum(target,type);
   }
 }

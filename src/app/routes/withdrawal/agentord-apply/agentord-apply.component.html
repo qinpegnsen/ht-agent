@@ -17,7 +17,7 @@
           <div class="form-group">
             <label class="col-sm-4 control-label"> <i>*</i> 收款人账号</label>
             <div class="col-sm-3">
-              <input class="form-control" type="text" required #acctTpl="ngModel" name="acct" [(ngModel)]="controlData.acct" />
+              <input class="form-control num"  type="number" required #acctTpl="ngModel" name="acct" [(ngModel)]="controlData.acct" />
               <div [hidden]="acctTpl.valid || acctTpl.untouched"
                    class="alert alert-danger">
                 收款人账号是必填项，请填写收款人账号
@@ -29,7 +29,7 @@
         <div class="form-group">
           <label class="col-sm-4 control-label"><i>*</i>收款人姓名</label>
           <div class="col-sm-3">
-            <input class="form-control" type="text" #bacctNameTpl="ngModel" required name="bacctName" [(ngModel)]="controlData.bacctName"/>
+            <input class="form-control" type="text" #bacctNameTpl="ngModel" required name="bacctName" [(ngModel)]="controlData.bacctName" [pattern]="patterns.chinese"/>
             <div [hidden]="bacctNameTpl.valid || bacctNameTpl.untouched"
                  class="alert alert-danger">
               收款人姓名是必填项，请填写收款人姓名
@@ -53,10 +53,10 @@
           <div class="form-group">
             <label class="col-sm-4 control-label"><i>*</i>申请提现金额</label>
             <div class="col-sm-3">
-              <input class="form-control" type="text" required #drawMoneyTpl="ngModel" name="drawMoney" [(ngModel)]="drawMoney"/>
+              <input class="form-control num" type="number" required #drawMoneyTpl="ngModel" name="drawMoney" [(ngModel)]="drawMoney" (keyup)="twoNum($event.target)"/>
               <div [hidden]="drawMoneyTpl.valid || drawMoneyTpl.untouched"
                    class="alert alert-danger">
-                申请提现金额是必填项，请填写申请提现金额
+                请填写申请提现金额，可保留两位小数
               </div>
             </div>
           </div>
