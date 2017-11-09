@@ -316,11 +316,8 @@ export class CarPageComponent implements OnInit {
     $(obj).parents("._myPaddingBody").css('background', '#FFF4E8')   //点击的时候样式的变化
     $(obj).parents('._myPaddingBody').find("._good").prop("checked", true)
     $(obj).parents('._myPaddingBody').find("._good").attr("checked", "checked")   //增加节点。计数用
-    let num = $(obj).parents('.input-group').find('input').val()
+    let num = $(obj).parents('.input-group').find('input').val().slice(0,6);
     // if (num > storageNum) num = storageNum;
-    if(num==''){
-      num=1;
-    }
     $(obj).parents('.updateNum').find('input:first').val(num)
     let url = '/agent/agentCart/updateAgentCart'; //输入框修改数据
     let data = {
@@ -413,7 +410,9 @@ export class CarPageComponent implements OnInit {
    * keyUp  的时候检查输入的值
    */
   checkVal(obj) {
-    if(obj.value.indexOf('.')!=-1){
+    if(obj.value==''){
+      obj.value=1
+    }else  if(obj.value.indexOf('.')!=-1){
       obj.value=Math.floor(obj.value);   //如果是小数，取整数
     }
   };

@@ -52,7 +52,7 @@
       <ng-container *ngFor="let shop of shopList.data;let i = index">
         <tr>
           <td>
-            <div class="checkbox c-checkbox">
+            <div class="checkbox c-checkbox unselectable">
               <label>
                 <input type="checkbox" class="_good w0" (click)="goodSelect($event.target)"/>
                 <span class="fa fa-check"></span>
@@ -89,7 +89,7 @@
               <span class="input-group-addon" (click)="minusNum($event.target)"><i class="fa fa-minus"></i></span>
 
               <input class="form-control _num num  text-center" #input type="number" value="1"
-                     (change)="changeNum($event.target)" (keyup)="checkVal(input)" required/>
+                     (change)="changeNum($event.target)" (keyup)="checkVal(input)" />
               <input type="hidden" value="{{shop.goodsCode}}">
 
               <span class="input-group-addon" (click)="addNum(i,$event.target)"><i class="fa fa-plus"></i></span>
