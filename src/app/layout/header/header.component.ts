@@ -1,11 +1,10 @@
-import {Component, DoCheck, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from "@angular/core";
+import {Component, OnInit,ViewChild} from "@angular/core";
 import {UserblockService} from "../sidebar/userblock/userblock.service";
 import {SettingsService} from "../../core/settings/settings.service";
 import {MenuService} from "../../core/menu/menu.service";
 import {Router} from "@angular/router";
 import {AjaxService} from "../../core/services/ajax.service";
 import {CookieService} from "angular2-cookie/core";
-import {isNullOrUndefined} from "util";
 import {AppComponent} from "../../app.component";
 import {Page} from "../../core/page/page";
 import {SubmitService} from "../../core/forms/submit.service";
@@ -18,10 +17,9 @@ declare var $: any;
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnChanges{
+export class HeaderComponent implements OnInit{
 
   public platformInfoData:any;                           //代理商系统消息的数据
-  @Input() public curPath;
   @ViewChild('fsbutton') fsbutton;
   navCollapsed = true;
   menuItems = [];
@@ -31,14 +29,6 @@ export class HeaderComponent implements OnInit, OnChanges{
               public ajax: AjaxService, public router: Router, public cookieService: CookieService) {
     // 只显示指定的
     if (typeof menu.getMenu() !== 'undefined') this.menuItems = menu.getMenu();
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    let me = this;
-    if (changes['curPath'] && !isNullOrUndefined(me.curPath)) {
-      // 每次路由变化时检测其与一级导航路由是否匹配，匹配则为一级导航添加激活状态
-      me.onRouterChange(me.curPath);
-    }
   }
 
 
@@ -123,7 +113,7 @@ export class HeaderComponent implements OnInit, OnChanges{
    * 检测当前路由与一级导航路由是否匹配，匹配则为一级导航添加激活状态
    * @param path
    */
-  public onRouterChange(path) {
+  private onRouterChange(path) {
     let firstNavs = $('.my-nav');
     for (let i = 0; i < firstNavs.length; i++) {
       let firstNav = firstNavs.eq(i).attr('route');
