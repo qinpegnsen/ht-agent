@@ -317,7 +317,6 @@ export class CarPageComponent implements OnInit {
     $(obj).parents('._myPaddingBody').find("._good").prop("checked", true)
     $(obj).parents('._myPaddingBody').find("._good").attr("checked", "checked")   //增加节点。计数用
     let num = $(obj).parents('.input-group').find('input').val().slice(0,6);
-    console.log("█ num ►►►",  num);
     // if (num > storageNum) num = storageNum;
     $(obj).parents('.updateNum').find('input:first').val(num)
     let url = '/agent/agentCart/updateAgentCart'; //输入框修改数据
