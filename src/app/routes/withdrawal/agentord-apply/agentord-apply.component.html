@@ -20,7 +20,7 @@
               <input class="form-control num"  type="number" required #acctTpl="ngModel" name="acct" [(ngModel)]="controlData.acct" />
               <div [hidden]="acctTpl.valid || acctTpl.untouched"
                    class="alert alert-danger">
-                收款人账号是必填项，请填写收款人账号
+                请输入正确的收款人账号
               </div>
             </div>
           </div>
@@ -32,7 +32,7 @@
             <input class="form-control" type="text" #bacctNameTpl="ngModel" required name="bacctName" [(ngModel)]="controlData.bacctName" [pattern]="patterns.chinese"/>
             <div [hidden]="bacctNameTpl.valid || bacctNameTpl.untouched"
                  class="alert alert-danger">
-              收款人姓名是必填项，请填写收款人姓名
+              请填写合法收款人
             </div>
           </div>
         </div>
