@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   public password: string;
   public authMsg: string;
 
-  constructor(private ajax: AjaxService, private router: Router, private setting: SettingsService) {
+  constructor(public ajax: AjaxService, public router: Router, public setting: SettingsService) {
   }
 
   ngOnInit() {
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
   }
 
   // 登录页效果渲染
-  private initSupersized() {
+  public initSupersized() {
     $.supersized({
       // Functionality
       slide_interval: 4000,    // Length between transitions

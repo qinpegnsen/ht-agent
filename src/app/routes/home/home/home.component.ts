@@ -17,16 +17,16 @@ export class HomeComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
   select: any = {}; //选择的年份和月份信息
 
-  private queryType: any = 'DAY';//日期选择
-  private queryTypes: any;//日期选择
+  public queryType: any = 'DAY';//日期选择
+  public queryTypes: any;//日期选择
   todaySale: any = new Date();
   agentAllOrdList: any = new Date();
   agentDealOrdList: any = new Date();
 
-  private data: any;
-  private tel1:any;
-  private tel2:any;
-  private email:any
+  public data: any;
+  public tel1:any;
+  public tel2:any;
+  public email:any
   now: any;
   prev: any;
 
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
    */
   public optionPrev = {};
 
-    constructor(private submit:SubmitService, private tools: RzhtoolsService) {
+    constructor(public submit:SubmitService, public tools: RzhtoolsService) {
 
     }
 
@@ -53,7 +53,7 @@ export class HomeComponent implements OnInit {
   /**
    * 绘制图表（私有）
    */
-  private optionPrevInfo() {
+  public optionPrevInfo() {
     let _this = this;
     _this.optionPrev = {
       title: {

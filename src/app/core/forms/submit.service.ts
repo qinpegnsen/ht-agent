@@ -10,7 +10,7 @@ const swal = require('sweetalert');
 @Injectable()
 export class SubmitService {
 
-  constructor(private ajax: AjaxService, private settings: SettingsService, private route: ActivatedRoute) {
+  constructor(public ajax: AjaxService, public settings: SettingsService, public route: ActivatedRoute) {
   }
 
   /**

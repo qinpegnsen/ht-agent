@@ -24,18 +24,18 @@ export class WaitForOrdersComponent implements OnInit {
   public ordno:string='';                                     //订单号
   public stateEnum:string='NO';                                 //工单状态搜索时候会用到
   public stateEnumList;                                       //工单状态的列表
-  private showReasonWindow:boolean = false;                  //弹窗的开关
-  private woAgengId:any;                                      //代理商工单id
-  private custPhone:any;                                      //买家的手机号
-  private LogisticsData:any;                                  //物流数据
-  private showList:boolean=true;                              //是否显示列表
+  public showReasonWindow:boolean = false;                  //弹窗的开关
+  public woAgengId:any;                                      //代理商工单id
+  public custPhone:any;                                      //买家的手机号
+  public LogisticsData:any;                                  //物流数据
+  public showList:boolean=true;                              //是否显示列表
 
   constructor(
-    private parentComp:ShoppingOrderComponent,
-    private submit: SubmitService,
-    private shoppingOrderService: ShoppingOrderService,
-    private stockManService: StockManService,
-    private rzhtoolsService: RzhtoolsService
+    public parentComp:ShoppingOrderComponent,
+    public submit: SubmitService,
+    public shoppingOrderService: ShoppingOrderService,
+    public stockManService: StockManService,
+    public rzhtoolsService: RzhtoolsService
   ) { }
 
   /**

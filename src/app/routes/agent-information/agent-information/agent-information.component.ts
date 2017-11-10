@@ -27,17 +27,17 @@ export class AgentInformationComponent implements OnInit {
     allowedFileType:["image"]
   }); //初始化上传方法
   public linkType: string;
-  private uid;//声明保存获取到的暗码
+  public uid;//声明保存获取到的暗码
   public agentCode: string;//获取代理商编码
-  private staff: any = {};
-  private aa = false;
-  private placeSearch: any;
-  private code: any;
-  private selectArea;
-  private myImg: any;
+  public staff: any = {};
+  public aa = false;
+  public placeSearch: any;
+  public code: any;
+  public selectArea;
+  public myImg: any;
   public maps:string='';//修改经纬度按钮的显示
 
-  constructor(public GetUidService: GetUidService, public userblockComponent: UserblockComponent, public submitService: SubmitService, public settings: SettingsService, private ajax: AjaxService, private router: Router, private routeInfo: ActivatedRoute, private patterns: PatternService) {
+  constructor(public GetUidService: GetUidService, public userblockComponent: UserblockComponent, public submitService: SubmitService, public settings: SettingsService, public ajax: AjaxService, public router: Router, public routeInfo: ActivatedRoute, public patterns: PatternService) {
     this.settings.showRightPage("30%"); // 此方法必须调用！页面右侧显示，带滑动效果,可以自定义宽度：..%  或者 ..px
   }
 
@@ -171,7 +171,7 @@ export class AgentInformationComponent implements OnInit {
   }
 
   //获取区域数据
-  private getAreaData(area) {
+  public getAreaData(area) {
     let me = this;
     me.staff['areaCode'] = area.areaCode;
     me.selectArea = area.adr;

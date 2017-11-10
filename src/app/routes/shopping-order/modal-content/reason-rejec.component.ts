@@ -36,10 +36,10 @@ export class ReasonRejecComponent implements OnInit , OnDestroy{
   }
 
   constructor(
-    private shoppingOrderService:ShoppingOrderService,
-    private allWorkOrdersComponent:AllWorkOrdersComponent,
-    private waitForOrdersComponent:WaitForOrdersComponent,
-    private rzhtoolsService:RzhtoolsService
+    public shoppingOrderService:ShoppingOrderService,
+    public allWorkOrdersComponent:AllWorkOrdersComponent,
+    public waitForOrdersComponent:WaitForOrdersComponent,
+    public rzhtoolsService:RzhtoolsService
   ) { }
 
   ngOnInit() {

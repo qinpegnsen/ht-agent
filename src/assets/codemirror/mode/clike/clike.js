@@ -380,7 +380,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
   def(["text/x-c++src", "text/x-c++hdr"], {
     name: "clike",
     keywords: words(cKeywords + " asm dynamic_cast namespace reinterpret_cast try explicit new " +
-                    "static_cast typeid catch operator template typename class friend private " +
+                    "static_cast typeid catch operator template typename class friend public " +
                     "this using const_cast inline public throw virtual delete mutable protected " +
                     "alignas alignof constexpr decltype nullptr noexcept thread_local final " +
                     "static_assert override"),
@@ -423,7 +423,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
     name: "clike",
     keywords: words("abstract assert break case catch class const continue default " +
                     "do else enum extends final finally float for goto if implements import " +
-                    "instanceof interface native new package private protected public " +
+                    "instanceof interface native new package public protected public " +
                     "return static strictfp super switch synchronized this throw throws transient " +
                     "try volatile while"),
     types: words("byte short int long float double boolean char void Boolean Byte Character Double Float " +
@@ -447,7 +447,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
     keywords: words("abstract as async await base break case catch checked class const continue" +
                     " default delegate do else enum event explicit extern finally fixed for" +
                     " foreach goto if implicit in interface internal is lock namespace new" +
-                    " operator out override params private protected public readonly ref return sealed" +
+                    " operator out override params public protected public readonly ref return sealed" +
                     " sizeof stackalloc static struct switch this throw try typeof unchecked" +
                     " unsafe using virtual void volatile while add alias ascending descending dynamic from get" +
                     " global group into join let orderby partial remove select set value var yield"),
@@ -489,7 +489,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
 
       /* scala */
       "abstract case catch class def do else extends final finally for forSome if " +
-      "implicit import lazy match new null object override package private protected return " +
+      "implicit import lazy match new null object override package public protected return " +
       "sealed super this throw trait try type val var while with yield _ : = => <- <: " +
       "<% >: # @ " +
 
@@ -571,7 +571,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
       "break continue object if else while do try when !in !is as? " +
 
       /*soft keywords*/
-      "file import where by get set abstract enum open inner override private public internal " +
+      "file import where by get set abstract enum open inner override public public internal " +
       "protected catch finally out final vararg reified dynamic companion constructor init " +
       "sealed field property receiver param sparam lateinit data inline noinline tailrec " +
       "external annotation crossinline const operator infix"

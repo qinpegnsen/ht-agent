@@ -17,7 +17,7 @@ export class SettingsService {
     orderState:1001
   }
 
-  constructor(private _cookieService: CookieService, private location: Location,private dataDictService: DataDictService) {
+  constructor(public _cookieService: CookieService, public location: Location,public dataDictService: DataDictService) {
 
     /**
      * 用户信息（当前登录用户）

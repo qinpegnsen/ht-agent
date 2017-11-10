@@ -4,7 +4,7 @@
 
 <div class="panel panel-default">
   <div class="panel-body">
-    <table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="controlData" (pageChange)="controlDatas($event)">
+    <table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="controlData" (pageChange)="queryList($event)">
       <thead>
       <tr>
         <th class="unselectable text-center w5 thc font">

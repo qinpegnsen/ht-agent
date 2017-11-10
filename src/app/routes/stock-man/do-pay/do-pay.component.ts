@@ -28,7 +28,7 @@ export class DoPayComponent implements OnInit{
   public urlChange;                       //路由的变化，用来取消订阅
   public timer;                           //时间函数
 
-  constructor(private routeInfo: ActivatedRoute, public stockManService: StockManService, private router: Router) {
+  constructor(public routeInfo: ActivatedRoute, public stockManService: StockManService, public router: Router) {
   }
 
   /**

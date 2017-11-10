@@ -16,7 +16,7 @@ export class ShoppingOrderComponent implements OnInit {
 
   bsConfig: Partial<BsDatepickerConfig>;
   public orderType: number = 1;
-  constructor(private location: Location) {
+  constructor(public location: Location) {
     this.bsConfig = Object.assign({}, {
       locale: 'cn',
       rangeInputFormat:"YYYY/MM/DD",

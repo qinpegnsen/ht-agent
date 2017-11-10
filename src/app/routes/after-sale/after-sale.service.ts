@@ -7,7 +7,7 @@ import {SubmitService} from "../../core/forms/submit.service";
 @Injectable()
 export class AfterSaleService {
 
-  constructor(private ajax: AjaxService) { }
+  constructor(public ajax: AjaxService) { }
 
   /**
    *接单 成功返回 put

@@ -14,17 +14,17 @@ import {SubmitService} from "../../../../core/forms/submit.service";
 })
 export class AllSaleComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
-  private agentTime;
-  private ordnos;
-  private wonos;
-  private custPhone;
+  public agentTime;
+  public ordnos;
+  public wonos;
+  public custPhone;
   public woList: Page = new Page();
   public curCancelOrderId: string;
   public curCancelOrderId1: string;
-  private showList: boolean = true;
+  public showList: boolean = true;
 
 
-  constructor(private AfterSaleComponent:AfterSaleComponent, private submit: SubmitService,private RzhtoolsService:RzhtoolsService) {
+  constructor(public AfterSaleComponent:AfterSaleComponent, public submit: SubmitService,public RzhtoolsService:RzhtoolsService) {
     this.bsConfig = Object.assign({}, {
       locale: 'cn',
       rangeInputFormat: 'YYYY/MM/DD',//将时间格式转化成年月日的格式

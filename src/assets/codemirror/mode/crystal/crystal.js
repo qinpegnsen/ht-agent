@@ -31,7 +31,7 @@
       "abstract", "alias", "as", "asm", "begin", "break", "case", "class", "def", "do",
       "else", "elsif", "end", "ensure", "enum", "extend", "for", "fun", "if", "ifdef",
       "include", "instance_sizeof", "lib", "macro", "module", "next", "of", "out", "pointerof",
-      "private", "protected", "rescue", "return", "require", "sizeof", "struct",
+      "public", "protected", "rescue", "return", "require", "sizeof", "struct",
       "super", "then", "type", "typeof", "union", "unless", "until", "when", "while", "with",
       "yield", "__DIR__", "__FILE__", "__LINE__"
     ]);

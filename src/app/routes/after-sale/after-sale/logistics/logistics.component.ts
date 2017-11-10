@@ -18,7 +18,7 @@ export class LogisticsComponent implements OnInit,OnChanges {
   public showCancelWindow:boolean = false;
   public goodsList: Page = new Page();
   public ordno:string;
-  private opinion;
+  public opinion;
 
 
   @Input('orderId') orderId: string;
@@ -30,7 +30,7 @@ export class LogisticsComponent implements OnInit,OnChanges {
     }
   }
 
-  constructor(private ajax:AjaxService, private submit: SubmitService,private routeInfo:ActivatedRoute,private AllSaleComponent:AllSaleComponent,private AgreedComponent:AgreedComponent) { }
+  constructor(public ajax:AjaxService, public submit: SubmitService,public routeInfo:ActivatedRoute,public AllSaleComponent:AllSaleComponent,public AgreedComponent:AgreedComponent) { }
 
   ngOnInit() {
     let _this = this;

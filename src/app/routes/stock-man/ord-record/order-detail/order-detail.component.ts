@@ -24,10 +24,10 @@ export class OrderDetailComponent implements OnInit {
   public atime:Array<string> = new Array();              //存储状态时间的数组
 
   constructor(
-    private parentComp:OrdRecordComponent,
-    private routeInfo:ActivatedRoute,
+    public parentComp:OrdRecordComponent,
+    public routeInfo:ActivatedRoute,
     public stockManService: StockManService,
-    private router: Router,
+    public router: Router,
     public headerComponent: HeaderComponent
   ) { }
 

@@ -13,15 +13,15 @@ const swal = require('sweetalert');
   styleUrls: ['./rightpage.component.scss']
 })
 export class RightpageComponent implements OnInit {
-  private queryId:number;//获取添加，修改的ID
-  private source:string; //订单页面携带的数据
-  private  staff= {
+  public queryId:number;//获取添加，修改的ID
+  public source:string; //订单页面携带的数据
+  public  staff= {
     areaCode:'',
     mobPhone:''
   }
-  private organ={}
-  private id;//获取代理商的id
-  private limitForm = {
+  public organ={}
+  public id;//获取代理商的id
+  public limitForm = {
     receiverName:'',
     areaCode: '',
     mobPhone: '',
@@ -33,7 +33,7 @@ export class RightpageComponent implements OnInit {
 
 
   // 构造 初始化
-  constructor(public settings: SettingsService,private router:Router,private routeInfo:ActivatedRoute,private ajax:AjaxService,private StockAddresComponent:StockAddresComponent,private patterns: PatternService) {
+  constructor(public settings: SettingsService,public router:Router,public routeInfo:ActivatedRoute,public ajax:AjaxService,public StockAddresComponent:StockAddresComponent,public patterns: PatternService) {
     this.settings.showRightPage("30%"); // 此方法必须调用！页面右侧显示，带滑动效果,可以自定义宽度：..%  或者 ..px
   }
 
@@ -75,7 +75,7 @@ export class RightpageComponent implements OnInit {
   };
 
   //获取区域数据
-  private getAreaData(area){
+  public getAreaData(area){
     let me = this;
     me.limitForm['areaCode'] = area.areaCode;
   };

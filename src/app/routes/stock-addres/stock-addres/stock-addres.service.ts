@@ -5,8 +5,8 @@ import {AppComponent} from "../../../app.component";
 
 @Injectable()
 export class StockAddresService {
-  private addres:Page= new Page();
-  private table = {
+  public addres:Page= new Page();
+  public table = {
     curPage:1,
     lastPage:true,
     needCountQuery:false,
@@ -20,7 +20,7 @@ export class StockAddresService {
     voList:[]
   }
 
-  constructor(private ajax: AjaxService) { }
+  constructor(public ajax: AjaxService) { }
 
 
   /**

@@ -25,10 +25,10 @@ export class AllOrdersComponent implements OnInit {
   public curPage;                                          //当前的页码
 
   constructor(
-    private submit: SubmitService,
-    private parentComp:OrdRecordComponent,
-    private router: Router,
-    private stockManService: StockManService,
+    public submit: SubmitService,
+    public parentComp:OrdRecordComponent,
+    public router: Router,
+    public stockManService: StockManService,
   ) { }
 
   /**

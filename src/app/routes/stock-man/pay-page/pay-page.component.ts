@@ -31,10 +31,10 @@ export class PayPageComponent implements OnInit {
 
   constructor(
     public stockManService: StockManService,
-    private router: Router,
+    public router: Router,
     public headerComponent: HeaderComponent,
-    private routeInfo:ActivatedRoute,
-    private location:Location,
+    public routeInfo:ActivatedRoute,
+    public location:Location,
     public dataDictService: DataDictService,
   ) { }
 

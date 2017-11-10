@@ -5,7 +5,7 @@ import {AppComponent} from "../../app.component";
 @Injectable()
 export class StockManService {
 
-  constructor(private ajax: AjaxService) { }
+  constructor(public ajax: AjaxService) { }
 
   /**
    * 获取商品列表的数据get  独有的，因为做了特殊处理

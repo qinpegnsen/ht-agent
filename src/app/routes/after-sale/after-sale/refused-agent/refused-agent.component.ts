@@ -20,7 +20,7 @@ export class RefusedAgentComponent implements OnInit,OnChanges {
   public showCancelWindow:boolean = false;
   public goodsList: Page = new Page();
   public ordno:string;
-  private opinion;
+  public opinion;
 
   @Input('orderId') orderId: string;
   @Output() cancelOrder = new EventEmitter();
@@ -32,7 +32,7 @@ export class RefusedAgentComponent implements OnInit,OnChanges {
   }
 
 
-  constructor(private ajax:AjaxService, private submit: SubmitService,private routeInfo:ActivatedRoute,private AllSaleComponent:AllSaleComponent,private RefusedComponent:RefusedComponent) { }
+  constructor(public ajax:AjaxService, public submit: SubmitService,public routeInfo:ActivatedRoute,public AllSaleComponent:AllSaleComponent,public RefusedComponent:RefusedComponent) { }
 
   ngOnInit() {
     let _this = this;

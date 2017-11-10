@@ -182,7 +182,7 @@
     " SUBORDINATE SUPERIOR CLASS TRUE FALSE NULL" +
     " TEXTUAL-CONVENTION"),
     status: words("current deprecated mandatory obsolete"),
-    tags: words("APPLICATION AUTOMATIC EXPLICIT IMPLICIT PRIVATE TAGS" +
+    tags: words("APPLICATION AUTOMATIC EXPLICIT IMPLICIT public TAGS" +
     " UNIVERSAL"),
     storage: words("BOOLEAN INTEGER OBJECT IDENTIFIER BIT OCTET STRING" +
     " UTCTime InterfaceIndex IANAifType CMIP-Attribute" +

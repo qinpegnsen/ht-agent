@@ -7,7 +7,7 @@ const swal = require('sweetalert');
 @Injectable()
 export class MessageInformService {
 
-  constructor(private ajax: AjaxService) { }
+  constructor(public ajax: AjaxService) { }
 
   /**
    * get 请求   获取关联的商品

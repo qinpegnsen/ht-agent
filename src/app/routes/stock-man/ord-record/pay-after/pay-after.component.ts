@@ -19,7 +19,7 @@ export class PayAfterComponent implements OnInit {
   public goodsList: Page = new Page();
   public showList:boolean=true;                           //是否展示列表
 
-  constructor(private submit: SubmitService,private parentComp:OrdRecordComponent) { }
+  constructor(public submit: SubmitService,public parentComp:OrdRecordComponent) { }
 
   ngOnInit() {
     let me = this;

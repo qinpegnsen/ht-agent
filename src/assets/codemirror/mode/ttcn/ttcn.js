@@ -276,7 +276,7 @@
     booleanConsts: words("true false"),
     otherConsts: words("null NULL omit"),
 
-    visibilityModifiers: words("private public friend"),
+    visibilityModifiers: words("public public friend"),
     templateMatch: words("complement ifpresent subset superset permutation"),
     multiLineStrings: true
   });

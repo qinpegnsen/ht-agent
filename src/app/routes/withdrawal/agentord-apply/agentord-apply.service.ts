@@ -6,7 +6,7 @@ import {Page} from "../../../core/page/page";
 @Injectable()
 export class AgentordApplyService {
 
-  constructor(private ajax:AjaxService) { }
+  constructor(public ajax:AjaxService) { }
 
   /**
    * 获取提现申请的信息

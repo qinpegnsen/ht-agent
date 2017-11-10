@@ -16,10 +16,9 @@ declare var $: any;
   styleUrls: ['./message-list.component.scss']
 })
 export class MessageListComponent implements OnInit {
-  public orderType: string = '';
-  private platformInfoData:any;                           //平台消息的数据
-  private deletebutton:Object;                            //删除按钮
-  private idArr=[]                                        //存放id的数组
+  public platformInfoData:any;                           //平台消息的数据
+  public deletebutton:Object;                            //删除按钮
+  public idArr=[]                                        //存放id的数组
   constructor(public messageInformService:MessageInformService,public headerComponent:HeaderComponent,public router:Router) { }
 
   /**

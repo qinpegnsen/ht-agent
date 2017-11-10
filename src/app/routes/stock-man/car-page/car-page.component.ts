@@ -17,12 +17,12 @@ declare var $: any;
 
 export class CarPageComponent implements OnInit {
 
-  private storeListData: any;              //储存购物车商品列表数据
-  private strDataTemp: string;             //储存购物车id,在订单页的时候使用
-  private freeNum: string;                 //达到这个数量快递免运费
-  private deletebutton;//删除按钮
+  public storeListData: any;              //储存购物车商品列表数据
+  public strDataTemp: string;             //储存购物车id,在订单页的时候使用
+  public freeNum: string;                 //达到这个数量快递免运费
+  public deletebutton;//删除按钮
   public shopTotalNumber: number = 0;     //购买的商品总数
-  public priceList: object = {
+  public priceList = {
     expressPrice: 0,                         //运费
     payment: 0,                              //带运费的总费用
     total: 0,                                //不带运费的总费用
@@ -31,7 +31,7 @@ export class CarPageComponent implements OnInit {
   constructor(public stockManService: StockManService,
               public headerComponent: HeaderComponent,
               public dataDictService: DataDictService,
-              private router: Router) {
+              public router: Router) {
   }
 
   /**

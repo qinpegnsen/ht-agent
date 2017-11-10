@@ -18,15 +18,14 @@ defineLocale('cn', zhCn);
 })
 export class RefusedComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
-  private agentTime;
+  public agentTime;
   public woList: Page = new Page();
-  private ordnos;
-  private wonos;
-  private custPhone;
-  private showList: boolean = true;
+  public ordnos;
+  public wonos;
+  public custPhone;
+  public showList: boolean = true;
 
-
-  constructor(private AfterSaleComponent:AfterSaleComponent,private submit: SubmitService,) {
+  constructor(public AfterSaleComponent:AfterSaleComponent,public submit: SubmitService,) {
     this.bsConfig = Object.assign({}, {
       locale: 'cn',
       rangeInputFormat: 'YYYY/MM/DD',//将时间格式转化成年月日的格式

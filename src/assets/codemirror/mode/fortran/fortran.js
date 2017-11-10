@@ -37,7 +37,7 @@ CodeMirror.defineMode("fortran", function() {
                   "non_overridable", "none", "nopass",
                   "nullify", "open", "optional", "options",
                   "parameter", "pass", "pause", "pointer",
-                  "print", "private", "program", "protected",
+                  "print", "public", "program", "protected",
                   "public", "pure", "read", "recursive", "result",
                   "return", "rewind", "save", "select", "sequence",
                   "stop", "subroutine", "target", "then", "to", "type",

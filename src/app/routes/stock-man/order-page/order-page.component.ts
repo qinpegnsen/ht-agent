@@ -14,19 +14,19 @@ declare var $:any;
 
 export class OrderPageComponent implements OnInit {
 
-  private orderData:any;                      //储存订单的数据
-  private goodLength:number;                  //添加到订单的商品的总数
-  private defaultAddress:any;                 //默认的地址
-  private otherAddress:any;                   //默认的其他的地址
-  private updatebutton:any;                   //默认的修改按钮
-  private currentId:number;                   //默认的修改按钮
-  private strData:any;                        //商品的编码和数量
+  public orderData:any;                      //储存订单的数据
+  public goodLength:number;                  //添加到订单的商品的总数
+  public defaultAddress:any;                 //默认的地址
+  public otherAddress:any;                   //默认的其他的地址
+  public updatebutton:any;                   //默认的修改按钮
+  public currentId:number;                   //默认的修改按钮
+  public strData:any;                        //商品的编码和数量
   public flag:boolean=true;                   //定义boolean值用来控制内容组件是否显示
 
   constructor(
     public stockManService: StockManService,
-    private router:Router,
-    private location:Location
+    public router:Router,
+    public location:Location
   ) { }
 
   /**

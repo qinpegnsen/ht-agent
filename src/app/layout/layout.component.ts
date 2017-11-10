@@ -1,5 +1,4 @@
 import {Component,OnInit} from '@angular/core';
-import {NavigationStart, Router} from "@angular/router";
 
 @Component({
   selector: 'app-layout',
@@ -7,16 +6,10 @@ import {NavigationStart, Router} from "@angular/router";
   styleUrls: ['./layout.component.scss']
 })
 export class LayoutComponent implements OnInit{
-  private menuItems: any;
-  private path;
-  public carNum: number;
+  public menuItems: any;
+  public path;
 
-  constructor(private router: Router) {
-    this.router.events
-      .filter(event => event instanceof NavigationStart)
-      .subscribe((event) => {
-        this.path = event['url'];
-      });
+  constructor() {
   }
 
   ngOnInit() {

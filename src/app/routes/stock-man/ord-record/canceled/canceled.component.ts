@@ -22,11 +22,11 @@ export class CanceledComponent implements OnInit {
   public showList:boolean=true;                           //是否展示列表
 
   constructor(
-    private submit: SubmitService,
-    private parentComp:OrdRecordComponent,
+    public submit: SubmitService,
+    public parentComp:OrdRecordComponent,
     public stockManService: StockManService,
     public headerComponent: HeaderComponent,
-    private router: Router
+    public router: Router
   ) { }
 
   /**

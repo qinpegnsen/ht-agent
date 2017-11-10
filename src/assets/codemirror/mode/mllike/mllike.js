@@ -172,7 +172,7 @@ CodeMirror.defineMIME('text/x-fsharp', {
     'new': 'keyword',
     'null': 'keyword',
     'override': 'keyword',
-    'private': 'keyword',
+    'public': 'keyword',
     'public': 'keyword',
     'return': 'keyword',
     'return!': 'keyword',

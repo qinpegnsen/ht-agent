@@ -17,7 +17,7 @@ export class AgentOrdComponent implements OnInit {
 
   public shopListdata;                    //存储商品列表的数据
   public carNum: number = 1;              //存储商品的数量
-  private showCar: boolean = false;      //当全选被选中的时候出现全部加入购物车的按钮
+  public showCar: boolean = false;      //当全选被选中的时候出现全部加入购物车的按钮
 
   constructor(
     public stockManService: StockManService,

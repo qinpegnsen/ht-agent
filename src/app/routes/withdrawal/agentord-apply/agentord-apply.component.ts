@@ -15,14 +15,14 @@ const swal = require('sweetalert');
   styleUrls: ['./agentord-apply.component.scss']
 })
 export class AgentordApplyComponent implements OnInit {
-  private agentcode: any;//获取代理商的编码
+  public agentcode: any;//获取代理商的编码
   public selectBank: any;
-  private controlData;
-  private remark;
-  private drawMoney;
+  public controlData;
+  public remark;
+  public drawMoney;
 
 
-  constructor(private submit: SubmitService,private AgentordApplyService:AgentordApplyService,private ajax:AjaxService,private router:Router,private AgentordRecordComponent:AgentordRecordComponent,private rzhtools:RzhtoolsService,private patterns: PatternService) { }
+  constructor(public submit: SubmitService,public AgentordApplyService:AgentordApplyService,public ajax:AjaxService,public router:Router,public AgentordRecordComponent:AgentordRecordComponent,public rzhtools:RzhtoolsService,public patterns: PatternService) { }
 
   ngOnInit() {
     let collection=JSON.parse(localStorage.getItem('loginInfo')), _this = this;//获取代理商的编码

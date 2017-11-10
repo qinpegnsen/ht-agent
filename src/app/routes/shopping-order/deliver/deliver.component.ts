@@ -22,7 +22,7 @@ export class DeliverComponent implements OnInit, OnDestroy, OnChanges {
   @Input('ordno') ordno: string;
   @Output() deliverGoods = new EventEmitter();
 
-  constructor(private shoppingOrderService: ShoppingOrderService,public pattern: PatternService) {
+  constructor(public shoppingOrderService: ShoppingOrderService,public pattern: PatternService) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {

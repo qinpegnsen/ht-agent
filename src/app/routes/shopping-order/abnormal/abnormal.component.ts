@@ -19,15 +19,15 @@ export class AbnormalComponent implements OnInit {
   public ordno:string='';                                     //订单号
   public stateEnum:string='END';                                 //工单状态搜索时候会用到
   public stateEnumList;                                       //工单状态的列表
-  private custPhone:any;                                      //买家的手机号
-  private LogisticsData:any;                                  //物流数据
-  private showList:boolean=true;                              //是否显示列表
+  public custPhone:any;                                      //买家的手机号
+  public LogisticsData:any;                                  //物流数据
+  public showList:boolean=true;                              //是否显示列表
 
   constructor(
-    private parentComp:ShoppingOrderComponent,
-    private submit: SubmitService,
-    private stockManService: StockManService,
-    private rzhtoolsService: RzhtoolsService
+    public parentComp:ShoppingOrderComponent,
+    public submit: SubmitService,
+    public stockManService: StockManService,
+    public rzhtoolsService: RzhtoolsService
   ) { }
 
   /**

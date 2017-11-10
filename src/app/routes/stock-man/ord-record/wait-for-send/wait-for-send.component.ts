@@ -19,7 +19,7 @@ export class WaitForSendComponent implements OnInit {
   public goodsList: Page = new Page();
   public showList:boolean=true;                           //是否展示列表
 
-  constructor(private submit: SubmitService,private parentComp:OrdRecordComponent) { }
+  constructor(public submit: SubmitService,public parentComp:OrdRecordComponent) { }
 
   /**
    * 1.设置当前点击的颜色

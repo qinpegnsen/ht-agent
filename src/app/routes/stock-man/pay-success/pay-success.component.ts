@@ -11,7 +11,7 @@ export class PaySuccessComponent implements OnInit {
   ordno:any;                             //订单的编码
   price:number;                          //订单的价格
 
-  constructor(private routeInfo: ActivatedRoute) { }
+  constructor(public routeInfo: ActivatedRoute) { }
 
   ngOnInit() {
     this.ordno = sessionStorage.getItem('ordno');    //获取当前的订单号

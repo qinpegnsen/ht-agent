@@ -21,17 +21,17 @@ export class WorkDetailComponent implements OnInit {
   public goodsData: any;
   public hasDeliverData: boolean = false;                //是否显示快递信息，当为收货或者是收货后显示
   public expressData: any;                                //快递公司信息
-  private atime:Array<string> = new Array();
-  private showReasonWindow:boolean = false;              //弹窗的开关
-  private woAgengId:any;                                  //代理商工单id 发货的时候用,因为load没有返回来，直接从前面传过来
-  private transWoAgengId:any;                             //代理商工单id
-  private curPage:any;                                    //列表的当前页码
+  public atime:Array<string> = new Array();
+  public showReasonWindow:boolean = false;              //弹窗的开关
+  public woAgengId:any;                                  //代理商工单id 发货的时候用,因为load没有返回来，直接从前面传过来
+  public transWoAgengId:any;                             //代理商工单id
+  public curPage:any;                                    //列表的当前页码
 
   constructor(
-              private parentComp: ShoppingOrderComponent,
+              public parentComp: ShoppingOrderComponent,
               public shoppingOrderService: ShoppingOrderService,
               public router: Router,
-              private routeInfo:ActivatedRoute) {
+              public routeInfo:ActivatedRoute) {
   }
 
   /**
@@ -84,7 +84,7 @@ export class WorkDetailComponent implements OnInit {
   /**
    * 获取订单的物流详情及把各个状态时间添加到数组里面
    */
-  private getLogisticsInfo() {
+  public getLogisticsInfo() {
     let me = this;
     let url = '/ord/tail/queryList';
     let data = {
@@ -119,7 +119,7 @@ export class WorkDetailComponent implements OnInit {
   /**
    * 获取订单当前进度，通过不同的阶段来判断进度条的长度
    */
-  private getOrderStep() {
+  public getOrderStep() {
     let me = this;
     if (me.orderDetailData.state == 'SUCCESS') {
       me.orderStep = 5;

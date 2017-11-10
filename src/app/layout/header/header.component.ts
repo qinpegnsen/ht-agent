@@ -20,15 +20,15 @@ declare var $: any;
 })
 export class HeaderComponent implements OnInit, OnChanges{
 
-  private platformInfoData:any;                           //代理商系统消息的数据
-  @Input() private curPath;
+  public platformInfoData:any;                           //代理商系统消息的数据
+  @Input() public curPath;
   @ViewChild('fsbutton') fsbutton;
   navCollapsed = true;
   menuItems = [];
   isNavSearchVisible: boolean;
 
-  constructor(private submitService:SubmitService,public menu: MenuService, public userblockService: UserblockService, public settings: SettingsService,
-              private ajax: AjaxService, private router: Router, private cookieService: CookieService) {
+  constructor(public submitService:SubmitService,public menu: MenuService, public userblockService: UserblockService, public settings: SettingsService,
+              public ajax: AjaxService, public router: Router, public cookieService: CookieService) {
     // 只显示指定的
     if (typeof menu.getMenu() !== 'undefined') this.menuItems = menu.getMenu();
   }
@@ -123,7 +123,7 @@ export class HeaderComponent implements OnInit, OnChanges{
    * 检测当前路由与一级导航路由是否匹配，匹配则为一级导航添加激活状态
    * @param path
    */
-  private onRouterChange(path) {
+  public onRouterChange(path) {
     let firstNavs = $('.my-nav');
     for (let i = 0; i < firstNavs.length; i++) {
       let firstNav = firstNavs.eq(i).attr('route');

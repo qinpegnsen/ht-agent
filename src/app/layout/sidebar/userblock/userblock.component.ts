@@ -12,7 +12,7 @@ export class UserblockComponent implements OnInit{
     user: any;
   avatar: any;
   picture: any;
-  constructor(public userblockService: UserblockService, private setting: SettingsService) {
+  constructor(public userblockService: UserblockService, public setting: SettingsService) {
     this.user = this.setting.user;
   }
     ngOnInit() {

@@ -16,11 +16,11 @@ defineLocale('cn', zhCn);
 })
 export class BillingDetailsComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
-  private agentTime;
-  private ordnos;
+  public agentTime;
+  public ordnos;
   public woList: Page = new Page();
 
-  constructor(private submit: SubmitService) {
+  constructor(public submit: SubmitService) {
     this.bsConfig = Object.assign({}, {
       locale: 'cn',
       rangeInputFormat: 'YYYY-MM-DD',//将时间格式转化成年月日的格式

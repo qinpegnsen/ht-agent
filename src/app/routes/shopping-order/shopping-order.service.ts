@@ -5,7 +5,7 @@ import {AppComponent} from "../../app.component";
 @Injectable()
 export class ShoppingOrderService {
 
-  constructor(private ajax: AjaxService) { }
+  constructor(public ajax: AjaxService) { }
 
   /**
    *接单 成功返回 put

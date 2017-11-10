@@ -24,7 +24,7 @@
 
 ;(function(window, document, undefined){
   var tests = [];
-  
+
 
   /**
    *
@@ -73,7 +73,7 @@
     }
   };
 
-  
+
 
   // Fake some of Object.create so we can force non test results to be non "own" properties.
   var Modernizr = function() {};
@@ -83,15 +83,15 @@
   // Overwrite name so constructor name is nicer :D
   Modernizr = new Modernizr();
 
-  
+
 
   var classes = [];
-  
+
 
   /**
    * is returns a boolean if the typeof an obj is exactly type.
    *
-   * @access private
+   * @access public
    * @function is
    * @param {*} obj - A thing we want to check the type of
    * @param {string} type - A string to compare the typeof against
@@ -106,7 +106,7 @@
   /**
    * Run through all tests and detect their support in the current UA.
    *
-   * @access private
+   * @access public
    */
 
   function testRunner() {
@@ -177,27 +177,27 @@
   /**
    * docElement is a convenience wrapper to grab the root element of the document
    *
-   * @access private
+   * @access public
    * @returns {HTMLElement|SVGElement} The root element of the document
    */
 
   var docElement = document.documentElement;
-  
+
 
   /**
    * A convenience helper to check if the document we are running in is an SVG document
    *
-   * @access private
+   * @access public
    * @returns {boolean}
    */
 
   var isSVG = docElement.nodeName.toLowerCase() === 'svg';
-  
+
 
   /**
    * setClasses takes an array of class names and adds them to the root element
    *
-   * @access private
+   * @access public
    * @function setClasses
    * @param {string[]} classes - Array of class names
    */
@@ -235,7 +235,7 @@
    * as well as abstracting away issues with creating elements in contexts other than
    * HTML documents (e.g. SVG documents).
    *
-   * @access private
+   * @access public
    * @function createElement
    * @returns {HTMLElement|SVGElement} An HTML or SVG element
    */
@@ -299,22 +299,22 @@ eg `background-position: right 10px bottom 10px`
 
    * More here: github.com/Modernizr/Modernizr/issues/issue/21
    *
-   * @access private
+   * @access public
    * @returns {string} The string representing the vendor-specific style properties
    */
 
   var omPrefixes = 'Moz O ms Webkit';
-  
+
 
   var cssomPrefixes = (ModernizrProto._config.usePrefixes ? omPrefixes.split(' ') : []);
   ModernizrProto._cssomPrefixes = cssomPrefixes;
-  
+
 
 
   /**
    * contains checks to see if a string contains another string
    *
-   * @access private
+   * @access public
    * @function contains
    * @param {string} str - The string we want to check for substrings
    * @param {string} substr - The substring we want to search the first string for
@@ -330,7 +330,7 @@ eg `background-position: right 10px bottom 10px`
   /**
    * Create our "modernizr" element that we do most feature tests on.
    *
-   * @access private
+   * @access public
    */
 
   var modElem = {
@@ -342,7 +342,7 @@ eg `background-position: right 10px bottom 10px`
     delete modElem.elem;
   });
 
-  
+
 
   var mStyle = {
     style: modElem.elem.style
@@ -354,13 +354,13 @@ eg `background-position: right 10px bottom 10px`
     delete mStyle.style;
   });
 
-  
+
 
   /**
    * getBody returns the body of a document, or an element that can stand in for
    * the body if a real body does not exist
    *
-   * @access private
+   * @access public
    * @function getBody
    * @returns {HTMLElement|SVGElement} Returns the real body of a document, or an
    * artificially created element that stands in for the body
@@ -384,7 +384,7 @@ eg `background-position: right 10px bottom 10px`
   /**
    * injectElementWithStyles injects an element with style element and some CSS rules
    *
-   * @access private
+   * @access public
    * @function injectElementWithStyles
    * @param {string} rule - String representing a css rule
    * @param {function} callback - A function that is used to test the injected element
@@ -459,7 +459,7 @@ eg `background-position: right 10px bottom 10px`
    * domToCSS takes a camelCase string and converts it to kebab-case
    * e.g. boxSizing -> box-sizing
    *
-   * @access private
+   * @access public
    * @function domToCSS
    * @param {string} name - String name of camelCase prop we want to convert
    * @returns {string} The kebab-case version of the supplied name
@@ -476,7 +476,7 @@ eg `background-position: right 10px bottom 10px`
    * nativeTestProps allows for us to use native feature detection functionality if available.
    * some prefixed form, or false, in the case of an unsupported rule
    *
-   * @access private
+   * @access public
    * @function nativeTestProps
    * @param {array} props - An array of property names
    * @param {string} value - A string representing the value we want to check via @supports
@@ -517,7 +517,7 @@ eg `background-position: right 10px bottom 10px`
    * cssToDOM takes a kebab-case string and converts it to camelCase
    * e.g. box-sizing -> boxSizing
    *
-   * @access private
+   * @access public
    * @function cssToDOM
    * @param {string} name - String name of kebab-case prop we want to convert
    * @returns {string} The camelCase version of the supplied name
@@ -643,12 +643,12 @@ eg `background-position: right 10px bottom 10px`
 
   var domPrefixes = (ModernizrProto._config.usePrefixes ? omPrefixes.toLowerCase().split(' ') : []);
   ModernizrProto._domPrefixes = domPrefixes;
-  
+
 
   /**
    * fnBind is a super small [bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind) polyfill.
    *
-   * @access private
+   * @access public
    * @function fnBind
    * @param {function} fn - a function you want to change `this` reference to
    * @param {object} that - the `this` you want to call the function with
@@ -667,7 +667,7 @@ eg `background-position: right 10px bottom 10px`
    * testDOMProps is a generic DOM property test; if a browser supports
    *   a certain property, it won't return undefined for it.
    *
-   * @access private
+   * @access public
    * @function testDOMProps
    * @param {array.<string>} props - An array of properties to test for
    * @param {object} obj - An object or Element you want to use to test the parameters again
@@ -707,7 +707,7 @@ eg `background-position: right 10px bottom 10px`
    * the element including the non-vendor prefixed one, for forward-
    * compatibility.
    *
-   * @access private
+   * @access public
    * @function testPropsAll
    * @param {string} prop - A string of the property to test for
    * @param {string|object} [prefixed] - An object to check the prefixed properties on. Use a string to skip
@@ -738,7 +738,7 @@ eg `background-position: right 10px bottom 10px`
   // Modernizr.testAllProps('boxSizing')
   ModernizrProto.testAllProps = testPropsAll;
 
-  
+
 
   /**
    * testAllProps determines whether a given CSS property is supported in the browser
@@ -781,7 +781,7 @@ eg `background-position: right 10px bottom 10px`
     return testPropsAll(prop, undefined, undefined, value, skipValueTest);
   }
   ModernizrProto.testAllProps = testAllProps;
-  
+
 /*!
 {
   "name": "Background Position XY",
@@ -923,7 +923,7 @@ Detects whether or not elements can be animated using CSS
   // expose these for the plugin API. Look in the source for how to join() them against your input
   ModernizrProto._prefixes = prefixes;
 
-  
+
 /*!
 {
   "name": "CSS Calc",
@@ -1029,7 +1029,7 @@ Method of allowing calculated values for length units. For example:
    */
 
   var testStyles = ModernizrProto.testStyles = injectElementWithStyles;
-  
+
 /*!
 {
   "name": "CSS Supports",
@@ -1226,7 +1226,7 @@ Detects support for SVG in `<embed>` or `<object>` elements.
    * hasOwnProp is a shim for hasOwnProperty that is needed for Safari 2.0 support
    *
    * @author kangax
-   * @access private
+   * @access public
    * @function hasOwnProp
    * @param {object} object - The object to check for a property
    * @param {string} property - The property to check for
@@ -1253,7 +1253,7 @@ Detects support for SVG in `<embed>` or `<object>` elements.
     }
   })();
 
-  
+
 
 
    // _l tracks listeners for async tests, as well as tests that execute after the initial run
@@ -1302,12 +1302,12 @@ Detects support for SVG in `<embed>` or `<object>` elements.
   };
 
   /**
-   * _trigger is the private function used to signal test completion and run any
+   * _trigger is the public function used to signal test completion and run any
    * callbacks registered through [Modernizr.on](#modernizr-on)
    *
    * @memberof Modernizr
    * @name Modernizr._trigger
-   * @access private
+   * @access public
    * @function _trigger
    * @param {string} feature - string name of the feature detect
    * @param {function|boolean} [res] - A feature detection function, or the boolean =
@@ -1463,7 +1463,7 @@ Detects support for SVG in `<embed>` or `<object>` elements.
     ModernizrProto.addTest = addTest;
   });
 
-  
+
 
 /*!
 {
@@ -1497,13 +1497,13 @@ Detects support for SVG in `<embed>` or `<object>` elements.
    * get its class easily. Abstracting it off of an object prevents situations
    * where the toString property has been overridden
    *
-   * @access private
+   * @access public
    * @function toStringFn
    * @returns {function} An abstracted toString function
    */
 
   var toStringFn = ({}).toString;
-  
+
 /*!
 {
   "name": "SVG clip paths",
@@ -1643,7 +1643,7 @@ Detects support for inline SVG in HTML (not within XHTML).
   //   `('localStorage' in window) && ` test first because otherwise Firefox will
   //   throw bugzil.la/365772 if cookies are disabled
 
-  // Also in iOS5 Private Browsing mode, attempting to use localStorage.setItem
+  // Also in iOS5 public Browsing mode, attempting to use localStorage.setItem
   // will throw the exception:
   //   QUOTA_EXCEEDED_ERROR DOM Exception 22.
   // Peculiarly, getItem and removeItem calls do not throw.

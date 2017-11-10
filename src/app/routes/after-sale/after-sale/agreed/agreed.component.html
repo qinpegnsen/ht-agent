@@ -26,7 +26,7 @@
           <input type="text" class="form-control border-b-grey" [(ngModel)]="custPhone"  placeholder="请填写买家手机号"/>
         </div>
         <button type="button" title="搜索"
-                class="btn thc btn-thc bar-h3-btn mr0 ng-scope"  (click)="queryDatas()">
+                class="btn thc btn-thc bar-h3-btn mr0 ng-scope"  (click)="queryDatas(1)">
           <em class="icon-magnifier fa-fw"></em>
         </button>
       </div>
@@ -110,9 +110,6 @@
   </tfoot>
 </table>
 </div>
-
-<app-logistics [orderId]="curCancelOrderId" (cancelOrder)="getCancelOrderData($event)"></app-logistics>
-<app-refused-agent [orderId]="curCancelOrderId1" (cancelOrder)="getCancelOrderData1($event)"></app-refused-agent>
 
 <!--路由嵌套 begin-->
 <router-outlet (activate)="activate($event)" (deactivate)='onDeactivate($event)'></router-outlet>

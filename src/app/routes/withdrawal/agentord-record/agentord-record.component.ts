@@ -9,10 +9,10 @@ import {Page} from "../../../core/page/page";
   styleUrls: ['./agentord-record.component.scss']
 })
 export class AgentordRecordComponent implements OnInit {
-  private controlData:Page = new Page();
+  public controlData:Page = new Page();
   public agentcode;//获取代理商的编码
 
-  constructor(private AgentordRecordService:AgentordRecordService) { }
+  constructor(public AgentordRecordService:AgentordRecordService) { }
 
   ngOnInit() {
     let  _this = this;

@@ -14,13 +14,13 @@ const swal = require('sweetalert');
   providers:[StockAddresService]
 })
 export class StockAddresComponent implements OnInit {
-  private queryId:number;//获取添加，修改的ID
-  private addButton;//新增代理商收货地址按钮配置
-  private updatebutton;//修改代理商收货地址按钮配置
-  private deletebutton;//删除代理商收货地址按钮配置
-  private addres:Page= new Page();
-  private id;//获取删除时需要的id
-  private table = {
+  public queryId:number;//获取添加，修改的ID
+  public addButton;//新增代理商收货地址按钮配置
+  public updatebutton;//修改代理商收货地址按钮配置
+  public deletebutton;//删除代理商收货地址按钮配置
+  public addres:Page= new Page();
+  public id;//获取删除时需要的id
+  public table = {
     curPage:1,
     lastPage:true,
     needCountQuery:false,
@@ -33,9 +33,9 @@ export class StockAddresComponent implements OnInit {
     totalRow:5,
     voList:[]
   }
-  private organ={}
+  public organ={}
 
-  constructor(private ajax:AjaxService,private routeInfo:ActivatedRoute,private StockAddresService:StockAddresService,private patterns: PatternService) { }
+  constructor(public ajax:AjaxService,public routeInfo:ActivatedRoute,public StockAddresService:StockAddresService,public patterns: PatternService) { }
 
   ngOnInit() {
     this.queryId = this.routeInfo.snapshot.queryParams['ids'];
@@ -58,7 +58,7 @@ export class StockAddresComponent implements OnInit {
 
 
   //获取区域数据
-  private getAreaData(area){
+  public getAreaData(area){
     let me = this;
     me.organ['areaCode'] = area.areaCode;
     me.queryList();

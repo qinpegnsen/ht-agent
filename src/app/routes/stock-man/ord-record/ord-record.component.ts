@@ -17,7 +17,7 @@ export class OrdRecordComponent implements OnInit {
   public orderType: number = 1;
   bsConfig: Partial<BsDatepickerConfig>;
 
-  constructor(private location: Location) {
+  constructor(public location: Location) {
     this.bsConfig = Object.assign({}, {
       locale: 'cn',
       rangeInputFormat:"YYYY/MM/DD",

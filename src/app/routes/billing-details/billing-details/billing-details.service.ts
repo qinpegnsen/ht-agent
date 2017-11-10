@@ -3,9 +3,9 @@ import {AjaxService} from "../../../core/services/ajax.service";
 
 @Injectable()
 export class BillingDetailsService {
-  private ordnos;
+  public ordnos;
 
-  constructor(private ajax:AjaxService) { }
+  constructor(public ajax:AjaxService) { }
 
   queryMenuList(activePage, pageSize) {
     let infos = {};

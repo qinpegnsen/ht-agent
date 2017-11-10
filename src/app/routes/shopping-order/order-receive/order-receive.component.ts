@@ -24,15 +24,15 @@ export class OrderReceiveComponent implements OnInit {
   public stateEnumList;                                       //工单状态的列表
   public curWoAgentId: string;                                //工单的id
   public curOrdno: string;                                    //订单编码
-  private custPhone:any;                                      //买家的手机号
-  private LogisticsData:any;                                  //物流数据
-  private showList:boolean=true;                              //是否显示列表
+  public custPhone:any;                                      //买家的手机号
+  public LogisticsData:any;                                  //物流数据
+  public showList:boolean=true;                              //是否显示列表
 
   constructor(
-    private parentComp:ShoppingOrderComponent,
-    private submit: SubmitService,
-    private stockManService: StockManService,
-    private rzhtoolsService: RzhtoolsService
+    public parentComp:ShoppingOrderComponent,
+    public submit: SubmitService,
+    public stockManService: StockManService,
+    public rzhtoolsService: RzhtoolsService
   ) { }
 
   /**

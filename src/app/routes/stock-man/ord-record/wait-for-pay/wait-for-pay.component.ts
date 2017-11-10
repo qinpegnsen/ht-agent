@@ -19,10 +19,10 @@ export class WaitForPayComponent implements OnInit {
   public showList:boolean=true;                           //是否展示列表
 
   constructor(
-    private submit: SubmitService,
-    private router: Router,
-    private parentComp:OrdRecordComponent,
-    private stockManService: StockManService
+    public submit: SubmitService,
+    public router: Router,
+    public parentComp:OrdRecordComponent,
+    public stockManService: StockManService
   ) { }
 
   /**

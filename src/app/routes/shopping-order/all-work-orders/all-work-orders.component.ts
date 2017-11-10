@@ -28,16 +28,16 @@ export class AllWorkOrdersComponent implements OnInit {
   public curOrdno: string;                                    //订单编码
   public showReasonWindow:boolean = false;                  //弹窗的开关
   public woAgengId:any;                                      //代理商工单id
-  private transWoAgengId:any;                                 //传递到拒单组件的
-  private LogisticsData:any;                                  //物流数据
-  private custPhone:any;                                      //买家的手机号
-  private showList:boolean=true;                              //是否显示列表
+  public transWoAgengId:any;                                 //传递到拒单组件的
+  public LogisticsData:any;                                  //物流数据
+  public custPhone:any;                                      //买家的手机号
+  public showList:boolean=true;                              //是否显示列表
 
-  constructor(private parentComp: ShoppingOrderComponent,
-              private submit: SubmitService,
-              private shoppingOrderService: ShoppingOrderService,
-              private stockManService: StockManService,
-              private rzhtoolsService: RzhtoolsService,) {
+  constructor(public parentComp: ShoppingOrderComponent,
+              public submit: SubmitService,
+              public shoppingOrderService: ShoppingOrderService,
+              public stockManService: StockManService,
+              public rzhtoolsService: RzhtoolsService,) {
   }
 
   /**

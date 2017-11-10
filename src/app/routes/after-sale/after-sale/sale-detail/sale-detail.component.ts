@@ -12,12 +12,12 @@ import {SubmitService} from "../../../../core/forms/submit.service";
 })
 export class SaleDetailComponent implements OnInit {
   public id: string;//获取
-  private result:any;
+  public result:any;
 
   constructor(
-    private parentComp: AfterSaleComponent,
+    public parentComp: AfterSaleComponent,
     public AfterSaleService: AfterSaleService,
-    private routeInfo:ActivatedRoute) {
+    public routeInfo:ActivatedRoute) {
   }
 
 

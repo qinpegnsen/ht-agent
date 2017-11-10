@@ -35,7 +35,7 @@ export class MenuService {
 
     menuItems: Array<any>;
 
-    constructor(private cookieService:CookieService) {
+    constructor(public cookieService:CookieService) {
         this.menuItems = [];
     }
   foreachPushMenu(items:Array<menuVO>) {
