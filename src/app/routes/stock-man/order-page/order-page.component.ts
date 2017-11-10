@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StockManService} from "../stock-man.service";
-import {NavigationEnd, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {Location} from "@angular/common";
 import {AppComponent} from "../../../app.component";
 
@@ -12,7 +12,7 @@ declare var $:any;
   styleUrls: ['./order-page.component.scss']
 })
 
-export class OrderPageComponent implements OnInit,OnDestroy {
+export class OrderPageComponent implements OnInit {
 
   private orderData:any;                      //储存订单的数据
   private goodLength:number;                  //添加到订单的商品的总数
@@ -42,33 +42,11 @@ export class OrderPageComponent implements OnInit,OnDestroy {
     };
 
     /**
-     * 路由事件用来监听地址栏的变化
-     * 1.当新增文章出现的时候，内容组件隐藏
-     * 2.路由变化的时候，刷新页面
-     */
-
-    this.urlChange=this.router.events
-      .subscribe((event) => {
-        if (event instanceof NavigationEnd) { // 当导航成功结束时执行
-          if(event.url.indexOf('pay')>0){
-            this.flag=false;
-          }
-        }
-      });
-
-    /**
      * 获取商品的种类数
      */
     setTimeout(()=>{
       this.goodLength=$("._kind").length;
     },0)
-  }
-
-  /**
-   * 取消订阅
-   */
-  ngOnDestroy(){
-    this.urlChange.unsubscribe();
   }
 
   /**
