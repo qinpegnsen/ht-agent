@@ -22,7 +22,6 @@ export class OrderPageComponent implements OnInit {
   private currentId:number;                   //默认的修改按钮
   private strData:any;                        //商品的编码和数量
   public flag:boolean=true;                   //定义boolean值用来控制内容组件是否显示
-  public urlChange;                      //路由的变化，用来取消订阅
 
   constructor(
     public stockManService: StockManService,

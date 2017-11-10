@@ -18,7 +18,6 @@ export class LayoutComponent implements OnInit,OnDestroy{
       .subscribe((event) => {
         this.path = event['url'];
       });
-
   }
 
   ngOnInit() {
