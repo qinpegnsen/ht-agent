@@ -110,9 +110,9 @@
   </tfoot>
 </table>
 </div>
+<!--路由嵌套 begin-->
+<router-outlet (activate)="activate($event)" (deactivate)="onDeactivate($event)"></router-outlet>
+<!--路由嵌套 end-->
+
 <app-logistics [orderId]="curCancelOrderId" (cancelOrder)="getCancelOrderData($event)"></app-logistics>
 <app-refused-agent [orderId]="curCancelOrderId1" (cancelOrder)="getCancelOrderData1($event)"></app-refused-agent>
-
-<!--路由嵌套 begin-->
-<router-outlet (activate)="activate($event)" (deactivate)='onDeactivate($event)'></router-outlet>
-<!--路由嵌套 end-->

@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {Component, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
 import {AfterSaleComponent} from "../after-sale.component";
 import {AfterSaleService} from "../../after-sale.service";
-import {SubmitService} from "../../../../core/forms/submit.service";
 
 
 @Component({
@@ -38,7 +37,6 @@ export class SaleDetailComponent implements OnInit {
       woAgentId:me.id
     }
     this.result = me.AfterSaleService.getOrderDetailByNO(url,data);
-    console.log("█ result ►►►",   this.result);
   }
 
 }

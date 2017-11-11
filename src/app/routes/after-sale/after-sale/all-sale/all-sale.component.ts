@@ -24,7 +24,7 @@ export class AllSaleComponent implements OnInit {
   public showList: boolean = true;
 
 
-  constructor(public AfterSaleComponent:AfterSaleComponent, public submit: SubmitService,public RzhtoolsService:RzhtoolsService) {
+  constructor(public afterSaleComponent:AfterSaleComponent, public submit: SubmitService,public RzhtoolsService:RzhtoolsService) {
     this.bsConfig = Object.assign({}, {
       locale: 'cn',
       rangeInputFormat: 'YYYY/MM/DD',//将时间格式转化成年月日的格式
@@ -34,7 +34,7 @@ export class AllSaleComponent implements OnInit {
 
   ngOnInit() {
     let _this = this;
-    _this.AfterSaleComponent.orderType = 1;
+    _this.afterSaleComponent.orderType = 1;
     _this.queryDatas(1);
   }
 
@@ -44,6 +44,7 @@ export class AllSaleComponent implements OnInit {
    */
   activate(event) {
     this.showList = false;
+    this.afterSaleComponent.orderType = 100;
   }
 
   /**
@@ -52,6 +53,7 @@ export class AllSaleComponent implements OnInit {
    */
   onDeactivate(event) {
     this.showList = true;
+    this.afterSaleComponent.orderType = 1;
   }
 
   /**
