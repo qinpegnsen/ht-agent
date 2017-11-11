@@ -38,9 +38,10 @@
   <!--查询结束-->
   <!--列表开始-->
   <ul class="clearfix order-table-head list-unstyled mb0 p b">
-    <li class="w40 pull-left text-center thc font">商品</li>
+    <li class="w35 pull-left text-center thc font">商品</li>
     <li class="w10 pull-left text-center thc font">单价</li>
-    <li class="w10 pull-left text-center thc font">数量</li>
+    <li class="w7 pull-left text-center thc font">数量</li>
+    <li class="w8 pull-left text-center thc font">异常状态</li>
     <li class="w10 pull-left text-center thc font">收货人</li>
     <li class="w10 pull-left text-center thc font">订单金额</li>
     <li class="w10 pull-left text-center thc font">工单状态</li>
@@ -60,8 +61,13 @@
         </div>
         <table class="w100 b">
           <tr class="text-center" *ngFor="let item of order.ord.ordItemList;let j = index">
-            <td class="w40 p text-left position-relative bb">
-          <span class="goods-img goods-lg-img mr">
+            <td class="w35 p text-left position-relative bb">
+              <ng-container *ngIf="order.state == 'PAID' || order.state == 'ASSIGNED' || order.state == 'PREPARE'">
+                <span *ngIf="!goods.canDELIVERY">
+                  <img width="66%" src="../../../../../assets/img/order/refund.png" alt="">
+                </span>
+              </ng-container>
+            <span class="goods-img goods-lg-img mr">
             <img [src]="item.goodsImage" (mousemove)="showImg($event,img)" (mouseout)="hideImg(img)"
                  onerror="javascript:this.src='../../../assets/img/dummy.png'" alt=""></span>
               <img src="{{item.goodsImage}}" #img class="hoverBigImg" alt=""
@@ -76,8 +82,29 @@
                 </p>
               </div>
             </td>
-            <td class="w10 bb">￥{{item.price| number:'1.2-2'}}</td>
-            <td class="w10 bb">{{item.num}}</td>
+            <td class="w10 bb">
+              <ng-container *ngIf="order.state == 'PAID' || order.state == 'ASSIGNED' || order.state == 'PREPARE'">
+                <span *ngIf="!goods.canDELIVERY">
+                  <img width="66%" src="../../../../../assets/img/order/refund.png" alt="">
+                </span>
+              </ng-container>
+              ￥{{item.price| number:'1.2-2'}}
+            </td>
+            <td class="w7 bb">
+              <ng-container *ngIf="order.state == 'PAID' || order.state == 'ASSIGNED' || order.state == 'PREPARE'">
+                <span *ngIf="!goods.canDELIVERY">
+                  <img width="66%" src="../../../../../assets/img/order/refund.png" alt="">
+                </span>
+              </ng-container>
+              {{item.num}}
+            </td>
+            <td class="w8" [class.bb]="s != order.ord.ordItemList.length-1">
+              <ng-container *ngIf="order.state == 'PAID' || order.state == 'ASSIGNED' || order.state == 'PREPARE'">
+                <span *ngIf="!goods.canDELIVERY">
+                  <img width="66%" src="../../../../../assets/img/order/refund.png" alt="">
+                </span>
+              </ng-container>
+            </td>
             <td class="w10 bl position-relative" *ngIf="j==0" [attr.rowspan]="order.ord.ordItemList.length">
             <span class="mb0 cursor-p" myHoverColor [myHover]="'#CC1635'" (mouseenter)="showUserInfo(linkMan)"
                   (mouseleave)="hideBuyerInfo(linkMan)">{{order.ord.linkman}}
