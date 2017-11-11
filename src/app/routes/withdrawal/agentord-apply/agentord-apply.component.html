@@ -32,7 +32,7 @@
             <input class="form-control" type="text" #bacctNameTpl="ngModel" required name="bacctName" [(ngModel)]="controlData.bacctName" [pattern]="patterns.chinese"/>
             <div [hidden]="bacctNameTpl.valid || bacctNameTpl.untouched"
                  class="alert alert-danger">
-              请填写合法收款人
+              请正确填写收款人
             </div>
           </div>
         </div>
