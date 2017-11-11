@@ -62,7 +62,7 @@
         <table class="w100 b">
           <tr class="text-center" *ngFor="let item of order.ord.ordItemList;let j = index">
             <td class="w35 p text-left position-relative bb">
-              <ng-container *ngIf="order.state == 'ACCEPT'||order.state == 'N0'">
+              <ng-container *ngIf="order.state == 'ACCEPT'||order.state == 'NO'">
                 <span *ngIf="!item.canDELIVERY">
                   <img width="66%" src="../../../../../assets/img/order/refund.png" alt="">
                 </span>
@@ -83,7 +83,7 @@
               </div>
             </td>
             <td class="w10 bb position-relative">
-              <ng-container *ngIf="order.state == 'ACCEPT'||order.state == 'N0'">
+              <ng-container *ngIf="order.state == 'ACCEPT'||order.state == 'NO'">
                 <span *ngIf="!item.canDELIVERY">
                   <img width="66%" src="../../../../../assets/img/order/refund.png" alt="">
                 </span>
@@ -91,7 +91,7 @@
               ￥{{item.price| number:'1.2-2'}}
             </td>
             <td class="w7 bb position-relative">
-              <ng-container *ngIf="order.state == 'ACCEPT'||order.state == 'N0'">
+              <ng-container *ngIf="order.state == 'ACCEPT'||order.state == 'NO'">
                 <span *ngIf="!item.canDELIVERY">
                   <img width="66%" src="../../../../../assets/img/order/refund.png" alt="">
                 </span>
@@ -99,7 +99,7 @@
               {{item.num}}
             </td>
             <td class="w8" [class.bb]="s != order.ord.ordItemList.length-1">
-              <ng-container *ngIf="order.state == 'ACCEPT'||order.state == 'N0'">
+              <ng-container *ngIf="order.state == 'ACCEPT'||order.state == 'NO'">
                 <span *ngIf="!item.canDELIVERY">
                   <img width="66%" src="../../../../../assets/img/order/refund.png" alt="">
                 </span>
