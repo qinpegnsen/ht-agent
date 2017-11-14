@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "install": "napa",
-    "start": "ng serve --host 192.168.10.172 --port 4400 --proxy-config proxy.conf.js",
+    "start": "ng serve --host 192.168.10.117 --port 4400 --proxy-config proxy.conf.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -44,7 +44,6 @@
     "core-js": "2.4.1",
     "easy-pie-chart": "2.1.7",
     "echarts": "^3.7.2",
-    "flot": "flot/flot#v0.8.3",
     "font-awesome": "4.7.0",
     "fullcalendar": "3.3.1",
     "intl": "1.2.5",

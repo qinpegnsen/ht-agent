@@ -2,7 +2,6 @@ import {LayoutComponent} from '../layout/layout.component';
 import {LoginComponent} from "./pages/login/login.component";
 import {PagesComponent} from "./pages/pages/pages.component";
 export const routes = [
-
   {
     path: 'main',
     component: LayoutComponent,
@@ -17,7 +16,8 @@ export const routes = [
       {path: 'afterSale', loadChildren: './after-sale/after-sale.module#AfterSaleModule'},
       {path: 'agent-information', loadChildren: './agent-information/agent-information.module#AgentInformationModule'},
       {path: 'withdrawal', loadChildren: './withdrawal/withdrawal.module#WithdrawalModule'},
-      {path: 'billingDetails', loadChildren: './billing-details/billing-details.module#BillingDetailsModule'}
+      {path: 'billingDetails', loadChildren: './billing-details/billing-details.module#BillingDetailsModule'},
+      {path: 'redPacket', loadChildren: './red-packet/red-packet.module#RedPacketModule'}
     ]
   },
   {
