@@ -5,6 +5,7 @@ import {SettingsService} from "../../../core/settings/settings.service";
 import {AjaxService} from "../../../core/services/ajax.service";
 import {MaskService} from "app/core/services/mask.service";
 import {AppComponent} from "../../../app.component";
+import {PatternService} from "../../../core/forms/pattern.service";
 
 declare var $: any;
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   public password: string;
   public authMsg: string;
 
-  constructor(public ajax: AjaxService, public router: Router, public setting: SettingsService) {
+  constructor(public ajax: AjaxService, public router: Router, public setting: SettingsService,public patterns:PatternService ) {
   }
 
   ngOnInit() {
