@@ -51,6 +51,7 @@ import {StrJsonPipe} from "./pipe/str-json.pipe";
 import {FileUploadModule} from "ng2-file-upload";
 import {ImgUrlPipe} from "./pipe/img-url.pipe";
 import {GetUidService} from "../core/services/get-uid.service";
+import {DecimalTwoPipe} from "./pipe/decimal-two.pipe";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -82,7 +83,7 @@ import {GetUidService} from "../core/services/get-uid.service";
     SelectAreaModule,
     FoueAreasModule,
     AngularEchartsModule,
-    FileUploadModule
+    FileUploadModule,
   ],
   providers: [
     ColorsService,StockManService,HeaderComponent,AccordionComponent,RzhtoolsService,DataDictService,GetUidService
@@ -102,9 +103,11 @@ import {GetUidService} from "../core/services/get-uid.service";
     HoverDirective,
     StatePipe,
     GetWeekPipe,
-    StrJsonPipe
+    StrJsonPipe,
+    DecimalTwoPipe,
   ],
   exports: [
+    DecimalTwoPipe,
     ImgUrlPipe,
     FileUploadModule,
     StrJsonPipe,
