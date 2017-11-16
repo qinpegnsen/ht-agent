@@ -11,7 +11,7 @@ import {RedPacketService} from "../red-packet.service";
 })
 export class RedPacketPushOrderComponent implements OnInit {
 
-  public data:any                   //红包投放记录的数据
+  public redPackData:any                   //红包投放记录的数据
   constructor(public redPacketService:RedPacketService ) { }
 
   ngOnInit() {
@@ -19,7 +19,7 @@ export class RedPacketPushOrderComponent implements OnInit {
   }
 
   /**
-   * 红包规则列表
+   * 红包投放记录
    */
   qeuryAll(curPage,event?: PageEvent){
     let me = this, activePage = 1;
@@ -28,14 +28,13 @@ export class RedPacketPushOrderComponent implements OnInit {
     } else if (!isUndefined(curPage)) {
       activePage = curPage;
     };
-    let url = "/rpSetting/queryRpSettingAdmin";
+    let url = "/rpAccountRec/queryRpAccountRecAdmin";
     let data={
       curPage: activePage,
       pageSize:10,
-      isUsed:'',
     };
-    // let result = this.redPacketService.getShopList(url,data);
-    // me.data = new Page(result);
+    let result = this.redPacketService.getShopList(url,data);
+    me.redPackData = new Page(result);
   }
 
 }

@@ -32,7 +32,6 @@ export class RedPacketStaticsComponent implements OnInit {
       me.now = me.redPackStatic.agentAllOrdList;
       me.prev = me.redPackStatic.agentDealOrdList;
       me.optionPrevInfo();
-      console.log("█  me.redPackStatic ►►►",   me.redPackStatic);
     }
   }
 
@@ -43,7 +42,7 @@ export class RedPacketStaticsComponent implements OnInit {
     let _this = this;
     _this.optionPrev = {
       title: {
-        text: '平台派单统计',
+        text: '一月点击数统计',
         left:"46%"
       },
       legend: {
