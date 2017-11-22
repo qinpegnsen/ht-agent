@@ -67,7 +67,7 @@ export class ProcessedComponent implements OnInit {
    * @param i
    */
   cancelOrder1(orderId) {
-    this.curCancelOrderId = orderId;
+    this.curCancelOrderId1 = orderId;
   }
   /**
    * 取消订单回调函数
