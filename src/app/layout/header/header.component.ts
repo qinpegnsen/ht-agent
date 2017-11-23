@@ -20,6 +20,9 @@ declare var $: any;
 export class HeaderComponent implements OnInit{
 
   public platformInfoData:any;                           //代理商系统消息的数据
+  public platformInfoDataTotal: any;                      //系统消息总的数据
+  public noReadLength: any;                               //未读消息的长度
+
   @ViewChild('fsbutton') fsbutton;
   navCollapsed = true;
   menuItems = [];
@@ -68,6 +71,25 @@ export class HeaderComponent implements OnInit{
       sortColumns:''
     };
     this.platformInfoData=new Page(this.submitService.getData(url,data));
+    this.noRead()
+  }
+
+  /**
+   * 未读消息的总数
+   */
+  noRead(){
+    let noReadArr=[];
+    let url = '/notifyAgent/queryNotifyAgent';
+    let data = {
+      curPage: 1,
+    };
+    this.platformInfoDataTotal = new Page(this.submitService.getData(url, data));
+    for(var i=0;i<this.platformInfoDataTotal.voList.length;i++){
+      if(this.platformInfoDataTotal.voList[i].isRead=='N'){
+        noReadArr.push(this.platformInfoDataTotal.voList[i]);
+      };
+    };
+    this.noReadLength=noReadArr.length;
   }
 
   /**
