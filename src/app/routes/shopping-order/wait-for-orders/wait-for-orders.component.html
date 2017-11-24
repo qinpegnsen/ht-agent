@@ -62,9 +62,7 @@
         <table class="w100 b">
           <tr class="text-center" *ngFor="let item of order.ord.ordItemList;let j = index">
             <td class="w35 p text-left position-relative bb">
-              <ng-container *ngIf="order.state == 'ACCEPT'|| order.state == 'NO'">
-                <div class="cover" *ngIf="!item.canDELIVERY"></div>
-              </ng-container>
+                <div class="cover" *ngIf="item.returnNum > 0"></div>
             <span class="goods-img goods-lg-img mr">
             <img [src]="item.goodsImage" (mousemove)="showImg($event,img)" (mouseout)="hideImg(img)"
                  onerror="javascript:this.src='../../../assets/img/dummy.png'" alt=""></span>
@@ -81,23 +79,18 @@
               </div>
             </td>
             <td class="w10 bb position-relative">
-              <ng-container *ngIf="order.state == 'ACCEPT'|| order.state == 'NO'">
-                <div class="cover" *ngIf="!item.canDELIVERY"></div>
-              </ng-container>
+                <div class="cover" *ngIf="item.returnNum > 0"></div>
               ￥{{item.price| number:'1.2-2'}}
             </td>
             <td class="w7 bb position-relative">
-              <ng-container *ngIf="order.state == 'ACCEPT'|| order.state == 'NO'">
-                <div class="cover" *ngIf="!item.canDELIVERY"></div>
-              </ng-container>
+                <div class="cover" *ngIf="item.returnNum > 0"></div>
               {{item.num}}
             </td>
             <td class="w8" [class.bb]="s != order.ord.ordItemList.length-1">
-              <ng-container *ngIf="order.state == 'ACCEPT'||order.state == 'NO'">
-                <span *ngIf="!item.canDELIVERY">
+                <span *ngIf="item.returnNum > 0">
                   <img width="66%" src="../../../../../assets/img/order/refund.png" alt="">
+                  <p class="text-danger mb0 mt-sm"><a>查看退款进度</a></p>
                 </span>
-              </ng-container>
             </td>
             <td class="w10 bl position-relative" *ngIf="j==0" [attr.rowspan]="order.ord.ordItemList.length">
             <span class="mb0 cursor-p" myHoverColor [myHover]="'#CC1635'" (mouseenter)="showUserInfo(linkMan)"
@@ -176,7 +169,7 @@
               <button *ngIf="order.state=='NO'" class="btn btn-xs  btn-danger fa fa-close"
                       (click)="toReject(order.id,workOrderList.curPage)" #reject> 拒单
               </button>
-              <button *ngIf="order.state=='ACCEPT'" class="btn btn-xs  btn-success fa fa-truck"
+              <button *ngIf="order.state=='ACCEPT'&& order.canDelivery" class="btn btn-xs  btn-success fa fa-truck"
                       (click)="deliver(order.id,order.ordno)"> 发货
               </button>
             </td>
