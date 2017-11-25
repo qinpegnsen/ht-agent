@@ -63,7 +63,7 @@
         <table class="w100 b">
           <tr class="text-center" *ngFor="let item of order.ord.ordItemList;let j = index">
             <td class="w35 p text-left position-relative bb">
-              <div class="cover" *ngIf="!item.canDELIVERY"></div>
+              <div class="cover" *ngIf="item.returnNum > 0"></div>
               <span class="goods-img goods-lg-img mr">
             <img [src]="item.goodsImage" (mousemove)="showImg($event,img)" (mouseout)="hideImg(img)"
                  onerror="javascript:this.src='../../../assets/img/dummy.png'" alt=""></span>
@@ -80,11 +80,11 @@
               </div>
             </td>
             <td class="w10 bb position-relative">
-              <div class="cover" *ngIf="!item.canDELIVERY"></div>
+              <div class="cover" *ngIf="item.returnNum > 0"></div>
               ￥{{item.price| number:'1.2-2'}}
             </td>
             <td class="w7 bb position-relative">
-              <div class="cover" *ngIf="!item.canDELIVERY"></div>
+              <div class="cover" *ngIf="item.returnNum > 0"></div>
               {{item.num}}
             </td>
             <td class="w8" [class.bb]="s != order.ord.ordItemList.length-1">
