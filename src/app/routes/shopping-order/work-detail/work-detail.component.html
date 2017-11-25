@@ -18,20 +18,6 @@
         <dt>备注：</dt>
         <dd class="position-relative">
           <span>{{orderDetailData.remark}}</span>
-          <!--<button class="btn btn-default btn-xs fa fa-pencil" (click)="dropdownToggle(edit)" title="修改备注"></button>-->
-          <!--<div class="w100 dropdown-menu animated fadeInDown" #edit>-->
-          <!--<div class="mea-text">-->
-          <!--<p class="text-tip">还可以输入 <i class="counter">100</i>字 </p>-->
-          <!--<div class="pl pr"><textarea class="text-area form-control p-sm" rows="3" maxlength="100"-->
-          <!--(keyup)="counter($event.target)" [(ngModel)]="remark"></textarea></div>-->
-          <!--<div class="buttons text-center mt">-->
-          <!--<a class="btn btn-xs btn-primary" (click)="editPrimary(edit)"-->
-          <!--href="javascript:void(0);">确认</a>-->
-          <!--<a class="btn btn-xs btn-default ml" (click)="hideEdit(edit)"-->
-          <!--href="javascript:void(0);">取消</a>-->
-          <!--</div>-->
-          <!--</div>-->
-          <!--</div>-->
         </dd>
       </dl>
       <dl class="line pt-lg">
@@ -208,12 +194,10 @@
     <tbody>
     <tr class="text-center" *ngFor="let goods of goodsData;let i = index">
       <td class="text-left p position-relative bb">
-        <ng-container *ngIf="orderDetailData.state == 'PAID' || orderDetailData.state == 'ASSIGNED' || orderDetailData.state == 'PREPARE'">
-          <div class="cover" *ngIf="!goods.canDELIVERY"></div>
-        </ng-container>
-          <span class="goods-img goods-lg-img mr"><img [src]="goods.goodsImage"
-                                                       onerror="javascript:this.src='../../../assets/img/dummy.png'"
-                                                       alt=""></span>
+        <div class="cover" *ngIf="goods.returnNum > 0"></div>
+        <span class="goods-img goods-lg-img mr"><img [src]="goods.goodsImage"
+                                                     onerror="javascript:this.src='../../../assets/img/dummy.png'"
+                                                     alt=""></span>
         <div class="goods-lg-info">
           <p class="mb0 font13 omg2 two-row mb-sm">
             <a class="goods-name" href="javascript:;">{{goods.goodsName}}</a>
@@ -225,23 +209,18 @@
         </div>
       </td>
       <td class="bb position-relative">
-        <ng-container *ngIf="orderDetailData.state == 'PAID' || orderDetailData.state == 'ASSIGNED' || orderDetailData.state == 'PREPARE'">
-          <div class="cover" *ngIf="!goods.canDELIVERY"></div>
-        </ng-container>
+        <div class="cover" *ngIf="goods.returnNum > 0"></div>
         ￥ {{goods.price | number:'1.2-2'}}
       </td>
       <td class="bb position-relative">
-        <ng-container *ngIf="orderDetailData.state == 'PAID' || orderDetailData.state == 'ASSIGNED' || orderDetailData.state == 'PREPARE'">
-          <div class="cover" *ngIf="!goods.canDELIVERY"></div>
-        </ng-container>
+        <div class="cover" *ngIf="goods.returnNum > 0"></div>
         {{goods.num}}
       </td>
       <td class="w10 bb">
-        <ng-container *ngIf="orderDetailData.state == 'PAID' || orderDetailData.state == 'ASSIGNED' || orderDetailData.state == 'PREPARE'">
-                  <span *ngIf="!goods.canDELIVERY">
+                  <span *ngIf="goods.returnNum > 0">
                     <img width="66%" src="../../../../../assets/img/order/refund.png" alt="">
+                    <p class="text-danger mb0 mt-sm"><a>查看退款进度</a></p>
                   </span>
-        </ng-container>
       </td>
       <ng-container *ngIf="i == 0">
         <td class="bl" [attr.rowspan]="goodsData.length">
@@ -260,7 +239,7 @@
                   class="btn btn-xs  btn-danger fa fa-close"
                   (click)="toReject()" #reject> 拒单
           </button>
-          <button class="btn btn-xs  btn-success fa fa-truck" *ngIf="orderDetailData.state=='PREPARE'"
+          <button class="btn btn-xs  btn-success fa fa-truck" *ngIf="orderDetailData.state=='PREPARE'&& orderDetailData.canDelivery"
                   (click)="deliver()"> 发货
           </button>
         </td>
@@ -279,7 +258,8 @@
         <dl class="text-right mb0">
           <dt class="w10">运费：</dt>
           <dd class="w10 text-left">
-            <span class="ml-sm font18 mr main-red  price-wid" *ngIf="!orderDetailData.freight || orderDetailData.freight == 0">¥ 0</span>
+            <span class="ml-sm font18 mr main-red  price-wid"
+                  *ngIf="!orderDetailData.freight || orderDetailData.freight == 0">¥ 0</span>
             <ng-container *ngIf="orderDetailData.freight != 0">
               <span class="font18 ml-sm main-red mr price-wid">¥ {{orderDetailData.freight | number:'1.2-2'}}</span>
             </ng-container>
@@ -296,8 +276,8 @@
           <dt class="10">
             <template #popTemplate>
               重消币抵扣数量：
-              <span  *ngIf="orderDetailData.coinPay != null" >{{orderDetailData.coin | number:'1.2-2'}}</span>
-              <span  *ngIf="orderDetailData.coinPay == null" >0</span>
+              <span *ngIf="orderDetailData.coinPay != null">{{orderDetailData.coin | number:'1.2-2'}}</span>
+              <span *ngIf="orderDetailData.coinPay == null">0</span>
             </template>
             <i class="icon-info" [myHover]="'#cc1635'" myHoverColor [popover]="popTemplate"
                triggers="mouseenter:mouseleave"></i>
@@ -327,7 +307,8 @@
 <!--发货组件结束-->
 <!--拒单组件开始-->
 <ng-container *ngIf="orderDetailData.state=='ASSIGNED'">
-  <app-reason-rejec  [showReasonWindow]="showReasonWindow" [woAgengId]="transWoAgengId" (closeRejec)="closeRejecWin($event)"></app-reason-rejec>
+  <app-reason-rejec [showReasonWindow]="showReasonWindow" [woAgengId]="transWoAgengId"
+                    (closeRejec)="closeRejecWin($event)"></app-reason-rejec>
 </ng-container>
 <!--拒单组件结束-->
 
