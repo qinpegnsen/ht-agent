@@ -65,13 +65,17 @@
         <dt>应付金额：</dt>
         <dd>{{orderDetailData.total+orderDetailData.freight | number:'1.2-2'}}</dd>
       </dl>
-      <dl>
+      <dl *ngIf="orderDetailData.coinPay && orderDetailData.coinPay > 0">
         <dt>
           <i class="icon-info" [myHover]="'#cc1635'" myHoverColor [popover]="popTemplate"
              triggers="mouseenter:mouseleave"></i>
           重消币抵扣金额：
         </dt>
         <dd>{{!orderDetailData.coinPay?'0.00':orderDetailData.coinPay | number:'1.2-2'}}</dd>
+      </dl>
+      <dl *ngIf="orderDetailData.rpPay">
+        <dt>红包抵扣：</dt>
+        <dd>{{orderDetailData.rpPay | number: '1.2-2'}}</dd>
       </dl>
       <dl>
         <dt>最终支付：</dt>
@@ -239,7 +243,8 @@
                   class="btn btn-xs  btn-danger fa fa-close"
                   (click)="toReject()" #reject> 拒单
           </button>
-          <button class="btn btn-xs  btn-success fa fa-truck" *ngIf="orderDetailData.state=='PREPARE'&& orderDetailData.canDelivery"
+          <button class="btn btn-xs  btn-success fa fa-truck"
+                  *ngIf="orderDetailData.state=='PREPARE'&& orderDetailData.canDelivery"
                   (click)="deliver()"> 发货
           </button>
         </td>
@@ -252,27 +257,24 @@
         <dl class="text-right mb0">
           <dt class="font14 w10">商品总额：</dt>
           <dd class="w10 text-left">
-            <span class="ml-sm font18 mr main-red  price-wid">¥ {{orderDetailData.total | number:'1.2-2'}}</span>
+            <span class="ml-sm font16 mr price-wid"><em>+</em>¥ {{orderDetailData.total | number:'1.2-2'}}</span>
           </dd>
         </dl>
-        <dl class="text-right mb0">
+        <dl class="text-right mb0" *ngIf="orderDetailData.freight && orderDetailData.freight != 0">
           <dt class="w10">运费：</dt>
           <dd class="w10 text-left">
-            <span class="ml-sm font18 mr main-red  price-wid"
-                  *ngIf="!orderDetailData.freight || orderDetailData.freight == 0">¥ 0</span>
-            <ng-container *ngIf="orderDetailData.freight != 0">
-              <span class="font18 ml-sm main-red mr price-wid">¥ {{orderDetailData.freight | number:'1.2-2'}}</span>
-            </ng-container>
+            <span
+              class="font16 ml-sm mr price-wid"><em>+</em>¥ {{orderDetailData.freight | number:'1.2-2'}}</span>
           </dd>
         </dl>
         <dl class="text-right mb0">
           <dt class="font14 w10">应付金额：</dt>
           <dd class="w10 text-left">
-            <span class="ml-sm font18 mr main-red  price-wid">¥ {{orderDetailData.total+orderDetailData.freight |
+            <span class="ml-sm font16 mr price-wid"><em>+</em>¥ {{orderDetailData.total+orderDetailData.freight |
             number:'1.2-2'}}</span>
           </dd>
         </dl>
-        <dl class="text-right mb0">
+        <dl class="text-right mb0" *ngIf="orderDetailData.coinPay>0">
           <dt class="10">
             <template #popTemplate>
               重消币抵扣数量：
@@ -284,8 +286,15 @@
             重消币抵扣金额：
           </dt>
           <dd class="w10 text-left">
-            <span *ngIf="orderDetailData.coinPay == null" class="font18 main-red  ml-sm mr price-wid">¥ 0</span>
-            <span *ngIf="orderDetailData.coinPay != null" class="font18 main-red  ml-sm mr price-wid">¥ {{orderDetailData.coinPay | number:'1.2-2'}}</span>
+            <span class="font16 ml-sm mr price-wid"><em>-</em> ¥ {{orderDetailData.coinPay | number:'1.2-2'}}</span>
+          </dd>
+        </dl>
+        <dl class="text-right mb0" *ngIf="orderDetailData.rpPay">
+          <dt class="font14 w10">红包抵扣：</dt>
+          <dd class="w10">
+                <span class="font16 price-wid">
+                  <em>-</em> ¥ {{orderDetailData.rpPay | number:'1.2-2'}}
+                </span>
           </dd>
         </dl>
         <dl class="text-right mb0">
