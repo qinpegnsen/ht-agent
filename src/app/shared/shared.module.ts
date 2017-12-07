@@ -51,6 +51,7 @@ import {FileUploadModule} from "ng2-file-upload";
 import {ImgUrlPipe} from "./pipe/img-url.pipe";
 import {GetUidService} from "../core/services/get-uid.service";
 import {AreaNamePipe} from "./pipe/area-name.pipe";
+import {DecimalTwoPipe} from "./pipe/decimal-two.pipe";
 
 // https://angular.io/styleguide#!#04-10
 @NgModule({
@@ -82,7 +83,7 @@ import {AreaNamePipe} from "./pipe/area-name.pipe";
     SelectAreaModule,
     FoueAreasModule,
     AngularEchartsModule,
-    FileUploadModule
+    FileUploadModule,
   ],
   providers: [
     ColorsService,StockManService,HeaderComponent,AccordionComponent,RzhtoolsService,DataDictService,GetUidService
@@ -103,9 +104,11 @@ import {AreaNamePipe} from "./pipe/area-name.pipe";
     StatePipe,
     GetWeekPipe,
     AreaNamePipe,
+    DecimalTwoPipe,
     StrJsonPipe
   ],
   exports: [
+    DecimalTwoPipe,
     ImgUrlPipe,
     FileUploadModule,
     StrJsonPipe,

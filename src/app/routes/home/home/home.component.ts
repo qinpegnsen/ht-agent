@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {SubmitService} from "../../../core/forms/submit.service";
 import {RzhtoolsService} from "../../../core/services/rzhtools.service";
 import {BsDatepickerConfig} from "ngx-bootstrap/datepicker";
-import {SettingsService} from "../../../core/settings/settings.service";
-import {isNullOrUndefined} from "util";
-
 
 @Component({
     selector: 'app-home',
@@ -119,6 +116,7 @@ export class HomeComponent implements OnInit {
       ]
     };
   }
+
   /**
    * 查询
    */

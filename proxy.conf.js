@@ -24,7 +24,8 @@ const PROXY_CONFIG = [
       "/statistical",
       "/datadict",
       "/finaceDraw",
-      "/notifyAgent/"
+      "/notifyAgent",
+      "/rpAccountRec"
     ],
     target: wp + "8085",   //拦截 context配置路径，经过此地址
     secure: false
