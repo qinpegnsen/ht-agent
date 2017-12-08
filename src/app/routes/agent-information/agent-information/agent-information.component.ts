@@ -12,7 +12,7 @@ import {UserblockComponent} from "../../../layout/sidebar/userblock/userblock.co
 const swal = require('sweetalert');
 declare var $: any;
 declare var AMap: any;
-const uploadUrl = "upload/basic/uploadHttpURL";  //图片上传路径(调取上传的接口)
+const uploadUrl = "/upload/basic/afterUploadRetHttpURL";  //图片上传路径(调取上传的接口)
 
 @Component({
   selector: 'app-agent-information',
