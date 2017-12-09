@@ -65,8 +65,9 @@
             <td class="w35 p text-left position-relative bb">
               <div class="cover" *ngIf="item.returnNum > 0"></div>
               <span class="goods-img goods-lg-img mr">
-            <img [src]="item.goodsImage" (mousemove)="showImg($event,img)" (mouseout)="hideImg(img)"
-                 onerror="javascript:this.src='../../../assets/img/dummy.png'" alt=""></span>
+                <img [src]="item.goodsImage" (mousemove)="showImg($event,img)" (mouseout)="hideImg(img)"
+                 onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+              </span>
               <img src="{{item.goodsImage}}" #img class="hoverBigImg" alt=""
                    onerror="javascript:this.src='../../../assets/img/dummy.png'">
               <div class="goods-lg-info">
@@ -89,7 +90,7 @@
             </td>
             <td class="w8" [class.bb]="s != order.ord.ordItemList.length-1">
                 <span *ngIf="item.returnNum > 0">
-                  <img width="66%" src="../../../../../assets/img/order/refund.png" alt="">
+                  <img width="66%" src="../../../../../assets/img/order/refund.png" alt="" onerror="javascript:this.src='../../../assets/img/dummy.png'">
                   <p class="text-danger mb0 mt-sm"><a>查看退款进度</a></p>
                 </span>
             </td>
