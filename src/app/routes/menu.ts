@@ -66,21 +66,6 @@ const sysMessage = {
   link: '/main/sys-message',
   icon: 'fa fa-newspaper-o'
 };
-const redPacket = {
-  text: '红包管理',
-  icon: 'fa fa-dollar',
-  alert: '▼',
-  submenu: [
-    {
-      text: '红包统计',
-      link: '/main/redPacket/statics'
-    },
-    {
-      text: '红包投放记录',
-      link: '/main/redPacket/pushOrder'
-    }
-  ]
-};
 export const menu = [
     Home,
     stockMan,
@@ -91,5 +76,4 @@ export const menu = [
     withdrawal,
     billingDetails,
     sysMessage,
-    redPacket
 ];
