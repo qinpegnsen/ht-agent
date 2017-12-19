@@ -10,7 +10,7 @@ import {AfterSaleService} from "../../after-sale.service";
   styleUrls: ['./sale-detail.component.scss']
 })
 export class SaleDetailComponent implements OnInit {
-  public id: string;//获取
+  public afterNo: string;//获取
   public result:any;
 
   constructor(
@@ -23,7 +23,7 @@ export class SaleDetailComponent implements OnInit {
   ngOnInit() {
     let me = this;
     me.parentComp.orderType = 100;
-    me.id = me.routeInfo.snapshot.queryParams['id'];
+    me.afterNo = me.routeInfo.snapshot.queryParams['afterNo'];
     me.getOrderDetail(); //获取订单详情
   }
 
@@ -32,9 +32,9 @@ export class SaleDetailComponent implements OnInit {
    */
   getOrderDetail() {
     let me = this;
-    let url = '/woAgent/loadWoAgent';
+    let url = '/after/loadReqByAfterNo';
     let data = {
-      woAgentId:me.id
+      afterNo:me.afterNo
     }
     this.result = me.AfterSaleService.getOrderDetailByNO(url,data);
   }

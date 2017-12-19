@@ -1,17 +1,17 @@
-<div class="content-heading mb-lg"><span class="thc font">售后工单</span></div>
+<div class="content-heading mb-lg"><span class="thc font">售后管理</span></div>
 <div class="order panel mb">
   <div class="panel-body">
     <div *ngIf="orderType!=100">
       <ul class="order-guide list-unstyled clearfix bb">
-        <li class="pull-left thc font" [class.bb]="orderType==1" [class.cur-order]="orderType==1" routerLink="all-sale">所有工单</li>
+        <li class="pull-left thc font" [class.bb]="orderType==1" [class.cur-order]="orderType==1" routerLink="all-sale">所有售后</li>
         <li class="pull-left thc font" [class.bb]="orderType==2" [class.cur-order]="orderType==2" routerLink="processed">待处理</li>
-        <li class="pull-left thc font" [class.bb]="orderType==3" [class.cur-order]="orderType==3" routerLink="agreed">已同意</li>
-        <li class="pull-left thc font" [class.bb]="orderType==4" [class.cur-order]="orderType==4" routerLink="refused">已拒绝</li>
+        <li class="pull-left thc font" [class.bb]="orderType==3" [class.cur-order]="orderType==3" routerLink="agreed">退款完成</li>
+        <li class="pull-left thc font" [class.bb]="orderType==4" [class.cur-order]="orderType==4" routerLink="refused">拒绝退货</li>
       </ul>
     </div>
     <ul class="order-guide list-unstyled clearfix bb" *ngIf="orderType==100">
-      <li class="pull-left" (click)="routeBack()">工单列表</li>
-      <li class="pull-left thc bb">工单详情</li>
+      <li class="pull-left" (click)="routeBack()">所有售后</li>
+      <li class="pull-left thc bb">售后详情</li>
     </ul>
     <!--路由嵌套 begin-->
     <router-outlet></router-outlet>

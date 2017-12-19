@@ -20,9 +20,9 @@ export class RefusedComponent implements OnInit {
   bsConfig: Partial<BsDatepickerConfig>;
   public agentTime;
   public woList: Page = new Page();
-  public ordnos;
-  public wonos;
-  public custPhone;
+  public afterNo;//售后单号
+  public ordno;//订单号
+  public custPhone;//手机号
   public showList: boolean = true;
 
   constructor(public AfterSaleComponent:AfterSaleComponent,public submit: SubmitService,) {
@@ -68,7 +68,7 @@ export class RefusedComponent implements OnInit {
     } else if (!isUndefined(curPage)) {
       activePage = curPage;
     }
-    let requestUrl = '/woAgent/query';
+    let requestUrl = '/after/queryAfterGoodsReqPages';
     //格式化时间格式
     let dateStr = '';
     if (this.agentTime) {
@@ -78,11 +78,10 @@ export class RefusedComponent implements OnInit {
     let requestData = {
       curPage: activePage,
       pageSize: 10,
-      ordType:'SELL_AFTER',
-      stateEnum:'END',
-      ordno: _this.ordnos,
-      wono: _this.wonos,
-      custPhone: _this.custPhone
+      afterNo: _this.afterNo,
+      ordno: _this.ordno,
+      phone: _this.custPhone,
+      state:'CHECK_FAILS'
     };
     _this.woList = new Page(_this.submit.getData(requestUrl, requestData));
   }

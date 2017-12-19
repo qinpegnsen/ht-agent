@@ -25,7 +25,7 @@ const shopOrder = {
   icon: 'fa fa-file-text'
 };
 const afterSale = {
-  text: '售后工单',
+  text: '售后管理',
   link: '/main/afterSale',
   icon: 'icon-book-open'
 };
