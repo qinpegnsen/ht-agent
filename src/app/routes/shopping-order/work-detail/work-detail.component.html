@@ -155,28 +155,28 @@
          [class.w75]="orderStep==4" [class.w100]="orderStep==5"></div>
   </div>
   <dl class="cur">
-    <dt class="thc font">提交订单</dt>
+    <dt class="thc font">{{orderTranceList.CR}}</dt>
     <dd class="szh-progress-point fa fa-check mt mb-lg thc bg"></dd>
     <dd>{{atime[1]}}</dd>
   </dl>
   <dl [class.cur]="ifCurrent(2)">
-    <dt class="thc" [class.font]="ifCurrent(2)">已支付</dt>
+    <dt class="thc" [class.font]="ifCurrent(2)">{{orderTranceList.PAID}}</dt>
     <dd class="szh-progress-point fa fa-check mt mb-lg thc" [class.bg]="ifCurrent(2)"></dd>
     <dd><span *ngIf="ifCurrent(2)">{{atime[2]}}</span>
     </dd>
   </dl>
   <dl class="thc" [class.cur]="ifCurrent(3)">
-    <dt class="thc" [class.font]="ifCurrent(3)">已配货</dt>
+    <dt class="thc" [class.font]="ifCurrent(3)">{{orderTranceList.PREPARE}}</dt>
     <dd class="szh-progress-point fa fa-check mt mb-lg thc" [class.bg]="ifCurrent(3)"></dd>
     <dd><span *ngIf="ifCurrent(3)">{{atime[3]}}</span></dd>
   </dl>
   <dl class="thc" [class.cur]="ifCurrent(4)">
-    <dt class="thc" [class.font]="ifCurrent(4)">已发货</dt>
+    <dt class="thc" [class.font]="ifCurrent(4)">{{orderTranceList.DELIVERY}}</dt>
     <dd class="szh-progress-point fa fa-check mt mb-lg thc" [class.bg]="ifCurrent(4)"></dd>
     <dd><span *ngIf="ifCurrent(4)">{{atime[4]}}</span></dd>
   </dl>
   <dl class="thc" [class.cur]="ifCurrent(5)">
-    <dt class="thc" [class.font]="ifCurrent(5)">订单完成</dt>
+    <dt class="thc" [class.font]="ifCurrent(5)">{{orderTranceList.SUCCESS}}</dt>
     <dd class="szh-progress-point fa fa-check mt mb-lg thc" [class.bg]="ifCurrent(5)"></dd>
     <dd><span *ngIf="ifCurrent(5)">{{atime[5]}}</span></dd>
   </dl>

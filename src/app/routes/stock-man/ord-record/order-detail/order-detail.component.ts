@@ -22,11 +22,13 @@ export class OrderDetailComponent implements OnInit {
   public ordno;                                           //订单号
   public curPage;                                         //列表当前的页码
   public atime:Array<string> = new Array();              //存储状态时间的数组
+  public orderTranceList:any;                             //订单追踪的信息
 
   constructor(
     public parentComp:OrdRecordComponent,
     public routeInfo:ActivatedRoute,
     public stockManService: StockManService,
+    public tools: RzhtoolsService,
     public router: Router,
     public headerComponent: HeaderComponent
   ) { }
@@ -44,6 +46,7 @@ export class OrderDetailComponent implements OnInit {
     this.getOrderData();
     this.showLogistics();
     this.getDelivery();
+    this.orderTranceList=this.tools.getEnumData('1702');
   }
 
   /**
