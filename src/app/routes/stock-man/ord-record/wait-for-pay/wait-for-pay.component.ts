@@ -7,7 +7,7 @@ import {OrdRecordComponent} from "../ord-record.component";
 import {StockManService} from "../../stock-man.service";
 import {RzhtoolsService} from "../../../../core/services/rzhtools.service";
 import {isNullOrUndefined} from "util";
-
+const swal = require('sweetalert');
 @Component({
   selector: 'app-wait-for-pay',
   templateUrl: './wait-for-pay.component.html',
@@ -94,12 +94,25 @@ export class WaitForPayComponent implements OnInit {
    * @param orderId
    */
   cancelOrder(ordno,curPage){
-    let url='/agentOrd/cancelAgentOrd';
-    let data={
-      ordno:ordno
-    }
-    this.stockManService.delAgentOrd(url,data);
-    this.queryDatas(curPage);
+    let that=this;
+    swal({
+        title: '您确认要取消订单吗？',
+        type: 'info',
+        confirmButtonText: '确认', //‘确认’按钮命名
+        showCancelButton: true, //显示‘取消’按钮
+        cancelButtonText: '取消', //‘取消’按钮命名
+        closeOnConfirm: false  //点击‘确认’后，执行另外一个提示框
+      },
+      function () {  //点击‘确认’时执行
+        swal.close(); //关闭弹框
+        let url='/agentOrd/cancelAgentOrd';
+        let data={
+          ordno:ordno
+        }
+        that.stockManService.delAgentOrd(url,data);
+        that.queryDatas(curPage);
+      }
+    );
   }
 
   /**
