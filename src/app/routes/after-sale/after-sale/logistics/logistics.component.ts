@@ -21,10 +21,10 @@ export class LogisticsComponent implements OnInit,OnChanges {
   public opinion;
 
 
-  @Input('orderId') orderId: string;
+  @Input('afterNo') afterNo: string;
   @Output() cancelOrder = new EventEmitter();
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes['orderId'] && !isNullOrUndefined(this.orderId)){
+    if(changes['afterNo'] && !isNullOrUndefined(this.afterNo)){
       $('.wrapper > section').css('z-index', 200);
       this.showCancelWindow = true;
     }
@@ -51,7 +51,7 @@ export class LogisticsComponent implements OnInit,OnChanges {
     _this.ajax.put({
       url: '/woAgent/checkPassRefundGoods',
       data: {
-        'ordno':_this.orderId,
+        'afterNo':_this.afterNo,
         'opinion':_this.opinion
       },
       success: (res) => {

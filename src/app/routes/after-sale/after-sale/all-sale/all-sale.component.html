@@ -85,8 +85,8 @@
             <p class="cursor-p mb-sm" myHoverColor [myHover]="'#CC1635'"  routerLink="sale-detail" [queryParams]="{afterNo:sale.afterNo}">查看详情</p>
           </td>
           <td class="w10 bl">
-            <button class="btn btn-xs  btn-success fa fa-check"  *ngIf="sale.state =='DELIVERY'" title="同意退货" (click)="cancelOrder(sale.ordno)"></button>
-            <button  class="btn btn-xs  btn-danger fa fa-close" *ngIf="sale.state =='DELIVERY'" title="拒绝退货" (click)="cancelOrder1(sale.ordno)"></button>
+            <button class="btn btn-xs  btn-success fa fa-check"  *ngIf="sale.state =='DELIVERY'" title="同意退货" (click)="cancelOrder(sale.afterNo)"></button>
+            <button  class="btn btn-xs  btn-danger fa fa-close" *ngIf="sale.state =='DELIVERY'" title="拒绝退货" (click)="cancelOrder1(sale.afterNo)"></button>
           </td>
         </tr>
       </table>
@@ -115,5 +115,5 @@
 <router-outlet (activate)="activate($event)" (deactivate)="onDeactivate($event)"></router-outlet>
 <!--路由嵌套 end-->
 
-<app-logistics [orderId]="curCancelOrderId" (cancelOrder)="getCancelOrderData($event)"></app-logistics>
-<app-refused-agent [orderId]="curCancelOrderId1" (cancelOrder)="getCancelOrderData1($event)"></app-refused-agent>
+<app-logistics [afterNo]="curCancelOrderId" (cancelOrder)="getCancelOrderData($event)"></app-logistics>
+<app-refused-agent [afterNo]="curCancelOrderId1" (cancelOrder)="getCancelOrderData1($event)"></app-refused-agent>

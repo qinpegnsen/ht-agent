@@ -60,15 +60,15 @@ export class AllSaleComponent implements OnInit {
    * 隐藏买家信息
    * @param i
    */
-  cancelOrder(orderId) {
-    this.curCancelOrderId = orderId;
+  cancelOrder(afterNo) {
+    this.curCancelOrderId = afterNo;
   }
   /**
    * 隐藏买家信息
    * @param i
    */
-  cancelOrder1(orderId) {
-    this.curCancelOrderId1 = orderId;
+  cancelOrder1(afterNo) {
+    this.curCancelOrderId1 = afterNo;
   }
   /**
    * 取消订单回调函数
