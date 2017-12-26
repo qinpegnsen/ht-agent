@@ -19,7 +19,10 @@
       </div>
     </div>
   </div>
-  <button class="btn thc btn-thc btn-green fa fa-refresh btn-sm align-middle ml-sm" (click)="clearTime()">&nbsp;&nbsp;重置时间</button>
+  <button type="button" title="重置时间"
+          class="btn thc btn-thc btn-green bar-h3-btn ng-scope ml-sm btn-h"  (click)="clearTime()">
+    <em class="fa fa-refresh"></em>&nbsp;&nbsp;<span>重置时间</span>
+  </button>
   <div class="search-term clearfix ml mb">
     <div class="w100 pl-sm pr0 pull-left">
       <div class="form-group mb0 pr0">
