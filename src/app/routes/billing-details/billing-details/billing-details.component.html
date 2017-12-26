@@ -1,6 +1,6 @@
 <div class="content-heading mb-lg"><span class="thc font">账单明细</span></div>
 <!--操作提示-->
-<div class="panel panel-default">
+<div class="panel">
 <div class="panel-body">
 <div class="panel mb p ts thc">
   <p class="font18">操作提示</p>
@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-  <button class="btn thc btn-thc btn-green fa fa-refresh btn-sm align-middle " (click)="clearTime()"></button>
+  <button class="btn thc btn-thc btn-green fa fa-refresh btn-sm align-middle ml-sm" (click)="clearTime()">&nbsp;&nbsp;重置时间</button>
   <div class="search-term clearfix ml mb">
     <div class="w100 pl-sm pr0 pull-left">
       <div class="form-group mb0 pr0">
@@ -27,15 +27,15 @@
           <input type="text" class="form-control border-b-grey" [(ngModel)]="ordnos" placeholder="请填写订单编号"/>
         </div>
         <button type="button" title="搜索"
-                class="btn thc btn-thc bar-h3-btn mr0 ng-scope"  (click)="queryDatas(1)">
-          <em class="icon-magnifier fa-fw"></em>
+                class="btn thc btn-thc bar-h3-btn ng-scope ml-sm"  (click)="queryDatas(1)">
+          <em class="icon-magnifier fa-fw"></em>&nbsp;&nbsp;<span>搜索</span>
         </button>
       </div>
     </div>
   </div>
 </div>
 <!--查询 end-->
-<div class="panel p mb">
+<div class="panel mb">
 <table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="woList" (pageChange)="queryDatas(1,$event)">
   <thead>
   <tr>
@@ -46,16 +46,16 @@
       <rzhDefaultSorter by="ordno">订单号</rzhDefaultSorter>
     </th>
     <th class="w10  unselectable text-right">
-      <rzhDefaultSorter by="ordPay">订单总额</rzhDefaultSorter>
+      <rzhDefaultSorter by="ordPay">订单总额（元）</rzhDefaultSorter>
     </th>
     <th class="w15 unselectable text-right">
-      <rzhDefaultSorter by="ordRefundPay">订单退款</rzhDefaultSorter>
+      <rzhDefaultSorter by="ordRefundPay">订单退款（元）</rzhDefaultSorter>
     </th>
     <th class="w15  unselectable text-right">
-      <rzhDefaultSorter by="settleRate">结算比例</rzhDefaultSorter>
+      <rzhDefaultSorter by="settleRate">结算比例（%）</rzhDefaultSorter>
     </th>
     <th class="w15  unselectable text-right">
-      <rzhDefaultSorter by="settle">应结款</rzhDefaultSorter>
+      <rzhDefaultSorter by="settle">应结款（元）</rzhDefaultSorter>
     </th>
     <th class="w25  unselectable text-center">
       <rzhDefaultSorter by="createTime">结算时间</rzhDefaultSorter>
@@ -68,7 +68,7 @@
     <td class="text-right">&yen;&nbsp;{{menu.ordPay| number:'1.2-2'}}</td>
     <td class="text-right">&yen;&nbsp;{{menu.ordRefundPay| number:'1.2-2'}}</td>
     <td class="text-right">{{menu.settleRate}} %</td>
-    <td class="text-right">&yen;&nbsp;{{menu.settle| number:'1.2-2'}}</td>
+    <td class="text-right thc font">&yen;&nbsp;{{menu.settle| number:'1.2-2'}}</td>
     <td class="text-center">{{menu.createTime}}</td>
   </tr>
   </tbody>

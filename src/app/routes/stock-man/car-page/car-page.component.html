@@ -7,7 +7,7 @@
     <li>商品总金额大于 <span class="main-red font22">{{freeNum}}</span>免运费哦</li>
   </ul>
 </div>
-<div class="panel panel-default _padingBtm mb0">
+<div class="panel _padingBtm mb0">
   <!--头部-->
   <div class="panel-body _headBg">
     <ul class=" clearfix _list">
@@ -52,7 +52,7 @@
             </div>
           </div>
         </div>
-        <ul class="clearfix panel panel-default _extra _list">
+        <ul class="clearfix panel _extra _list">
           <!--商品列表-->
           <li class="_myPaddingBody clearfix _list"  *ngFor="let good of store.agentGoodsVOList;let i = index">
             <div *ngIf="good.isBatch=='N'||good.isBuy=='N'" class="wmask"></div>

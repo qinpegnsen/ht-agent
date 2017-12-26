@@ -36,3 +36,10 @@ td{
 .trBg{
   background: #eee;
 }
+.c-checkbox:hover span, .c-radio:hover span {
+  border-color: #cc1635;
+}
+.c-checkbox input[type=checkbox]:checked + span {
+  border-color: #cc1635;
+  background-color: #cc1635;
+}

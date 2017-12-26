@@ -2,7 +2,7 @@
 <div class="rightpage" *ngIf="this.queryId==1">
   <form class="form-validate form-horizontal" style="height: 100%" #addLimitForm="ngForm">
     <!-- START panel-->
-    <div class="panel-default">
+    <div class="">
       <div class="panel-body">
         <fieldset class="b0">
           <legend>添加代理商收货地址</legend>
@@ -79,8 +79,8 @@
         </fieldset>-->
       </div>
       <div class="panel-footer text-center" style="position: fixed;width: 100%;bottom:0;">
-        <button class="ml btn btn-default mr pull-left" (click)="cancel()" type="button">取消</button>
-        <button class="ml btn btn-info pull-left" type="button" [disabled]="!addLimitForm.form.valid" (click)="addLimitList(addLimitForm.value)">提交信息</button>
+        <button class="ml btn btn-default mr pull-left thc font b" (click)="cancel()" type="button">取消</button>
+        <button class="ml btn btn-info pull-left thc bg b" type="button" [disabled]="!addLimitForm.form.valid" (click)="addLimitList(addLimitForm.value)">提交信息</button>
       </div>
     </div>
     <!-- END panel-->
@@ -92,7 +92,7 @@
 <div class="rightpage" *ngIf="this.queryId==2">
   <form class="form-validate form-horizontal" style="height: 100%" #addLimitForm="ngForm">
     <!-- START panel-->
-    <div class="panel-default">
+    <div class="">
       <div class="panel-body">
         <fieldset class="b0">
           <legend>修改代理商收货地址</legend>
@@ -178,8 +178,8 @@
          </fieldset>-->
       </div>
       <div class="panel-footer text-center" style="position: fixed;width: 100%;bottom:0;">
-        <button class="ml btn btn-default mr pull-left" (click)="cancel()" type="button">取消</button>
-        <button class="ml btn btn-info pull-left" type="button" [disabled]="!addLimitForm.form.valid" (click)="addLimitList(addLimitForm.value)">提交信息</button>
+        <button class="ml btn btn-default mr pull-left thc font b" (click)="cancel()" type="button">取消</button>
+        <button class="ml btn btn-info pull-left thc bg b" type="button" [disabled]="!addLimitForm.form.valid" (click)="addLimitList(addLimitForm.value)">提交信息</button>
       </div>
     </div>
     <!-- END panel-->

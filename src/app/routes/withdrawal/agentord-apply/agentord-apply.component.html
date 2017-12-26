@@ -4,13 +4,13 @@
 <div class="panel mb p ts thc">
   <p class="font18">操作提示</p>
   <ul>
-    <li>买家提交退款申请，选择预存款方式支付的,卖家同意并经过平台确认后会将金额以原汇款的形式返还给买家。</li>
+    <li>买家提交退款申请，选择预存款方式支付的,卖家同意并经过平台确认后会将金额以原汇款的形式返还给买家</li>
     <li>如卖家更改退款方式可自行选择退款开户行。<span class="span">申请提现金额不可大于账户余额</span></li>
   </ul>
 </div>
   <form class="form-validate form-horizontal" style="height: 100%" #addLimitForm="ngForm">
     <!-- START panel-->
-    <div class="panel-default">
+    <div class="">
       <div class="panel-body">
         <input class="form-control"  [(ngModel)]="agentcode" name="agentCode" type="hidden">
         <fieldset>
@@ -55,7 +55,7 @@
             <div class="col-sm-3">
               <input class="form-control num" type="number" required #drawMoneyTpl="ngModel" name="drawMoney" [(ngModel)]="drawMoney" (keyup)="twoNum($event.target)"/>
               <div [hidden]="drawMoneyTpl.valid || drawMoneyTpl.untouched"
-                   class="alert alert-danger">
+                   class="alert alert-danger text-danger">
                 请填写申请提现金额，可保留两位小数
               </div>
             </div>
@@ -74,7 +74,7 @@
         </fieldset>
       <fieldset>
         <div class="form-group special specialGroup" >
-          <button class="ml btn btn-info pull-left" type="button" [disabled]="!addLimitForm.form.valid" (click)="addLimitList(addLimitForm.value)">提交信息</button>
+          <button class="ml btn btn-info pull-left  thc bg b" type="button" [disabled]="!addLimitForm.form.valid" (click)="addLimitList(addLimitForm.value)">提交信息</button>
         </div>
       </fieldset>
       </div>

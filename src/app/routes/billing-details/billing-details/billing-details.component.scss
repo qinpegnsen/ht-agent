@@ -1,3 +1,6 @@
+.panel{
+  padding: 0 15px 15px 15px;
+}
 .order-guide li{
   width: 100px;
   line-height: 2.5;
@@ -37,14 +40,9 @@
 }
 
 .search-term{
-  width:230px!important;
+  width:320px!important;
 }
-.ts{
-  background: #C9E7F2;
-  width: 98%;
-  margin: auto;
-  margin-top: 15px;
-}
+
 .bigImg{
   position: fixed;
   top:0;

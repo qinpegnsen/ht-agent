@@ -4,32 +4,32 @@
     <div class="pl-sm pr0 pull-right">
       <div class="form-group mb0 pr0 text-left">
         <button type="button" title="搜索"
-                class="btn btn-primary bar-h3-btn mr0 ng-scope thc btn-thc" (click)="queryDatas()">
-          <em class="icon-magnifier fa-fw"></em>
+                class="btn btn-primary bar-h3-btn mr0 ng-scope thc btn-thc ml-lg" (click)="queryDatas()">
+          <em class="icon-magnifier"></em><span>&nbsp;&nbsp;搜索</span>
         </button>
       </div>
     </div>
-    <div class="search-term clearfix ml mb col-lg-2 pull-right">
-      <div class="pr0 pull-left w100">
+    <div class="search-term clearfix ml mb pull-right">
+      <div class="pr0 pull-left w100 select-witch">
         <select class="form-control pl-sm pr-sm" name="state" #stateEnum (change)="getState(stateEnum.value)">
           <option value="">全部</option>
           <option value="{{item.key}}" *ngFor="let item of stateEnumList">{{item.val}}</option>
         </select>
       </div>
     </div>
-    <div class="place-time clearfix mb col-lg-2 pull-right">
+    <div class="place-time clearfix ml mb pull-right">
       <div class="pl0 pr0 pull-left w100">
         <input type="text" class="form-control border-b-grey" maxlength="128" [(ngModel)]="custPhone"
-               placeholder="请输入要查询的收货人手机号">
+               placeholder="请输入收货人手机号">
       </div>
     </div>
-    <div class="place-time clearfix mb col-lg-2 pull-right">
+    <div class="place-time clearfix ml mb pull-right">
       <div class="pl0 pr0 pull-left w100">
         <input type="text" class="form-control border-b-grey" maxlength="128" [(ngModel)]="ordno"
                placeholder="请输入要查询的订单号">
       </div>
     </div>
-    <div class="place-time clearfix mb col-lg-2 pull-right">
+    <div class="place-time clearfix ml mb pull-right">
       <div class="pl0 pr0 pull-left w100">
         <input type="text" class="form-control border-b-grey" maxlength="128" [(ngModel)]="wono"
                placeholder="请输入要查询的工单号">
@@ -40,11 +40,11 @@
   <!--列表开始-->
   <ul class="clearfix order-table-head list-unstyled mb0 p b">
     <li class="w35 pull-left text-center thc font">商品</li>
-    <li class="w10 pull-left text-center thc font">单价</li>
+    <li class="w10 pull-left text-center thc font">单价（元）</li>
     <li class="w7 pull-left text-center thc font">数量</li>
     <li class="w8 pull-left text-center thc font">异常状态</li>
     <li class="w10 pull-left text-center thc font">收货人</li>
-    <li class="w10 pull-left text-center thc font">订单金额</li>
+    <li class="w10 pull-left text-center thc font">订单金额（元）</li>
     <li class="w10 pull-left text-center thc font">工单状态</li>
     <li class="w10 pull-left text-center thc font">操作</li>
   </ul>
@@ -81,8 +81,8 @@
               </div>
             </td>
             <td class="w10 position-relative bb">
-              <div class="cover" *ngIf="item.returnNum > 0"></div>
-              ￥{{item.price| number:'1.2-2'}}
+              <div class="cover thc font" *ngIf="item.returnNum > 0"></div>
+              ￥&nbsp;{{item.price| number:'1.2-2'}}
             </td>
             <td class="w7 position-relative bb">
               <div class="cover" *ngIf="item.returnNum > 0"></div>

@@ -1,86 +1,141 @@
-.special{
-  width:60px;height:60px;
+.special {
+  width: 60px;
+  height: 60px;
 }
-.extra{
-  margin-top:12px;
+
+.extra {
+  margin-top: 12px;
 }
-.change:hover{
+
+.change:hover {
   background: #DCF8FF;
 }
-.detail{
+
+.detail {
   padding: 10px;
 }
-.checkbox{
-  width:60px;
-  margin:10px;
+
+.checkbox {
+  width: 60px;
+  margin: 10px;
 }
-.detail:hover{
+
+.detail:hover {
   background: #F2F2F2;
 }
-.addCar{
-  font-size:25px;
+
+.addCar {
+  font-size: 25px;
 }
-.shopCar{
+
+.shopCar {
   padding-left: 16px;
-  animation:myfirst 0.5s;
+  animation: myfirst 0.5s;
 }
-@keyframes myfirst
-{
-  from {transform:rotate(0deg);transform-origin:10%;}
-  to {transform:rotate(360deg);transform-origin:10%}
+
+@keyframes myfirst {
+  from {
+    transform: rotate(0deg);
+    transform-origin: 10%;
+  }
+  to {
+    transform: rotate(360deg);
+    transform-origin: 10%
+  }
 }
+
 @-moz-keyframes myfirst /* Firefox */
 {
-  from {transform:rotate(0deg);transform-origin:10%;}
-  to {transform:rotate(360deg);transform-origin:10%}
+  from {
+    transform: rotate(0deg);
+    transform-origin: 10%;
+  }
+  to {
+    transform: rotate(360deg);
+    transform-origin: 10%
+  }
 }
 
 @-webkit-keyframes myfirst /* Safari and Chrome */
 {
-  from {transform:rotate(0deg);transform-origin:10%;}
-  to {transform:rotate(360deg);transform-origin:10%}
+  from {
+    transform: rotate(0deg);
+    transform-origin: 10%;
+  }
+  to {
+    transform: rotate(360deg);
+    transform-origin: 10%
+  }
 }
 
 @-o-keyframes myfirst /* Opera */
 {
-  from {transform:rotate(0deg);transform-origin:10%;}
-  to {transform:rotate(360deg);transform-origin:10%}
+  from {
+    transform: rotate(0deg);
+    transform-origin: 10%;
+  }
+  to {
+    transform: rotate(360deg);
+    transform-origin: 10%
+  }
 }
-.trBg{
+
+.trBg {
   background: #E0F5FA;
 }
 
-.goods-info-box{
+.goods-info-box {
   position: relative;
 }
-.goods-img{
+
+.goods-img {
   width: 80px;
   height: 80px;
 }
-.goods-img img{
+
+.goods-img img {
   width: 100%;
   height: 100%;
 }
-.goods-name{
+
+.goods-name {
   position: absolute;
   top: 10px;
   left: 100px;
   bottom: 10px;
   right: 10px;
 }
-.width120{
+
+.width120 {
   width: 120px;
 }
-._myNmu{
+
+._myNmu {
   position: relative;
 }
-._myNmu .input-group-sm{
-  position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;
+
+._myNmu .input-group-sm {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
 }
-._addCar{
+
+._addCar {
   text-decoration: none;
 }
-.noneBb{
+
+.noneBb {
   text-decoration: none;
+}
+
+.c-checkbox:hover span, .c-radio:hover span {
+  border-color: #cc1635;
+}
+.c-checkbox input[type=checkbox]:checked + span {
+  border-color: #cc1635;
+  background-color: #cc1635;
 }
 

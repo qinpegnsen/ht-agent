@@ -2,7 +2,7 @@
   <span class="thc font">提现记录</span>
 </div>
 
-<div class="panel panel-default">
+<div class="panel">
   <div class="panel-body">
     <table class="table table-striped" #dataTable="rzhDataTable" [rzhData]="controlData" (pageChange)="queryList($event)">
       <thead>
@@ -16,7 +16,7 @@
           收款人账号
         </th>
         <th class="col-md-2 unselectable text-center thc font">
-          提现金额
+          提现金额（元）
         </th>
         <th class="col-md-3 unselectable text-center thc font">
           收款开户行
