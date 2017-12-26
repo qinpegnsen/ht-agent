@@ -75,6 +75,7 @@
           <td class="w10 bb">{{sale.custPhone}}</td>
           <td class="w10 bl">
             <span class="main-red font14">￥ {{sale.returnMoney | number:'1.2-2'}}</span><br>
+            <span class="font-gray font12">实退红包￥ {{sale.returnRp | number:'1.2-2'}}</span>
           </td>
           <td class="w10 bl  position-relative">
             <p class="font-gray mb-sm cursor-p" *ngIf="sale.state=='AGREE'">待用户寄出</p>
