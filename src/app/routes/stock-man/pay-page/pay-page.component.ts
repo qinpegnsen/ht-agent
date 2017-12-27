@@ -46,14 +46,18 @@ export class PayPageComponent implements OnInit {
    */
   ngOnInit() {
     let ordno = this.routeInfo.snapshot.queryParams['ordno'];           //获取进货记录未付款跳转过来的参数
-    let transPayWay = this.routeInfo.snapshot.queryParams['payWay'];    //获取当前的订单号
+    let transPayWay = this.routeInfo.snapshot.queryParams['payWay'];    //获取当前的订单的支付方式
     this.orderData=JSON.parse(sessionStorage.getItem('orderData'));
     if(transPayWay){                                                     //如果有地址栏传递过来的就用地址传递过来的
       this.payWay=transPayWay;                                           //支付的方式，用来显示不同的页面
     }else if(this.orderData){
       this.payWay=this.orderData.payWay;
     }
-    this.bornOrder(ordno);
+    if(ordno){
+      this.bornOrder(ordno);
+    }else{
+      this.bornOrder();
+    }//防止报错
     this.getRemitInfo();
     this.headerComponent.getShopTotal();//刷新购物车商品数量
   };
@@ -84,17 +88,24 @@ export class PayPageComponent implements OnInit {
   /**
    * 生成订单
    */
-  bornOrder(ordno){
+  bornOrder(ordno?){
     let url = '/agentOrd/addAgentOrd';
-    let payData=this.stockManService.bornOrder(url,this.orderData);
+    let payData=this.stockManService.bornOrder(url,this.orderData);//正常流程
     if(isNullOrUndefined(payData)||payData=='代理商购物车商品无查询数据'||payData=='订单商品编码和商品数量拼接字符串为空'){ //在用户刷新，或者下个页面返回,未付款跳转过来的时候会用到
       let url = '/agentOrd/loadByOrdno';
       let data={
         ordno:ordno?ordno:sessionStorage.getItem('ordno')
+      };
+      if(data.ordno){
+        let payData=this.stockManService.getShopList(url,data);
+        if(payData){
+          this.ordno=payData.ordno;
+          this.pay=payData.pay;
+        }
+      }else{
+        this.router.navigateByUrl('/main/home/');//如果出现异常调到首页
+        return;
       }
-      let payData=this.stockManService.getShopList(url,data);
-      this.ordno=payData.ordno;
-      this.pay=payData.pay;
     }else if(payData=='购买商品不可批发商品'||payData=='购买商品包含已下架商品'){//处理商品失效的bug
       AppComponent.rzhAlt("error",payData);
       this.location.back();
