@@ -29,11 +29,6 @@ const afterSale = {
   link: '/main/afterSale',
   icon: 'icon-book-open'
 };
-const statistics = {
-  text: '统计',
-  link: '/main/statistics',
-  icon: 'fa fa-line-chart'
-};
 const stockAddres = {
   text: '收货地址',
   link: '/main/stockAddres',
@@ -71,7 +66,6 @@ export const menu = [
     stockMan,
     shopOrder,
     afterSale,
-    statistics,
     stockAddres,
     withdrawal,
     billingDetails,
