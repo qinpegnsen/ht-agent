@@ -26,7 +26,7 @@ export class StockManService {
         }
       },
       error: (res) => {
-        AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
+        AppComponent.rzhAlt("error", '处理失败，请稍候重试或联系我们');
       }
     });
     return result;
@@ -52,7 +52,7 @@ export class StockManService {
         }
       },
       error: (res) => {
-        AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
+        AppComponent.rzhAlt("error",'处理失败，请稍候重试或联系我们');
       }
     });
 
@@ -106,7 +106,7 @@ export class StockManService {
         }
       },
       error: (res) => {
-        AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
+        AppComponent.rzhAlt("error", '处理失败，请稍候重试或联系我们');
       }
     });
     return result;
@@ -133,7 +133,7 @@ export class StockManService {
         }
       },
       error: (res) => {
-        AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
+        AppComponent.rzhAlt("error", '处理失败，请稍候重试或联系我们');
       }
     });
     return result;
@@ -159,7 +159,7 @@ export class StockManService {
         }
       },
       error: (res) => {
-        AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
+        AppComponent.rzhAlt("error", '处理失败，请稍候重试或联系我们');
       }
     });
     return result;
@@ -184,7 +184,7 @@ export class StockManService {
         }
       },
       error: (res) => {
-        AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
+        AppComponent.rzhAlt("error", '处理失败，请稍候重试或联系我们');
       }
     });
   }
@@ -210,7 +210,7 @@ export class StockManService {
         }
       },
       error: (res) => {
-        AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
+        AppComponent.rzhAlt("error", '处理失败，请稍候重试或联系我们');
       }
     });
     return result;
@@ -237,7 +237,7 @@ export class StockManService {
         }
       },
       error: (res) => {
-        AppComponent.rzhAlt("error", res.status + '**' + res.statusText);
+        AppComponent.rzhAlt("error", '处理失败，请稍候重试或联系我们');
       }
     });
     return result;
