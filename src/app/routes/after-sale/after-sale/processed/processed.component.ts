@@ -59,15 +59,15 @@ export class ProcessedComponent implements OnInit {
    * 隐藏买家信息
    * @param i
    */
-  cancelOrder(afterNo) {
-    this.curCancelOrderId = afterNo;
+  cancelOrder(orderId) {
+    this.curCancelOrderId = orderId;
   }
   /**
    * 隐藏买家信息
    * @param i
    */
-  cancelOrder1(afterNo) {
-    this.curCancelOrderId1 = afterNo;
+  cancelOrder1(orderId) {
+    this.curCancelOrderId1 = orderId;
   }
   /**
    * 取消订单回调函数

@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-  <div class="search-term-a clearfix ml mb">
+  <div class="search-term clearfix ml mb">
     <div class="w100 pl-sm pr0 pull-left">
       <div class="form-group mb0 pr0">
         <div class="w70 pl0 pr0 pull-left">
@@ -27,7 +27,7 @@
         </div>
         <button type="button" title="搜索"
                 class="btn thc btn-thc bar-h3-btn mr0 ng-scope"  (click)="queryDatas(1)">
-          <em class="icon-magnifier fa-fw"></em><span>&nbsp;&nbsp;搜索</span>
+          <em class="icon-magnifier fa-fw"></em>
         </button>
       </div>
     </div>
@@ -38,7 +38,7 @@
 <ul class="clearfix order-table-head list-unstyled mb0 p b">
   <li class="w40 pull-left text-center">商品</li>
   <li class="w10 pull-left text-center">数量</li>
-  <li class="w10 pull-left text-center">申请金额（元）</li>
+  <li class="w10 pull-left text-center">申请金额</li>
   <li class="w10 pull-left text-center">买家手机号</li>
   <li class="w10 pull-left text-center">实际退回</li>
   <li class="w10 pull-left text-center">审核状态</li>
@@ -71,7 +71,7 @@
             </div>
           </td>
           <td class="w10 bb">{{sale.num}}</td>
-          <td class="w10 bl thc font">&yen;&nbsp;{{sale.reqMoney}}</td>
+          <td class="w10 bl">&yen;{{sale.reqMoney}}</td>
           <td class="w10 bl">{{sale.custPhone}}</td>
           <td class="w10 bl">
             <span class="main-red font14">￥ {{sale.returnMoney | number:'1.2-2'}}</span><br>
@@ -115,5 +115,5 @@
 <router-outlet (activate)="activate($event)" (deactivate)="onDeactivate($event)"></router-outlet>
 <!--路由嵌套 end-->
 
-<app-logistics [afterNo]="curCancelOrderId" (cancelOrder)="getCancelOrderData($event)"></app-logistics>
-<app-refused-agent [afterNo]="curCancelOrderId1" (cancelOrder)="getCancelOrderData1($event)"></app-refused-agent>
+<app-logistics [orderId]="curCancelOrderId" (cancelOrder)="getCancelOrderData($event)"></app-logistics>
+<app-refused-agent [orderId]="curCancelOrderId1" (cancelOrder)="getCancelOrderData1($event)"></app-refused-agent>
