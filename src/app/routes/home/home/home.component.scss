@@ -1,48 +1,64 @@
-@import '../../../shared/styles/app/variables.scss';
-@import '../../../shared/styles/app/media-queries.scss';
 
-.home-container {
-    margin: 0 auto;
-    max-width: $container-md;
-
-    .home-logo {
-        width: 240px;
-    }
-
-    .home-text {
-        @media only screen and (max-width: $mq-tablet) {
-            text-align: center;
-        }
-    }
-}
-.shop{
+.shop {
   height: 360px;
   min-width: 728px
 }
-.release{
+
+.release {
   height: 40px;
   line-height: 40px;
   padding-left: 40px
 }
-.m-all{
+
+.m-all {
   margin: 12px 50px;
   width: 160px;
 }
-.business{
-  height: 360px
+
+.business {
+  height: 330px
 }
-.connect{
+
+.connect {
   margin: 0px 0 20px;
 }
-.block{
+
+.block {
   display: block;
 }
-.agent{
+
+.agent {
   color: #00b3ee;
 }
-.technical{
-  color:#4ae100;
+
+.technical {
+  color: #4ae100;
 }
-.mail{
+
+.mail {
   color: #ffe423;
+}
+
+.home-width {
+  min-width: 1137px;
+}
+
+.title-width {
+  height: 328px
+}
+
+.count-width {
+  height: 60px
+}
+
+.content-width {
+  height: 50px;
+}
+
+.scroll-heoght {
+  height: 360px
+}
+
+.echarts-height {
+  height: 300px;
 }

@@ -1,8 +1,8 @@
 <div class="row">
-  <div style="min-width: 1137px;" class="">
+  <div class="home-width">
     <div class="col-lg-8 col-md-6 shop">
       <!-- Team Panel-->
-      <div class="panel" style="height: 328px">
+      <div class="panel title-width">
         <div class="panel-heading">
           <div class="panel-title font16">店铺及商品提示</div>
           <p>新版页面正在筹备，尽请期待</p>
@@ -10,71 +10,62 @@
         <div class="bg-gray release">
           <div class="font16">代理商统计</div>
         </div>
-        <div style="">
+        <div>
           <button class="mb-sm btn btn-green btn-outline m-all">
             <span title="历史进货数量">进货数量</span>
-            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.sumBatchNum!=null">{{data?.sumBatchNum}}</div>
-            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.sumBatchNum==null">0</div>
+            <div class="label label-danger thc bgIcon colorIcon">{{data?.sumBatchNum || '0'}}</div>
 
           </button>
           <button class="mb-sm btn btn-green btn-outline m-all">
-            <span  title="历史进货金额">进货金额</span>
-            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.sumPay!=null">{{data?.sumPay}}</div>
-            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.sumPay==null">0</div>
+            <span title="历史进货金额">进货金额</span>
+            <div class="label label-danger thc bgIcon colorIcon">{{data.sumPay || '0'}}</div>
           </button>
           <button class="mb-sm btn btn-green btn-outline m-all">
-             <span title="历史发货数量">发货数量</span>
-            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.countDelivery!=null">{{data?.countDelivery}}</div>
-            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.countDelivery==null">0</div>
+            <span title="历史发货数量">发货数量</span>
+            <div class="label label-danger thc bgIcon colorIcon">{{data.countDelivery || '0'}}</div>
           </button>
         </div>
-        <div style="height: 60px">
+        <div class="count-width">
           <button class="mb-sm btn btn-green btn-outline m-all">
-             <span title="历史派单数量">派单数量</span>
-            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.agentAllOrd!=null">{{data?.agentAllOrd}}</div>
-            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.agentAllOrd==null">0</div>
+            <span title="历史派单数量">派单数量</span>
+            <div class="label label-danger thc bgIcon colorIcon">{{data.agentAllOrd || '0'}}</div>
           </button>
           <button class="mb-sm btn btn-green btn-outline m-all">
             <span title="历史接单数量">接单数量</span>
-            <div class="label label-danger thc bgIcon colorIcon"  *ngIf="data?.agentDealOrd!=null">{{data?.agentDealOrd}}</div>
-            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.agentDealOrd==null">0</div>
+            <div class="label label-danger thc bgIcon colorIcon">{{data.agentDealOrd || '0'}}</div>
           </button>
-          <button class="mb-sm btn btn-green btn-outline m-all" >
+          <button class="mb-sm btn btn-green btn-outline m-all">
             <span title="历史拒单数量">拒单数量</span>
-            <div class="label label-danger thc bgIcon colorIcon"  *ngIf="data?.agentRejectOrd!=null">{{data?.agentRejectOrd}}</div>
-            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.agentRejectOrd==null">0</div>
+            <div class="label label-danger thc bgIcon colorIcon">{{data.agentRejectOrd || '0'}}</div>
           </button>
         </div>
 
-        <div style="">
+        <div>
           <div class="bg-gray release font16">今日统计</div>
           <button class="mb-sm btn btn-green btn-outline m-all">派单数量
-            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.todayAgentAllOrd!=null">{{data?.todayAgentAllOrd}}</div>
-            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.todayAgentAllOrd==null">0</div>
+            <div class="label label-danger thc bgIcon colorIcon">{{data.todayAgentAllOrd || '0'}}</div>
           </button>
           <button class="mb-sm btn btn-green btn-outline m-all">接单数量
-            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.todayAgentDealOrd!=null">{{data?.todayAgentDealOrd}}</div>
-            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.todayAgentDealOrd==null">0</div>
+            <div class="label label-danger thc bgIcon colorIcon">{{data.todayAgentDealOrd || '0'}}</div>
           </button>
-          <button class="mb-sm btn btn-green btn-outline m-all" >拒单数量
-            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.todayAgentRejectOrd!=null">{{data?.todayAgentRejectOrd}}</div>
-            <div class="label label-danger thc bgIcon colorIcon" *ngIf="data?.todayAgentRejectOrd==null">0</div>
+          <button class="mb-sm btn btn-green btn-outline m-all">拒单数量
+            <div class="label label-danger thc bgIcon colorIcon">{{data.todayAgentRejectOrd || '0'}}</div>
           </button>
         </div>
       </div>
     </div>
     <div class="col-lg-4 col-md-6 business">
-      <div class="panel business" style="height: 330px">
+      <div class="panel business">
         <div class="panel-heading">
           <div class="panel-title font20 connect">平台联系方式</div>
-          <div style="height:50px;">
+          <div class="content-width">
             <p class="pull-left w50">
               <i class="fa fa-tty font80 block mb15 agent text-center"></i>
-             <span class="font14 lh ml35">平台服务电话:&nbsp;&nbsp;{{tel2}}</span>
+              <span class="font14 lh ml35">平台服务电话:&nbsp;&nbsp;{{tel2}}</span>
             </p>
             <p class="pull-left w50">
               <i class="fa fa-phone-square font80 block mb15 technical text-center"></i>
-             <span class="font14 lh ml35">技术服务电话:&nbsp;&nbsp;{{tel1}}</span>
+              <span class="font14 lh ml35">技术服务电话:&nbsp;&nbsp;{{tel1}}</span>
             </p>
           </div>
           <div class="mt50 ml85">
@@ -90,16 +81,16 @@
     </div>
   </div>
 
-  <div style="">
-    <div class="col-lg-12 col-md-6 shop" >
+  <div>
+    <div class="col-lg-12 col-md-6 shop">
       <!-- Team Panel-->
-      <div class="panel"  style="height: 360px">
+      <div class="panel scroll-heoght">
         <div class="panel-heading">
           <div class="panel-title">最新平台派单走势</div>
         </div>
 
         <div class="panel">
-          <div echarts [options]="optionPrev" class="demo-chart w100" style="height: 300px"></div>
+          <div echarts [options]="optionPrev" class="demo-chart w100 echarts-height"></div>
         </div>
       </div>
       <!-- end Team Panel-->
