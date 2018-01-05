@@ -168,7 +168,7 @@
               </div>
             </td>
             <td class="w10 bl" *ngIf="j==0" [attr.rowspan]="order.ord.ordItemList.length">
-              <button *ngIf="order.ord.state=='PREPARE'&& order.ord.canDelivery" class="btn btn-xs  btn-success fa fa-truck"
+              <button *ngIf="order.ord.state=='PREPARE'&& order.ord.canDelivery&&item.returnNum ==0" class="btn btn-xs  btn-success fa fa-truck"
                       (click)="deliver(order.id,order.ordno)"> 发货
               </button>
             </td>

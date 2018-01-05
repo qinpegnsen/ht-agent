@@ -164,10 +164,10 @@
               </div>
             </td>
             <td class="w10 bl" *ngIf="j==0" [attr.rowspan]="order.ord.ordItemList.length">
-              <button *ngIf="order.state=='NO'" class="btn btn-xs  btn-success fa fa-check"
+              <button *ngIf="order.state=='NO'&&item.returnNum ==0" class="btn btn-xs  btn-success fa fa-check"
                       (click)="toAccept(order.id,workOrderList.curPage)" #accept> 接单
               </button>
-              <button *ngIf="order.state=='NO'" class="btn btn-xs  btn-danger fa fa-close"
+              <button *ngIf="order.state=='NO'&&item.returnNum ==0" class="btn btn-xs  btn-danger fa fa-close"
                       (click)="toReject(order.id,workOrderList.curPage)" #reject> 拒单
               </button>
             </td>
