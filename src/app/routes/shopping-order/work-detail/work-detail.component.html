@@ -235,16 +235,16 @@
           <span class="font-gray">支付方式：{{orderDetailData.payWay | rzhState:'1017'}}</span>
         </td>
         <td class="bl" [attr.rowspan]="goodsData.length">
-          <button *ngIf="orderDetailData.state=='ASSIGNED'"
+          <button *ngIf="orderDetailData.state=='ASSIGNED'&&goods.returnNum ==0"
                   class="btn btn-xs  btn-success fa fa-check"
                   (click)="toAccept()" #accept> 接单
           </button>
-          <button *ngIf="orderDetailData.state=='ASSIGNED'"
+          <button *ngIf="orderDetailData.state=='ASSIGNED'&&goods.returnNum ==0"
                   class="btn btn-xs  btn-danger fa fa-close"
                   (click)="toReject()" #reject> 拒单
           </button>
           <button class="btn btn-xs  btn-success fa fa-truck"
-                  *ngIf="orderDetailData.state=='PREPARE'&& orderDetailData.canDelivery"
+                  *ngIf="orderDetailData.state=='PREPARE'&& orderDetailData.canDelivery&&goods.returnNum ==0"
                   (click)="deliver()"> 发货
           </button>
         </td>
