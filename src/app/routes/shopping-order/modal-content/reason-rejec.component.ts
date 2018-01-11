@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {isNullOrUndefined, isUndefined} from "util";
 import {ShoppingOrderService} from "../shopping-order.service";
 import {AllWorkOrdersComponent} from "../all-work-orders/all-work-orders.component";
@@ -13,7 +13,7 @@ declare var $: any;
   styleUrls: ['./reason-rejec.component.scss'],
 })
 
-export class ReasonRejecComponent implements OnInit , OnDestroy{
+export class ReasonRejecComponent implements OnInit , OnChanges,OnDestroy{
 
   public other: string='';
   public stateEnum: string='OTHER';
@@ -24,6 +24,7 @@ export class ReasonRejecComponent implements OnInit , OnDestroy{
   ngOnChanges(changes: SimpleChanges): void {
     if ( changes['woAgengId']&&!isNullOrUndefined(this.woAgengId)) {
       this.list =  this.rzhtoolsService.getEnumDataList('1306');
+      console.log("█ this.list ►►►",  this.list);
       this.stateEnum='OTHER';//每次输入属性进来的时候，让stateEnum恢复原状
       this.other='';//每次输入属性进来的时候，让原因恢复原状
       $('.wrapper > section').css('z-index', 200);
@@ -54,7 +55,6 @@ export class ReasonRejecComponent implements OnInit , OnDestroy{
     $('.wrapper > section').css('z-index', 114);
     this.showReasonWindow = false;
     if (isUndefined(type)) type = false;
-    console.log("█ type ►►►",  type);
     this.closeRejec.emit(
       type
     )// 向外传值

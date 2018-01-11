@@ -66,7 +66,7 @@
               <div class="cover" *ngIf="item.returnNum > 0"></div>
               <span class="goods-img goods-lg-img mr">
                 <img [src]="item.goodsImage" (mousemove)="showImg($event,img)" (mouseout)="hideImg(img)"
-                 onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
+                     onerror="javascript:this.src='../../../assets/img/dummy.png'" alt="">
               </span>
               <img src="{{item.goodsImage}}" #img class="hoverBigImg" alt=""
                    onerror="javascript:this.src='../../../assets/img/dummy.png'">
@@ -90,7 +90,8 @@
             </td>
             <td class="w8" [class.bb]="s != order.ord.ordItemList.length-1">
                 <span *ngIf="item.returnNum > 0">
-                  <img width="66%" src="../../../../../assets/img/order/refund.png" alt=""  onerror="javascript:this.src='../../../assets/img/dummy.png'">
+                  <img width="66%" src="../../../../../assets/img/order/refund.png" alt=""
+                       onerror="javascript:this.src='../../../assets/img/dummy.png'">
                   <p class="text-danger mb0 mt-sm"><a>查看退款进度</a></p>
                 </span>
             </td>
@@ -193,14 +194,7 @@
     </tfoot>
   </table>
   <!--列表结束-->
-  <!--发货弹框组件开始-->
-  <app-deliver-goods [woAgentId]="curWoAgentId" [ordno]="curOrdno" [page]="workOrderList.curPage"
-                     (deliverGoods)="getDeliverOrderData($event)"></app-deliver-goods>
-  <!--发货弹框组件结束-->
-  <!--拒单组件开始-->
-  <app-reason-rejec [showReasonWindow]="showReasonWindow" [woAgengId]="transWoAgengId"
-                    (closeRejec)="closeRejecWin($event,workOrderList.curPage)"></app-reason-rejec>
-  <!--拒单组件结束-->
+
 </ng-container>
 
 <!--路由嵌套 begin-->

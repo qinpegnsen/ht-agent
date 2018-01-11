@@ -25,7 +25,7 @@ export class WaitForOrdersComponent implements OnInit {
   public stateEnum:string='NO';                                 //工单状态搜索时候会用到
   public stateEnumList;                                       //工单状态的列表
   public showReasonWindow:boolean = false;                  //弹窗的开关
-  public woAgengId:any;                                      //代理商工单id
+  public transWoAgengId:any;                                      //代理商工单id
   public custPhone:any;                                      //买家的手机号
   public LogisticsData:any;                                  //物流数据
   public showList:boolean=true;                              //是否显示列表
@@ -107,8 +107,7 @@ export class WaitForOrdersComponent implements OnInit {
    * 拒单
    */
   toReject(woAgengId) {
-    this.woAgengId = woAgengId;
-    this.showReasonWindow = true;
+    this.transWoAgengId = woAgengId;
   }
 
   /**
