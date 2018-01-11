@@ -106,12 +106,6 @@ export class AllWorkOrdersComponent implements OnInit {
     );
   }
 
-  /**
-   * 拒单
-   */
-  toReject(woAgengId) {
-    this.transWoAgengId = woAgengId;
-  }
 
   /**
    * 发货
@@ -193,6 +187,7 @@ export class AllWorkOrdersComponent implements OnInit {
     this.stateEnum = val;
   }
 
+
   /**
    * 发货回调函数
    * @param data
@@ -200,6 +195,13 @@ export class AllWorkOrdersComponent implements OnInit {
   getDeliverOrderData(data) {
     this.curOrdno = null;//输入属性发生变化的时候，弹窗才会打开，所以每次后来都清空，造成变化的迹象
     if (data.type) this.queryDatas(data.page)
+  }
+
+  /**
+   * 拒单
+   */
+  toReject(woAgengId) {
+    this.transWoAgengId = woAgengId;
   }
 
   /**

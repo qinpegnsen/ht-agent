@@ -50,7 +50,7 @@ export class ShoppingOrderService {
       success: (res) => {
         let info=res.info;
         if(res.success){
-          result=res.info;
+          result=res.success;
           AppComponent.rzhAlt("success",info);
         }else{
           AppComponent.rzhAlt("error",info);

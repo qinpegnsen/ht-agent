@@ -24,7 +24,6 @@ export class ReasonRejecComponent implements OnInit , OnChanges,OnDestroy{
   ngOnChanges(changes: SimpleChanges): void {
     if ( changes['woAgengId']&&!isNullOrUndefined(this.woAgengId)) {
       this.list =  this.rzhtoolsService.getEnumDataList('1306');
-      console.log("█ this.list ►►►",  this.list);
       this.stateEnum='OTHER';//每次输入属性进来的时候，让stateEnum恢复原状
       this.other='';//每次输入属性进来的时候，让原因恢复原状
       $('.wrapper > section').css('z-index', 200);
@@ -71,7 +70,7 @@ export class ReasonRejecComponent implements OnInit , OnChanges,OnDestroy{
       woAgengId: this.woAgengId
     };
     let result=this.shoppingOrderService.toRefuseWork(url, data);
-    if(result=='拒单成功'){
+    if(result){
       this.hideWindow(true);
     }
   }

@@ -114,8 +114,10 @@ export class WaitForOrdersComponent implements OnInit {
    * 拒单的回调函数，产生输入属性的变化
    */
   closeRejecWin(bol,curPage){
-    this.showReasonWindow=bol;
-    this.queryDatas(curPage);
+    this.transWoAgengId=null;
+    if(bol){
+      this.queryDatas(curPage);
+    }
   }
 
   /**
