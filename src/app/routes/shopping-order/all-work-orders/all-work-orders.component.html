@@ -175,7 +175,7 @@
               <button *ngIf="order.state=='NO'&&item.returnNum ==0" class="btn btn-xs  btn-danger fa fa-close"
                       (click)="toReject(order.id,workOrderList.curPage)" #reject> 拒单
               </button>
-              <button *ngIf="order.ord.state=='PREPARE'&& order.ord.canDelivery&&item.returnNum ==0"
+              <button *ngIf="order.state=='ACCEPT'&&order.ord.state=='PREPARE'&& order.ord.canDelivery&&item.returnNum ==0"
                       class="btn btn-xs  btn-success fa fa-truck"
                       (click)="deliver(order.id,order.ordno)"> 发货
               </button>
